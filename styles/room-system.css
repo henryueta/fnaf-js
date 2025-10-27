@@ -1,0 +1,30 @@
+.room-container{
+    z-index: 0;
+    display: flex;
+    justify-content: space-between;
+    background-image: url("https://i.pinimg.com/originals/93/05/87/9305871ff9c0ae6e010db33ad09ee218.png");
+    background-size: cover;
+    background-position: center;
+    height: 100dvh;
+    width: 150dvw;
+    transform: translateX(-25%);
+}
+
+.move-right-container{
+    z-index: 5;
+    position: fixed;
+    right: 0%;
+    height: 100%;
+    top: 0%;
+    width: 35dvw;
+}
+
+.move-left-container{
+    z-index: 5;
+    position: fixed;
+    left: 0%;
+    height: 100%;
+    top: 0%;
+    width: 35dvw;
+
+}

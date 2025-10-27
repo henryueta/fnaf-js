@@ -1,0 +1,134 @@
+
+.toggle-cam-system-container{
+    border: 1px solid gray;
+    opacity: 50%;
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%,0%);
+    width: 40dvw;
+    height: 4dvh;
+    display: flex;
+    z-index: 6;
+}
+
+.toggle-cam-system-button {
+    width: 100%;
+    height: 100%;
+}
+.cam-system-container {
+    width: 70dvw;
+    height: 95dvh;
+    transform: translate(-50%,-50%);
+    transform-style: preserve-3d;
+    perspective: 800px; 
+    position: fixed;
+    left: 50%;
+    top: 52.5%;
+    z-index: 4;
+  }
+
+  .screen-container {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: #3f464f;
+    background: linear-gradient(180deg,rgb(22, 22, 22) 0%, rgb(17, 17, 17) 50%, rgb(22, 22, 22) 100%);
+    position: absolute;
+    transform-origin: bottom center;
+    transform: rotateX(0deg); 
+  }
+
+  .screen-container::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px;
+  }
+
+  .screen-container::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    background-image: url("../assets/imgs/static.gif");
+    opacity: 50%;
+    border-radius: 5px;
+    z-index: 20;
+  }
+
+.choice-container{
+    border: 1px solid white;
+    position: absolute;
+    top: 40%;
+    left: 55%;
+    height: 40%;
+    width: 40%;
+    z-index: 10;
+}
+
+.current-content-container{
+    /* border: 1px solid rgb(255, 255, 255); */
+    z-index: 5;
+    position: absolute;
+    /* transform: translate(-50%,-50%); */
+    inset: 20px;
+}  
+
+  @keyframes open-cam {
+    0% {
+      transform: rotateX(90deg);
+    }
+    100% {
+      transform: rotateX(0deg);
+    }
+  }
+
+  @keyframes power-up {
+    0%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%;
+    }
+  }
+
+  .open-cam-system{
+    animation: open-cam 0.3s;
+    *{
+        animation: power-up 2s forwards;
+    }
+  }
+
+  @keyframes close-cam {
+    100% {
+      transform: rotateX(100deg);
+    }
+    0% {
+      transform: rotateX(0deg);
+    }
+  }
+
+  @keyframes shut-down {
+    0%{
+        opacity: 20%;
+    }
+    100%{
+        opacity: 0%;
+    }
+  }
+
+  .close-cam-system{
+    animation: close-cam 0.3s;
+    *{
+        animation: shut-down 0.5s forwards;
+    }
+  }
+
+
+@media (max-width:1024px){
+    .cam-system-container {
+      top: 52.5%;
+
+    }
+}
