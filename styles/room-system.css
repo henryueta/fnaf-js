@@ -2,12 +2,14 @@
     z-index: 0;
     display: flex;
     justify-content: space-between;
-    background-image: url("https://i.pinimg.com/originals/93/05/87/9305871ff9c0ae6e010db33ad09ee218.png");
-    background-size: cover;
-    background-position: center;
+    background-image: url('../teste5.jpeg');
+    background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover; 
     height: 100dvh;
-    width: 150dvw;
-    transform: translateX(-25%);
+    width: 110dvw;
+    /* transform: translateX(-25%); */
+    background-color: black;
 }
 
 .move-right-container{
@@ -16,7 +18,8 @@
     right: 0%;
     height: 100%;
     top: 0%;
-    width: 35dvw;
+    width: 30dvw;
+    
 }
 
 .move-left-container{
@@ -25,6 +28,22 @@
     left: 0%;
     height: 100%;
     top: 0%;
-    width: 35dvw;
+    width: 30dvw;
 
+}
+
+#teste1{
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    z-index: 20;
+}
+
+  #room-canvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
 }

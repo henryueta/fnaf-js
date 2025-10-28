@@ -3,7 +3,7 @@
     border: 1px solid gray;
     opacity: 50%;
     position: fixed;
-    bottom: 10%;
+    bottom: 5%;
     left: 50%;
     transform: translate(-50%,0%);
     width: 40dvw;
@@ -33,7 +33,7 @@
     width: 100%;
     height: 100%;
     background: #3f464f;
-    background: linear-gradient(180deg,rgb(22, 22, 22) 0%, rgb(17, 17, 17) 50%, rgb(22, 22, 22) 100%);
+    border: 2px solid rgb(24, 24, 24);
     position: absolute;
     transform-origin: bottom center;
     transform: rotateX(0deg); 
@@ -42,15 +42,14 @@
   .screen-container::before {
     content: "";
     position: absolute;
-    inset: 12px;
+    inset: 15px;
     background-color: rgb(0, 0, 0);
-    border-radius: 5px;
   }
 
   .screen-container::after {
     content: "";
     position: absolute;
-    inset: 12px;
+    inset: 15px;
     background-image: url("../assets/imgs/static.gif");
     opacity: 50%;
     border-radius: 5px;
@@ -60,10 +59,11 @@
 .choice-container{
     border: 1px solid white;
     position: absolute;
-    top: 40%;
-    left: 55%;
-    height: 40%;
-    width: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 70%;
+    width: 70%;
     z-index: 10;
 }
 
