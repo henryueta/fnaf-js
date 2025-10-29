@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grid Aleatório (CSS puro)</title>
+<style>
+  body {
+    background:black;
+    margin: 0;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 100px);
+    gap: 5px;
+    width: 600px;
+  }
+
+  .grid div {
+    background-color: black;
+    transition: transform 0.3s;
+
+    color: white;
+  }
+
+
+  .item1 { --hue: 0; grid-column: span 1;    border: 0.1em solid white; }
+  .item2 { --hue: 40; grid-row: span 3;    border: 0.1em solid white; }
+  .item3 { --hue: 80; }
+  .item4 { --hue: 120; grid-column: span 4; grid-row: span 2;     border: 0.1em solid white;}
+  .item5 { --hue: 160; grid-row: span 2;    border: 0.1em solid white;}
+  .item6 { --hue: 200; grid-column: span 3;    border: 0.1em solid white; }
+  .item7 { --hue: 240; grid-row: span 3;     border: 0.1em solid white;}
+  .item8 { --hue: 280; grid-column: span 2;    border: 0.1em solid white; }
+  .item9 { --hue: 320; grid-column: span 1;     border: 0.1em solid white;}
+  .item10 { --hue: 20;grid-column: span 1; }
+  .item11 { --hue: 20;grid-column: span 3;}
+  .item12 { --hue: 20;grid-column: span 1;    border: 0.1em solid white;}
+  .item13 { --hue: 20;grid-column: span 3;}
+  .item14 { --hue: 20;grid-column: span 1;}
+  .item15 { --hue: 20;grid-column: span 1; border: 0.1em solid white;}
+</style>
+</head>
+<body>
+
+<div class="grid">
+  <div class="item1">1</div>
+  <!--<div class="item2">2</div>-->
+  <!--<div class="item3">3</div>-->
+  <div class="item4">4</div>
+  <div class="item5">5</div>
+  <!--<div class="item6">6</div>-->
+  <div class="item7">7</div>
+  <div class="item8">8</div>
+  <div class="item9">9</div>
+  <div class="item10">10</div>
+  <div class="item11">11</div>
+    <div class="item12">12</div>
+    <div class="item13">13</div>
+    <div class="item14">14</div>
+     <div class="item15">You</div>
+</div>
+
+</body>
+</html>
