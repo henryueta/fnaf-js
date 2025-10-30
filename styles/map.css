@@ -1,30 +1,4 @@
-/* .map-container{
-    border: 1px solid white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    height: 80%;
-    width: 80%;
-    z-index: 10;
-}
 
-.map-container .cam-container{
-  border: 1px solid white;
-
-}
-
-.map-container .room-place-container{
-  border: 1px solid white;
-  color: white;
-  font-size: 1.2em;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-} */
 
 .content-container{
     /* border: 1px solid rgb(255, 255, 255); */
@@ -64,32 +38,47 @@
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
     gap: 5px;
+    z-index: 7;
   }
 
   .map-container div {
-    background-color: black;
+    background: none;
     transition: transform 0.3s;
     color: white;
     cursor: pointer;
   }
 
 
-  .item1 { --hue: 0; grid-column: span 1;    border: 0.1em solid white; }
-  .item2 { --hue: 40; grid-row: span 3;    border: 0.1em solid white; }
-  .item3 { --hue: 80; }
-  .item4 { --hue: 120; grid-column: span 4; grid-row: span 2;     border: 0.1em solid white;}
-  .item5 { --hue: 160; grid-row: span 2;    border: 0.1em solid white;}
-  .item6 { --hue: 200; grid-column: span 3;    border: 0.1em solid white; }
-  .item7 { --hue: 240; grid-row: span 3;     border: 0.1em solid white;}
-  .item8 { --hue: 280; grid-column: span 2;    border: 0.1em solid white; }
-  .item9 { --hue: 320; grid-column: span 1;     border: 0.1em solid white;}
-  .item10 { --hue: 20;grid-column: span 1; }
-  .item11 { --hue: 20;grid-column: span 3;}
-  .item12 { --hue: 20;grid-column: span 1;    border: 0.1em solid white;}
-  .item13 { --hue: 20;grid-column: span 3;}
-  .item14 { --hue: 20;grid-column: span 1;}
-  .item15 { --hue: 20;grid-column: span 1; border: 0.1em solid white;}
+  .place1 { --hue: 0; grid-column: span 1;    border: 0.1em solid white; }
+  .place2 { --hue: 40; grid-row: span 3;    border: 0.1em solid white; }
+  .place3 { --hue: 80; }
+  .place4 { --hue: 120; grid-column: span 4; grid-row: span 2;     border: 0.1em solid white;}
+  .place5 { --hue: 160; grid-row: span 2;    border: 0.1em solid white;}
+  .place6 { --hue: 200; grid-column: span 3;    border: 0.1em solid white; }
+  .place7 { --hue: 240; grid-row: span 3;     border: 0.1em solid white;}
+  .place8 { --hue: 280; grid-column: span 2;    border: 0.1em solid white; }
+  .place9 { --hue: 320; grid-column: span 1;     border: 0.1em solid white;}
+  .place10 { --hue: 20;grid-column: span 1; }
+  .place11 { --hue: 20;grid-column: span 3;}
+  .place12 { --hue: 20;grid-column: span 1;    border: 0.1em solid white;}
+  .place13 { --hue: 20;grid-column: span 3;}
+  .place14 { --hue: 20;grid-column: span 1;}
+  .place15 { --hue: 20;grid-column: span 1; border: 0.1em solid white;}
 
+
+.choiced-place-content-container{
+  border: 1px solid red;
+  width: 100%;
+  height: 100%;
+  inset: 10px;
+  z-index: 6;
+}
+  
+
+.choiced-place-content-container canvas{
+  width: 100%;
+  height: 100%;
+}
 
   @media (max-width:1024px) {
     .map-container div {

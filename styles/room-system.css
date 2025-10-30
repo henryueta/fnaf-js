@@ -2,7 +2,7 @@
     z-index: 0;
     display: flex;
     justify-content: space-between;
-    background-image: url('../teste5.jpeg');
+    /* background-image: url('../teste5.jpeg'); */
     background-repeat: no-repeat;
   background-position: center center;
   background-size: cover; 

@@ -17,22 +17,24 @@
         <div class="screen-container">
             <div class="content-container">
                 <div class="map-container">
-                    <div class="item1">1</div>
-                    <!--<div class="item2">2</div>-->
-                    <!--<div class="item3">3</div>-->
-                    <div class="item4">4</div>
-                    <div class="item5">5</div>
-                    <!--<div class="item6">6</div>-->
-                    <div class="item7">7</div>
-                    <div class="item8">8</div>
-                    <div class="item9">9</div>
-                    <div class="item10"></div>
-                    <div class="item11"></div>
-                      <div class="item12">12</div>
-                      <div class="item13"></div>
-                      <div class="item14"></div>
-                       <div class="item15">You</div>
-
+                    <div class="place1">0</div>
+                    <!--<div class="place2">2</div>-->
+                    <!--<div class="place3">3</div>-->
+                    <div class="place4">1</div>
+                    <div class="place5">2</div>
+                    <!--<div class="place6">6</div>-->
+                    <div class="place7">3</div>
+                    <div class="place8">4</div>
+                    <div class="place9">5</div>
+                    <div class="place10"></div>
+                    <div class="place11"></div>
+                      <div class="place12">6</div>
+                      <div class="place13"></div>
+                      <div class="place14"></div>
+                       <div class="place15">You</div>
+                </div>
+                <div class="choiced-place-content-container">
+                    <canvas id="choiced-place-canvas"  width="833" height="500"></canvas>
                 </div>
             </div>
             
@@ -51,12 +53,37 @@
         <div class="button-container"><button>
             click
         </button></div>
-        
+        <canvas id="room-canvas" width="2500" height="1500"></canvas>
     </div>
 
     <div class="move-left-container">
     </div>
 
     <script src="../scripts/game.js" type="module"></script>
+    <script>
+        const canvas = document.getElementById('choiced-place-canvas');
+const ctx = canvas.getContext('2d');
+
+
+const img = new Image();
+    img.src = '../teste5.jpeg'; // substitua pelo caminho da sua imagem
+
+    img.onload = () => {
+      const cw = canvas.width;
+      const ch = canvas.height;
+      const iw = img.width;
+      const ih = img.height;
+
+      // Calcula proporção de escala para "cover"
+      const scale = Math.max(cw / iw, ch / ih);
+
+      // Calcula posição centralizada
+      const x = (cw / 2) - (iw * scale / 2);
+      const y = (ch / 2) - (ih * scale / 2);
+
+      // Desenha a imagem cobrindo todo o canvas
+      ctx.drawImage(img, x, y, iw * scale, ih * scale);
+    };
+    </script>
 </body>
 </html>
