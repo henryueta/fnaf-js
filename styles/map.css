@@ -49,21 +49,21 @@
   }
 
 
-  .place1 { --hue: 0; grid-column: span 1;    border: 0.1em solid white; }
-  .place2 { --hue: 40; grid-row: span 3;    border: 0.1em solid white; }
-  .place3 { --hue: 80; }
-  .place4 { --hue: 120; grid-column: span 4; grid-row: span 2;     border: 0.1em solid white;}
-  .place5 { --hue: 160; grid-row: span 2;    border: 0.1em solid white;}
-  .place6 { --hue: 200; grid-column: span 3;    border: 0.1em solid white; }
-  .place7 { --hue: 240; grid-row: span 3;     border: 0.1em solid white;}
-  .place8 { --hue: 280; grid-column: span 2;    border: 0.1em solid white; }
-  .place9 { --hue: 320; grid-column: span 1;     border: 0.1em solid white;}
-  .place10 { --hue: 20;grid-column: span 1; }
-  .place11 { --hue: 20;grid-column: span 3;}
-  .place12 { --hue: 20;grid-column: span 1;    border: 0.1em solid white;}
-  .place13 { --hue: 20;grid-column: span 3;}
-  .place14 { --hue: 20;grid-column: span 1;}
-  .place15 { --hue: 20;grid-column: span 1; border: 0.1em solid white;}
+  #place-0 { --hue: 0; grid-column: span 1;    border: 0.1em solid white; }
+  /* #place-2 { --hue: 40; grid-row: span 3;    border: 0.1em solid white; }
+  #place-3 { --hue: 80; } */
+  #place-1 { --hue: 120; grid-column: span 4; grid-row: span 2;     border: 0.1em solid white;}
+  #place-2 { --hue: 160; grid-row: span 2;    border: 0.1em solid white;}
+  /* #place-6 { --hue: 200; grid-column: span 3;    border: 0.1em solid white; } */
+  #place-7 { --hue: 240; grid-row: span 3;     border: 0.1em solid white;}
+  #place-8 { --hue: 280; grid-column: span 2;    border: 0.1em solid white; }
+  #place-9 { --hue: 320; grid-column: span 1;     border: 0.1em solid white;}
+  #place-10 { --hue: 20;grid-column: span 1; }
+  #place-11 { --hue: 20;grid-column: span 3;}
+  #place-12 { --hue: 20;grid-column: span 1;    border: 0.1em solid white;}
+  #place-13 { --hue: 20;grid-column: span 3;}
+  #place-14 { --hue: 20;grid-column: span 1;}
+  #place-15 { --hue: 20;grid-column: span 1; border: 0.1em solid white;}
 
 
 .choiced-place-content-container{

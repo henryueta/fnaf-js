@@ -40,7 +40,6 @@ class Moviment{
                         this.current_moviment === 'left'
                         && this.x_value  < 0
                     )){
-                        console.log(this.x_value)
                         this.x_value +=(
                             this.current_moviment === 'right'
                             ? -1.2
@@ -64,7 +63,9 @@ class Moviment{
         }
     }
     setIsLocked(isLocked){
-        this.isLocked = isLocked
+        this.isLocked = isLocked;
+        this.right_container.style.display = (!!isLocked ? "none" : "block");
+        this.left_container.style.display = (!!isLocked ? "none" : "block");
     }
 
 }

@@ -17,21 +17,21 @@
         <div class="screen-container">
             <div class="content-container">
                 <div class="map-container">
-                    <div class="place1">0</div>
-                    <!--<div class="place2">2</div>-->
-                    <!--<div class="place3">3</div>-->
-                    <div class="place4">1</div>
-                    <div class="place5">2</div>
-                    <!--<div class="place6">6</div>-->
-                    <div class="place7">3</div>
-                    <div class="place8">4</div>
-                    <div class="place9">5</div>
-                    <div class="place10"></div>
-                    <div class="place11"></div>
-                      <div class="place12">6</div>
-                      <div class="place13"></div>
-                      <div class="place14"></div>
-                       <div class="place15">You</div>
+                    <div id="place-0" class="accessible-place">0</div>
+                    <!--<div id="place2">2</div>-->
+                    <!--<div id="place3">3</div>-->
+                    <div id="place-1" class="accessible-place">1</div>
+                    <div id="place-2" class="accessible-place">2</div>
+                    <!--<div id="place6">6</div>-->
+                    <div id="place-7" class="accessible-place">3</div>
+                    <div id="place-8" class="accessible-place">4</div>
+                    <div id="place-9" class="accessible-place">5</div>
+                    <div id="place-10" class="inaccessible-place"></div>
+                    <div id="place-11" class="inaccessible-place"></div>
+                      <div id="place-12" class="accessible-place">6</div>
+                      <div id="place-13" class="inaccessible-place"></div>
+                      <div id="place-14" class="inaccessible-place"></div>
+                       <div id="place-15" class="inaccessible-place">You</div>
                 </div>
                 <div class="choiced-place-content-container">
                     <canvas id="choiced-place-canvas"  width="833" height="500"></canvas>
@@ -60,12 +60,12 @@
     </div>
 
     <script src="../scripts/game.js" type="module"></script>
-    <script>
+    <!-- <script>
         const canvas = document.getElementById('choiced-place-canvas');
-const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d');
 
 
-const img = new Image();
+    const img = new Image();
     img.src = '../teste5.jpeg'; // substitua pelo caminho da sua imagem
 
     img.onload = () => {
@@ -84,6 +84,6 @@ const img = new Image();
       // Desenha a imagem cobrindo todo o canvas
       ctx.drawImage(img, x, y, iw * scale, ih * scale);
     };
-    </script>
+    </script> -->
 </body>
 </html>
