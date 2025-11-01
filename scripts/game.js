@@ -20,7 +20,7 @@ player_room.onDraw()
 const animatronic_list = [
     new Animatronic({
     current_place:0,
-    identifier:0
+    identifier:0    
     })
 ]
 
@@ -86,6 +86,13 @@ const place_list = [
 //     console.log("current_place",enemy.current_place)
 //     console.log(teste)
 
+const camera_monitor = new Monitor({
+    screen_container: document.querySelector(".screen-container"),
+    camera_list_container:document.querySelector(".map-container"),
+    camera_list:place_list,
+    choiced_camera_canvas:document.querySelector("#choiced-place-canvas")
+})
+
 for(const animatronic of animatronic_list){
 
     const prev_current_animatronic_place = place_list.find((place_item)=>place_item.number === animatronic.current_place)
@@ -126,12 +133,7 @@ for(const animatronic of animatronic_list){
 // },2000)
 
 
-const camera_monitor = new Monitor({
-    screen_container: document.querySelector(".screen-container"),
-    camera_list_container:document.querySelector(".map-container"),
-    camera_list:place_list,
-    choiced_camera_canvas:document.querySelector("#choiced-place-canvas")
-})
+
 
 const x_moviment = new Moviment({
     right_container:document.querySelector(".move-right-container"),

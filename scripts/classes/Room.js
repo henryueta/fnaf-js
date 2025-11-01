@@ -23,7 +23,11 @@ class Room {
       
             // Desenha a imagem cobrindo todo o canvas
             this.room_context.drawImage(this.room_image, x, y, iw * scale, ih * scale);
+            this.room_context.fillRect(1050, 590, 400, 500); // Desenha um quadrado azul de 100x100px
+            
           };
+          this.room_canvas.onclick = ()=>{console.log("A")}
+          console.log(this.room_canvas)
     }
 
 }

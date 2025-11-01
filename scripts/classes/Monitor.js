@@ -35,6 +35,8 @@ class Monitor {
 
     this.screen_container.classList.add(!!this.isOpen ? "close-cam-system" : 'open-cam-system')
     
+    this.screen_container.parentElement.style.pointerEvents = (!!this.isOpen ? "none" : 'visible')
+
     setTimeout(()=>{
         this.screen_container.style.display = (!!this.isOpen ? "block" : "none")
     },300)
