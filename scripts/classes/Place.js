@@ -8,11 +8,14 @@ class Place {
         this.next_place_index_list = config.next_place_index_list;
         this.animatronic_list =  config.animatronic_list ||  [];
         this.place_view_list = config.place_view_list || [];
-        this.current_view = this.place_view_list.find((view_item)=>
+        const current_place_info =  this.place_view_list.find((view_item)=>
         {
             return onSameList(this.animatronic_list.map((animatronic_item)=>animatronic_item.identifier),view_item.animatronic_list)
         }
-        ).src
+        )
+        this.current_view = current_place_info.image;
+        this.current_audio = current_place_info.audio;
+        
     }
 
     onSetView(){
@@ -21,9 +24,10 @@ class Place {
         {
             return onSameList(this.animatronic_list.map((animatronic_item)=>animatronic_item.identifier),view_item.animatronic_list)
         }
-        ).src
+        ).image
 
     }
+
 
     onFindAnimatronic(identifier){
         return this.animatronic_list.find((animatronic_item)=>

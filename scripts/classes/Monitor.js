@@ -7,22 +7,31 @@ class Monitor {
         this.camera_list = config.camera_list;
         this.choiced_camera_canvas = config.choiced_camera_canvas;
         this.choiced_camera_context = this.choiced_camera_canvas.getContext("2d")
-        this.choiced_camera_number =  this.camera_list[0].number;
-        this.choiced_camera_image = new Image();
-        this.choiced_camera_image.src = this.camera_list[0].current_view;
-        this.choiced_camera_image.onload = 
+        
+        this.choiced_camera_info = {
+            number:this.camera_list[0].number,
+            image:new Image(),
+            audio:new Audio()
+        }
+        this.choiced_camera_info.image.src =  this.camera_list[0].current_view;
+        this.choiced_camera_info.audio.src = this.camera_list[0].current_audio;
+
+        this.choiced_camera_info.number =  this.camera_list[0].number;
+        
+        this.choiced_camera_info.image.onload = 
         () => {
             const cw = this.choiced_camera_canvas.width;
             const ch = this.choiced_camera_canvas.height;
-            const iw = this.choiced_camera_image.width;
-            const ih = this.choiced_camera_image.height;
+            const iw = this.choiced_camera_info.image.width;
+            const ih = this.choiced_camera_info.image.height;
 
             const scale = Math.max(cw / iw, ch / ih);
 
             const x = (cw / 2) - (iw * scale / 2);
             const y = (ch / 2) - (ih * scale / 2);
 
-            this.choiced_camera_context.drawImage(this.choiced_camera_image, x, y, iw * scale, ih * scale);
+            this.choiced_camera_context.drawImage(this.choiced_camera_info.image, x, y, iw * scale, ih * scale);
+            this.choiced_camera_info.audio.play()
         };
     }
 
@@ -56,8 +65,11 @@ class Monitor {
                 const choiced_camera = this.camera_list.find((item)=>{
                     return item.number === camera_number
                 }) 
-                this.choiced_camera_image.src = choiced_camera.current_view;
-                this.choiced_camera_number = choiced_camera.number;
+                if(this.choiced_camera_info.number !== choiced_camera.number){
+                    this.choiced_camera_info.audio.src = choiced_camera.current_audio;
+                    this.choiced_camera_info.image.src = choiced_camera.current_view;
+                    this.choiced_camera_info.number = choiced_camera.number;
+                }
             }
         })
 

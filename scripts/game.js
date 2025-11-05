@@ -20,8 +20,14 @@ player_room.onDraw()
 const animatronic_list = [
     new Animatronic({
     current_place:0,
-    identifier:0    
-    })
+    identifier:0,
+    isActive:true    
+    }),
+    new Animatronic({
+        current_place:1,
+        identifier:1,
+        isActive:true    
+        })
 ]
 
 const place_list = [
@@ -30,13 +36,25 @@ const place_list = [
         place_view_list:[
             {
                 animatronic_list:[],
-                src:"../teste5.jpeg"
+                audio:"../assets/audio/beep_1.mp3",
+                image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
-                src:"../teste4.jpeg"
+                audio:"../assets/audio/beep_2.mp3",
+                image:"../assets/imgs/one.avif"
 
-            }
+            },
+                         {//alterar depois
+                            animatronic_list:[1],
+                            audio:"../assets/audio/beep_2.mp3",
+                            image:"../assets/imgs/two.jpg"
+                        },
+                         {//alterar depois
+                            animatronic_list:[0,1],
+                            audio:"../assets/audio/beep_2.mp3",
+                            image:"../assets/imgs/three.png"
+                        }
         ],
         name:"test_room",
         next_place_index_list:[1,2],
@@ -47,16 +65,27 @@ const place_list = [
         place_view_list:[
             {
                 animatronic_list:[],
-                src:"../teste5.jpeg"
+                audio:"../assets/audio/beep_1.mp3",
+                image:"../teste5.jpeg"
             },
-                        {//alterar depois
+            {//alterar depois
                 animatronic_list:[0],
-                src:"../teste4.jpeg"
-
+                audio:"../assets/audio/beep_2.mp3",
+                image:"../assets/imgs/one.avif"
+            },
+             {//alterar depois
+                animatronic_list:[1],
+                audio:"../assets/audio/beep_2.mp3",
+                image:"../assets/imgs/two.jpg"
+            },
+             {//alterar depois
+                animatronic_list:[0,1],
+                audio:"../assets/audio/beep_2.mp3",
+                image:"../assets/imgs/three.png"
             }
         ],
         name:"test2_room",
-        next_place_index_list:[2,3,4,5],
+        next_place_index_list:[2,0],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 1)
     }),
      new Place({
@@ -64,27 +93,31 @@ const place_list = [
         place_view_list:[
             {
                 animatronic_list:[],
-                src:"../teste5.jpeg"
+                audio:"../assets/audio/beep_1.mp3",
+                image:"../teste5.jpeg"
             },
-                        {//alterar depois
+            {//alterar depois
                 animatronic_list:[0],
-                src:"../teste4.jpeg"
-
-            }
+                audio:"../assets/audio/beep_2.mp3",
+                image:"../assets/imgs/one.avif"
+            },
+                         {//alterar depois
+                            animatronic_list:[1],
+                            audio:"../assets/audio/beep_2.mp3",
+                            image:"../assets/imgs/two.jpg"
+                        },
+                         {//alterar depois
+                            animatronic_list:[0,1],
+                            audio:"../assets/audio/beep_2.mp3",
+                            image:"../assets/imgs/three.png"
+                        }
         ],
         name:"test2_room",
-        next_place_index_list:[1,3],
+        next_place_index_list:[1,0],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 2)
     })
 
 ]
-
-
-// setInterval(()=>{
-
-//     const teste = enemy.onChoicePlace(place_list.find((item)=>item.index === enemy.current_place).next_place_index_list)
-//     console.log("current_place",enemy.current_place)
-//     console.log(teste)
 
 const camera_monitor = new Monitor({
     screen_container: document.querySelector(".screen-container"),
@@ -92,11 +125,17 @@ const camera_monitor = new Monitor({
     camera_list:place_list,
     choiced_camera_canvas:document.querySelector("#choiced-place-canvas")
 })
+// setInterval(()=>{
+
+//     const teste = enemy.onChoicePlace(place_list.find((item)=>item.index === enemy.current_place).next_place_index_list)
+//     console.log("current_place",enemy.current_place)
+//     console.log(teste)
+
+
 
 for(const animatronic of animatronic_list){
-
     const prev_current_animatronic_place = place_list.find((place_item)=>place_item.number === animatronic.current_place)
-   
+    console.log(animatronic)
     const current_animatronic_place =  animatronic.onChoicePlace(place_list.find((place_item)=>place_item.number === animatronic.current_place).next_place_index_list)
 
     const next_current_animatronic_place = place_list.find((place_item)=>place_item.number === current_animatronic_place)
@@ -108,19 +147,29 @@ for(const animatronic of animatronic_list){
         next_current_animatronic_place.onSetView();
 
         if(
-            camera_monitor.choiced_camera_number === prev_current_animatronic_place.number
+            camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
             ||
-            camera_monitor.choiced_camera_number === next_current_animatronic_place.number
+            camera_monitor.choiced_camera_info.number === next_current_animatronic_place.number
         ){
 
-            camera_monitor.choiced_camera_image.src = "../assets/imgs/static.gif";
+            camera_monitor.choiced_camera_info.image.src = "../assets/imgs/static.gif";
             setTimeout(()=>{
 
-                camera_monitor.choiced_camera_image.src = (
-                    camera_monitor.choiced_camera_number === prev_current_animatronic_place.number
-                    ?  prev_current_animatronic_place.current_view
-                    :  next_current_animatronic_place.current_view
+                // camera_monitor.choiced_camera_info.image.src = (
+                //     camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
+                //     ?  prev_current_animatronic_place.current_view
+                //     :  next_current_animatronic_place.current_view
+                // )
+                const current_place = (
+                    camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
+                    ?  prev_current_animatronic_place
+                    :  next_current_animatronic_place
                 )
+                
+                current_place.onSetView()
+
+                camera_monitor.choiced_camera_info.image.src = current_place.current_view;
+                
 
             },200)
 
