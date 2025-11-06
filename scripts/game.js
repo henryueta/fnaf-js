@@ -3,7 +3,6 @@ import { Monitor } from "./classes/Monitor.js"
 import { Moviment } from "./classes/Moviment.js"
 import { Place } from "./classes/Place.js"
 import { Room } from "./classes/Room.js"
-import { onSameList } from "./functions/sameList.js"
 
 const player_room = new Room({
     room_canvas:document.querySelector("#room-canvas"),
@@ -19,15 +18,24 @@ player_room.onDraw()
 
 const animatronic_list = [
     new Animatronic({
-    current_place:0,
+    current_place:1,
     identifier:0,
-    isActive:true    
+    isActive:true,
+    action_list:[
+        {
+            place_number:0,
+            onAction:()=>{
+                console.log("mudou bee");
+                place_list.find((item)=>item.number === 0).current_audio = "../assets/audio/beep_3.mp3"
+            }
+        }
+    ]    
     }),
-    new Animatronic({
-        current_place:1,
-        identifier:1,
-        isActive:true    
-        })
+    // new Animatronic({
+    //     current_place:1,
+    //     identifier:1,
+    //     isActive:true    
+    //     })
 ]
 
 const place_list = [
@@ -37,22 +45,26 @@ const place_list = [
             {
                 animatronic_list:[],
                 audio:"../assets/audio/beep_1.mp3",
+                repeat_audio:true,
                 image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
                 audio:"../assets/audio/beep_2.mp3",
+                repeat_audio:true,
                 image:"../assets/imgs/one.avif"
 
             },
                          {//alterar depois
                             animatronic_list:[1],
                             audio:"../assets/audio/beep_2.mp3",
+                            repeat_audio:true,
                             image:"../assets/imgs/two.jpg"
                         },
                          {//alterar depois
                             animatronic_list:[0,1],
                             audio:"../assets/audio/beep_2.mp3",
+                            repeat_audio:true,
                             image:"../assets/imgs/three.png"
                         }
         ],
@@ -66,21 +78,25 @@ const place_list = [
             {
                 animatronic_list:[],
                 audio:"../assets/audio/beep_1.mp3",
+                repeat_audio:true,
                 image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
                 audio:"../assets/audio/beep_2.mp3",
+                repeat_audio:true,
                 image:"../assets/imgs/one.avif"
             },
              {//alterar depois
                 animatronic_list:[1],
                 audio:"../assets/audio/beep_2.mp3",
+                repeat_audio:true,
                 image:"../assets/imgs/two.jpg"
             },
              {//alterar depois
                 animatronic_list:[0,1],
                 audio:"../assets/audio/beep_2.mp3",
+                repeat_audio:true,
                 image:"../assets/imgs/three.png"
             }
         ],
@@ -94,21 +110,25 @@ const place_list = [
             {
                 animatronic_list:[],
                 audio:"../assets/audio/beep_1.mp3",
+                repeat_audio:true,
                 image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
                 audio:"../assets/audio/beep_2.mp3",
+                repeat_audio:true,
                 image:"../assets/imgs/one.avif"
             },
                          {//alterar depois
                             animatronic_list:[1],
                             audio:"../assets/audio/beep_2.mp3",
+                            repeat_audio:true,
                             image:"../assets/imgs/two.jpg"
                         },
                          {//alterar depois
                             animatronic_list:[0,1],
                             audio:"../assets/audio/beep_2.mp3",
+                            repeat_audio:true,
                             image:"../assets/imgs/three.png"
                         }
         ],
@@ -139,13 +159,13 @@ for(const animatronic of animatronic_list){
     const current_animatronic_place =  animatronic.onChoicePlace(place_list.find((place_item)=>place_item.number === animatronic.current_place).next_place_index_list)
 
     const next_current_animatronic_place = place_list.find((place_item)=>place_item.number === current_animatronic_place)
-   
+     animatronic.onAction(next_current_animatronic_place);
     if(prev_current_animatronic_place.number !== next_current_animatronic_place.number){
         prev_current_animatronic_place.onRemoveAnimatronic(animatronic);
         prev_current_animatronic_place.onSetView();
         next_current_animatronic_place.onSetAnimatronic(animatronic);
         next_current_animatronic_place.onSetView();
-
+       
         if(
             camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
             ||
@@ -169,7 +189,7 @@ for(const animatronic of animatronic_list){
                 current_place.onSetView()
 
                 camera_monitor.choiced_camera_info.image.src = current_place.current_view;
-                
+                camera_monitor.choiced_camera_info.audio.src = current_place.current_audio;
 
             },200)
 
@@ -196,6 +216,7 @@ toggle_cam_system_button.addEventListener('click',()=>{
     camera_monitor.onToggle()
     x_moviment.setIsLocked(camera_monitor.isOpen)
     x_moviment.onEndMove()
+
 })
 
 camera_monitor.onChangeCurrentCamera()

@@ -15,6 +15,7 @@ class Place {
         )
         this.current_view = current_place_info.image;
         this.current_audio = current_place_info.audio;
+        this.repeat_audio = current_place_info.repeat_audio;
         
     }
 

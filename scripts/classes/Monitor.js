@@ -11,10 +11,12 @@ class Monitor {
         this.choiced_camera_info = {
             number:this.camera_list[0].number,
             image:new Image(),
-            audio:new Audio()
+            audio:new Audio(),
+            repeat_audio:this.camera_list[0].repeat_audio
         }
         this.choiced_camera_info.image.src =  this.camera_list[0].current_view;
         this.choiced_camera_info.audio.src = this.camera_list[0].current_audio;
+        this.choiced_camera_info.audio.loop = !!this.choiced_camera_info.repeat_audio;
 
         this.choiced_camera_info.number =  this.camera_list[0].number;
         
@@ -31,7 +33,9 @@ class Monitor {
             const y = (ch / 2) - (ih * scale / 2);
 
             this.choiced_camera_context.drawImage(this.choiced_camera_info.image, x, y, iw * scale, ih * scale);
-            this.choiced_camera_info.audio.play()
+            if(this.isOpen){
+                this.choiced_camera_info.audio.play();
+            }
         };
     }
 
@@ -45,11 +49,32 @@ class Monitor {
     this.screen_container.classList.add(!!this.isOpen ? "close-cam-system" : 'open-cam-system')
     
     this.screen_container.parentElement.style.pointerEvents = (!!this.isOpen ? "none" : 'visible')
+    const last_choiced_camera_number = this.choiced_camera_info.number;
 
+    this.onResetCurrentCamera();
     setTimeout(()=>{
-        this.screen_container.style.display = (!!this.isOpen ? "block" : "none")
+       
+        this.screen_container.style.display = (!!this.isOpen ? "block" : "none");
+        const choiced_camera = this.camera_list.find((item)=>{
+            return item.number === last_choiced_camera_number
+        }); 
+        this.choiced_camera_info.audio.src = choiced_camera.current_audio;
+        this.choiced_camera_info.image.src = choiced_camera.current_view;
+        this.choiced_camera_info.number = choiced_camera.number;
+        if(!!this.isOpen){
+            console.log(last_choiced_camera_number)
+           console.log("repetir",this.choiced_camera_info.repeat_audio)
+            this.choiced_camera_info.audio.play();
+            // console.log(this.choiced_camera_info.audio.src);
+        }
     },300)
         this.isOpen = !this.isOpen;
+    }
+
+    onResetCurrentCamera(){
+        this.choiced_camera_info.number = null;
+        this.choiced_camera_info.audio.src = "../assets/audio/key_insert.mp3";
+        this.choiced_camera_info.image.src = "../assets/imgs/loading.jpg";
     }
 
     onChangeCurrentCamera(){
@@ -67,6 +92,7 @@ class Monitor {
                 }) 
                 if(this.choiced_camera_info.number !== choiced_camera.number){
                     this.choiced_camera_info.audio.src = choiced_camera.current_audio;
+                    this.choiced_camera_info.repeat_audio = choiced_camera.repeat_audio;
                     this.choiced_camera_info.image.src = choiced_camera.current_view;
                     this.choiced_camera_info.number = choiced_camera.number;
                 }

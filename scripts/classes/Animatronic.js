@@ -5,8 +5,24 @@ class Animatronic {
     constructor(config){
         this.identifier = config.identifier;
         this.current_place = config.current_place;
+        this.action_list = config.action_list;
         this.isActive = config.isActive;
+
         // this.next_place = config.next_place;
+    }
+
+    onAction(place){
+        console.log(place)
+        const place_action = this.action_list.find((action_item)=>
+            action_item.place_number === place.number
+        );
+        if(!place_action){
+            console.log("lugar sem ação")
+            return null
+        }
+        console.log("lugar com ação")
+        return place_action.onAction();
+
     }
 
     onChoicePlace(places){
