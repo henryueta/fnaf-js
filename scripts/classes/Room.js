@@ -41,7 +41,7 @@ class Room {
 
         const scaleX = this.room_canvas.width / rect.width;
         const scaleY = this.room_canvas.height / rect.height;
-
+        
         const x = (event.clientX - rect.left) * scaleX;
         const y = (event.clientY - rect.top) * scaleY;
 
