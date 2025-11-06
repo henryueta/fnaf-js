@@ -1,6 +1,6 @@
 import { Animatronic } from "./classes/Animatronic.js"
 import { Monitor } from "./classes/Monitor.js"
-import { Moviment } from "./classes/Moviment.js"
+import { Movement } from "./classes/Movement.js"
 import { Place } from "./classes/Place.js"
 import { Room } from "./classes/Room.js"
 import { place_list } from "./objects/place-list.js"
@@ -19,7 +19,7 @@ const game = new Game({
         camera_list:place_list,
         choiced_camera_canvas:document.querySelector("#choiced-place-canvas")
     }),
-    x_moviment: new Moviment({
+    x_moviment: new Movement({
         right_container:document.querySelector(".move-right-container"),
         left_container:document.querySelector(".move-left-container")
     }),
@@ -149,7 +149,7 @@ const timeouts = [
 
 
 
-// const x_moviment = new Moviment({
+// const x_moviment = new Movement({
 //     right_container:document.querySelector(".move-right-container"),
 //     left_container:document.querySelector(".move-left-container")
 // })

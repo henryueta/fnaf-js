@@ -16,11 +16,13 @@ class Animatronic {
         const place_action = this.action_list.find((action_item)=>
             action_item.place_number === place.number
         );
+        
+        console.log("ativo",this.isActive)
         if(!place_action){
             console.log("lugar sem ação")
             return null
         }
-        console.log("lugar com ação")
+        this.isActive = !place_action.isMovementCancelled;
         return place_action.onAction();
 
     }

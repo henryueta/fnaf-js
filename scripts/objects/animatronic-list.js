@@ -9,6 +9,7 @@ const animatronic_list = [
     action_list:[
         {
             place_number:0,
+            isMovementCancelled:true,
             onAction:()=>{
                 console.log("mudou bee");
                 place_list.find((item)=>item.number === 0).current_audio = "../assets/audio/beep_3.mp3"

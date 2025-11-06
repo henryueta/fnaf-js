@@ -1,5 +1,5 @@
 
-class Moviment{
+class Movement{
 
     constructor(config){
         this.x_value = 0; 
@@ -71,5 +71,5 @@ class Moviment{
 }
 
 export {
-    Moviment
+    Movement
 }

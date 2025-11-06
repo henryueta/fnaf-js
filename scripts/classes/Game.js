@@ -11,9 +11,9 @@ class Game {
         this.current_night = config.current_night;
     }
 
-    onActiveAnimatronicList(){
+    onActiveAnimatronic(animatronic){
 
-        for(const animatronic of this.animatronic_list){
+        if(animatronic.isActive){
             const prev_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === animatronic.current_place)
             console.log(animatronic)
             const current_animatronic_place =  animatronic.onChoicePlace(this.place_list.find((place_item)=>place_item.number === animatronic.current_place).next_place_index_list)
@@ -52,14 +52,19 @@ class Game {
                     },200)
                 }
             }
-        }
+            }
+        
     }
-
+    
     onStart(){
         
         this.player_room.onDraw();
-
-        this.onActiveAnimatronicList();
+        setInterval(()=>{
+            for(const animatronic of this.animatronic_list){
+                this.onActiveAnimatronic(animatronic);
+            }
+            console.log("evento de noite executado")
+        },this.current_night.event_running_interval)
 
         this.x_moviment.onMove();
         this.toggle_cam_system_button.addEventListener('click',()=>{
