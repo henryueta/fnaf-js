@@ -17,24 +17,104 @@
         <div class="screen-container">
             <div class="content-container">
                 <div class="map-container">
-                    <div id="place-0" class="accessible-place">0</div>
-                    <!--<div id="place2">2</div>-->
-                    <!--<div id="place3">3</div>-->
-                    <div id="place-1" class="accessible-place">1</div>
-                    <div id="place-2" class="accessible-place">2</div>
-                    <!--<div id="place6">6</div>-->
-                    <div id="place-7" class="accessible-place">3</div>
-                    <div id="place-8" class="accessible-place">4</div>
-                    <div id="place-9" class="accessible-place">5</div>
-                    <div id="place-10" class="inaccessible-place"></div>
-                    <div id="place-11" class="inaccessible-place"></div>
-                      <div id="place-12" class="accessible-place">6</div>
-                      <div id="place-13" class="inaccessible-place"></div>
-                      <div id="place-14" class="inaccessible-place"></div>
-                       <div id="place-15" class="inaccessible-place">You</div>
+                     <div class="map-item client-entrance place"></div>
+        <div class="map-item employee-entrance place"></div>
+        <div class="map-item mens-bathroom place"></div>
+        <div class="map-item womens-bathroom place"></div>
+
+
+        <div class="map-item backstage sub-place" >
+            <div class="cam-item-container" id="place-0">
+                CAM 0
+            </div>
+        </div>
+        <div class="map-item puppet-area sub-place">
+            <div class="cam-item-container" id="place-2">
+                CAM 2
+            </div>
+        </div>
+        <div class="map-item dining-hall place">
+            <div class="cam-item-container" id="place-1">
+                CAM 1
+            </div>
+        </div>
+        <div class="map-item bathroom place" >
+            <div class="cam-item-container" id="place-3">
+                CAM 3
+            </div>
+        </div>
+       
+        <div class="map-item client-hall place">
+            <div class="cam-item-container" id="place-5">
+                CAM 5
+            </div>
+        </div>
+        <div class="map-item employee-hall place">
+            <div class="cam-item-container" id="place-7">
+                CAM 7
+            </div>
+        </div>
+        <div class="map-item game-area place">
+            <div class="cam-item-container" id="place-6">
+                CAM 6
+            </div>
+        </div>
+        <div class="map-item deposit place">
+            <div class="cam-item-container" id="place-9">
+                CAM 9
+            </div>
+        </div>
+        <div class="map-item employee-bathroom place">
+            <!-- <div class="cam-item-container" id="place-10">
+                CAM 10
+            </div> -->
+        </div>
+
+        <div class="map-item kitchen place">
+            <div class="cam-item-container" id="place-4">
+                CAM 4
+            </div>
+        </div>
+        <div class="map-item supply-closet place">
+            <div class="cam-item-container" id="place-8">
+                CAM 8
+            </div>
+        </div>
+  
+        <div class="map-item office place">
+            <!-- <div class="cam-item-container" id="place-11">
+                CAM 11
+            </div> -->
+            YOU
+        </div>
+        <div class="map-item employee-area place">
+            <div class="cam-item-container" id="place-10">
+                CAM 10
+            </div>
+        </div>
+
+       
+      
+        <div class="map-item client-to-game-area-hall hall"></div>
+        <div class="map-item employee-to-supply-closet-hall hall"></div>
+        <div class="map-item employee-to-deposit-hall hall"></div>
+        <div class="map-item employee-to-employee-bathroom-hall hall"></div>
+        <div class="map-item employee-to-client-hall hall"></div> 
+        <div class="map-item employee-to-employee-area-hall hall"></div> 
+        <div class="map-item employee-area-to-kitchen-hall hall"></div> 
+
+        
+        <div class="map-item mens-bathroom-hall hall"></div>
+        <div class="map-item womans-bathroom-hall hall"></div>
+        <div class="map-item dining-to-kitchen-hall hall"></div>
+        <div class="map-item dining-to-client-hall hall"></div>
+        <div class="map-item dining-to-bathroom-hall hall"></div>
+       
+         
+        <div class="map-item office-hall hall"></div>
                 </div>
                 <div class="choiced-place-content-container">
-                    <canvas id="choiced-place-canvas"  width="833" height="500"></canvas>
+                    <canvas id="choiced-place-canvas"  width="1666" height="1000"></canvas>
                 </div>
             </div>
             
@@ -60,30 +140,5 @@
     </div>
 
     <script src="../scripts/game.js" type="module"></script>
-    <!-- <script>
-        const canvas = document.getElementById('choiced-place-canvas');
-        const ctx = canvas.getContext('2d');
-
-
-    const img = new Image();
-    img.src = '../teste5.jpeg'; // substitua pelo caminho da sua imagem
-
-    img.onload = () => {
-      const cw = canvas.width;
-      const ch = canvas.height;
-      const iw = img.width;
-      const ih = img.height;
-
-      // Calcula proporção de escala para "cover"
-      const scale = Math.max(cw / iw, ch / ih);
-
-      // Calcula posição centralizada
-      const x = (cw / 2) - (iw * scale / 2);
-      const y = (ch / 2) - (ih * scale / 2);
-
-      // Desenha a imagem cobrindo todo o canvas
-      ctx.drawImage(img, x, y, iw * scale, ih * scale);
-    };
-    </script> -->
 </body>
 </html>

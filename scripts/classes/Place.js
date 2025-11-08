@@ -8,6 +8,7 @@ class Place {
         this.next_place_index_list = config.next_place_index_list;
         this.animatronic_list =  config.animatronic_list ||  [];
         this.place_view_list = config.place_view_list || [];
+        this.hasMultipleConnections = config.hasMultipleConnections;
         const current_place_info =  this.place_view_list.find((view_item)=>
         {
             return onSameList(this.animatronic_list.map((animatronic_item)=>animatronic_item.identifier),view_item.animatronic_list)

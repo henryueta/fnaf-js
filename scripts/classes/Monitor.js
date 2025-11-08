@@ -20,6 +20,8 @@ class Monitor {
 
         this.choiced_camera_info.number =  this.camera_list[0].number;
         
+      
+
         this.choiced_camera_info.image.onload = 
         () => {
             const cw = this.choiced_camera_canvas.width;
@@ -43,6 +45,10 @@ class Monitor {
         // img.onload = 
     }
 
+    onSelectPlace(){
+        return document.querySelector("#place-"+this.choiced_camera_info.number);
+    }
+
     onToggle(){
     this.screen_container.classList.remove(!!this.isOpen ? 'open-cam-system' : 'close-cam-system')
 
@@ -62,8 +68,7 @@ class Monitor {
         this.choiced_camera_info.image.src = choiced_camera.current_view;
         this.choiced_camera_info.number = choiced_camera.number;
         if(!!this.isOpen){
-            console.log(last_choiced_camera_number)
-           console.log("repetir",this.choiced_camera_info.repeat_audio)
+            this.onSelectPlace().style.background = 'green'
             this.choiced_camera_info.audio.play();
             // console.log(this.choiced_camera_info.audio.src);
         }
@@ -78,18 +83,23 @@ class Monitor {
     }
 
     onChangeCurrentCamera(){
-        const accessible_camera_list =
-         Array.from(this.camera_list_container.children).filter((camera_item)=>
-            camera_item.className === 'accessible-place'
-        );
-        
-        accessible_camera_list.forEach((camera_item)=>{
+        const accessible_camera_list = Array.from(this.camera_list_container.children)
+        .filter((camera_item)=>
+            camera_item.children.length && Array.from(camera_item.children)[0].id.includes('place-')   
+        )
+        //  .filter((camera_item)=>
+        //     camera_item.className === 'accessible-place'
+        // );
             
-            camera_item.onclick = ()=>{
-                const camera_number = Number.parseInt(camera_item.id.replace("place-",""));
+        accessible_camera_list.forEach((camera_item)=>{
+            const camera_item_container = camera_item.children[0]
+            camera_item_container.onclick = ()=>{
+                const camera_number = Number.parseInt(camera_item_container.id.replace("place-",""));
                 const choiced_camera = this.camera_list.find((item)=>{
                     return item.number === camera_number
                 }) 
+                this.onSelectPlace().style.background = 'gray'
+                camera_item_container.style.background = 'green';
                 if(this.choiced_camera_info.number !== choiced_camera.number){
                     this.choiced_camera_info.audio.src = choiced_camera.current_audio;
                     this.choiced_camera_info.repeat_audio = choiced_camera.repeat_audio;

@@ -9,131 +9,134 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             background-color: #222;
             margin: 0;
             font-family: Arial, sans-serif;
             color: white;
+            padding: 0.5rem;
         }
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(25, 1fr); /* Ajuste o número de colunas conforme a complexidade */
+            grid-template-columns: repeat(23, 1fr); /* Ajuste o número de colunas conforme a complexidade */
             grid-template-rows: repeat(20, 1fr); /* Ajuste o número de linhas */
-            gap: 2px;
-            width: 50%;
-            height: 80%;
+            /* gap: 1px; */
+            width: 100%;
+            height: 100%;
             background-color: #000;
             border: 2px solid #555;
         }
 
-        .grid-item {
-            background-color: #000000;
+        .map-item {
+            /* background-color: #000000; */
             border: 1px solid #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 0.8em;
             text-align: center;
-            box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura/altura */
+            box-sizing: border-box; 
         }
 
-        /* Definição das áreas com grid-area e posicionamento */
-        .puppet-area { grid-area: 3 / 4 / 5 / 7; }
-        .dining-hall { grid-area: 8 / 6 / 2 / 15;  }
-        .backstage { grid-area: 1 / 8 / 3 / 13; }
-        .main-stage { grid-area: 4 / 7 / 5 / 10; }
-        /* .party-rooms-1-2 { grid-area: 5 / 11 / 2 / 16; } */
-        /* .safe-room { grid-area: 2 / 16 / 4 / 19; } */
-        .bathroom { grid-area: 5 / 16 / 3 / 24;}
-        .mens-bathroom { grid-area: 8 / 17 / 6 / 20;}
-        .womens-bathroom { grid-area: 8 / 21 / 6 / 24;}
-        .game-area-1 { grid-area: 18 / 15 / 9 / 19;}
-        .game-area-2 { grid-area: 18 / 20 / 9 / 24;}
-        .kitchen { grid-area: 12 / 6 / 9 / 9; }
-        .supply-closet { grid-area: 13 / 10 / 9 / 14; }
-        .game-hall-connect-top { grid-area: 12 / 13 / 10 / 16; } 
-        .game-hall-connect-bottom { grid-area: 17 / 13 / 15 / 16; } 
-        .game-hall-top { grid-area: 12 / 21 / 10 / 16; } 
-        .game-hall-bottom { grid-area: 17 / 21 / 15 / 16; } 
+        .dining-hall { grid-area: 8 / 6 / 3 / 14;  }
+        .backstage { grid-area: 1 / 8 / 3 / 12; }
+        .puppet-area { grid-area: 6 / 12 / 8 / 14; } 
+        .bathroom { grid-area: 12 / 4 / 3 /5;}
+        .mens-bathroom { grid-area: 12 / 1 / 9 / 3;}
+        .womens-bathroom { grid-area: 8 / 1 / 5 / 3;}
+        .client-hall { grid-area: 9 / 15 / 3 / 19;}
+        .employee-hall  { grid-area: 19 / 15 / 10 / 19;}
+        .employee-bathroom { grid-area: 19 / 20 / 17 / 20;}
+        .game-area { grid-area: 9 / 20 / 3 / 24;}
+        .deposit { grid-area: 14 / 20 / 11 / 23;}
+        .kitchen { grid-area: 13 / 6 / 9 / 10; }
+        .supply-closet { grid-area: 13 / 11 / 10 / 14; }
         .office { grid-area: 21 / 9 / 19 / 12; }
-        .entrance { grid-area: 8 / 5 / 7 / 7; border-right: none;}
+        .client-entrance { grid-area: 2 / 16 / 3 / 18;}
+        .employee-entrance { grid-area: 17 / 6 / 15 / 7;}
+        .employee-area { grid-area: 18 / 7 / 14 / 14; }
+        
 
-        /* .entrance { grid-area: 14 / 2 / 16 / 5; } */
-        .prize-counter { grid-area: 18 / 7 / 14 / 14; }
+        .client-to-game-area-hall { grid-area: 7 / 20 / 5 / 19; } 
+        .dining-to-bathroom-hall {grid-area: 5 / 6 / 4 /5;}
+        .mens-bathroom-hall { grid-area: 11 / 3 / 10 / 4;}
+        .womans-bathroom-hall { grid-area: 7 / 3 / 6 / 4;}
+        .dining-to-kitchen-hall { grid-area: 8 / 7 / 9 / 8;}
+        .dining-to-client-hall { grid-area: 4 / 14 / 6 / 15; }
+        
+        .employee-to-supply-closet-hall { grid-area: 12 / 14 / 11 / 15; } 
+        .employee-to-client-hall { grid-area: 9 / 16 / 10 / 18;}
+        .employee-to-deposit-hall { grid-area: 12 / 20 / 13 / 19; } 
+        .employee-to-employee-bathroom-hall { grid-area: 18 / 20 / 17 / 19; } 
+        .employee-to-employee-area-hall  { grid-area: 17 / 15 / 15 / 14; }
+        .employee-area-to-kitchen-hall { grid-area: 14 / 8 / 13 / 9; }
 
-
-        /* Para as áreas vazias ou corredores, você pode adicionar classes específicas */
-        .corridor-vertical-left { grid-area: 8 / 1 / 14 / 2; }
-        /* .corridor-horizontal-bottom { grid-area: 14 / 5 / 15 / 7; } */
-        .corridor-vertical-right { grid-area: 8 / 18 / 14 / 19;}
-        .corridor-mens-bathroom { grid-area: 4 / 18 / 7 / 19;}
-        .corridor-womans-bathroom { grid-area: 4 / 22 / 7 / 23;}
-
-        .corridor-top-left { grid-area: 13 / 13 / 11 / 16; } /* Conectando entrance ao salão */
-        .corridor-kitchen { grid-area: 6 / 7 / 10 / 8; }
-        .corridor-dinning { grid-area: 6 / 11 / 10 / 13; }
-        .corridor-bathroom-top { grid-area: 3 / 13 / 4 / 17; } 
-        .corridor-game-area-1-top  { grid-area: 15 / 9 / 12 / 12; }
-        .corridor-backstage-main { grid-area: 20 / 11 / 16 / 10; } /* Entre backstage e main stage */
+        .office-hall { grid-area: 19 / 11 / 18 / 10; } /* Entre backstage e main stage */
 
         .hall{
             z-index: 1;
         }
-
         .place{
             z-index: 2;
         }
-
         .sub-place{
             z-index: 3;
         }
 
         .teste{
-            width: 70dvw;
-            height: 95dvh;
+            width: 80dvw;
+            height: 90dvh;
             border: 1px solid red;
         }
 
     </style>    
 </head>
 <body class="teste">
-    <a href="./pages/security-room.html">Start</a>
      <div class="grid-container">
-        <!-- <div class="grid-item party-rooms-1-2 place">Party Rooms 1 & 2</div> -->
-        <!-- <div class="grid-item safe-room place">Safe Room</div> -->
-        <div class="grid-item backstage sub-place">Backstage</div>
-        <div class="grid-item main-stage place">Main Stage</div>
-        <div class="grid-item entrance place"></div>
-        <div class="grid-item puppet-area sub-place">Puppet Area</div>
-        <div class="grid-item dining-hall place">Dining Hall</div>
-        <div class="grid-item bathroom place">Bathroom</div>
-        <div class="grid-item mens-bathroom place">M</div>
-        <div class="grid-item womens-bathroom place">W</div>
-        <div class="grid-item game-area-1 place">Game Area 1</div>
-        <div class="grid-item game-area-2 place">Game Area 2</div>
-        <div class="grid-item kitchen place">Kitchen</div>
-        <div class="grid-item supply-closet place">Supply Closet</div>
-        <div class="grid-item game-hall-connect-top hall"></div>
-        <div class="grid-item game-hall-connect-bottom hall"></div>
-        <div class="grid-item game-hall-top hall"></div>
-        <div class="grid-item game-hall-bottom hall"></div>
-        <div class="grid-item office place">Office</div>
-        <!-- <div class="grid-item entrance">Entrance</div> -->
-        <div class="grid-item prize-counter place">Prize Counter</div>
+        
+        <div class="map-item client-entrance place"></div>
+        <div class="map-item employee-entrance place"></div>
+        <div class="map-item mens-bathroom place">M</div>
+        <div class="map-item womens-bathroom place">W</div>
+
+
+        <div class="map-item backstage sub-place" id="place-0">Backstage(0)</div>
+      
+        <div class="map-item puppet-area sub-place" id="place-2">Puppet Area(2)</div>
+        <div class="map-item dining-hall place" id="place-1">Dining Hall(1)</div>
+        <div class="map-item bathroom place" id="place-3">Bathroom(3)</div>
+       
+        <div class="map-item client-hall place" id="place-5">Client Hall(5)</div>
+        <div class="map-item employee-hall place" id="place-7">Employee Hall(7)</div>
+        <div class="map-item game-area place" id="place-6">Game Area(6)</div>
+        <div class="map-item deposit place" id="place-9">Deposit(9)</div>
+        <div class="map-item employee-bathroom place" id="place-10">Employee Bathroom(10)</div>
+
+        <div class="map-item kitchen place" id="place-4">Kitchen(4)</div>
+        <div class="map-item supply-closet place" id="place-8">Supply Closet(8)</div>
+  
+        <div class="map-item office place" id="place-12">Office(12)</div>
+        <div class="map-item employee-area place" id="place-11">Employee Area(11)</div>
 
        
-        <!-- <div class="grid-item corridor-horizontal-bottom"></div> -->
       
-     
-        <!-- <div class="grid-item corridor-top-left">2</div> -->
-        <div class="grid-item corridor-mens-bathroom hall"></div>
-        <div class="grid-item corridor-womans-bathroom hall"></div>
-        <div class="grid-item corridor-kitchen hall"></div>
-        <div class="grid-item corridor-dinning hall"></div>
-        <div class="grid-item corridor-bathroom-top hall"></div>
-        <!-- <div class="grid-item corridor-game-area-1-top hall"></div> -->
-        <div class="grid-item corridor-backstage-main hall"></div>
+        <div class="map-item client-to-game-area-hall hall"></div>
+        <div class="map-item employee-to-supply-closet-hall hall"></div>
+        <div class="map-item employee-to-deposit-hall hall"></div>
+        <div class="map-item employee-to-employee-bathroom-hall hall"></div>
+        <div class="map-item employee-to-client-hall hall"></div> 
+        <div class="map-item employee-to-employee-area-hall hall"></div> 
+        <div class="map-item employee-area-to-kitchen-hall hall"></div> 
+
+        
+        <div class="map-item mens-bathroom-hall hall"></div>
+        <div class="map-item womans-bathroom-hall hall"></div>
+        <div class="map-item dining-to-kitchen-hall hall"></div>
+        <div class="map-item dining-to-client-hall hall"></div>
+        <div class="map-item dining-to-bathroom-hall hall"></div>
+       
+         
+        <div class="map-item office-hall hall"></div>
 
         </div>
 </body>

@@ -27,47 +27,36 @@
 
 .map-container{
     position: absolute;
-    top: 70%;
-    left: 80%;
+    top: 75%;
+    left: 78%;
     transform: translate(-70%,-80%);
     color: white;
-    grid-template-columns: repeat(9,1fr);
-    width: 40%;
-    height: 50%;
     display: grid;
+    grid-template-columns: repeat(23, 1fr); /* Ajuste o número de colunas conforme a complexidade */
+    grid-template-rows: repeat(20, 1fr); /* Ajuste o número de linhas */
+    width: 60%;
+    height: 60%;
+    scale: 0.85;
+    /* border: 1px solid white; */
+    /* display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    gap: 5px;
+    gap: 5px; */
     z-index: 7;
   }
 
-  .map-container div {
-    background: none;
-    transition: transform 0.3s;
-    color: white;
-    cursor: pointer;
+  .map-container>div {
+    /* background-color: #000000; */
+  border: 0.15rem solid rgb(255,255,255,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+  text-align: center;
+  box-sizing: border-box; 
   }
 
-
-  #place-0 { --hue: 0; grid-column: span 1;    border: 0.1em solid white; }
-  /* #place-2 { --hue: 40; grid-row: span 3;    border: 0.1em solid white; }
-  #place-3 { --hue: 80; } */
-  #place-1 { --hue: 120; grid-column: span 4; grid-row: span 2;     border: 0.1em solid white;}
-  #place-2 { --hue: 160; grid-row: span 2;    border: 0.1em solid white;}
-  /* #place-6 { --hue: 200; grid-column: span 3;    border: 0.1em solid white; } */
-  #place-7 { --hue: 240; grid-row: span 3;     border: 0.1em solid white;}
-  #place-8 { --hue: 280; grid-column: span 2;    border: 0.1em solid white; }
-  #place-9 { --hue: 320; grid-column: span 1;     border: 0.1em solid white;}
-  #place-10 { --hue: 20;grid-column: span 1; }
-  #place-11 { --hue: 20;grid-column: span 3;}
-  #place-12 { --hue: 20;grid-column: span 1;    border: 0.1em solid white;}
-  #place-13 { --hue: 20;grid-column: span 3;}
-  #place-14 { --hue: 20;grid-column: span 1;}
-  #place-15 { --hue: 20;grid-column: span 1; border: 0.1em solid white;}
-
-
 .choiced-place-content-container{
-  border: 1px solid red;
   width: 100%;
   height: 100%;
   inset: 10px;
@@ -80,7 +69,147 @@
   height: 100%;
 }
 
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(23, 1fr); /* Ajuste o número de colunas conforme a complexidade */
+  grid-template-rows: repeat(20, 1fr); /* Ajuste o número de linhas */
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  border: 2px solid #555;
+}
+
+.map-item {
+  /* background-color: #000000; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+  text-align: center;
+  box-sizing: border-box; 
+}
+
+.dining-hall { grid-area: 8 / 6 / 3 / 14;  }
+.backstage { grid-area: 1 / 8 / 3 / 12; }
+.puppet-area { grid-area: 6 / 12 / 8 / 14; } 
+.bathroom { grid-area: 12 / 4 / 3 /5;}
+.mens-bathroom { grid-area: 12 / 1 / 9 / 3;}
+.womens-bathroom { grid-area: 8 / 1 / 5 / 3;}
+.client-hall { grid-area: 9 / 15 / 3 / 19;}
+.employee-hall  { grid-area: 19 / 15 / 10 / 19;}
+.employee-bathroom { grid-area: 19 / 20 / 17 / 20;}
+.game-area { grid-area: 9 / 20 / 3 / 24;}
+.deposit { grid-area: 14 / 20 / 11 / 23;}
+.kitchen { grid-area: 13 / 6 / 9 / 10; }
+.supply-closet { grid-area: 13 / 11 / 10 / 14; }
+.office { grid-area: 21 / 9 / 19 / 12; }
+.client-entrance { grid-area: 2 / 16 / 3 / 18;}
+.employee-entrance { grid-area: 17 / 6 / 15 / 7;}
+.employee-area { grid-area: 18 / 7 / 14 / 14; }
+
+
+.client-to-game-area-hall { grid-area: 7 / 20 / 5 / 19; } 
+.dining-to-bathroom-hall {grid-area: 5 / 6 / 4 /5;}
+.mens-bathroom-hall { grid-area: 11 / 3 / 10 / 4;}
+.womans-bathroom-hall { grid-area: 7 / 3 / 6 / 4;}
+.dining-to-kitchen-hall { grid-area: 8 / 7 / 9 / 8;}
+.dining-to-client-hall { grid-area: 4 / 14 / 6 / 15; }
+
+.employee-to-supply-closet-hall { grid-area: 12 / 14 / 11 / 15; } 
+.employee-to-client-hall { grid-area: 9 / 16 / 10 / 18;}
+.employee-to-deposit-hall { grid-area: 12 / 20 / 13 / 19; } 
+.employee-to-employee-bathroom-hall { grid-area: 18 / 20 / 17 / 19; } 
+.employee-to-employee-area-hall  { grid-area: 17 / 15 / 15 / 14; }
+.employee-area-to-kitchen-hall { grid-area: 14 / 8 / 13 / 9; }
+
+.office-hall { grid-area: 19 / 11 / 18 / 10; } /* Entre backstage e main stage */
+
+
+.hall{
+  z-index: 1;
+}
+.place{
+  z-index: 2;
+}
+.sub-place{
+  z-index: 3;
+}
+
+.cam-item-container{
+  position: relative;
+  padding: 0.5rem;
+  cursor: pointer;
+  border: 0.2rem solid white;
+  background-color: gray;
+  font-weight: bolder;
+}
+
+#place-0{
+  bottom: 50%;
+  right: 50%;
+}
+
+#place-1{
+  bottom: 35%;
+  right: 30%;
+}
+
+#place-2{
+  bottom: 35%;
+  right: 30%;
+}
+
+#place-3{
+  bottom: 50%;
+  right: 50%;
+}
+
+#place-4{
+  bottom: 50%;
+  right: -40%;
+}
+
+#place-5{
+  bottom: -45%;
+  right: 50%;
+}
+
+#place-6{
+  bottom: 50%;
+  right: -40%;
+}
+
+#place-7{
+  bottom: -45%;
+  right: 40%;
+}
+
+#place-8{
+  bottom: -50%;
+  right: 40%;
+}
+
+#place-9{
+  bottom: -50%;
+  right: -40%;
+}
+
+#place-10{
+  bottom: 45%;
+  right: 50%;
+}
+
   @media (max-width:1024px) {
+
+    .map-container{
+      width: 70%;
+      height: 85%;
+      top: 70%;
+      left: 73%;
+    }
+
     .map-container div {
        font-size: 0.6rem;   
       }

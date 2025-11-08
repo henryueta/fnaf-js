@@ -7,7 +7,7 @@
     left: 50%;
     transform: translate(-50%,0%);
     width: 40dvw;
-    height: 4dvh;
+    height: 5dvh;
     display: flex;
     z-index: 6;
 }
@@ -17,14 +17,14 @@
     height: 100%;
 }
 .cam-system-container {
-    width: 70dvw;
-    height: 95dvh;
+    width: 100dvw;
+    height: 100dvh;
     transform: translate(-50%,-50%);
     transform-style: preserve-3d;
     perspective: 800px; 
     position: fixed;
     left: 50%;
-    top: 52.5%;
+    top: 50%;
     z-index: 4;
     pointer-events: none  ;
 
@@ -52,7 +52,7 @@
     content: "";
     position: absolute;
     inset: 15px;
-    background-image: url("../assets/imgs/static.gif");
+    /* background-image: url("../assets/imgs/static.gif"); */
     opacity: 50%;
     border-radius: 5px;
     z-index: 20;
@@ -114,7 +114,7 @@
 
 @media (max-width:1024px){
     .cam-system-container {
-      top: 52.5%;
+      /* top: 52.5%; */
 
     }
 }

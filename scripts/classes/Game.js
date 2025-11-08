@@ -16,10 +16,16 @@ class Game {
         if(animatronic.isActive){
             const prev_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === animatronic.current_place)
             console.log(animatronic)
+            
             const current_animatronic_place =  animatronic.onChoicePlace(this.place_list.find((place_item)=>place_item.number === animatronic.current_place).next_place_index_list)
-        
+            
             const next_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === current_animatronic_place)
-             animatronic.onAction(next_current_animatronic_place);
+            if(!!animatronic.isHuntingPlayer){
+                if(!!next_current_animatronic_place.hasMultipleConnections){
+                    animatronic.visited_place_list.push(prev_current_animatronic_place.number)
+                }
+            } 
+            animatronic.onAction(next_current_animatronic_place);
             if(prev_current_animatronic_place.number !== next_current_animatronic_place.number){
                 prev_current_animatronic_place.onRemoveAnimatronic(animatronic);
                 prev_current_animatronic_place.onSetView();
@@ -57,7 +63,8 @@ class Game {
     }
     
     onStart(){
-        
+        // 4 - 10 - 11
+        //
         this.player_room.onDraw();
         setInterval(()=>{
             for(const animatronic of this.animatronic_list){
