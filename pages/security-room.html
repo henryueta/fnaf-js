@@ -16,6 +16,12 @@
     <div class="cam-system-container">
         <div class="screen-container">
             <div class="content-container">
+                <div class="actions-container">
+                    <button class="camera-interactive-item" id="place-power-switch">
+                        Energy Off
+                    </button>
+                </div>
+
                 <div class="map-container">
                      <div class="map-item client-entrance place"></div>
         <div class="map-item employee-entrance place"></div>
@@ -24,94 +30,94 @@
 
 
         <div class="map-item backstage sub-place" >
-            <div class="cam-item-container" id="place-0">
+            <div class="camera-interactive-item" id="place-0">
                 CAM 0
             </div>
         </div>
         <div class="map-item puppet-area sub-place">
-            <div class="cam-item-container" id="place-2">
+            <div class="camera-interactive-item" id="place-2">
                 CAM 2
             </div>
         </div>
         <div class="map-item dining-hall place">
-            <div class="cam-item-container" id="place-1">
+            <div class="camera-interactive-item" id="place-1">
                 CAM 1
             </div>
         </div>
         <div class="map-item bathroom place" >
-            <div class="cam-item-container" id="place-3">
+            <div class="camera-interactive-item" id="place-3">
                 CAM 3
             </div>
         </div>
        
         <div class="map-item client-hall place">
-            <div class="cam-item-container" id="place-5">
+            <div class="camera-interactive-item" id="place-5">
                 CAM 5
             </div>
         </div>
         <div class="map-item employee-hall place">
-            <div class="cam-item-container" id="place-7">
+            <div class="camera-interactive-item" id="place-7">
                 CAM 7
             </div>
         </div>
         <div class="map-item game-area place">
-            <div class="cam-item-container" id="place-6">
+            <div class="camera-interactive-item" id="place-6">
                 CAM 6
             </div>
         </div>
         <div class="map-item deposit place">
-            <div class="cam-item-container" id="place-9">
+            <div class="camera-interactive-item" id="place-9">
                 CAM 9
             </div>
         </div>
         <div class="map-item employee-bathroom place">
-            <!-- <div class="cam-item-container" id="place-10">
+            <!-- <div class="camera-interactive-item" id="place-10">
                 CAM 10
             </div> -->
         </div>
 
         <div class="map-item kitchen place">
-            <div class="cam-item-container" id="place-4">
+            <div class="camera-interactive-item" id="place-4">
                 CAM 4
             </div>
         </div>
         <div class="map-item supply-closet place">
-            <div class="cam-item-container" id="place-8">
+            <div class="camera-interactive-item" id="place-8">
                 CAM 8
             </div>
         </div>
   
         <div class="map-item office place">
-            <!-- <div class="cam-item-container" id="place-11">
+            <!-- <div class="camera-interactive-item" id="place-11">
                 CAM 11
             </div> -->
             YOU
         </div>
         <div class="map-item employee-area place">
-            <div class="cam-item-container" id="place-10">
+            <div class="camera-interactive-item" id="place-10">
                 CAM 10
             </div>
         </div>
 
        
       
-        <div class="map-item client-to-game-area-hall hall"></div>
-        <div class="map-item employee-to-supply-closet-hall hall"></div>
-        <div class="map-item employee-to-deposit-hall hall"></div>
-        <div class="map-item employee-to-employee-bathroom-hall hall"></div>
-        <div class="map-item employee-to-client-hall hall"></div> 
-        <div class="map-item employee-to-employee-area-hall hall"></div> 
-        <div class="map-item employee-area-to-kitchen-hall hall"></div> 
+        <div class="map-item client-to-game-area-hall horizontal-hall"></div>
+        <div class="map-item employee-to-supply-closet-hall horizontal-hall"></div>
+        <div class="map-item employee-to-deposit-hall horizontal-hall"></div>
+        <div class="map-item employee-to-employee-bathroom-hall horizontal-hall"></div>
+        <div class="map-item employee-to-client-hall vertical-hall"></div> 
+        <div class="map-item employee-to-employee-area-hall horizontal-hall"></div> 
+        <div class="map-item employee-area-to-kitchen-hall vertical-hall"></div> 
 
         
-        <div class="map-item mens-bathroom-hall hall"></div>
-        <div class="map-item womans-bathroom-hall hall"></div>
-        <div class="map-item dining-to-kitchen-hall hall"></div>
-        <div class="map-item dining-to-client-hall hall"></div>
-        <div class="map-item dining-to-bathroom-hall hall"></div>
+        <div class="map-item mens-bathroom-hall horizontal-hall"></div>
+        <div class="map-item womans-bathroom-hall horizontal-hall"></div>
+        <div class="map-item dining-to-kitchen-hall vertical-hall"></div>
+        <div class="map-item dining-to-client-hall horizontal-hall"></div>
+        <div class="map-item dining-to-bathroom-hall horizontal-hall"></div>
        
          
-        <div class="map-item office-hall hall"></div>
+        <div class="map-item office-hall vertical-hall"></div>
                 </div>
                 <div class="choiced-place-content-container">
                     <canvas id="choiced-place-canvas"  width="1666" height="1000"></canvas>
@@ -126,13 +132,13 @@
     </div>
 
     <div class="room-container">
-
+<!-- 
         <div class="button-container" id="teste1" onclick="(()=>{alert()})()"><button>
             click
         </button></div>
         <div class="button-container"><button>
             click
-        </button></div>
+        </button></div> -->
         <canvas id="room-canvas"  width="2500" height="1500"></canvas>
     </div>
 

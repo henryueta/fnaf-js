@@ -11,26 +11,52 @@ class Game {
         this.current_night = config.current_night;
     }
 
+
+
     onActiveAnimatronic(animatronic){
 
         if(animatronic.isActive){
+            console.log(animatronic,animatronic.isMoving)
+            if(!!animatronic.isMoving){
+
             const prev_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === animatronic.current_place)
             console.log(animatronic)
             
+            //apenas o número do local
             const current_animatronic_place =  animatronic.onChoicePlace(this.place_list.find((place_item)=>place_item.number === animatronic.current_place).next_place_index_list)
             
             const next_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === current_animatronic_place)
-            if(!!animatronic.isHuntingPlayer){
-                if(!!next_current_animatronic_place.hasMultipleConnections){
+            
+            if(animatronic.current_mode === 'hunter'){
+                if(!!next_current_animatronic_place.hasMultipleConnections && !!prev_current_animatronic_place.hasMultipleConnections){
                     animatronic.visited_place_list.push(prev_current_animatronic_place.number)
                 }
-            } 
+            }
+
+            const place_for_noisy = next_current_animatronic_place.place_view_list.find((place_item)=>
+                typeof place_item.noisy_animatronic === 'number' 
+                &&
+                place_item.noisy_animatronic === animatronic.identifier
+            )
+            
+            if(animatronic.current_mode === 'noisy'){
+
+                if(!!place_for_noisy){
+                    animatronic.isMoving = !place_for_noisy;
+                    // next_current_animatronic_place.current_view = place_for_noisy.image;
+                    next_current_animatronic_place.current_audio = place_for_noisy.audio;
+                    next_current_animatronic_place.repeat_audio = place_for_noisy.repeat_audio;
+                    
+                }
+                console.log("moving",place_for_noisy)
+            }
+
             animatronic.onAction(next_current_animatronic_place);
             if(prev_current_animatronic_place.number !== next_current_animatronic_place.number){
                 prev_current_animatronic_place.onRemoveAnimatronic(animatronic);
-                prev_current_animatronic_place.onSetView();
+                prev_current_animatronic_place.onSetView(false);
                 next_current_animatronic_place.onSetAnimatronic(animatronic);
-                next_current_animatronic_place.onSetView();
+                next_current_animatronic_place.onSetView(((place_for_noisy) && animatronic.current_mode === 'noisy'));
                
                 if(
                     this.camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
@@ -49,17 +75,29 @@ class Game {
                         const current_place = (
                             this.camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
                             ?  prev_current_animatronic_place
-                            :  next_current_animatronic_place
+                            :  (next_current_animatronic_place)
                         )
-                        
-                        current_place.onSetView()
-                        this.camera_monitor.choiced_camera_info.image.src = current_place.current_view;
-                        this.camera_monitor.choiced_camera_info.audio.src = current_place.current_audio;
+                        console.log("noisy",place_for_noisy)
+                        current_place.onSetView(((place_for_noisy) && animatronic.current_mode === 'noisy'))
+                        this.camera_monitor.choiced_camera_info.image.src = (
+                            !!(place_for_noisy && animatronic.current_mode === 'noisy')
+                            ? place_for_noisy.image
+                            : current_place.current_view
+                        );
+                        this.camera_monitor.choiced_camera_info.audio.src = (
+                            !!(place_for_noisy && animatronic.current_mode === 'noisy')
+                            ? place_for_noisy.audio
+                            : current_place.current_audio
+                        );
                     },200)
                 }
             }
+            return
             }
-        
+
+
+
+        }
     }
     
     onStart(){
@@ -68,7 +106,9 @@ class Game {
         this.player_room.onDraw();
         setInterval(()=>{
             for(const animatronic of this.animatronic_list){
-                this.onActiveAnimatronic(animatronic);
+                setTimeout(()=>{
+                    this.onActiveAnimatronic(animatronic);
+                },animatronic.movement_delay)
             }
             console.log("evento de noite executado")
         },this.current_night.event_running_interval)

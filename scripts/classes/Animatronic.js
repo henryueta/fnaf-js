@@ -7,17 +7,82 @@ class Animatronic {
         this.current_place = config.current_place;
         this.action_list = config.action_list;
         this.isActive = config.isActive;
-        this.isHuntingPlayer = config.isHuntingPlayer;
+        this.isMoving = config.isMoving;
+        this.current_mode = config.current_mode;
+        this.movement_delay = config.movement_delay;
+        // this.isHuntingPlayer = config.isHuntingPlayer;
         this.visited_place_list = [];
         // this.next_place = config.next_place;
     }
 
+    onResetVisitedPlaceList(){
+        this.visited_place_list = [];
+    }
+
+    onCheckMode(mode,type){
+
+        onResetVisitedPlaceList();
+
+        const current_mode_list = {
+            'default':()=>{
+
+            },
+            'hunter':()=>{
+                console.log(this.visited_place_list)
+                this.visited_place_list.push(place.number)
+            },
+            'noisy':()=>{
+                
+                if(type === 'action'){
+                    const place_for_noisy = place.place_view_list.find((place_item)=>
+                        typeof place_item.noisy_animatronic === 'number' 
+                        &&
+                        place_item.noisy_animatronic === this.identifier
+                    )
+    
+                    
+                    console.log(this.isMoving,!!place_for_noisy)
+                    return
+                }
+
+                
+
+            }
+        }
+        return current_mode_list[mode]()
+    }
+
+    onChangenMode(mode){
+        
+        
+
+    }
+
     onAction(place){
         
-        if(!!this.isHuntingPlayer && !place.hasMultipleConnections){
-            this.visited_place_list.push(place.number)
-            console.log(this.visited_place_list)
+        const current_mode_list = {
+            'default':()=>{
+
+            },
+            'hunter':()=>{
+                console.log(this.visited_place_list)
+                this.visited_place_list.push(place.number)
+            },
+            'noisy':()=>{
+                
+                const place_for_noisy = place.place_view_list.find((place_item)=>
+                    typeof place_item.noisy_animatronic === 'number' 
+                    &&
+                    place_item.noisy_animatronic === this.identifier
+                )
+
+                
+                console.log(this.isMoving,!!place_for_noisy)
+
+            }
         }
+
+        current_mode_list[this.current_mode]();
 
         const place_action = this.action_list.find((action_item)=>
             action_item.place_number === place.number
@@ -47,7 +112,7 @@ class Animatronic {
 
 
         random_number = onRandomNumber(0,places.length-1)
-        if(!!this.isHuntingPlayer &&  !!this.visited_place_list.length && this.visited_place_list.includes(places[random_number])){
+        if(this.current_mode === 'hunter' &&  !!this.visited_place_list.length && this.visited_place_list.includes(places[random_number])){
 
             while(this.visited_place_list.includes(places[random_number])){
                 random_number = onRandomNumber(0,places.length-1)

@@ -8,25 +8,37 @@ const place_list = [
         place_view_list:[
             {
                 animatronic_list:[],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
                 image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_2.mp3",
                 repeat_audio:false,
                 image:"../assets/imgs/one.avif"
 
             },
+            {//alterar depois
+                animatronic_list:[0],
+                noisy_animatronic:0,
+                audio:"../assets/audio/beep_3.mp3",
+                repeat_audio:true,
+                image:"../assets/imgs/1_sound.jpg"
+
+            },
                          {//alterar depois
                             animatronic_list:[1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/two.jpg"
                         },
                          {//alterar depois
                             animatronic_list:[0,1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/three.png"
@@ -42,24 +54,28 @@ const place_list = [
         place_view_list:[
             {
                 animatronic_list:[],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
                 image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_2.mp3",
                 repeat_audio:false,
                 image:"../assets/imgs/one.avif"
             },
              {//alterar depois
                 animatronic_list:[1],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_2.mp3",
                 repeat_audio:false,
                 image:"../assets/imgs/two.jpg"
             },
              {//alterar depois
                 animatronic_list:[0,1],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_2.mp3",
                 repeat_audio:false,
                 image:"../assets/imgs/three.png"
@@ -75,24 +91,28 @@ const place_list = [
         place_view_list:[
             {
                 animatronic_list:[],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
                 image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_2.mp3",
                 repeat_audio:false,
                 image:"../assets/imgs/one.avif"
             },
                          {//alterar depois
                             animatronic_list:[1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/two.jpg"
                         },
                          {//alterar depois
                             animatronic_list:[0,1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/three.png"
@@ -108,24 +128,36 @@ const place_list = [
         place_view_list:[
             {
                 animatronic_list:[],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
                 image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_2.mp3",
                 repeat_audio:false,
                 image:"../assets/imgs/one.avif"
             },
+                        {//alterar depois
+                            animatronic_list:[0],
+                            noisy_animatronic:0,
+                            audio:"../assets/audio/beep_3.mp3",
+                            repeat_audio:true,
+                            image:"../assets/imgs/1_sound.jpg"
+                                    
+                        },
                          {//alterar depois
                             animatronic_list:[1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/two.jpg"
                         },
                          {//alterar depois
                             animatronic_list:[0,1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/three.png"
@@ -141,24 +173,36 @@ const place_list = [
         place_view_list:[
             {
                 animatronic_list:[],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
                 image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_2.mp3",
                 repeat_audio:false,
                 image:"../assets/imgs/one.avif"
             },
+             {//alterar depois
+                animatronic_list:[0],
+                noisy_animatronic:0,
+                audio:"../assets/audio/beep_3.mp3",
+                repeat_audio:true,
+                image:"../assets/imgs/1_sound.jpg"
+                        
+            },
                          {//alterar depois
                             animatronic_list:[1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/two.jpg"
                         },
                          {//alterar depois
                             animatronic_list:[0,1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/three.png"
@@ -174,24 +218,36 @@ const place_list = [
         place_view_list:[
             {
                 animatronic_list:[],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
                 image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_2.mp3",
                 repeat_audio:false,
                 image:"../assets/imgs/one.avif"
             },
+                        {//alterar depois
+                            animatronic_list:[0],
+                            noisy_animatronic:0,
+                            audio:"../assets/audio/beep_3.mp3",
+                            repeat_audio:true,
+                            image:"../assets/imgs/1_sound.jpg"
+                        
+                        },
                          {//alterar depois
                             animatronic_list:[1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/two.jpg"
                         },
                          {//alterar depois
                             animatronic_list:[0,1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/three.png"
@@ -207,24 +263,28 @@ const place_list = [
         place_view_list:[
             {
                 animatronic_list:[],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
                 image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_2.mp3",
                 repeat_audio:false,
                 image:"../assets/imgs/one.avif"
             },
                          {//alterar depois
                             animatronic_list:[1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/two.jpg"
                         },
                          {//alterar depois
                             animatronic_list:[0,1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/three.png"
@@ -240,24 +300,28 @@ const place_list = [
         place_view_list:[
             {
                 animatronic_list:[],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
                 image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_2.mp3",
                 repeat_audio:false,
                 image:"../assets/imgs/one.avif"
             },
                          {//alterar depois
                             animatronic_list:[1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/two.jpg"
                         },
                          {//alterar depois
                             animatronic_list:[0,1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/three.png"
@@ -273,24 +337,28 @@ const place_list = [
         place_view_list:[
             {
                 animatronic_list:[],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
                 image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_2.mp3",
                 repeat_audio:false,
                 image:"../assets/imgs/one.avif"
             },
                          {//alterar depois
                             animatronic_list:[1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/two.jpg"
                         },
                          {//alterar depois
                             animatronic_list:[0,1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/three.png"
@@ -306,24 +374,28 @@ const place_list = [
         place_view_list:[
             {
                 animatronic_list:[],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
                 image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_2.mp3",
                 repeat_audio:false,
                 image:"../assets/imgs/one.avif"
             },
                          {//alterar depois
                             animatronic_list:[1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/two.jpg"
                         },
                          {//alterar depois
                             animatronic_list:[0,1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/three.png"
@@ -339,24 +411,28 @@ const place_list = [
         place_view_list:[
             {
                 animatronic_list:[],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
                 image:"../teste5.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
+                noisy_animatronic:null,
                 audio:"../assets/audio/beep_2.mp3",
                 repeat_audio:false,
                 image:"../assets/imgs/one.avif"
             },
                          {//alterar depois
                             animatronic_list:[1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/two.jpg"
                         },
                          {//alterar depois
                             animatronic_list:[0,1],
+                            noisy_animatronic:null,
                             audio:"../assets/audio/beep_2.mp3",
                             repeat_audio:false,
                             image:"../assets/imgs/three.png"

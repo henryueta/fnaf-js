@@ -5,16 +5,40 @@
     z-index: 5;
     position: absolute;
     /* transform: translate(-50%,-50%); */
-    inset: 20px;
+    inset: 1px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid white;
+    border: 0.1rem solid rgb(39, 39, 39);
 }  
 
+.content-container::after{
+  content: "";
+  border: 0.1rem solid white;
+  inset: 4px;
+  position: absolute;
+  z-index: 8;
+  pointer-events: none;
+}
+
+.actions-container{
+  position: absolute;
+  z-index: 8;
+  bottom: 20%;
+  right: 48%;
+}
+
+#place-power-switch{
+  padding: 1rem;
+}
+
+.used-power-switch{
+  background-color: rgb(78, 78, 78);
+  border: 0.2rem solid gray;
+  color: gray;
+}
 
 .room-place-container{
-    border: 1px solid white;
     width: 50%;
     height: 50%;
 }
@@ -27,16 +51,15 @@
 
 .map-container{
     position: absolute;
-    top: 75%;
-    left: 78%;
+    top: 70%;
+    left: 77%;
     transform: translate(-70%,-80%);
-    color: white;
     display: grid;
     grid-template-columns: repeat(23, 1fr); /* Ajuste o número de colunas conforme a complexidade */
     grid-template-rows: repeat(20, 1fr); /* Ajuste o número de linhas */
     width: 60%;
     height: 60%;
-    scale: 0.85;
+    scale: 0.80;
     /* border: 1px solid white; */
     /* display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -47,7 +70,7 @@
 
   .map-container>div {
     /* background-color: #000000; */
-  border: 0.15rem solid rgb(255,255,255,0.5);
+  border-color: rgb(255,255,255,0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,10 +112,11 @@
   font-size: 0.8em;
   text-align: center;
   box-sizing: border-box; 
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .dining-hall { grid-area: 8 / 6 / 3 / 14;  }
-.backstage { grid-area: 1 / 8 / 3 / 12; }
+.backstage { grid-area: 1 / 8 / 3 / 12; border-bottom: none !important;}
 .puppet-area { grid-area: 6 / 12 / 8 / 14; } 
 .bathroom { grid-area: 12 / 4 / 3 /5;}
 .mens-bathroom { grid-area: 12 / 1 / 9 / 3;}
@@ -105,12 +129,12 @@
 .kitchen { grid-area: 13 / 6 / 9 / 10; }
 .supply-closet { grid-area: 13 / 11 / 10 / 14; }
 .office { grid-area: 21 / 9 / 19 / 12; }
-.client-entrance { grid-area: 2 / 16 / 3 / 18;}
-.employee-entrance { grid-area: 17 / 6 / 15 / 7;}
+.client-entrance { grid-area: 2 / 16 / 3 / 18;border-bottom: none !important;}
+.employee-entrance { grid-area: 17 / 6 / 15 / 7;border-right: none !important;}
 .employee-area { grid-area: 18 / 7 / 14 / 14; }
 
 
-.client-to-game-area-hall { grid-area: 7 / 20 / 5 / 19; } 
+.client-to-game-area-hall { grid-area: 7 / 20 / 5 / 19;} 
 .dining-to-bathroom-hall {grid-area: 5 / 6 / 4 /5;}
 .mens-bathroom-hall { grid-area: 11 / 3 / 10 / 4;}
 .womans-bathroom-hall { grid-area: 7 / 3 / 6 / 4;}
@@ -127,23 +151,23 @@
 .office-hall { grid-area: 19 / 11 / 18 / 10; } /* Entre backstage e main stage */
 
 
-.hall{
+.horizontal-hall{
   z-index: 1;
+  border-top: 0.15rem solid;border-bottom: 0.15rem solid;
 }
+
+.vertical-hall{
+  z-index: 1;
+  border-left: 0.15rem solid;border-right: 0.15rem solid;
+}
+
 .place{
   z-index: 2;
+  border: 0.15rem solid;
 }
 .sub-place{
   z-index: 3;
-}
-
-.cam-item-container{
-  position: relative;
-  padding: 0.5rem;
-  cursor: pointer;
-  border: 0.2rem solid white;
-  background-color: gray;
-  font-weight: bolder;
+  border: 0.15rem solid;
 }
 
 #place-0{
@@ -204,13 +228,19 @@
   @media (max-width:1024px) {
 
     .map-container{
+      scale: 0.75;
       width: 70%;
       height: 85%;
-      top: 70%;
-      left: 73%;
+      top: 65%;
+      left: 72%;
     }
 
     .map-container div {
        font-size: 0.6rem;   
       }
+
+      #place-power-switch{
+        padding: 0.6rem;
+      }
+
   }

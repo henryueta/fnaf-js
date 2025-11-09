@@ -3,8 +3,10 @@ class Monitor {
     constructor(config){
         this.screen_container = config.screen_container;
         this.isOpen = false;
+        this.isRunningOperation = false;
         this.camera_list_container = config.camera_list_container;
         this.camera_list = config.camera_list;
+        this.action_button_list = config.action_button_list;
         this.choiced_camera_canvas = config.choiced_camera_canvas;
         this.choiced_camera_context = this.choiced_camera_canvas.getContext("2d")
         
@@ -20,7 +22,40 @@ class Monitor {
 
         this.choiced_camera_info.number =  this.camera_list[0].number;
         
-      
+      if(!!this.action_button_list){
+        const place_power_switch = this.action_button_list.place_power_switch
+        place_power_switch.onclick = ()=>{
+            if(!this.isRunningOperation){
+
+            const choiced_camera =  this.camera_list.find((camera_item)=>
+                camera_item.number === this.choiced_camera_info.number
+            )
+            this.isRunningOperation = true;
+            place_power_switch.textContent = "Running. . .";
+            place_power_switch.classList.add("used-power-switch");
+
+            setTimeout(()=>{
+                const current_camera_power = choiced_camera.onPowerSwitch();
+                
+                place_power_switch.textContent = (
+                    !!current_camera_power
+                    ? "Power Off"
+                    : "Power On"
+                )
+                place_power_switch.classList.remove("used-power-switch");
+                
+                this.choiced_camera_info.image.src =  choiced_camera.current_view;
+                this.choiced_camera_info.audio.src = choiced_camera.current_audio;
+                // this.choiced_camera_info.audio.loop = choiced_camera
+
+               setTimeout(()=>{
+                this.isRunningOperation = false;
+               },200)
+            },1000)
+            }
+            
+        }
+      }
 
         this.choiced_camera_info.image.onload = 
         () => {

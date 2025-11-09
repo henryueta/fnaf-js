@@ -25,6 +25,9 @@ const game = new Game({
     }),
     camera_monitor:new Monitor({
         screen_container: document.querySelector(".screen-container"),
+        action_button_list:{
+            place_power_switch:document.querySelector("#place-power-switch")
+        },
         camera_list_container:document.querySelector(".map-container"),
         camera_list:place_list,
         choiced_camera_canvas:document.querySelector("#choiced-place-canvas")

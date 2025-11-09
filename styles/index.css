@@ -10,8 +10,18 @@ button{
     cursor: pointer;
 }
 
-
 html,body{
     overflow: hidden;
   background-color: black;
+}
+
+.camera-interactive-item{
+    position: relative;
+    padding: 0.5rem;
+    cursor: pointer;
+    border: 0.2rem solid white;
+    background-color: gray;
+    font-weight: bolder;
+    color: white;
+
 }
