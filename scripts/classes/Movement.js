@@ -50,7 +50,7 @@ class Movement{
                     }
                     document.querySelector(".room-container")
                     .style.transform = 'translateX('+this.x_value+'%)'
-            }, 50);
+            }, 30);
             }
         }
     }

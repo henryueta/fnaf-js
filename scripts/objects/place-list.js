@@ -209,7 +209,7 @@ const place_list = [
                         }
         ],
         name:"test2_room",
-        next_place_index_list:[1,10],
+        next_place_index_list:[1],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 2)
     }),
     new Place({
@@ -439,7 +439,7 @@ const place_list = [
                         }
         ],
         name:"test2_room",
-        next_place_index_list:[4,7,11],
+        next_place_index_list:[7,11],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 2)
     })
 

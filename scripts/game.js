@@ -11,13 +11,10 @@ import { night_list } from "./objects/night-list.js"
 const game = new Game({
     player_room: new Room({
         room_canvas:document.querySelector("#room-canvas"),
-        room_image:"../teste5.jpeg"
-    }),
-    camera_monitor: new Monitor({
-        screen_container: document.querySelector(".screen-container"),
-        camera_list_container:document.querySelector(".map-container"),
-        camera_list:place_list,
-        choiced_camera_canvas:document.querySelector("#choiced-place-canvas")
+        room_image:"../teste5.jpeg",
+        onRectClick(){
+            console.log(" aaaa")
+        }
     }),
     x_moviment: new Movement({
         right_container:document.querySelector(".move-right-container"),
@@ -40,17 +37,6 @@ const game = new Game({
 
 game.onStart();
 
-// const player_room = new Room({
-//     room_canvas:document.querySelector("#room-canvas"),
-//     room_image:"../teste5.jpeg"
-// })
-
-// player_room.onDraw()
-
-
-// const enemy = new Animatronic({
-//     current_place:0,
-// })
 
 const timeouts = [
     {

@@ -7,7 +7,7 @@ const animatronic_list = [
     identifier:0,
     isActive:true,
     isMoving:true,
-    current_mode:'noisy',
+    current_mode:'hunter',
     movement_delay:1500,
     action_list:[
         // {

@@ -23,12 +23,14 @@ class Game {
             console.log(animatronic)
             
             //apenas o número do local
+            console.warn(this.place_list.find((place_item)=>place_item.number === animatronic.current_place))
             const current_animatronic_place =  animatronic.onChoicePlace(this.place_list.find((place_item)=>place_item.number === animatronic.current_place).next_place_index_list)
             
             const next_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === current_animatronic_place)
             
             if(animatronic.current_mode === 'hunter'){
                 if(!!next_current_animatronic_place.hasMultipleConnections && !!prev_current_animatronic_place.hasMultipleConnections){
+                    console.warn("push",prev_current_animatronic_place.number)
                     animatronic.visited_place_list.push(prev_current_animatronic_place.number)
                 }
             }
@@ -51,7 +53,7 @@ class Game {
                 console.log("moving",place_for_noisy)
             }
 
-            animatronic.onAction(next_current_animatronic_place);
+            // animatronic.onAction(next_current_animatronic_place);
             if(prev_current_animatronic_place.number !== next_current_animatronic_place.number){
                 prev_current_animatronic_place.onRemoveAnimatronic(animatronic);
                 prev_current_animatronic_place.onSetView(false);
@@ -104,17 +106,26 @@ class Game {
         // 4 - 10 - 11
         //
         this.player_room.onDraw();
-        setInterval(()=>{
-            for(const animatronic of this.animatronic_list){
-                setTimeout(()=>{
-                    this.onActiveAnimatronic(animatronic);
-                },animatronic.movement_delay)
-            }
-            console.log("evento de noite executado")
-        },this.current_night.event_running_interval)
+        // setInterval(()=>{
+        //     for(const animatronic of this.animatronic_list){
+        //         setTimeout(()=>{
+        //             this.onActiveAnimatronic(animatronic);
+        //         },animatronic.movement_delay)
+        //     }
+        //     console.log("evento de noite executado")
+        // },this.current_night.event_running_interval)
 
         this.x_moviment.onMove();
-        this.toggle_cam_system_button.addEventListener('click',()=>{
+
+        // this.toggle_cam_system_button.addEventListener('mousemove',()=>{
+           
+        // })
+
+        this.toggle_cam_system_button.addEventListener((
+            window.innerWidth <= 1024
+            ? 'click'
+            : 'mouseenter'
+        ),()=>{
             this.camera_monitor.onToggle()
             this.x_moviment.setIsLocked(this.camera_monitor.isOpen)
             this.x_moviment.onEndMove()

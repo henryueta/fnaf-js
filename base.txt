@@ -68,8 +68,8 @@
         /* .corridor-horizontal-bottom { grid-area: 14 / 5 / 15 / 7; } */
         .corridor-vertical-right { grid-area: 8 / 18 / 14 / 19;}
          .bathroom-hall {grid-area: 3 / 7 / 4 /4;}
-        .mens-bathroom-hall { grid-area: 9 / 2 / 8 / 5;}
-        .womans-bathroom-hall { grid-area: 5 / 2 / 4 / 5;}
+        .right-office-hall { grid-area: 9 / 2 / 8 / 5;}
+        .left-office-hall { grid-area: 5 / 2 / 4 / 5;}
         .supply-closet-hall { grid-area: 12 / 13 / 11 / 16; } 
         .game-hall { grid-area: 7 / 21 / 5 / 16; } 
         .deposit-hall { grid-area: 15 / 21 / 14 / 16; } 
@@ -78,7 +78,7 @@
         .dinning-hall { grid-area: 4 / 13 / 6 / 16; }
         .employee-to-client-hall { grid-area: 7 / 16 / 11 / 18;}
         .employee-area-hall  { grid-area: 17 / 16 / 15 / 13; }
-        .office-hall { grid-area: 20 / 11 / 16 / 10; } /* Entre backstage e main stage */
+        .front-office-hall { grid-area: 20 / 11 / 16 / 10; } /* Entre backstage e main stage */
 
         .hall{
             z-index: 1;
@@ -132,14 +132,14 @@
         <div class="map-item supply-closet-hall hall"></div>
         <div class="map-item game-hall hall"></div>
         <div class="map-item deposit-hall hall"></div>
-        <div class="map-item mens-bathroom-hall hall"></div>
-        <div class="map-item womans-bathroom-hall hall"></div>
+        <div class="map-item right-office-hall hall"></div>
+        <div class="map-item left-office-hall hall"></div>
         <div class="map-item kitchen-hall hall"></div>
         <div class="map-item dinning-hall hall"></div>
         <div class="map-item bathroom-hall hall"></div>
         <div class="map-item employee-to-client-hall hall"></div> 
          <div class="map-item employee-area-hall hall"></div> 
-        <div class="map-item office-hall hall"></div>
+        <div class="map-item front-office-hall hall"></div>
 
         </div>
 </body>

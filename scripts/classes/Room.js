@@ -1,3 +1,5 @@
+import { Door } from "./Door.js";
+
 class Room {
     constructor(config) {
         this.room_canvas = config.room_canvas;
@@ -5,14 +7,17 @@ class Room {
         this.room_image = new Image();
         this.room_image.src = config.room_image;
 
-        this.clickableRect = { x: 1050, y: 590, width: 400, height: 500 };
-
-        
+        this.clickableRect = { x: 1022, y: 440, width: 450, height: 650 };
         this.onRectClick = config.onRectClick || null;
 
         this.room_canvas.addEventListener('click', (e) => this.handleClick(e));
+        this.front_door = null;
+        this.right_lateral_door = null;
+        this.left_lateral_door = null;
     }
 
+
+    
     onDraw() {
         this.room_image.onload = () => {
             const cw = this.room_canvas.width;
@@ -23,16 +28,31 @@ class Room {
             const scale = Math.max(cw / iw, ch / ih);
             const x = (cw / 2) - (iw * scale / 2);
             const y = (ch / 2) - (ih * scale / 2);
-
             this.room_context.drawImage(this.room_image, x, y, iw * scale, ih * scale);
 
-            this.room_context.fillStyle = 'black';
-            this.room_context.fillRect(
-                this.clickableRect.x,
-                this.clickableRect.y,
-                this.clickableRect.width,
-                this.clickableRect.height
-            );
+            this.front_door = new Door({
+                door_room_context:this.room_context,
+                x:1022,
+                y:440,
+                type:'front',
+                clickableRect:{
+                    width: 450, height: 650 
+                }
+            });
+            this.right_lateral_door = new Door({
+                door_room_context:this.room_context,
+                x:190,
+                y:232,
+                type:'right',
+                height:950
+            });
+            this.left_lateral_door = new Door({
+                door_room_context:this.room_context,
+                x:2290,
+                y:248,
+                type:'left',
+                height:941
+            });
         };
     }
 
@@ -53,9 +73,6 @@ class Room {
         ) {
             if (this.onRectClick) this.onRectClick();
         }
-        //  else {
-        //     console.log("Clique fora do retângulo", x, y);
-        // }
     }
 }
 

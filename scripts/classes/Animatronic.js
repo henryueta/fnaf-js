@@ -113,8 +113,8 @@ class Animatronic {
 
         random_number = onRandomNumber(0,places.length-1)
         if(this.current_mode === 'hunter' &&  !!this.visited_place_list.length && this.visited_place_list.includes(places[random_number])){
-
             while(this.visited_place_list.includes(places[random_number])){
+                console.log("visitados",this.visited_place_list)
                 random_number = onRandomNumber(0,places.length-1)
                 console.log("tentativa: ",random_number)
             }

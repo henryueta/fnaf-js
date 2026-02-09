@@ -57,7 +57,7 @@
     display: grid;
     grid-template-columns: repeat(23, 1fr); /* Ajuste o número de colunas conforme a complexidade */
     grid-template-rows: repeat(20, 1fr); /* Ajuste o número de linhas */
-    width: 60%;
+    width: 50%;
     height: 60%;
     scale: 0.80;
     /* border: 1px solid white; */
@@ -112,8 +112,8 @@
   font-size: 0.8em;
   text-align: center;
   box-sizing: border-box; 
-  font-family: Arial, Helvetica, sans-serif;
 }
+
 
 .dining-hall { grid-area: 8 / 6 / 3 / 14;  }
 .backstage { grid-area: 1 / 8 / 3 / 12; border-bottom: none !important;}
@@ -128,16 +128,15 @@
 .deposit { grid-area: 14 / 20 / 11 / 23;}
 .kitchen { grid-area: 13 / 6 / 9 / 10; }
 .supply-closet { grid-area: 13 / 11 / 10 / 14; }
-.office { grid-area: 21 / 9 / 19 / 12; }
+.office { grid-area: 21 / 9 / 18 / 12; }
 .client-entrance { grid-area: 2 / 16 / 3 / 18;border-bottom: none !important;}
 .employee-entrance { grid-area: 17 / 6 / 15 / 7;border-right: none !important;}
-.employee-area { grid-area: 18 / 7 / 14 / 14; }
+.employee-area { grid-area: 17 / 7 / 14 / 14; }
 
 
 .client-to-game-area-hall { grid-area: 7 / 20 / 5 / 19;} 
 .dining-to-bathroom-hall {grid-area: 5 / 6 / 4 /5;}
-.mens-bathroom-hall { grid-area: 11 / 3 / 10 / 4;}
-.womans-bathroom-hall { grid-area: 7 / 3 / 6 / 4;}
+
 .dining-to-kitchen-hall { grid-area: 8 / 7 / 9 / 8;}
 .dining-to-client-hall { grid-area: 4 / 14 / 6 / 15; }
 
@@ -148,8 +147,9 @@
 .employee-to-employee-area-hall  { grid-area: 17 / 15 / 15 / 14; }
 .employee-area-to-kitchen-hall { grid-area: 14 / 8 / 13 / 9; }
 
-.office-hall { grid-area: 19 / 11 / 18 / 10; } /* Entre backstage e main stage */
-
+.front-office-hall { grid-area: 18 / 11 / 17 / 10; } /* Entre backstage e main stage */
+.right-office-hall { grid-area: 19 / 12 / 19 / 13;  background-color: red;}
+.left-office-hall { grid-area: 19 / 9 / 19 / 8; background-color: blue;}
 
 .horizontal-hall{
   z-index: 1;
