@@ -12,21 +12,26 @@ class Movement{
 
     onMove(){
         this.right_container.onmouseenter = ()=>{
-            this.current_moviment = 'right'
-            this.onStartMove()
+            this.current_moviment = 'right';
+            this.onStartMove();
         }
         this.left_container.onmouseenter = ()=>{
-            this.current_moviment = 'left'
-            this.onStartMove()
+            this.current_moviment = 'left';
+            this.onStartMove();
 
         }
         this.right_container.onmouseleave = ()=>{
-            this.onEndMove()
+            this.onEndMove();
         }
         this.left_container.onmouseleave = ()=>{
-            this.onEndMove()
+            this.onEndMove();
         }
 
+    }
+
+    onChangeXVision(){
+        document.querySelector(".room-container")
+        .style.transform = 'translateX('+this.x_value+'%)'
     }
 
     onStartMove(){
@@ -48,8 +53,7 @@ class Movement{
                     } else{
                         clearInterval(this.x_move_interval)
                     }
-                    document.querySelector(".room-container")
-                    .style.transform = 'translateX('+this.x_value+'%)'
+                    this.onChangeXVision();
             }, 30);
             }
         }
@@ -62,8 +66,14 @@ class Movement{
             }
         }
     }
-    setIsLocked(isLocked){
+    setIsLocked(isLocked,resetX){
         this.isLocked = isLocked;
+        
+        if(resetX){
+            this.x_value = 0;
+            this.onChangeXVision();
+        }
+
         this.right_container.style.display = (!!isLocked ? "none" : "block");
         this.left_container.style.display = (!!isLocked ? "none" : "block");
     }

@@ -11,8 +11,6 @@ class Game {
         this.current_night = config.current_night;
     }
 
-
-
     onActiveAnimatronic(animatronic){
 
         if(animatronic.isActive){
@@ -106,6 +104,11 @@ class Game {
         // 4 - 10 - 11
         //
         this.player_room.onDraw();
+        this.player_room.onLockVision = (vision)=>{
+            this.x_moviment.setIsLocked(!!(
+                vision === 'external'
+            ),true)
+        }
         // setInterval(()=>{
         //     for(const animatronic of this.animatronic_list){
         //         setTimeout(()=>{
@@ -120,15 +123,19 @@ class Game {
         // this.toggle_cam_system_button.addEventListener('mousemove',()=>{
            
         // })
+        this.toggle_cam_system_button.addEventListener('click',()=>{
 
-        this.toggle_cam_system_button.addEventListener((
-            window.innerWidth <= 1024
-            ? 'click'
-            : 'mouseenter'
-        ),()=>{
-            this.camera_monitor.onToggle()
-            this.x_moviment.setIsLocked(this.camera_monitor.isOpen)
-            this.x_moviment.onEndMove()
+            if(this.player_room.vision === 'internal'){
+                this.camera_monitor.onToggle();
+                this.x_moviment.setIsLocked(this.camera_monitor.isOpen);
+                this.x_moviment.onEndMove();
+                return
+            }
+            
+            this.player_room.onSwitchVision("../teste5.jpeg","internal")
+            
+            return
+            
         })
         this.camera_monitor.onChangeCurrentCamera()
     }

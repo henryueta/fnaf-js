@@ -7,14 +7,15 @@ import { place_list } from "./objects/place-list.js"
 import { animatronic_list } from "./objects/animatronic-list.js"
 import { Game } from "./classes/Game.js"
 import { night_list } from "./objects/night-list.js"
+import { door_list } from "./objects/door-list.js"
 
 const game = new Game({
     player_room: new Room({
         room_canvas:document.querySelector("#room-canvas"),
         room_image:"../teste5.jpeg",
-        onRectClick(){
-            console.log(" aaaa")
-        }
+        front_door:door_list[0],
+        left_door:door_list[1],
+        right_door:door_list[2]
     }),
     x_moviment: new Movement({
         right_container:document.querySelector(".move-right-container"),
