@@ -10,6 +10,7 @@ class Place {
         this.animatronic_list =  config.animatronic_list ||  [];
         this.place_view_list = config.place_view_list || [];
         this.hasMultipleConnections = config.hasMultipleConnections;
+        this.hasSecurityRoomConnection = config.hasSecurityRoomConnection;
         const current_place_info =  this.place_view_list.find((view_item)=>
         {
             return onSameList(this.animatronic_list.map((animatronic_item)=>animatronic_item.identifier),view_item.animatronic_list)
@@ -66,7 +67,6 @@ class Place {
             : this.place_view_list
         )
 
-        console.log("filtered",filtered_place_view_list)
 
          this.current_view = filtered_place_view_list.find((view_item)=>
         {
@@ -75,7 +75,6 @@ class Place {
         ).image
 
     }
-
 
     onFindAnimatronic(identifier){
         return this.animatronic_list.find((animatronic_item)=>

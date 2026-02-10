@@ -9,6 +9,8 @@ class Door{
         this.height = config.height;
         this.width = config.width;
         this.place_location_number = config.place_location_number;
+        this.current_animatronic = null;
+        this.animatronic_view_list = config.animatronic_view_list;
         this.vision_image = config.vision_image;
         this.onRectClick = config.onRectClick;
     }
@@ -37,6 +39,29 @@ class Door{
         }
 
     }
+
+    onFindAnimatronicView(identifier){
+        return this.animatronic_view_list.find((animatronic_view)=>
+            animatronic_view.identifier === identifier
+        )
+    }
+
+    onRemoveAnimatronicView(){
+        this.current_animatronic = null;
+        this.vision_image = this.animatronic_view_list.find((animatronic_view)=>
+            animatronic_view.identifier === null
+        ).image
+    }
+
+    onSetAnimatronicView(identifier){
+
+        this.current_animatronic = this.onFindAnimatronicView(identifier);
+
+        this.vision_image = this.current_animatronic.image
+
+        console.log(this.vision_image)
+
+    }   
 
 }
 

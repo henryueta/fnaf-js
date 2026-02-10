@@ -119,13 +119,13 @@
 .backstage { grid-area: 1 / 8 / 3 / 12; border-bottom: none !important;}
 .puppet-area { grid-area: 6 / 12 / 8 / 14; } 
 .bathroom { grid-area: 12 / 4 / 3 /5;}
-.mens-bathroom { grid-area: 12 / 1 / 9 / 3;}
-.womens-bathroom { grid-area: 8 / 1 / 5 / 3;}
+
+
 .client-hall { grid-area: 9 / 15 / 3 / 19;}
 .employee-hall  { grid-area: 19 / 15 / 10 / 19;}
 .employee-bathroom { grid-area: 19 / 20 / 17 / 20;}
-.game-area { grid-area: 9 / 20 / 3 / 24;}
-.deposit { grid-area: 14 / 20 / 11 / 23;}
+/* .game-area { grid-area: 9 / 20 / 3 / 24;} */
+/* .deposit { grid-area: 14 / 20 / 11 / 23;} */
 .kitchen { grid-area: 13 / 6 / 9 / 10; }
 .supply-closet { grid-area: 13 / 11 / 10 / 14; }
 .office { grid-area: 21 / 9 / 18 / 12; }
@@ -148,8 +148,12 @@
 .employee-area-to-kitchen-hall { grid-area: 14 / 8 / 13 / 9; }
 
 .front-office-hall { grid-area: 18 / 11 / 17 / 10; } /* Entre backstage e main stage */
-.right-office-hall { grid-area: 19 / 12 / 19 / 13;  background-color: red;}
-.left-office-hall { grid-area: 19 / 9 / 19 / 8; background-color: blue;}
+
+.right-office-hall { grid-area: 19 / 12 / 19 / 13;}
+.game-area { grid-area: 21 / 13 / 18 / 16;}
+
+.left-office-hall { grid-area: 19 / 9 / 19 / 8;}
+.deposit { grid-area: 21 / 5 / 18 / 8;}
 
 .horizontal-hall{
   z-index: 1;
@@ -201,13 +205,13 @@
 }
 
 #place-6{
-  bottom: 50%;
-  right: -40%;
+  bottom: -50%;
+  right: 40%;
 }
 
 #place-7{
   bottom: -45%;
-  right: 40%;
+  right: -40%;
 }
 
 #place-8{

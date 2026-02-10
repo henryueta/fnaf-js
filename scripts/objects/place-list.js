@@ -5,6 +5,7 @@ const place_list = [
     new Place({
         number:0,
         hasMultipleConnections:false,
+        hasSecurityRoomConnection:false,
         place_view_list:[
             {
                 animatronic_list:[],
@@ -51,6 +52,7 @@ const place_list = [
     new Place({
         number:1,
         hasMultipleConnections:true,
+        hasSecurityRoomConnection:false,
         place_view_list:[
             {
                 animatronic_list:[],
@@ -88,6 +90,7 @@ const place_list = [
      new Place({
         number:2,
         hasMultipleConnections:false,
+        hasSecurityRoomConnection:false,
         place_view_list:[
             {
                 animatronic_list:[],
@@ -125,6 +128,7 @@ const place_list = [
     new Place({
         number:3,
         hasMultipleConnections:false,
+        hasSecurityRoomConnection:false,
         place_view_list:[
             {
                 animatronic_list:[],
@@ -170,6 +174,7 @@ const place_list = [
     new Place({
         number:4,
         hasMultipleConnections:false,
+        hasSecurityRoomConnection:false,
         place_view_list:[
             {
                 animatronic_list:[],
@@ -215,6 +220,7 @@ const place_list = [
     new Place({
         number:5,
         hasMultipleConnections:true,
+        hasSecurityRoomConnection:false,
         place_view_list:[
             {
                 animatronic_list:[],
@@ -254,12 +260,13 @@ const place_list = [
                         }
         ],
         name:"test2_room",
-        next_place_index_list:[1,6,7],
+        next_place_index_list:[1,7],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 2)
     }),
     new Place({
         number:6,
         hasMultipleConnections:false,
+        hasSecurityRoomConnection:true,
         place_view_list:[
             {
                 animatronic_list:[],
@@ -291,12 +298,13 @@ const place_list = [
                         }
         ],
         name:"test2_room",
-        next_place_index_list:[5],
+        next_place_index_list:[11],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 2)
     }),
     new Place({
         number:7,
         hasMultipleConnections:true,
+        hasSecurityRoomConnection:false,
         place_view_list:[
             {
                 animatronic_list:[],
@@ -328,12 +336,13 @@ const place_list = [
                         }
         ],
         name:"test2_room",
-        next_place_index_list:[5,8,9,10],
+        next_place_index_list:[5,8,10],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 2)
     }),
     new Place({
         number:8,
         hasMultipleConnections:false,
+        hasSecurityRoomConnection:false,
         place_view_list:[
             {
                 animatronic_list:[],
@@ -371,6 +380,7 @@ const place_list = [
     new Place({
         number:9,
         hasMultipleConnections:false,
+        hasSecurityRoomConnection:true,
         place_view_list:[
             {
                 animatronic_list:[],
@@ -402,12 +412,13 @@ const place_list = [
                         }
         ],
         name:"test2_room",
-        next_place_index_list:[7],
+        next_place_index_list:[11],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 2)
     }),
     new Place({
         number:10,
         hasMultipleConnections:true,
+        hasSecurityRoomConnection:true,
         place_view_list:[
             {
                 animatronic_list:[],
@@ -439,7 +450,7 @@ const place_list = [
                         }
         ],
         name:"test2_room",
-        next_place_index_list:[7,11],
+        next_place_index_list:[11],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 2)
     })
 

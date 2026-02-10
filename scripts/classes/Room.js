@@ -7,7 +7,9 @@ class Room {
         this.room_image = new Image();
         this.room_image.src = config.room_image;
         this.vision = "internal";
+        this.current_door_vision = null;
         this.dark_screen = config.dark_screen;
+        this.flashlight_number_clicks = 0;
         this.direction = null;
         this.onLockVision = config.onLockVision;
         this.front_door = new Door({
@@ -18,7 +20,8 @@ class Room {
             width: config.front_door.width, 
             height: config.front_door.height,
             place_location_number:config.front_door.place_location_number,
-            vision_image:config.front_door.image,
+            animatronic_view_list:config.front_door.animatronic_view_list,
+            vision_image:config.front_door.animatronic_view_list.find((animatronic_view)=>animatronic_view.identifier === null).image,
             onRectClick: (image,direction,type)=>{
                 this.onSwitchVision(image,"external",type,direction);
             }
@@ -31,7 +34,8 @@ class Room {
             width: config.right_door.width, 
             height: config.right_door.height,
             place_location_number:config.right_door.place_location_number,
-            vision_image:config.right_door.image,
+            animatronic_view_list:config.right_door.animatronic_view_list,
+            vision_image:config.right_door.animatronic_view_list.find((animatronic_view)=>animatronic_view.identifier === null).image,
             onRectClick: (image,direction,type)=>{
                 this.onSwitchVision(image,"external",type,direction);
             }
@@ -44,7 +48,8 @@ class Room {
             width: config.left_door.width, 
             height: config.left_door.height,
             place_location_number:config.left_door.place_location_number,
-            vision_image:config.left_door.image,
+            animatronic_view_list:config.left_door.animatronic_view_list,
+            vision_image:config.left_door.animatronic_view_list.find((animatronic_view)=>animatronic_view.identifier === null).image,
             onRectClick: (image,direction,type)=>{
                 this.onSwitchVision(image,"external",type,direction);
             }
@@ -55,25 +60,33 @@ class Room {
 
         this.room_canvas.addEventListener('click', (e) => this.handleClick(e));
         this.dark_screen.addEventListener('mousedown',()=> {
-            if(this.vision === 'external'){
-                this.dark_screen.style.opacity = '0%'
-            }
+           this.onChangeDarkAmbience('0%');
+           if(this.vision === 'external' && this.current_door_vision.current_animatronic !== null){
+            console.log("somando cliques")
+                this.flashlight_number_clicks+=1;
+               if(this.flashlight_number_clicks === 10){
+                this.current_door_vision.onRemoveAnimatronicView();
+                this.room_image.src = this.current_door_vision.vision_image;
+                this.onLoadImage();
+                this.flashlight_number_clicks = 0;
+               }
+           }
         })
         this.dark_screen.addEventListener('mouseup',()=> {
-            if(this.vision === 'external'){
-                this.dark_screen.style.opacity = '100%'
-            }
+           this.onChangeDarkAmbience('100%');
         })
         this.dark_screen.addEventListener('touchstart',()=> {
-            if(this.vision === 'external'){
-                this.dark_screen.style.opacity = '0%'
-            }
+            this.onChangeDarkAmbience('0%');
         })
         this.dark_screen.addEventListener('touchend',()=> {
-            if(this.vision === 'external'){
-                this.dark_screen.style.opacity = '100%'
-            }
+           this.onChangeDarkAmbience('100%');
         })
+    }
+
+    onChangeDarkAmbience(opacity){
+        if(this.vision === 'external'){
+            this.dark_screen.style.opacity = opacity
+        }
     }
 
     onLoadImage(){
@@ -128,6 +141,15 @@ class Room {
 
     onSwitchVision(room_image,vision,type,direction){
         this.direction = direction;
+
+         const current_door_view = [
+            this.front_door,
+            this.left_door,
+            this.right_door
+        ].find((door)=>door.type === this.direction);
+
+        this.current_door_vision = current_door_view
+
 
         if(!!type || type !== null){
             if(type === 'exit'){

@@ -6,8 +6,19 @@ const door_list = [
         width: 450, 
         height: 650,
         type:'center',
-        image:"../testeHall.webp",
-        place_location_number:1
+        place_location_number:10,
+        animatronic_view_list:[{
+            identifier:0,
+            audio:"../assets/audio/beep_1.mp3",
+            repeat_audio:false,
+            image:"../teste4.jpeg",
+        },
+        {
+            identifier:null,
+            audio:"../assets/audio/beep_1.mp3",
+            repeat_audio:false,
+            image:"../testeHall.webp",
+        }]
     },
     {
         x:190,
@@ -15,8 +26,19 @@ const door_list = [
         width: 450, 
         height: 650,
         type:'left',
-        image:"../testeHall.webp",
-        place_location_number:2
+        place_location_number:9,
+        animatronic_view_list:[{
+            identifier:0,
+            audio:"../assets/audio/beep_1.mp3",
+            repeat_audio:false,
+            image:"../teste4.jpeg",
+        },
+        {
+            identifier:null,
+            audio:"../assets/audio/beep_1.mp3",
+            repeat_audio:false,
+            image:"../testeHall.webp",
+        }]
     },
         {
         x:2290,
@@ -24,8 +46,19 @@ const door_list = [
         width: 450, 
         height: 650,
         type:'right',
-        image:"../testeHall.webp",
-        place_location_number:2
+        place_location_number:6,
+        animatronic_view_list:[{
+            identifier:0,
+            audio:"../assets/audio/beep_1.mp3",
+            repeat_audio:false,
+            image:"../teste4.jpeg",
+        },
+        {
+            identifier:null,
+            audio:"../assets/audio/beep_1.mp3",
+            repeat_audio:false,
+            image:"../testeHall.webp",
+        }]
     },
 ]
 

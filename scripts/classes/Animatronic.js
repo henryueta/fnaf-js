@@ -90,7 +90,6 @@ class Animatronic {
         
         console.log("ativo",this.isActive)
         if(!place_action){
-            console.log("lugar sem ação")
             return null
         }
         this.isActive = !place_action.isMovementCancelled;
