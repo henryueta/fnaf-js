@@ -5,6 +5,7 @@ class Door{
         this.door_room_context = config.door_room_context;
         this.x = config.x;
         this.y = config.y;
+        this.type = config.type;
         this.height = config.height;
         this.width = config.width;
         this.place_location_number = config.place_location_number;
@@ -21,9 +22,8 @@ class Door{
         this.height
         );
     }
-
+    
     onClick(client_x,client_y){
-        console.log("lci")
         if(!!this.onRectClick){
             if (
             client_x >= this.x &&
@@ -31,7 +31,8 @@ class Door{
             client_y >= this.y &&
             client_y <= this.y + this.height
         ) {
-            this.onRectClick(this.vision_image);
+                this.onRectClick(this.vision_image,this.type,'entrace');
+          
           }
         }
 

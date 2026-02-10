@@ -12,6 +12,44 @@
     background-color: black;
 }
 
+@keyframes replace-room-fade-in {
+    0%{
+        opacity: 100%;
+    }
+    100%{
+        opacity: 0%;
+    }
+}
+
+@keyframes replace-room-fade-out {
+    0%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+
+.dark-screen-container.replace-room-entrace{
+    animation: replace-room-fade-in 0.5s ease-in-out;
+}
+
+.dark-screen-container.replace-room-exit{
+    animation: replace-room-fade-out 0.6s ease-in-out;
+}
+
+.dark-screen-container{
+    display: none;
+    z-index: 6;
+    position: fixed;
+    background-color: black;
+    top: 50%;
+    right: 50%;
+    height: 100%;
+    width: 100%;
+    transform: translate(50%,-50%);
+}
+
 .move-right-container{
     z-index: 5;
     position: fixed;
@@ -28,7 +66,6 @@
     height: 100%;
     top: 0%;
     width: 30dvw;
-
 }
 
 #teste1{
@@ -38,6 +75,60 @@
     z-index: 20;
 }
 
+@keyframes room-entrace-vision {
+    
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(2);
+    }
+
+}
+
+.room-canvas-container.room-entrace-center-vision{
+     animation:room-entrace-vision 0.2s ease-in-out ;
+     transform-origin: center center; 
+}
+
+.room-canvas-container.room-entrace-left-vision{
+    animation:room-entrace-vision 0.2s ease-in-out ;
+    transform-origin: left center; 
+}
+
+.room-canvas-container.room-entrace-right-vision{
+    animation:room-entrace-vision 0.2s ease-in-out ;
+    transform-origin: right center; 
+}
+
+@keyframes room-exit-vision {
+    
+    0%{
+        transform: scale(2);
+    }
+    100%{
+        transform: scale(1);
+    }
+
+}
+
+.room-canvas-container.room-exit-center-vision{
+     animation:room-exit-vision 0.2s ease-in-out ;
+     transform-origin: center center; 
+}
+
+.room-canvas-container.room-exit-left-vision{
+    animation:room-exit-vision 0.2s ease-in-out ;
+    transform-origin: left center; 
+}
+
+.room-canvas-container.room-exit-right-vision{
+    animation:room-exit-vision 0.2s ease-in-out ;
+    transform-origin: right center; 
+}
+
+
+
   #room-canvas {
       display: block;
       position: absolute;
@@ -45,4 +136,6 @@
       left: 0;
       width: 100%;
       height: 100%;
+    transform-origin: none; 
+    
 }

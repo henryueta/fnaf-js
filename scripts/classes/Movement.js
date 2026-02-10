@@ -2,7 +2,7 @@
 class Movement{
 
     constructor(config){
-        this.x_value = 0; 
+        this.x_value = -7; 
         this.x_move_interval = null;
         this.current_moviment = null;
         this.isLocked = false;
@@ -18,7 +18,6 @@ class Movement{
         this.left_container.onmouseenter = ()=>{
             this.current_moviment = 'left';
             this.onStartMove();
-
         }
         this.right_container.onmouseleave = ()=>{
             this.onEndMove();
@@ -26,7 +25,6 @@ class Movement{
         this.left_container.onmouseleave = ()=>{
             this.onEndMove();
         }
-
     }
 
     onChangeXVision(){
@@ -51,6 +49,8 @@ class Movement{
                             : 1.2
                         );
                     } else{
+                        this.left_container.style.display = (this.x_value.toFixed() == 0 ? 'none' : 'block')
+                        this.right_container.style.display = (this.x_value.toFixed() == -9 ? 'none' : 'block')
                         clearInterval(this.x_move_interval)
                     }
                     this.onChangeXVision();
@@ -70,7 +70,7 @@ class Movement{
         this.isLocked = isLocked;
         
         if(resetX){
-            this.x_value = 0;
+            this.x_value = -7;
             this.onChangeXVision();
         }
 

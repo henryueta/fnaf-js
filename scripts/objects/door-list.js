@@ -5,7 +5,8 @@ const door_list = [
         y:440,
         width: 450, 
         height: 650,
-        image:"../teste4.jpeg",
+        type:'center',
+        image:"../testeHall.webp",
         place_location_number:1
     },
     {
@@ -13,7 +14,8 @@ const door_list = [
         y:232,
         width: 450, 
         height: 650,
-        image:"../teste4.jpeg",
+        type:'left',
+        image:"../testeHall.webp",
         place_location_number:2
     },
         {
@@ -21,7 +23,8 @@ const door_list = [
         y:248,
         width: 450, 
         height: 650,
-        image:"../teste4.jpeg",
+        type:'right',
+        image:"../testeHall.webp",
         place_location_number:2
     },
 ]

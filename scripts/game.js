@@ -15,7 +15,8 @@ const game = new Game({
         room_image:"../teste5.jpeg",
         front_door:door_list[0],
         left_door:door_list[1],
-        right_door:door_list[2]
+        right_door:door_list[2],
+        dark_screen:document.querySelector(".dark-screen-container")
     }),
     x_moviment: new Movement({
         right_container:document.querySelector(".move-right-container"),

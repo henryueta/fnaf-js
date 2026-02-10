@@ -131,9 +131,10 @@ class Game {
                 this.x_moviment.onEndMove();
                 return
             }
+            console.log(this.player_room.direction)
+            this.player_room.onSwitchVision("../teste5.jpeg","internal",'exit',this.player_room.direction)
             
-            this.player_room.onSwitchVision("../teste5.jpeg","internal")
-            
+
             return
             
         })

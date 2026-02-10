@@ -7,41 +7,46 @@ class Room {
         this.room_image = new Image();
         this.room_image.src = config.room_image;
         this.vision = "internal";
+        this.dark_screen = config.dark_screen;
+        this.direction = null;
         this.onLockVision = config.onLockVision;
         this.front_door = new Door({
             door_room_context:this.room_context,
             x:config.front_door.x,
             y:config.front_door.y,
+            type:config.front_door.type,
             width: config.front_door.width, 
             height: config.front_door.height,
             place_location_number:config.front_door.place_location_number,
             vision_image:config.front_door.image,
-            onRectClick: (image)=>{
-                this.onSwitchVision(image,"external");
+            onRectClick: (image,direction,type)=>{
+                this.onSwitchVision(image,"external",type,direction);
             }
         });
         this.right_door = new Door({
             door_room_context:this.room_context,
             x:config.right_door.x,
             y:config.right_door.y,
+            type:config.right_door.type,
             width: config.right_door.width, 
             height: config.right_door.height,
             place_location_number:config.right_door.place_location_number,
             vision_image:config.right_door.image,
-            onRectClick: (image)=>{
-                this.onSwitchVision(image,"external");
+            onRectClick: (image,direction,type)=>{
+                this.onSwitchVision(image,"external",type,direction);
             }
         });
         this.left_door = new Door({
             door_room_context:this.room_context,
             x:config.left_door.x,
             y:config.left_door.y,
+            type:config.left_door.type,
             width: config.left_door.width, 
             height: config.left_door.height,
             place_location_number:config.left_door.place_location_number,
             vision_image:config.left_door.image,
-            onRectClick: (image)=>{
-                this.onSwitchVision(image,"external");
+            onRectClick: (image,direction,type)=>{
+                this.onSwitchVision(image,"external",type,direction);
             }
         });
 
@@ -49,7 +54,26 @@ class Room {
         // this.onRectClick = config.onRectClick || null;
 
         this.room_canvas.addEventListener('click', (e) => this.handleClick(e));
-
+        this.dark_screen.addEventListener('mousedown',()=> {
+            if(this.vision === 'external'){
+                this.dark_screen.style.opacity = '0%'
+            }
+        })
+        this.dark_screen.addEventListener('mouseup',()=> {
+            if(this.vision === 'external'){
+                this.dark_screen.style.opacity = '100%'
+            }
+        })
+        this.dark_screen.addEventListener('touchstart',()=> {
+            if(this.vision === 'external'){
+                this.dark_screen.style.opacity = '0%'
+            }
+        })
+        this.dark_screen.addEventListener('touchend',()=> {
+            if(this.vision === 'external'){
+                this.dark_screen.style.opacity = '100%'
+            }
+        })
     }
 
     onLoadImage(){
@@ -62,8 +86,6 @@ class Room {
             const x = (cw / 2) - (iw * scale / 2);
             const y = (ch / 2) - (ih * scale / 2);
             this.room_context.drawImage(this.room_image, x, y, iw * scale, ih * scale);
-            
-
              if(this.vision === 'internal'){
                 this.front_door.onDraw();
                 this.left_door.onDraw();
@@ -86,12 +108,50 @@ class Room {
         this.room_context.clearRect(0,0,iw * scale, ih * scale);
     }
 
-    onSwitchVision(room_image,vision){
-        this.vision = vision
+    onSwitchImage(room_image,vision){
+        this.vision = vision;
         this.onReset();
         this.room_image.src = room_image;
         this.onLoadImage();
         this.onLockVision(vision);
+    }
+
+    onEntraceContainerVision(type,direction){
+        this.room_canvas.classList.add('room-'+type+'-'+direction+'-vision');
+        
+    }
+
+    onExitContainerVision(type,direction){
+        this.room_canvas.classList.remove('room-'+type+'-'+direction+'-vision');
+        
+    }
+
+    onSwitchVision(room_image,vision,type,direction){
+        this.direction = direction;
+
+        if(!!type || type !== null){
+            if(type === 'exit'){
+
+                setTimeout(()=>{
+                    this.onSwitchImage(room_image,vision);
+                    this.dark_screen.style.display = 'none'
+                    this.onEntraceContainerVision(type,direction);
+                    setTimeout(()=>{
+                        this.onExitContainerVision(type,direction);
+                    },200)
+                },200)
+                
+                return 
+            }
+            this.onEntraceContainerVision(type,direction)
+            setTimeout(()=>{
+             this.onExitContainerVision(type,direction);
+             this.onSwitchImage(room_image,vision);
+             this.dark_screen.style.display = 'block'
+            },200)
+
+            return
+        }
     }
 
 
@@ -104,9 +164,13 @@ class Room {
         const x = (event.clientX - rect.left) * scaleX;
         const y = (event.clientY - rect.top) * scaleY;
 
-        this.front_door.onClick(x,y);
-        this.right_door.onClick(x,y);
-        this.left_door.onClick(x,y);
+        if(this.vision === 'internal'){
+            this.front_door.onClick(x,y);
+            this.right_door.onClick(x,y);
+            this.left_door.onClick(x,y);
+            return
+        }
+
         // if (
         //     x >= this.clickableRect.x &&
         //     x <= this.clickableRect.x + this.clickableRect.width &&
