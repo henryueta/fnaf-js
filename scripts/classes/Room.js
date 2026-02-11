@@ -103,7 +103,9 @@ class Room {
     onChangeDarkAmbience(opacity){
         if(this.vision === 'external' && !this.playerIsDeath){
             this.dark_screen.style.opacity = opacity
+            return
         }
+        this.dark_screen.style.opacity = '0%'
     }
 
     onFlashLight(){

@@ -19,7 +19,6 @@ class Game {
             if(!!animatronic.isMoving){
 
             if(animatronic.current_place === 11){
-                this.player_room.playerIsDeath = true;
                 animatronic.isMoving = false;
                 animatronic.inJumpscareProcess = true;
 
@@ -57,9 +56,9 @@ class Game {
                     if(current_animatronic_door === undefined || current_animatronic_door === null){
                          animatronic.current_place = 0;
                          animatronic.onResetVisitedPlaceList();
+                         
                         return
                     }
-                   
                }
 
             
@@ -67,10 +66,21 @@ class Game {
             
             const current_animatronic_place =  animatronic.onChoicePlace(this.place_list.find((place_item)=>place_item.number === animatronic.current_place).next_place_index_list);
             
-            
+            if(current_animatronic_place === 11){
+                this.player_room.playerIsDeath = true;
+                
+                if(this.player_room.vision === 'external'){
+
+                    this.toggle_cam_system_button.onclick = ()=>console.log("VOCE ESTÁ MORTO")
+
+                    return
+                }
+
+                return
+            }
 
             const next_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === current_animatronic_place)
-            
+
                 if(next_current_animatronic_place.hasSecurityRoomConnection){
 
                     const current_player_room_door = [
