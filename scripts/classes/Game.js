@@ -1,3 +1,4 @@
+import { Jumpscare } from "./Jumpscare.js";
 
 class Game {
 
@@ -7,6 +8,7 @@ class Game {
         this.x_moviment = config.x_moviment;
         this.toggle_cam_system_button = config.toggle_cam_system_button;
         this.animatronic_list = config.animatronic_list;
+        this.jumpscare = null;
         this.place_list = config.place_list;
         this.current_night = config.current_night;
     }
@@ -17,10 +19,30 @@ class Game {
             if(!!animatronic.isMoving){
 
             if(animatronic.current_place === 11){
+                this.player_room.playerIsDeath = true;
                 animatronic.isMoving = false;
-                alert("GAME OVER")
+                animatronic.inJumpscareProcess = true;
+
+                this.jumpscare = new Jumpscare({
+                    jumpscare_room_context:this.player_room.room_context,
+                    canvas_height:this.player_room.room_canvas.height,
+                    canvas_width:this.player_room.room_canvas.width,
+                    animatronic_identifier:animatronic.identifier,
+                    unloaded_frame_list:animatronic.jumpscare_frame_list,
+                    scream_audio:animatronic.jumpscare_scream_audio
+                })
+
+                this.jumpscare.onStart();
+                this.player_room.onChangeDarkAmbience('0%');
+                this.toggle_cam_system_button.style.display = 'none';
+
+                if(this.camera_monitor.isOpen){
+                    this.camera_monitor.onToggle();
+                }
+
                 return
             }
+
             const prev_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === animatronic.current_place)
 
               if(!!prev_current_animatronic_place.hasSecurityRoomConnection)
@@ -170,7 +192,7 @@ class Game {
             //     },animatronic.movement_delay)
             // }
 
-            this.onActiveAnimatronic(this.animatronic_list[0])
+            // this.onActiveAnimatronic(this.animatronic_list[0]);
 
         },this.current_night.event_running_interval)
 
@@ -187,12 +209,8 @@ class Game {
                 this.x_moviment.onEndMove();
                 return
             }
-            console.log(this.player_room.direction)
             this.player_room.onSwitchVision("../teste5.jpeg","internal",'exit',this.player_room.direction)
-            
-
             return
-            
         })
         this.camera_monitor.onChangeCurrentCamera()
     }

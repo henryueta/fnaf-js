@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -140,5 +140,116 @@
         <div class="map-item front-office-hall hall"></div>
 
         </div>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Canvas Animação</title>
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: black;
+    }
+
+    canvas {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<canvas id="meuCanvas" width="2500" height="1500"></canvas>
+
+<script>
+const canvas = document.getElementById("meuCanvas");
+const ctx = canvas.getContext("2d");
+
+// Lista de imagens (máximo 3)
+const imageSources = [
+    "teste5.jpeg",
+    "teste4.jpeg",
+    // "teste3.jpeg"
+];
+
+let images = [];
+let currentIndex = 0;
+let nextIndex = 1;
+let alpha = 0;
+let transitionSpeed = 0.1; // velocidade da transição
+
+// Carregar imagens
+function loadImages(sources, callback) {
+    let loaded = 0;
+    for (let i = 0; i < sources.length; i++) {
+        let img = new Image();
+        img.src = sources[i];
+        img.onload = () => {
+            loaded++;
+            if (loaded === sources.length) {
+                callback();
+            }
+        };
+        images.push(img);
+    }
+}
+
+// Desenhar imagem cobrindo todo canvas
+function drawImageCover(img, alphaValue = 1) {
+    ctx.globalAlpha = alphaValue;
+
+    const canvasRatio = canvas.width / canvas.height;
+    const imgRatio = img.width / img.height;
+
+    let drawWidth, drawHeight, offsetX, offsetY;
+
+    if (imgRatio > canvasRatio) {
+        drawHeight = canvas.height;
+        drawWidth = img.width * (canvas.height / img.height);
+        offsetX = (canvas.width - drawWidth) / 2;
+        offsetY = 0;
+    } else {
+        drawWidth = canvas.width;
+        drawHeight = img.height * (canvas.width / img.width);
+        offsetX = 0;
+        offsetY = (canvas.height - drawHeight) / 2;
+    }
+
+    ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+    ctx.globalAlpha = 1;
+}
+
+// Loop de animação
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawImageCover(images[currentIndex], 1);
+    drawImageCover(images[nextIndex], alpha);
+
+    alpha += transitionSpeed;
+
+    if (alpha >= 1) {
+        alpha = 0;
+        currentIndex = nextIndex;
+        nextIndex = (nextIndex + 1) % images.length;
+    }
+
+    requestAnimationFrame(animate);
+}
+
+// Inicializar
+loadImages(imageSources, () => {
+    // animate();
+});
+</script>
+
 </body>
 </html>

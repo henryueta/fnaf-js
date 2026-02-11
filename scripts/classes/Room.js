@@ -7,6 +7,7 @@ class Room {
         this.room_image = new Image();
         this.room_image.src = config.room_image;
         this.vision = "internal";
+        this.playerIsDeath = false;
         this.current_door_vision = null;
         this.dark_screen = config.dark_screen;
         this.flashlight_number_clicks = 0;
@@ -60,23 +61,13 @@ class Room {
 
         this.room_canvas.addEventListener('click', (e) => this.handleClick(e));
         this.dark_screen.addEventListener('mousedown',()=> {
-           this.onChangeDarkAmbience('0%');
-           if(this.vision === 'external' && this.current_door_vision.current_animatronic !== null){
-            console.log("somando cliques")
-                this.flashlight_number_clicks+=1;
-               if(this.flashlight_number_clicks === 10){
-                this.current_door_vision.onRemoveAnimatronicView();
-                this.room_image.src = this.current_door_vision.vision_image;
-                this.onLoadImage();
-                this.flashlight_number_clicks = 0;
-               }
-           }
+            this.onFlashLight();
         })
         this.dark_screen.addEventListener('mouseup',()=> {
            this.onChangeDarkAmbience('100%');
         })
         this.dark_screen.addEventListener('touchstart',()=> {
-            this.onChangeDarkAmbience('0%');
+            this.onFlashLight();
         })
         this.dark_screen.addEventListener('touchend',()=> {
            this.onChangeDarkAmbience('100%');
@@ -101,6 +92,8 @@ class Room {
                 this.left_door,
                 this.right_door
                 ].find((door_item)=>
+                door_item.current_animatronic !== null
+                &&
                 door_item.current_animatronic.identifier === identifier
             )
             : null
@@ -108,9 +101,22 @@ class Room {
     }
 
     onChangeDarkAmbience(opacity){
-        if(this.vision === 'external'){
+        if(this.vision === 'external' && !this.playerIsDeath){
             this.dark_screen.style.opacity = opacity
         }
+    }
+
+    onFlashLight(){
+        this.onChangeDarkAmbience('0%');
+           if(this.vision === 'external' && this.current_door_vision.current_animatronic !== null){
+                this.flashlight_number_clicks+=1;
+               if(this.flashlight_number_clicks === 10){
+                this.current_door_vision.onRemoveAnimatronicView();
+                this.room_image.src = this.current_door_vision.vision_image;
+                this.onLoadImage();
+                this.flashlight_number_clicks = 0;
+               }
+           }
     }
 
     onLoadImage(){
@@ -202,29 +208,25 @@ class Room {
 
 
     handleClick(event) {
-        const rect = this.room_canvas.getBoundingClientRect();
 
-        const scaleX = this.room_canvas.width / rect.width;
-        const scaleY = this.room_canvas.height / rect.height;
-        
-        const x = (event.clientX - rect.left) * scaleX;
-        const y = (event.clientY - rect.top) * scaleY;
+        if(!this.playerIsDeath){
 
-        if(this.vision === 'internal'){
-            this.front_door.onClick(x,y);
-            this.right_door.onClick(x,y);
-            this.left_door.onClick(x,y);
+            const rect = this.room_canvas.getBoundingClientRect();
+
+            const scaleX = this.room_canvas.width / rect.width;
+            const scaleY = this.room_canvas.height / rect.height;
+            
+            const x = (event.clientX - rect.left) * scaleX;
+            const y = (event.clientY - rect.top) * scaleY;
+
+            if(this.vision === 'internal'){
+                this.front_door.onClick(x,y);
+                this.right_door.onClick(x,y);
+                this.left_door.onClick(x,y);
+                return
+            }
             return
         }
-
-        // if (
-        //     x >= this.clickableRect.x &&
-        //     x <= this.clickableRect.x + this.clickableRect.width &&
-        //     y >= this.clickableRect.y &&
-        //     y <= this.clickableRect.y + this.clickableRect.height
-        // ) {
-        //     if (this.onRectClick) this.onRectClick();
-        // }
     }
 }
 

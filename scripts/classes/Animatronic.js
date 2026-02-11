@@ -8,10 +8,13 @@ class Animatronic {
         this.action_list = config.action_list;
         this.isActive = config.isActive;
         this.isMoving = config.isMoving;
+        this.inJumpscareProcess = false;
         this.current_mode = config.current_mode;
         this.movement_delay = config.movement_delay;
         // this.isHuntingPlayer = config.isHuntingPlayer;
+        this.jumpscare_scream_audio = config.jumpscare_scream_audio;
         this.visited_place_list = [];
+        this.jumpscare_frame_list = config.jumpscare_frame_list;
         // this.next_place = config.next_place;
     }
 

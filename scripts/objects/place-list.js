@@ -84,7 +84,7 @@ const place_list = [
             }
         ],
         name:"test2_room",
-        next_place_index_list:[0,3,4,5],
+        next_place_index_list:[0,5],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 1)
     }),
      new Place({

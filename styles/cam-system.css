@@ -1,7 +1,6 @@
 
 .toggle-cam-system-container{
-    border: 1px solid gray;
-    opacity: 50%;
+  
     position: fixed;
     bottom: 5%;
     left: 50%;
@@ -13,6 +12,8 @@
 }
 
 .toggle-cam-system-button {
+    border: 1px solid gray;
+    opacity: 50%;
     width: 100%;
     height: 100%;
 }

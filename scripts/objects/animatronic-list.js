@@ -18,6 +18,11 @@ const animatronic_list = [
         //         place_list.find((item)=>item.number === 0).current_audio = "../assets/audio/beep_3.mp3"
         //     }
         // }
+    ],
+    jumpscare_frame_list:[
+        "../teste4.jpeg",
+        "../teste3.jpeg",
+        "../teste2.jpeg"
     ]    
     }),
     // new Animatronic({
