@@ -83,6 +83,30 @@ class Room {
         })
     }
 
+    onFindAnimatronic(identifier){
+
+        
+
+        return (
+            (
+                this.front_door.current_animatronic !== null
+                 ||
+                 this.left_door.current_animatronic !== null
+                 ||
+                 this.right_door.current_animatronic !== null
+            )
+            ?
+            [
+                this.front_door,
+                this.left_door,
+                this.right_door
+                ].find((door_item)=>
+                door_item.current_animatronic.identifier === identifier
+            )
+            : null
+            )
+    }
+
     onChangeDarkAmbience(opacity){
         if(this.vision === 'external'){
             this.dark_screen.style.opacity = opacity

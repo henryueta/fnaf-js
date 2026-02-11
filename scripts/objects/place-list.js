@@ -336,7 +336,7 @@ const place_list = [
                         }
         ],
         name:"test2_room",
-        next_place_index_list:[5,8,10],
+        next_place_index_list:[5,10,6,9],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 2)
     }),
     new Place({

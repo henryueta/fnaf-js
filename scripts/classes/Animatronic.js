@@ -52,12 +52,6 @@ class Animatronic {
         return current_mode_list[mode]()
     }
 
-    onChangenMode(mode){
-        
-        
-
-    }
-
     onAction(place){
         
         const current_mode_list = {

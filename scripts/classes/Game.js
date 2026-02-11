@@ -16,12 +16,37 @@ class Game {
         if(animatronic.isActive){
             if(!!animatronic.isMoving){
 
+            if(animatronic.current_place === 11){
+                animatronic.isMoving = false;
+                alert("GAME OVER")
+                return
+            }
             const prev_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === animatronic.current_place)
+
+              if(!!prev_current_animatronic_place.hasSecurityRoomConnection)
+               {
+
+                    console.log("entrou aqui")
+
+                    const current_animatronic_door = this.player_room.onFindAnimatronic(animatronic.identifier)
+                    
+                    console.log("current",current_animatronic_door)
+                
+                    if(current_animatronic_door === undefined || current_animatronic_door === null){
+                         animatronic.current_place = 0;
+                         animatronic.onResetVisitedPlaceList();
+                        return
+                    }
+                   
+               }
+
             
             //apenas o número do local
             
-            const current_animatronic_place =  animatronic.onChoicePlace(this.place_list.find((place_item)=>place_item.number === animatronic.current_place).next_place_index_list)
+            const current_animatronic_place =  animatronic.onChoicePlace(this.place_list.find((place_item)=>place_item.number === animatronic.current_place).next_place_index_list);
             
+            
+
             const next_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === current_animatronic_place)
             
                 if(next_current_animatronic_place.hasSecurityRoomConnection){
@@ -38,6 +63,9 @@ class Game {
                     current_player_room_door.onSetAnimatronicView(animatronic.identifier)
 
                 }
+
+
+             
 
             if(animatronic.current_mode === 'hunter'){
                 if(!!next_current_animatronic_place.hasMultipleConnections && !!prev_current_animatronic_place.hasMultipleConnections){
@@ -122,8 +150,7 @@ class Game {
             return
             }
 
-
-
+            return
         }
     }
     

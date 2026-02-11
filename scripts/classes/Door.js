@@ -56,10 +56,7 @@ class Door{
     onSetAnimatronicView(identifier){
 
         this.current_animatronic = this.onFindAnimatronicView(identifier);
-
         this.vision_image = this.current_animatronic.image
-
-        console.log(this.vision_image)
 
     }   
 
