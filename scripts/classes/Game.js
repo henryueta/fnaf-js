@@ -11,6 +11,7 @@ class Game {
         this.jumpscare = null;
         this.place_list = config.place_list;
         this.current_night = config.current_night;
+        this.night_event_interval = null;
     }
 
     onActiveAnimatronic(animatronic){
@@ -21,6 +22,10 @@ class Game {
             if(animatronic.current_place === 11){
                 animatronic.isMoving = false;
                 animatronic.inJumpscareProcess = true;
+
+                if(this.night_event_interval !== null){
+                    clearInterval(this.night_event_interval);
+                }
 
                 this.jumpscare = new Jumpscare({
                     jumpscare_room_context:this.player_room.room_context,
@@ -38,7 +43,7 @@ class Game {
                 if(this.camera_monitor.isOpen){
                     this.camera_monitor.onToggle();
                 }
-
+                
                 return
             }
 
@@ -101,7 +106,6 @@ class Game {
 
             if(animatronic.current_mode === 'hunter'){
                 if(!!next_current_animatronic_place.hasMultipleConnections && !!prev_current_animatronic_place.hasMultipleConnections){
-                    console.warn("push",prev_current_animatronic_place.number)
                     
                     animatronic.visited_place_list.push(prev_current_animatronic_place.number)
                 }
@@ -195,7 +199,7 @@ class Game {
                 vision === 'external'
             ),true)
         }
-        setInterval(()=>{
+        this.night_event_interval = setInterval(()=>{
             // for(const animatronic of this.animatronic_list){
             //     setTimeout(()=>{
             //         this.onActiveAnimatronic(animatronic);
@@ -203,8 +207,7 @@ class Game {
             // }
 
             // this.onActiveAnimatronic(this.animatronic_list[0]);
-
-        },this.current_night.event_running_interval)
+        },this.current_night.event_running_interval);
 
         this.x_moviment.onMove();
 

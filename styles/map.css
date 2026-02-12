@@ -95,7 +95,7 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(23, 1fr); /* Ajuste o número de colunas conforme a complexidade */
+  grid-template-columns: repeat(25, 1fr); /* Ajuste o número de colunas conforme a complexidade */
   grid-template-rows: repeat(20, 1fr); /* Ajuste o número de linhas */
   gap: 2px;
   width: 100%;
@@ -115,45 +115,52 @@
 }
 
 
-.dining-hall { grid-area: 8 / 6 / 3 / 14;  }
-.backstage { grid-area: 1 / 8 / 3 / 12; border-bottom: none !important;}
-.puppet-area { grid-area: 6 / 12 / 8 / 14; } 
-.bathroom { grid-area: 12 / 4 / 3 /5;}
+.dining-hall { grid-area: 4 / 6 / 2 / 12;  }
+.backstage { grid-area: 1 / 7 / 2 / 11;border-bottom: none !important;}
+.puppet-area { grid-area: 1 / 13 / 4 / 19; } 
 
 
-.client-hall { grid-area: 9 / 15 / 3 / 19;}
-.employee-hall  { grid-area: 19 / 15 / 10 / 19;}
-.employee-bathroom { grid-area: 19 / 20 / 17 / 20;}
+.client-hall { grid-area: 9 / 15 / 5 / 19;}
+.employee-hall  { grid-area: 20 / 15 / 10 / 19;}
 /* .game-area { grid-area: 9 / 20 / 3 / 24;} */
 /* .deposit { grid-area: 14 / 20 / 11 / 23;} */
-.kitchen { grid-area: 13 / 6 / 9 / 10; }
-.supply-closet { grid-area: 13 / 11 / 10 / 14; }
+
+.kitchen { grid-area: 13 / 6 / 8 / 12; }
+.bathroom { grid-area: 7 / 6 / 5 / 8;background-color: blue;}
+.dining-to-bathroom-hall {grid-area: 7 / 9 / 5 / 12;background-color: blue;}
+
+
+.supply-closet { grid-area: 13 / 13 / 11 / 14; }
+.employee-bathroom { grid-area: 10 / 13 / 5 / 14;background-color: red;}
+.employee-entrance { grid-area: 7 / 13 / 8 / 15;border-right: none !important;}
+.employee-to-employee-bathroom-hall { grid-area:10 / 13 / 9 / 12; } 
+
 .office { grid-area: 21 / 9 / 18 / 12; }
-.client-entrance { grid-area: 2 / 16 / 3 / 18;border-bottom: none !important;}
-.employee-entrance { grid-area: 17 / 6 / 15 / 7;border-right: none !important;}
-.employee-area { grid-area: 17 / 7 / 14 / 14; }
+.client-entrance { grid-area: 4 / 16 / 5 / 18;border-bottom: none !important;border-top: none !important;}
 
 
-.client-to-game-area-hall { grid-area: 7 / 20 / 5 / 19;} 
-.dining-to-bathroom-hall {grid-area: 5 / 6 / 4 /5;}
 
-.dining-to-kitchen-hall { grid-area: 8 / 7 / 9 / 8;}
-.dining-to-client-hall { grid-area: 4 / 14 / 6 / 15; }
+
+.dining-to-kitchen-hall { grid-area: 7 / 7 / 6 / 8;}
+.dining-to-client-hall { grid-area: 2 / 12 / 3 / 13; }
 
 .employee-to-supply-closet-hall { grid-area: 12 / 14 / 11 / 15; } 
-.employee-to-client-hall { grid-area: 9 / 16 / 10 / 18;}
-.employee-to-deposit-hall { grid-area: 12 / 20 / 13 / 19; } 
-.employee-to-employee-bathroom-hall { grid-area: 18 / 20 / 17 / 19; } 
-.employee-to-employee-area-hall  { grid-area: 17 / 15 / 15 / 14; }
+.employee-to-client-hall { grid-area: 10 / 16 / 9 / 18;}
+
+.employee-to-employee-area-hall  { grid-area: 18 / 15 / 16 / 14; }
 .employee-area-to-kitchen-hall { grid-area: 14 / 8 / 13 / 9; }
 
 .front-office-hall { grid-area: 18 / 11 / 17 / 10; } /* Entre backstage e main stage */
+.front-room-to-office { grid-area: 17 / 9 / 14 / 12; }
+
+.client-to-game-area-hall  { grid-area: 15 / 9 / 16 / 8;}
+.employee-to-deposit-hall { grid-area: 15 / 13 / 16 / 12;} 
 
 .right-office-hall { grid-area: 19 / 12 / 19 / 13;}
-.game-area { grid-area: 21 / 13 / 18 / 16;}
+.right-room-to-office { grid-area: 21 / 13 / 14 / 14;}
 
 .left-office-hall { grid-area: 19 / 9 / 19 / 8;}
-.deposit { grid-area: 21 / 5 / 18 / 8;}
+.left-room-to-office { grid-area: 21 / 7 / 14 / 8;}
 
 .horizontal-hall{
   z-index: 1;
@@ -172,6 +179,10 @@
 .sub-place{
   z-index: 3;
   border: 0.15rem solid;
+}
+
+.camera-interactive-item{
+  /* visibility: hidden; */
 }
 
 #place-0{
@@ -227,6 +238,7 @@
 #place-10{
   bottom: 45%;
   right: 50%;
+  visibility: hidden;
 }
 
   @media (max-width:1024px) {

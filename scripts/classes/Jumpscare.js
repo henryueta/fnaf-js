@@ -31,6 +31,9 @@ class Jumpscare{
             if (loaded === this.unloaded_frame_list.length) {
                 this.isLoadedFrameList = true;
                 this.onAnimate();
+                setTimeout(()=>{
+                    this.onEnd();
+                },2500)
             }
         };
         this.loaded_frame_list.push(image);
@@ -93,7 +96,6 @@ class Jumpscare{
             cancelAnimationFrame(this.frame_animation_info.animation_id)
             this.frame_animation_info.animation_id = null;
             return
-
     }
 
 }
