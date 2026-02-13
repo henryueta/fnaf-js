@@ -58,7 +58,7 @@
     content: "";
     position: absolute;
     inset: 1px;
-    background-image: url("../assets/imgs/static.gif");
+    /* background-image: url("../assets/imgs/static.gif"); */
     background-size: 120%;
     opacity: 15%;
     border-radius: 5px;
