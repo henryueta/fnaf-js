@@ -1,4 +1,5 @@
 import { Jumpscare } from "./Jumpscare.js";
+import { Virus } from "./Virus.js";
 
 class Game {
 
@@ -8,6 +9,21 @@ class Game {
         this.x_moviment = config.x_moviment;
         this.toggle_cam_system_button = config.toggle_cam_system_button;
         this.animatronic_list = config.animatronic_list;
+        this.virus_provider = (()=>{
+
+            const animatronic_with_virus = this.animatronic_list.find((animatronic_item)=>
+            animatronic_item.current_mode === 'virus'
+            )
+
+            if(!animatronic_with_virus){
+                throw new Error("Nenhum animatronic com vírus encontrado")
+            }
+
+            return new Virus({
+                identifier:animatronic_with_virus.identifier
+            })
+
+        })()
         this.jumpscare = null;
         this.place_list = config.place_list;
         this.current_night = config.current_night;
@@ -17,6 +33,61 @@ class Game {
     onActiveAnimatronic(animatronic){
 
         if(animatronic.isActive){
+
+            if(animatronic.current_mode === 'virus'){
+
+                if(this.virus_provider.resolve_timeout_value !== null){
+                    console.log("Em espera")
+                    return
+
+                }
+
+                this.virus_provider.resolve_timeout_value = setTimeout(()=>{
+
+                    const virus_current_place = animatronic.onChoicePlace([0])
+
+                    const next_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === virus_current_place)
+
+                    const current_place = this.place_list.find((place_item)=>place_item.number === virus_current_place)
+
+                    if(this.camera_monitor.choiced_camera_info.number === virus_current_place){
+                        this.camera_monitor.choiced_camera_info.image.src = this.virus_provider.virus_image_view;
+                    }
+
+                    current_place.current_view = this.virus_provider.virus_image_view;
+
+            //         const place_for_noisy = next_current_animatronic_place.place_view_list.find((place_item)=>
+            //         typeof place_item.noisy_animatronic === 'number' 
+            //         &&
+            //         place_item.noisy_animatronic === animatronic.identifier
+            // )
+
+                    // this.camera_monitor.choiced_camera_info.image.src = (
+                    //         !!(place_for_noisy && animatronic.current_mode === 'virus')
+                    //         ? place_for_noisy.image
+                    //         : current_place.current_view
+                    //     );
+
+                    console.log("Vírus detectado! 10 segundos")
+
+
+                    setTimeout(()=>{
+
+                        if(this.virus_provider.isDestroyed){
+                            console.log("Nenhuma ação maliciosa,fim")
+                            return
+                        }
+
+                        console.log("Ação maliciosa começando . . .")
+
+                    },10000)
+
+                },Math.floor(Math.random()*25000)+20000)
+
+                return
+
+            }
+
             if(!!animatronic.isMoving){
 
             if(animatronic.current_place === 11){
@@ -199,6 +270,7 @@ class Game {
                 vision === 'external'
             ),true)
         }
+
         this.night_event_interval = setInterval(()=>{
             // for(const animatronic of this.animatronic_list){
             //     setTimeout(()=>{

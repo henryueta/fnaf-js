@@ -25,9 +25,10 @@ const place_list = [
             {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:0,
+                virus_animatronic:0,
                 audio:"../assets/audio/beep_3.mp3",
                 repeat_audio:true,
-                image:"../assets/imgs/1_sound.jpg"
+                image:"../assets/imgs/static.gif"
 
             },
                          {//alterar depois
