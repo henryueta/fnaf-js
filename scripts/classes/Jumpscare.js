@@ -45,24 +45,15 @@ class Jumpscare{
 
         this.jumpscare_room_context.globalAlpha = alpha_value;
 
-        const room_canvas_ratio = this.canvas_width / this.canvas_height;
-        const image_ratio = image.width / this.canvas_height;
+        const cw = this.canvas_width;
+        const ch = this.canvas_height;
+        const iw = image.width;
+        const ih = image.height;
+        const scale = Math.max(cw / iw, ch / ih);
+        const x = (cw / 2) - (iw * scale / 2);
+        const y = (ch / 2) - (ih * scale / 2);
 
-        let draw_width, draw_height, offset_x, offset_y;
-
-        if (image_ratio > room_canvas_ratio) {
-            draw_height = this.canvas_height;
-            draw_width = image.width * (this.canvas_width / this.canvas_height);
-            offset_x = (canvas.width - draw_width) / 2;
-            offset_y = 0;
-        } else {
-            draw_width = this.canvas_width;
-            draw_height = this.canvas_height * (this.canvas_width / image.width);
-            offset_x = 0;
-            offset_y = (this.canvas_width - draw_height) / 2;
-        }
-
-        this.jumpscare_room_context.drawImage(image, offset_x, offset_y, draw_width, draw_height);
+        this.jumpscare_room_context.drawImage(image, x, y,iw * scale, ih * scale);
         this.jumpscare_room_context.globalAlpha = 1;
 
     }

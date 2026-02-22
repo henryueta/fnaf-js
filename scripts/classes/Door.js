@@ -16,13 +16,13 @@ class Door{
     }
 
     onDraw(){
-        this.door_room_context.fillStyle = 'black';
-        this.door_room_context.fillRect(
-        this.x,
-        this.y,
-        this.width,
-        this.height
-        );
+        // this.door_room_context.fillStyle = 'black';
+        // this.door_room_context.fillRect(
+        // this.x,
+        // this.y,
+        // this.width,
+        // this.height
+        // );
     }
     
     onClick(client_x,client_y){

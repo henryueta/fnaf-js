@@ -1,4 +1,5 @@
 import { Door } from "./Door.js";
+import { Flashlight } from "./Flashlight.js";
 
 class Room {
     constructor(config) {
@@ -10,23 +11,24 @@ class Room {
         this.playerIsDeath = false;
         this.current_door_vision = null;
         this.dark_screen = config.dark_screen;
-        this.flashlight_number_clicks = 0;
+        this.onFlashLightCheckout = null;
+        this.flashlight = config.flashlight;
         this.direction = null;
         this.onLockVision = config.onLockVision;
-        this.front_door = new Door({
-            door_room_context:this.room_context,
-            x:config.front_door.x,
-            y:config.front_door.y,
-            type:config.front_door.type,
-            width: config.front_door.width, 
-            height: config.front_door.height,
-            place_location_number:config.front_door.place_location_number,
-            animatronic_view_list:config.front_door.animatronic_view_list,
-            vision_image:config.front_door.animatronic_view_list.find((animatronic_view)=>animatronic_view.identifier === null).image,
-            onRectClick: (image,direction,type)=>{
-                this.onSwitchVision(image,"external",type,direction);
-            }
-        });
+        // this.front_door = new Door({
+        //     door_room_context:this.room_context,
+        //     x:config.front_door.x,
+        //     y:config.front_door.y,
+        //     type:config.front_door.type,
+        //     width: config.front_door.width, 
+        //     height: config.front_door.height,
+        //     place_location_number:config.front_door.place_location_number,
+        //     animatronic_view_list:config.front_door.animatronic_view_list,
+        //     vision_image:config.front_door.animatronic_view_list.find((animatronic_view)=>animatronic_view.identifier === null).image,
+        //     onRectClick: (image,direction,type)=>{
+        //         this.onSwitchVision(image,"external",type,direction);
+        //     }
+        // });
         this.right_door = new Door({
             door_room_context:this.room_context,
             x:config.right_door.x,
@@ -61,34 +63,41 @@ class Room {
 
         this.room_canvas.addEventListener('click', (e) => this.handleClick(e));
         this.dark_screen.addEventListener('mousedown',()=> {
-            this.onFlashLight();
-        })
-        this.dark_screen.addEventListener('mouseup',()=> {
-           this.onChangeDarkAmbience('100%');
-        })
+            if(!this.flashlight.inUse && this.flashlight.current_battery_value === 100){
+                this.onFlashLight();
+                this.flashlight.onUse('discharge',()=>{
+                    if(this.flashlight.current_battery_value < 30){
+                        this.current_door_vision.onRemoveAnimatronicView();
+                        this.room_image.src = this.current_door_vision.vision_image;
+                        this.onLoadImage();                        
+                    }
+                },()=>this.onChangeDarkAmbience('100%'))
+            }
+        });
+        // this.dark_screen.addEventListener('mouseup',()=> {
+        //    this.onChangeDarkAmbience('100%');
+        // });
         this.dark_screen.addEventListener('touchstart',()=> {
             this.onFlashLight();
-        })
-        this.dark_screen.addEventListener('touchend',()=> {
-           this.onChangeDarkAmbience('100%');
-        })
+        });
+        // this.dark_screen.addEventListener('touchend',()=> {
+        //    this.onChangeDarkAmbience('100%');
+        // });
     }
 
     onFindAnimatronic(identifier){
 
-        
-
         return (
             (
-                this.front_door.current_animatronic !== null
-                 ||
+                // this.front_door.current_animatronic !== null
+                //  ||
                  this.left_door.current_animatronic !== null
                  ||
                  this.right_door.current_animatronic !== null
             )
             ?
             [
-                this.front_door,
+                // this.front_door,
                 this.left_door,
                 this.right_door
                 ].find((door_item)=>
@@ -111,13 +120,10 @@ class Room {
     onFlashLight(){
         this.onChangeDarkAmbience('0%');
            if(this.vision === 'external' && this.current_door_vision.current_animatronic !== null){
-                this.flashlight_number_clicks+=1;
-               if(this.flashlight_number_clicks === 10){
-                this.current_door_vision.onRemoveAnimatronicView();
-                this.room_image.src = this.current_door_vision.vision_image;
-                this.onLoadImage();
-                this.flashlight_number_clicks = 0;
-               }
+
+                if(!!this.onFlashLightCheckout){
+                    this.onFlashLightCheckout();
+                }
            }
     }
 
@@ -132,7 +138,7 @@ class Room {
             const y = (ch / 2) - (ih * scale / 2);
             this.room_context.drawImage(this.room_image, x, y, iw * scale, ih * scale);
              if(this.vision === 'internal'){
-                this.front_door.onDraw();
+                // this.front_door.onDraw();
                 this.left_door.onDraw();
                 this.right_door.onDraw();
                 return
@@ -175,13 +181,25 @@ class Room {
         this.direction = direction;
 
          const current_door_view = [
-            this.front_door,
+            // this.front_door,
             this.left_door,
             this.right_door
         ].find((door)=>door.type === this.direction);
 
         this.current_door_vision = current_door_view
 
+
+        if(vision === 'internal' && this.flashlight.current_battery_value === 0){
+            this.flashlight.onUse('charge',()=>{
+                
+                console.log("carregando",this.flashlight.current_battery_value)
+
+            });
+        }
+
+        if(vision === 'external' && this.flashlight.isCharging){
+            clearInterval(this.flashlight.batery_use_interval);
+        }
 
         if(!!type || type !== null){
             if(type === 'exit'){
@@ -222,7 +240,7 @@ class Room {
             const y = (event.clientY - rect.top) * scaleY;
 
             if(this.vision === 'internal'){
-                this.front_door.onClick(x,y);
+                // this.front_door.onClick(x,y);
                 this.right_door.onClick(x,y);
                 this.left_door.onClick(x,y);
                 return

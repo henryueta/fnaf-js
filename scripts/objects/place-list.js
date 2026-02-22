@@ -6,13 +6,14 @@ const place_list = [
         number:0,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
+        isPointOfChoice:false,
         place_view_list:[
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
-                image:"../teste5.jpeg"
+                image:"../bedroom_1.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -25,7 +26,6 @@ const place_list = [
             {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:0,
-                virus_animatronic:0,
                 audio:"../assets/audio/beep_3.mp3",
                 repeat_audio:true,
                 image:"../assets/imgs/static.gif"
@@ -54,13 +54,14 @@ const place_list = [
         number:1,
         hasMultipleConnections:true,
         hasSecurityRoomConnection:false,
+        isPointOfChoice:false,
         place_view_list:[
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
-                image:"../teste5.jpeg"
+                image:"../bedroom_1.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -92,13 +93,14 @@ const place_list = [
         number:2,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
+        isPointOfChoice:false,
         place_view_list:[
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
-                image:"../teste5.jpeg"
+                image:"../bedroom_1.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -130,13 +132,14 @@ const place_list = [
         number:3,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
+        isPointOfChoice:false,
         place_view_list:[
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
-                image:"../teste5.jpeg"
+                image:"../bedroom_1.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -176,13 +179,14 @@ const place_list = [
         number:4,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
+        isPointOfChoice:false,
         place_view_list:[
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
-                image:"../teste5.jpeg"
+                image:"../bedroom_1.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -222,13 +226,14 @@ const place_list = [
         number:5,
         hasMultipleConnections:true,
         hasSecurityRoomConnection:false,
+        isPointOfChoice:false,
         place_view_list:[
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
-                image:"../teste5.jpeg"
+                image:"../bedroom_1.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -268,13 +273,14 @@ const place_list = [
         number:6,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:true,
+        isPointOfChoice:false,
         place_view_list:[
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
-                image:"../teste5.jpeg"
+                image:"../bedroom_1.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -306,13 +312,14 @@ const place_list = [
         number:7,
         hasMultipleConnections:true,
         hasSecurityRoomConnection:false,
+        isPointOfChoice:false,
         place_view_list:[
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
-                image:"../teste5.jpeg"
+                image:"../bedroom_1.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -337,20 +344,21 @@ const place_list = [
                         }
         ],
         name:"test2_room",
-        next_place_index_list:[5,10,6,9],
+        next_place_index_list:[5,10],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 2)
     }),
     new Place({
         number:8,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
+        isPointOfChoice:false,
         place_view_list:[
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
-                image:"../teste5.jpeg"
+                image:"../bedroom_1.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -382,13 +390,14 @@ const place_list = [
         number:9,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:true,
+        isPointOfChoice:false,
         place_view_list:[
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
-                image:"../teste5.jpeg"
+                image:"../bedroom_1.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -419,14 +428,15 @@ const place_list = [
     new Place({
         number:10,
         hasMultipleConnections:true,
-        hasSecurityRoomConnection:true,
+        hasSecurityRoomConnection:false,
+        isPointOfChoice:true,
         place_view_list:[
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
-                image:"../teste5.jpeg"
+                image:"../bedroom_1.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -451,7 +461,7 @@ const place_list = [
                         }
         ],
         name:"test2_room",
-        next_place_index_list:[11],
+        next_place_index_list:[9,6],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 2)
     })
 

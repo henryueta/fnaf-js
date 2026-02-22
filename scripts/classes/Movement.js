@@ -70,7 +70,7 @@ class Movement{
         this.isLocked = isLocked;
         
         if(resetX){
-            this.x_value = -7;
+            this.x_value = -4.5;
             this.onChangeXVision();
         }
 

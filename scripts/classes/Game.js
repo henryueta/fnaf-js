@@ -1,5 +1,5 @@
+import { Flashlight } from "./Flashlight.js";
 import { Jumpscare } from "./Jumpscare.js";
-import { Virus } from "./Virus.js";
 
 class Game {
 
@@ -9,130 +9,81 @@ class Game {
         this.x_moviment = config.x_moviment;
         this.toggle_cam_system_button = config.toggle_cam_system_button;
         this.animatronic_list = config.animatronic_list;
-        this.virus_provider = (()=>{
-
-            const animatronic_with_virus = this.animatronic_list.find((animatronic_item)=>
-            animatronic_item.current_mode === 'virus'
-            )
-
-            if(!animatronic_with_virus){
-                throw new Error("Nenhum animatronic com vírus encontrado")
-            }
-
-            return new Virus({
-                identifier:animatronic_with_virus.identifier
-            })
-
-        })()
-        this.jumpscare = null;
         this.place_list = config.place_list;
         this.current_night = config.current_night;
         this.night_event_interval = null;
+    }
+
+    onKillPlayer(animatronic){
+        animatronic.isMoving = false;
+        animatronic.inJumpscareProcess = true;
+        if(this.night_event_interval !== null){
+            clearInterval(this.night_event_interval);
+        }
+        const jumpscare = new Jumpscare({
+            jumpscare_room_context:this.player_room.room_context,
+            canvas_height:this.player_room.room_canvas.height,
+            canvas_width:this.player_room.room_canvas.width,
+            animatronic_identifier:animatronic.identifier,
+            unloaded_frame_list:animatronic.jumpscare_frame_list,
+            scream_audio:animatronic.jumpscare_scream_audio
+        })
+        jumpscare.onStart();
+        this.player_room.onChangeDarkAmbience('0%');
+        this.toggle_cam_system_button.style.display = 'none';
+        if(this.camera_monitor.isOpen){
+            this.camera_monitor.onToggle();
+        }
     }
 
     onActiveAnimatronic(animatronic){
 
         if(animatronic.isActive){
 
-            if(animatronic.current_mode === 'virus'){
-
-                if(this.virus_provider.resolve_timeout_value !== null){
-                    console.log("Em espera")
-                    return
-
-                }
-
-                this.virus_provider.resolve_timeout_value = setTimeout(()=>{
-
-                    const virus_current_place = animatronic.onChoicePlace([0])
-
-                    const next_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === virus_current_place)
-
-                    const current_place = this.place_list.find((place_item)=>place_item.number === virus_current_place)
-
-                    if(this.camera_monitor.choiced_camera_info.number === virus_current_place){
-                        this.camera_monitor.choiced_camera_info.image.src = this.virus_provider.virus_image_view;
-                    }
-
-                    current_place.current_view = this.virus_provider.virus_image_view;
-
-            //         const place_for_noisy = next_current_animatronic_place.place_view_list.find((place_item)=>
-            //         typeof place_item.noisy_animatronic === 'number' 
-            //         &&
-            //         place_item.noisy_animatronic === animatronic.identifier
-            // )
-
-                    // this.camera_monitor.choiced_camera_info.image.src = (
-                    //         !!(place_for_noisy && animatronic.current_mode === 'virus')
-                    //         ? place_for_noisy.image
-                    //         : current_place.current_view
-                    //     );
-
-                    console.log("Vírus detectado! 10 segundos")
-
-
-                    setTimeout(()=>{
-
-                        if(this.virus_provider.isDestroyed){
-                            console.log("Nenhuma ação maliciosa,fim")
-                            return
-                        }
-
-                        console.log("Ação maliciosa começando . . .")
-
-                    },10000)
-
-                },Math.floor(Math.random()*25000)+20000)
-
-                return
-
-            }
-
             if(!!animatronic.isMoving){
 
-            if(animatronic.current_place === 11){
-                animatronic.isMoving = false;
-                animatronic.inJumpscareProcess = true;
+                if(!!animatronic.isWaitingPlayer){
 
-                if(this.night_event_interval !== null){
-                    clearInterval(this.night_event_interval);
+                    console.log("esperando player")
+                    animatronic.waiting_player_timeout = setTimeout(()=>{
+
+                        console.log("espera acabou");
+                        animatronic.isWaitingPlayer = false;
+
+
+                    },animatronic.waiting_player_value) 
+                    return
                 }
 
-                this.jumpscare = new Jumpscare({
-                    jumpscare_room_context:this.player_room.room_context,
-                    canvas_height:this.player_room.room_canvas.height,
-                    canvas_width:this.player_room.room_canvas.width,
-                    animatronic_identifier:animatronic.identifier,
-                    unloaded_frame_list:animatronic.jumpscare_frame_list,
-                    scream_audio:animatronic.jumpscare_scream_audio
-                })
+                if(!!animatronic.footstep_cheat.inProcess){
+                    animatronic.footstep_cheat.onCheat();
 
-                this.jumpscare.onStart();
-                this.player_room.onChangeDarkAmbience('0%');
-                this.toggle_cam_system_button.style.display = 'none';
-
-                if(this.camera_monitor.isOpen){
-                    this.camera_monitor.onToggle();
+                    return
                 }
+
+            // if(animatronic.current_place === 11){
                 
-                return
-            }
+            //     return
+            // }
 
             const prev_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === animatronic.current_place)
 
               if(!!prev_current_animatronic_place.hasSecurityRoomConnection)
                {
-
-                    console.log("entrou aqui")
+                
+                    console.log("entrou aqui");
 
                     const current_animatronic_door = this.player_room.onFindAnimatronic(animatronic.identifier)
                     
-                    console.log("current",current_animatronic_door)
+                    console.log("current",current_animatronic_door);
                 
+
                     if(current_animatronic_door === undefined || current_animatronic_door === null){
+                        prev_current_animatronic_place.current_view = prev_current_animatronic_place.place_view_list.find((view_item=>
+                            view_item.animatronic_list.length === 0
+                        )).image;
                          animatronic.current_place = 0;
                          animatronic.onResetVisitedPlaceList();
-                         
                         return
                     }
                }
@@ -144,23 +95,32 @@ class Game {
             
             if(current_animatronic_place === 11){
                 this.player_room.playerIsDeath = true;
+                this.onKillPlayer(animatronic);
                 
                 if(this.player_room.vision === 'external'){
 
                     this.toggle_cam_system_button.onclick = ()=>console.log("VOCE ESTÁ MORTO")
-
+                    
                     return
                 }
-
+                
                 return
             }
-
+            
             const next_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === current_animatronic_place)
+
+                if(next_current_animatronic_place.isPointOfChoice ){
+                    
+                    animatronic.footstep_cheat.inProcess = true;
+
+                    return 
+                    
+                }
 
                 if(next_current_animatronic_place.hasSecurityRoomConnection){
 
                     const current_player_room_door = [
-                        this.player_room.front_door,
+                        // this.player_room.front_door,
                         this.player_room.left_door,
                         this.player_room.right_door
                     ].find((door)=>
@@ -170,14 +130,13 @@ class Game {
                     console.log("Porta encontrada: ",current_player_room_door)
                     current_player_room_door.onSetAnimatronicView(animatronic.identifier)
 
+                    animatronic.isWaitingPlayer = true;
+
                 }
-
-
              
 
             if(animatronic.current_mode === 'hunter'){
                 if(!!next_current_animatronic_place.hasMultipleConnections && !!prev_current_animatronic_place.hasMultipleConnections){
-                    
                     animatronic.visited_place_list.push(prev_current_animatronic_place.number)
                 }
             }
@@ -186,7 +145,7 @@ class Game {
                 typeof place_item.noisy_animatronic === 'number' 
                 &&
                 place_item.noisy_animatronic === animatronic.identifier
-            )
+            );
             
             // if(animatronic.current_mode === 'noisy'){
 
@@ -271,6 +230,10 @@ class Game {
             ),true)
         }
 
+        this.player_room.onFlashLightCheckout = ()=>{
+            this.animatronic_list[0].onClearWaitingTimeEvent();
+        }
+
         this.night_event_interval = setInterval(()=>{
             // for(const animatronic of this.animatronic_list){
             //     setTimeout(()=>{
@@ -288,13 +251,17 @@ class Game {
         // })
         this.toggle_cam_system_button.addEventListener('click',()=>{
 
+            if(this.player_room.flashlight.inUse && !this.player_room.flashlight.isCharging){
+                return
+            }
+
             if(this.player_room.vision === 'internal'){
                 this.camera_monitor.onToggle();
                 this.x_moviment.setIsLocked(this.camera_monitor.isOpen);
                 this.x_moviment.onEndMove();
                 return
             }
-            this.player_room.onSwitchVision("../teste5.jpeg","internal",'exit',this.player_room.direction)
+            this.player_room.onSwitchVision("../bedroom_1.jpeg","internal",'exit',this.player_room.direction)
             return
         })
         this.camera_monitor.onChangeCurrentCamera()

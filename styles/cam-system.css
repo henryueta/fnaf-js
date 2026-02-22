@@ -88,10 +88,10 @@
   }
 
   .open-cam-system{
-    /* animation: open-cam 0.3s;
+    animation: open-cam 0.3s;
     *{
         animation: power-up 0.8s forwards;
-    } */
+    }
   }
 
   @keyframes close-cam {

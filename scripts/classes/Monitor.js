@@ -16,6 +16,7 @@ class Monitor {
             audio:new Audio(),
             repeat_audio:this.camera_list[0].repeat_audio
         }
+
         this.choiced_camera_info.image.src =  this.camera_list[0].current_view;
         this.choiced_camera_info.audio.src = this.camera_list[0].current_audio;
         this.choiced_camera_info.audio.loop = !!this.choiced_camera_info.repeat_audio;

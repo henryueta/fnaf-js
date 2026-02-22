@@ -2,7 +2,7 @@
     z-index: 10;
     display: flex;
     justify-content: space-between;
-    /* background-image: url('../teste5.jpeg'); */
+    /* background-image: url('../bedroom_1.jpeg'); */
     background-repeat: no-repeat;
   background-position: center center;
   background-size: cover; 
@@ -28,6 +28,23 @@
     100%{
         opacity: 100%;
     }
+}
+
+.room-darkness-container{
+    position: fixed;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    z-index: 6;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.room-darkness-container img{
+    width: 100%;
+    height: 100%;
+    opacity: 30%;
 }
 
 .dark-screen-container.replace-room-entrace{
@@ -88,12 +105,12 @@
 
 .room-canvas-container.room-entrace-center-vision{
      animation:room-entrace-vision 0.2s ease-in-out ;
-     transform-origin: center center; 
+     transform-origin: calc(50% + 170px) center; 
 }
 
 .room-canvas-container.room-entrace-left-vision{
     animation:room-entrace-vision 0.2s ease-in-out ;
-    transform-origin: left center; 
+    transform-origin: 2px 30% 10px; 
 }
 
 .room-canvas-container.room-entrace-right-vision{
@@ -114,12 +131,12 @@
 
 .room-canvas-container.room-exit-center-vision{
      animation:room-exit-vision 0.2s ease-in-out ;
-     transform-origin: center center; 
+     transform-origin: calc(50% + 170px) center; 
 }
 
 .room-canvas-container.room-exit-left-vision{
     animation:room-exit-vision 0.2s ease-in-out ;
-    transform-origin: left center; 
+    transform-origin: 2px 30% 10px; 
 }
 
 .room-canvas-container.room-exit-right-vision{

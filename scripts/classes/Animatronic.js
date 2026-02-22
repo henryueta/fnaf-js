@@ -1,4 +1,5 @@
 import { onRandomNumber } from "../functions/randomNumber.js";
+import { FootstepCheat } from "./FootstepCheat.js";
 
 class Animatronic {
 
@@ -8,9 +9,13 @@ class Animatronic {
         this.action_list = config.action_list;
         this.isActive = config.isActive;
         this.isMoving = config.isMoving;
+        this.footstep_cheat = new FootstepCheat();
         this.inJumpscareProcess = false;
         this.current_mode = config.current_mode;
         this.movement_delay = config.movement_delay;
+        this.isWaitingPlayer = false;
+        this.waiting_player_timeout = null;
+        this.waiting_player_value = config.waiting_player_value;
         // this.isHuntingPlayer = config.isHuntingPlayer;
         this.jumpscare_scream_audio = config.jumpscare_scream_audio;
         this.visited_place_list = [];
@@ -20,6 +25,14 @@ class Animatronic {
 
     onResetVisitedPlaceList(){
         this.visited_place_list = [];
+    }
+    
+    onClearWaitingTimeEvent(){
+        this.isWaitingPlayer = false;
+        if(this.waiting_player_timeout !== null){
+            clearTimeout(this.waiting_player_timeout);
+            this.waiting_player_timeout = null;
+        }
     }
 
     onCheckMode(mode,type){
