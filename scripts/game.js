@@ -20,7 +20,7 @@ const game = new Game({
         dark_screen:document.querySelector(".dark-screen-container"),
         flashlight:new Flashlight()
     }),
-    x_moviment: new Movement({
+    x_movement: new Movement({
         right_container:document.querySelector(".move-right-container"),
         left_container:document.querySelector(".move-left-container")
     }),
@@ -142,18 +142,18 @@ const timeouts = [
 
 
 
-// const x_moviment = new Movement({
+// const x_movement = new Movement({
 //     right_container:document.querySelector(".move-right-container"),
 //     left_container:document.querySelector(".move-left-container")
 // })
 
-// x_moviment.onMove()
+// x_movement.onMove()
 // const toggle_cam_system_button = document.querySelector(".toggle-cam-system-button")
 
 // toggle_cam_system_button.addEventListener('click',()=>{
 //     camera_monitor.onToggle()
-//     x_moviment.setIsLocked(camera_monitor.isOpen)
-//     x_moviment.onEndMove()
+//     x_movement.setIsLocked(camera_monitor.isOpen)
+//     x_movement.onEndMove()
 
 // })
 
