@@ -12,7 +12,7 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_1.mp3",
+                audio:'beep',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
@@ -46,7 +46,7 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_1.mp3",
+                audio:'beep',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
@@ -71,7 +71,7 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_1.mp3",
+                audio:'beep',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
@@ -96,7 +96,7 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_1.mp3",
+                audio:'beep',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
@@ -129,7 +129,7 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_1.mp3",
+                audio:'beep',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
@@ -162,7 +162,7 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_1.mp3",
+                audio:'beep',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
@@ -195,7 +195,7 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_1.mp3",
+                audio:'beep',
                 repeat_audio:false,
                 image:""
             },
@@ -220,7 +220,7 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_1.mp3",
+                audio:'beep',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
@@ -245,7 +245,7 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_1.mp3",
+                audio:'beep',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
@@ -270,7 +270,7 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_1.mp3",
+                audio:'beep',
                 repeat_audio:false,
                 image:!""
             },
@@ -295,7 +295,7 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_1.mp3",
+                audio:'beep',
                 repeat_audio:false,
                 image:"../bedroom_1.jpeg"
             },

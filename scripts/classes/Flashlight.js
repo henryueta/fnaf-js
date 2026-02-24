@@ -10,7 +10,7 @@ class Flashlight {
         this.utility_value = 3000;
         this.batery_use_interval = null;
         this.batery_use_value = 650;  
-
+        this.batery_container = config.battery_container
     }
 
     onUse(type,onProcess,onEnd){

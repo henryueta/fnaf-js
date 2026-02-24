@@ -1,3 +1,4 @@
+import { audio_manager } from "../audio-manager.js";
 
 class Room {
     constructor(config) {
@@ -46,7 +47,7 @@ class Room {
                         this.room_image = this.current_door_vision.vision_image;
                         this.onLoadImage();                        
                     }
-                },()=>this.onChangeDarkAmbience('100%'))
+                },()=>this.onChangeDarkAmbience(true))
             }
         });
         // this.dark_screen.addEventListener('mouseup',()=> {
@@ -84,16 +85,23 @@ class Room {
             )
     }
 
-    onChangeDarkAmbience(opacity){
-        if(this.vision === 'external' && !this.playerIsDeath){
-            this.dark_screen.style.opacity = opacity
+    onChangeDarkAmbience(noFlash){
+        if(this.vision === 'external' && !this.playerIsDeath && !noFlash){
+            // this.dark_screen.style.opacity = opacity
+            this.dark_screen.classList.remove('flash-light-fadeout');
+            this.dark_screen.classList.add('flash-light-fadein');
             return
         }
-        this.dark_screen.style.opacity = '0%'
+        this.dark_screen.classList.remove('flash-light-fadein');
+        this.dark_screen.classList.add('flash-light-fadeout');
+        setTimeout(()=>{
+            this.dark_screen.classList.remove('flash-light-fadeout')
+        },500)
     }
 
     onFlashLight(){
-        this.onChangeDarkAmbience('0%');
+        audio_manager.onPlay('flash');
+        this.onChangeDarkAmbience(false);
            if(this.vision === 'external' && this.current_door_vision.current_animatronic !== null){
 
                 if(!!this.onFlashLightCheckout){

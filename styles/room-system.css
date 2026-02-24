@@ -47,12 +47,14 @@
     opacity: 30%;
 }
 
-.dark-screen-container.replace-room-entrace{
+.dark-screen-container.flash-light-fadein{
     animation: replace-room-fade-in 0.5s ease-in-out;
+    opacity: 0%;
 }
 
-.dark-screen-container.replace-room-exit{
-    animation: replace-room-fade-out 0.6s ease-in-out;
+.dark-screen-container.flash-light-fadeout{
+    animation: replace-room-fade-out 0.5s ease-in-out;
+    opacity: 100%;
 }
 
 .dark-screen-container{

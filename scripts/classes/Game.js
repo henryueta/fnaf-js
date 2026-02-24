@@ -3,6 +3,7 @@ import { Jumpscare } from "./Jumpscare.js";
 class Game {
 
     constructor(config){
+        this.clock = config.clock;
         this.player_room = config.player_room;
         this.camera_monitor = config.camera_monitor;
         this.x_movement = config.x_movement;
@@ -12,13 +13,23 @@ class Game {
         this.current_night = config.current_night;
     }
 
+    onClearNightEvent(){
+        if(this.current_night.event_running_interval !== null){
+            clearInterval(this.current_night.event_running_interval);
+        }
+        if(this.clock.timer_interval !== null){
+            clearInterval(this.clock.timer_interval);
+        }
+        if(this.player_room.flashlight.batery_use_interval !== null){
+            clearInterval(this.player_room.flashlight.batery_use_interval)
+        }
+    }
+
     onKillPlayer(animatronic){
         animatronic.isMoving = false;
         animatronic.inJumpscareProcess = true;
         this.current_night.playerIsDeath = true;
-        if(this.current_night.event_running_interval !== null){
-            clearInterval(this.current_night.event_running_interval);
-        }
+        this.onClearNightEvent();
         this.x_movement.setIsLocked(true,true);
         const jumpscare = new Jumpscare({
             jumpscare_room_context:this.player_room.room_context,
@@ -83,7 +94,7 @@ class Game {
                         )).image;
                          animatronic.current_place = 0;
                          animatronic.onResetVisitedPlaceList();
-                         animatronic.footstep_cheat.onResetFootstepCheatQuantity();
+                         animatronic.footstep_cheat.onResetFootstepQuantity();
                         return
                     }
                }
@@ -197,7 +208,7 @@ class Game {
                             ? place_for_noisy.image
                             : current_place.current_view
                         );
-                        this.camera_monitor.choiced_camera_info.audio.src = (
+                        this.camera_monitor.choiced_camera_info.audio = (
                             !!(place_for_noisy && animatronic.current_mode === 'noisy')
                             ? place_for_noisy.audio
                             : current_place.current_audio
@@ -206,6 +217,8 @@ class Game {
                     },200)
                 }
             }
+
+           
             if(this.player_room.current_door_vision !== null){
                 if(this.player_room.current_door_vision.place_location_number === animatronic.current_place
                     &&
@@ -213,6 +226,7 @@ class Game {
                 ){
                     this.player_room.current_door_vision.onSetAnimatronicView(animatronic.identifier);
                     this.player_room.room_image = this.player_room.current_door_vision.vision_image;
+                    console.log(this.player_room.current_door_vision.vision_image)
                     this.player_room.onLoadImage();
                 }
             }
@@ -224,6 +238,20 @@ class Game {
         }
     }
     
+    onStartNightEvent(){
+        this.current_night.event_running_interval = setInterval(()=>{
+            // this.onActiveAnimatronic(this.animatronic_list[0]);
+        },this.current_night.running_event_value);
+
+        this.clock.timer_interval = setInterval(()=>{
+
+            this.clock.onUpdateTime(()=>{
+                console.log("Voce ganhou")
+            });
+
+        },this.clock.timer_value)
+    }
+
     onStart(){
         // 4 - 10 - 11
         //
@@ -238,15 +266,7 @@ class Game {
             this.animatronic_list[0].onClearWaitingTimeEvent();
         }
 
-        this.current_night.event_running_interval = setInterval(()=>{
-            // for(const animatronic of this.animatronic_list){
-            //     setTimeout(()=>{
-            //         this.onActiveAnimatronic(animatronic);
-            //     },animatronic.movement_delay)
-            // }
-
-            // this.onActiveAnimatronic(this.animatronic_list[0]);
-        },this.current_night.running_event_value);
+        this.onStartNightEvent();
 
         this.x_movement.onMove();
 

@@ -10,6 +10,8 @@ import { night_list } from "./objects/night-list.js"
 import { door_list } from "./objects/door-list.js"
 import { Flashlight } from "./classes/Flashlight.js"
 import { onLoadImage } from "./functions/image-loader.js"
+import { Clock } from "./classes/Clock.js"
+import { audio_manager } from "./audio-manager.js"
 
 
 // const assets = [];
@@ -74,16 +76,19 @@ import { onLoadImage } from "./functions/image-loader.js"
 
 
 
-
 const game = new Game({
+    clock:new Clock({
+        timer_container:document.querySelector(".timer_container")
+    }),
     player_room: new Room({
         room_canvas:document.querySelector("#room-canvas"),
         image_of_interior_room:await onLoadImage('../car.jpg'),
-        // front_door:door_list[0],
         left_door:door_list[0],
         right_door:door_list[1],
         dark_screen:document.querySelector(".dark-screen-container"),
-        flashlight:new Flashlight()
+        flashlight:new Flashlight({
+            battery_container:document.querySelector(".battery-container")
+        })
     }),
     x_movement: new Movement({
         right_container:document.querySelector(".move-right-container"),
@@ -103,6 +108,17 @@ const game = new Game({
     animatronic_list:animatronic_list,
     place_list:place_list,
     current_night:night_list.find((night_item)=>!night_item.isCompleted)
-})
+});
 
-game.onStart();
+await audio_manager.onPreload({
+    beep:"../assets/audio/beep_1.mp3",
+    flash:"../assets/audio/flash.mp3",
+    right_to_left_audio:"../assets/audio/right_to_left_footstep.mp3",
+    right_audio:'../assets/audio/right_footstep.mp3',
+    left_to_right_audio:"../assets/audio/left_to_right_footstep.mp3",
+    left_audio:'../assets/audio/left_footstep.mp3',
+},()=>{
+    game.onStart();
+}); 
+
+

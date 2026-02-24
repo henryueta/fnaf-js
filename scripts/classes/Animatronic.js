@@ -1,5 +1,5 @@
 import { onRandomNumber } from "../functions/randomNumber.js";
-import { FootstepCheat } from "./FootstepCheat.js";
+import { Footstep } from "./Footstep.js";
 
 class Animatronic {
 
@@ -9,7 +9,7 @@ class Animatronic {
         this.action_list = config.action_list;
         this.isActive = config.isActive;
         this.isMoving = config.isMoving;
-        this.footstep_cheat = new FootstepCheat();
+        this.footstep_cheat = new Footstep();
         this.inJumpscareProcess = false;
         this.current_mode = config.current_mode;
         this.movement_delay = config.movement_delay;
