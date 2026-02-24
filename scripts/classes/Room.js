@@ -1,12 +1,10 @@
-import { Door } from "./Door.js";
-import { Flashlight } from "./Flashlight.js";
 
 class Room {
     constructor(config) {
         this.room_canvas = config.room_canvas;
         this.room_context = this.room_canvas.getContext('2d');
-        this.room_image = new Image();
-        this.room_image.src = config.room_image;
+        // this.room_image = new Image();
+        this.room_image = config.room_image;
         this.vision = "internal";
         this.playerIsDeath = false;
         this.current_door_vision = null;
@@ -29,37 +27,13 @@ class Room {
         //         this.onSwitchVision(image,"external",type,direction);
         //     }
         // });
-        this.right_door = new Door({
-            door_room_context:this.room_context,
-            x:config.right_door.x,
-            y:config.right_door.y,
-            type:config.right_door.type,
-            width: config.right_door.width, 
-            height: config.right_door.height,
-            place_location_number:config.right_door.place_location_number,
-            animatronic_view_list:config.right_door.animatronic_view_list,
-            vision_image:config.right_door.animatronic_view_list.find((animatronic_view)=>animatronic_view.identifier === null).image,
-            onRectClick: (image,direction,type)=>{
-                this.onSwitchVision(image,"external",type,direction);
-            }
-        });
-        this.left_door = new Door({
-            door_room_context:this.room_context,
-            x:config.left_door.x,
-            y:config.left_door.y,
-            type:config.left_door.type,
-            width: config.left_door.width, 
-            height: config.left_door.height,
-            place_location_number:config.left_door.place_location_number,
-            animatronic_view_list:config.left_door.animatronic_view_list,
-            vision_image:config.left_door.animatronic_view_list.find((animatronic_view)=>animatronic_view.identifier === null).image,
-            onRectClick: (image,direction,type)=>{
-                this.onSwitchVision(image,"external",type,direction);
-            }
-        });
-
-        // this.clickableRect = { x: 1022, y: 440, width: 450, height: 650 };
-        // this.onRectClick = config.onRectClick || null;
+        this.right_door = config.right_door;
+        this.right_door.door_room_context = this.room_context;
+        this.right_door.onRectClick = (image,direction,type)=>this.onSwitchVision(image,"external",type,direction);
+       
+        this.left_door = config.left_door;
+        this.left_door.door_room_context = this.room_context;
+        this.left_door.onRectClick = (image,direction,type)=>this.onSwitchVision(image,"external",type,direction);
 
         this.room_canvas.addEventListener('click', (e) => this.handleClick(e));
         this.dark_screen.addEventListener('mousedown',()=> {
@@ -189,7 +163,7 @@ class Room {
         this.current_door_vision = current_door_view
 
 
-        if(vision === 'internal' && this.flashlight.current_battery_value === 0){
+        if(vision === 'internal' && this.flashlight.current_battery_value !== 100){
             this.flashlight.onUse('charge',()=>{
                 
                 console.log("carregando",this.flashlight.current_battery_value)

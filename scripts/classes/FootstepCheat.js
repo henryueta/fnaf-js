@@ -10,6 +10,8 @@ class FootstepCheat{
         this.current_footstep = null;
         this.right_to_left_audio = "../assets/audio/right_to_left_footstep.mp3";
         this.left_to_right_audio = "../assets/audio/left_to_right_footstep.mp3";
+        this.right_audio = "";
+        this.left_audio = "";
         this.current_side = null;
         this.footstep_audio = null;
     }

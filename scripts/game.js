@@ -10,10 +10,85 @@ import { night_list } from "./objects/night-list.js"
 import { door_list } from "./objects/door-list.js"
 import { Flashlight } from "./classes/Flashlight.js"
 
+
+// const assets = [];
+
+// const carregarImagens = async (lista)=>{
+
+//     for(const url of lista){
+//         const img = new Image();
+//         img.src = url;
+//         await img.decode();
+//         assets.push(img);
+       
+//     }
+//     // testarMemoria(assets);
+  
+
+// }
+// let frame = 0;
+// let id = null;
+// const loop = ()=>{
+//     const current_image = assets[frame % 10];
+//     canvas.getContext('2d').drawImage(current_image,0,0);
+//     frame+=1;
+//     id = requestAnimationFrame(loop);
+// }
+
+// setTimeout(()=>{
+//     //   loop();
+//     // setTimeout(()=>{
+//         // cancelAnimationFrame(id)
+//         // id = null;
+//         // console.log("parou")
+//     // },3000)
+
+// },2000)
+
+// const canvas = document.querySelector("#room-canvas");
+
+
+// const testarMemoria = async(imagens)=>{
+
+//     for(let img of imagens){
+//         await img.decode();
+//         console.log(img)
+//         canvas.getContext('2d').drawImage(img,0,0)
+//     }
+
+// }
+
+// carregarImagens([
+//     "../car.jpg",
+//     "../kaneki.jpg",
+//     "../minecraft.png",
+//     "../naruto.jpg",
+//     "../space.jpg",
+//     "../sun.jpg",
+//     "../car.jpg",
+//     "../kaneki.jpg",
+//     "../naruto.jpg",
+//     "../minecraft.png"
+// ]);
+
+const assets = {};
+
+
+
+const onLoadImage = async (images)=>{
+
+  for(const url of images){
+        const img = new Image();
+        img.src = url;
+        await img.decode();
+        assets[url] = img;
+       
+    }
+
 const game = new Game({
     player_room: new Room({
         room_canvas:document.querySelector("#room-canvas"),
-        room_image:"../bedroom_1.jpeg",
+        room_image:assets['../car.jpg'],
         // front_door:door_list[0],
         left_door:door_list[0],
         right_door:door_list[1],
@@ -41,121 +116,6 @@ const game = new Game({
 
 game.onStart();
 
+}
 
-const timeouts = [
-    {
-        timeout:2000,
-        action:()=>{
-            console.log(1)
-        }
-    },
-    {
-        timeout:5000,
-        action:()=>{
-            console.log(2)
-        }
-    }
-];
-// const interval = setInterval(() => {
-    
-//     timeouts.forEach((item)=>
-//         setTimeout(()=>{
-//             item.action()
-//         },item.timeout)
-//     )
-
-// }, 5000);
-
-// Parar tudo:
-
-// setTimeout(()=>{
-//     console.log("limpo")
-//     clearInterval(interval);
-// timeouts.forEach(clearTimeout);
-// },15000)
-
-
-
-
-// const camera_monitor = new Monitor({
-//     screen_container: document.querySelector(".screen-container"),
-//     camera_list_container:document.querySelector(".map-container"),
-//     camera_list:place_list,
-//     choiced_camera_canvas:document.querySelector("#choiced-place-canvas")
-// })
-// setInterval(()=>{
-
-//     const teste = enemy.onChoicePlace(place_list.find((item)=>item.index === enemy.current_place).next_place_index_list)
-//     console.log("current_place",enemy.current_place)
-//     console.log(teste)
-
-
-
-// for(const animatronic of animatronic_list){
-//     const prev_current_animatronic_place = place_list.find((place_item)=>place_item.number === animatronic.current_place)
-//     console.log(animatronic)
-//     const current_animatronic_place =  animatronic.onChoicePlace(place_list.find((place_item)=>place_item.number === animatronic.current_place).next_place_index_list)
-
-//     const next_current_animatronic_place = place_list.find((place_item)=>place_item.number === current_animatronic_place)
-//      animatronic.onAction(next_current_animatronic_place);
-//     if(prev_current_animatronic_place.number !== next_current_animatronic_place.number){
-//         prev_current_animatronic_place.onRemoveAnimatronic(animatronic);
-//         prev_current_animatronic_place.onSetView();
-//         next_current_animatronic_place.onSetAnimatronic(animatronic);
-//         next_current_animatronic_place.onSetView();
-       
-//         if(
-//             camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
-//             ||
-//             camera_monitor.choiced_camera_info.number === next_current_animatronic_place.number
-//         ){
-
-//             camera_monitor.choiced_camera_info.image.src = "../assets/imgs/static.gif";
-//             setTimeout(()=>{
-
-//                 // camera_monitor.choiced_camera_info.image.src = (
-//                 //     camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
-//                 //     ?  prev_current_animatronic_place.current_view
-//                 //     :  next_current_animatronic_place.current_view
-//                 // )
-//                 const current_place = (
-//                     camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
-//                     ?  prev_current_animatronic_place
-//                     :  next_current_animatronic_place
-//                 )
-                
-//                 current_place.onSetView()
-
-//                 camera_monitor.choiced_camera_info.image.src = current_place.current_view;
-//                 camera_monitor.choiced_camera_info.audio.src = current_place.current_audio;
-
-//             },200)
-
-//         }
-
-//     }
-
-// }
-
-// },2000)
-
-
-
-
-// const x_movement = new Movement({
-//     right_container:document.querySelector(".move-right-container"),
-//     left_container:document.querySelector(".move-left-container")
-// })
-
-// x_movement.onMove()
-// const toggle_cam_system_button = document.querySelector(".toggle-cam-system-button")
-
-// toggle_cam_system_button.addEventListener('click',()=>{
-//     camera_monitor.onToggle()
-//     x_movement.setIsLocked(camera_monitor.isOpen)
-//     x_movement.onEndMove()
-
-// })
-
-// camera_monitor.onChangeCurrentCamera()
-
+onLoadImage(["../car.jpg"]);

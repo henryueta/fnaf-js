@@ -11,21 +11,14 @@ class Game {
         this.animatronic_list = config.animatronic_list;
         this.place_list = config.place_list;
         this.current_night = config.current_night;
-        this.night_event_interval = null;
-    }
-
-    onLockClick(){
-        document.addEventListener("pointerdown", function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }, true);
     }
 
     onKillPlayer(animatronic){
         animatronic.isMoving = false;
         animatronic.inJumpscareProcess = true;
-        if(this.night_event_interval !== null){
-            clearInterval(this.night_event_interval);
+        this.current_night.playerIsDeath = true;
+        if(this.current_night.event_running_interval !== null){
+            clearInterval(this.current_night.event_running_interval);
         }
         this.x_movement.setIsLocked(true,true);
         const jumpscare = new Jumpscare({
@@ -251,15 +244,15 @@ class Game {
             this.animatronic_list[0].onClearWaitingTimeEvent();
         }
 
-        this.night_event_interval = setInterval(()=>{
+        this.current_night.event_running_interval = setInterval(()=>{
             // for(const animatronic of this.animatronic_list){
             //     setTimeout(()=>{
             //         this.onActiveAnimatronic(animatronic);
             //     },animatronic.movement_delay)
             // }
 
-            this.onActiveAnimatronic(this.animatronic_list[0]);
-        },this.current_night.event_running_interval);
+            // this.onActiveAnimatronic(this.animatronic_list[0]);
+        },this.current_night.running_event_value);
 
         this.x_movement.onMove();
 
@@ -274,7 +267,7 @@ class Game {
 
             if(this.player_room.vision === 'internal'){
                 this.camera_monitor.onToggle();
-                this.x_movement.setIsLocked(this.camera_monitor.isOpen);
+                this.x_movement.setIsLocked(this.camera_monitor.isOpen || this.current_night.playerIsDeath);
                 this.x_movement.onEndMove();
                 return
             }
