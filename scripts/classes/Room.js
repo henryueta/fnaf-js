@@ -4,7 +4,8 @@ class Room {
         this.room_canvas = config.room_canvas;
         this.room_context = this.room_canvas.getContext('2d');
         // this.room_image = new Image();
-        this.room_image = config.room_image;
+        this.image_of_interior_room = config.image_of_interior_room
+        this.room_image = config.image_of_interior_room;
         this.vision = "internal";
         this.playerIsDeath = false;
         this.current_door_vision = null;
@@ -42,7 +43,7 @@ class Room {
                 this.flashlight.onUse('discharge',()=>{
                     if(this.flashlight.current_battery_value < 30){
                         this.current_door_vision.onRemoveAnimatronicView();
-                        this.room_image.src = this.current_door_vision.vision_image;
+                        this.room_image = this.current_door_vision.vision_image;
                         this.onLoadImage();                        
                     }
                 },()=>this.onChangeDarkAmbience('100%'))
@@ -102,7 +103,7 @@ class Room {
     }
 
     onLoadImage(){
-        this.room_image.onload = () => {
+        // this.room_image.onload = () => {
             const cw = this.room_canvas.width;
             const ch = this.room_canvas.height;
             const iw = this.room_image.width;
@@ -112,12 +113,13 @@ class Room {
             const y = (ch / 2) - (ih * scale / 2);
             this.room_context.drawImage(this.room_image, x, y, iw * scale, ih * scale);
              if(this.vision === 'internal'){
+                console.log("aaa")
                 // this.front_door.onDraw();
                 this.left_door.onDraw();
                 this.right_door.onDraw();
                 return
              }
-        };
+        // };
     }
 
     onDraw() {
@@ -136,7 +138,7 @@ class Room {
     onSwitchImage(room_image,vision){
         this.vision = vision;
         this.onReset();
-        this.room_image.src = room_image;
+        this.room_image = room_image;
         this.onLoadImage();
         this.onLockVision(vision);
     }
@@ -177,7 +179,6 @@ class Room {
 
         if(!!type || type !== null){
             if(type === 'exit'){
-
                 setTimeout(()=>{
                     this.onSwitchImage(room_image,vision);
                     this.dark_screen.style.display = 'none'

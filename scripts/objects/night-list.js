@@ -3,7 +3,7 @@ import { Night } from "../classes/Night.js"
 const night_list = [
     new Night({
         number:1,
-        running_event_value:3500,
+        running_event_value:5000,
         isCompleted:false
     })
 ]

@@ -1,4 +1,8 @@
 import { Door } from "../classes/Door.js"
+import { onLoadImage } from "../functions/image-loader.js"
+
+const left_door_default_image = await onLoadImage("../teste_tamanho1.png");
+const right_door_default_image = await onLoadImage("../teste_tamanho1.png");
 
 const door_list = [
     // {
@@ -32,15 +36,15 @@ const door_list = [
             identifier:0,
             audio:"../assets/audio/beep_1.mp3",
             repeat_audio:false,
-            image:"../teste_tamanho1.png",
+            image:await onLoadImage("../teste_tamanho2.png"),
         },
         {
             identifier:null,
             audio:"../assets/audio/beep_1.mp3",
             repeat_audio:false,
-            image:"../teste_tamanho1.png",
+            image:left_door_default_image,
         }],
-        vision_image:"../teste_tamanho1.png"
+        vision_image:left_door_default_image
     }),
     new Door({
         x:1000,
@@ -53,15 +57,15 @@ const door_list = [
                 identifier:0,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
-                image:"../teste4.jpeg",
+                image:await onLoadImage("../teste_tamanho2.png"),
             },
             {
                 identifier:null,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
-                image:"../vinheta.jpeg",
+                image:right_door_default_image,
         }],
-        vision_image:"../vinheta.jpeg"
+        vision_image:right_door_default_image
     })
 ]
 

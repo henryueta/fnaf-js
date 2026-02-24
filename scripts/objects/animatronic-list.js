@@ -1,8 +1,9 @@
 import { Animatronic } from "../classes/Animatronic.js";
+import { onLoadImage } from "../functions/image-loader.js";
 
 const animatronic_list = [
     new Animatronic({
-    current_place:7,
+    current_place:0,
     identifier:0,
     isActive:true,
     isMoving:true,

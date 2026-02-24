@@ -1,4 +1,3 @@
-import { Flashlight } from "./Flashlight.js";
 import { Jumpscare } from "./Jumpscare.js";
 
 class Game {
@@ -183,23 +182,17 @@ class Game {
                     this.camera_monitor.choiced_camera_info.number === next_current_animatronic_place.number
                 ){
         
-                    this.camera_monitor.choiced_camera_info.image.src = "../assets/imgs/static.gif";
-                    
+                    this.camera_monitor.choiced_camera_info.image = this.camera_monitor.loading_image;
+                    this.camera_monitor.onLoadView(true);
                     setTimeout(()=>{
-        
-                        // this.camera_monitor.choiced_camera_info.image.src = (
-                        //     this.camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
-                        //     ?  prev_current_animatronic_place.current_view
-                        //     :  next_current_animatronic_place.current_view
-                        // )
                         const current_place = (
                             this.camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
                             ?  prev_current_animatronic_place
                             :  (next_current_animatronic_place)
                         )
-                        
+                        console.log(current_place.current_view)
                         current_place.onSetView(((place_for_noisy) && animatronic.current_mode === 'noisy'))
-                        this.camera_monitor.choiced_camera_info.image.src = (
+                        this.camera_monitor.choiced_camera_info.image = (
                             !!(place_for_noisy && animatronic.current_mode === 'noisy')
                             ? place_for_noisy.image
                             : current_place.current_view
@@ -209,6 +202,7 @@ class Game {
                             ? place_for_noisy.audio
                             : current_place.current_audio
                         );
+                        this.camera_monitor.onLoadView(false);
                     },200)
                 }
             }
@@ -218,7 +212,7 @@ class Game {
                     this.player_room.vision === 'external'
                 ){
                     this.player_room.current_door_vision.onSetAnimatronicView(animatronic.identifier);
-                    this.player_room.room_image.src = this.player_room.current_door_vision.vision_image;
+                    this.player_room.room_image = this.player_room.current_door_vision.vision_image;
                     this.player_room.onLoadImage();
                 }
             }
@@ -271,7 +265,7 @@ class Game {
                 this.x_movement.onEndMove();
                 return
             }
-            this.player_room.onSwitchVision("../bedroom_1.jpeg","internal",'exit',this.player_room.direction)
+            this.player_room.onSwitchVision(this.player_room.image_of_interior_room,"internal",'exit',this.player_room.direction)
             return
         })
         this.camera_monitor.onChangeCurrentCamera()

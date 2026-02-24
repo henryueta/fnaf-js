@@ -9,6 +9,7 @@ import { Game } from "./classes/Game.js"
 import { night_list } from "./objects/night-list.js"
 import { door_list } from "./objects/door-list.js"
 import { Flashlight } from "./classes/Flashlight.js"
+import { onLoadImage } from "./functions/image-loader.js"
 
 
 // const assets = [];
@@ -71,24 +72,13 @@ import { Flashlight } from "./classes/Flashlight.js"
 //     "../minecraft.png"
 // ]);
 
-const assets = {};
 
 
-
-const onLoadImage = async (images)=>{
-
-  for(const url of images){
-        const img = new Image();
-        img.src = url;
-        await img.decode();
-        assets[url] = img;
-       
-    }
 
 const game = new Game({
     player_room: new Room({
         room_canvas:document.querySelector("#room-canvas"),
-        room_image:assets['../car.jpg'],
+        image_of_interior_room:await onLoadImage('../car.jpg'),
         // front_door:door_list[0],
         left_door:door_list[0],
         right_door:door_list[1],
@@ -104,6 +94,7 @@ const game = new Game({
         action_button_list:{
             place_power_switch:document.querySelector("#place-power-switch")
         },
+        loading_image:await onLoadImage("../assets/imgs/loading.jpg"),
         camera_list_container:document.querySelector(".map-container"),
         camera_list:place_list,
         choiced_camera_canvas:document.querySelector("#choiced-place-canvas")
@@ -115,7 +106,3 @@ const game = new Game({
 })
 
 game.onStart();
-
-}
-
-onLoadImage(["../car.jpg"]);

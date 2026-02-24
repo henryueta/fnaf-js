@@ -9,18 +9,19 @@ class Monitor {
         this.action_button_list = config.action_button_list;
         this.choiced_camera_canvas = config.choiced_camera_canvas;
         this.choiced_camera_context = this.choiced_camera_canvas.getContext("2d")
-        
+        this.loading_image = config.loading_image;
+
+
         this.choiced_camera_info = {
             number:this.camera_list[0].number,
-            image:new Image(),
+            image:null,
             audio:new Audio(),
             repeat_audio:this.camera_list[0].repeat_audio
         }
 
-        this.choiced_camera_info.image.src =  this.camera_list[0].current_view;
+        this.choiced_camera_info.image =  this.camera_list[0].current_view;
         this.choiced_camera_info.audio.src = this.camera_list[0].current_audio;
         this.choiced_camera_info.audio.loop = !!this.choiced_camera_info.repeat_audio;
-
         this.choiced_camera_info.number =  this.camera_list[0].number;
         
       if(!!this.action_button_list){
@@ -45,10 +46,9 @@ class Monitor {
                 )
                 place_power_switch.classList.remove("used-power-switch");
                 
-                this.choiced_camera_info.image.src =  choiced_camera.current_view;
+                this.choiced_camera_info.image =  choiced_camera.current_view;
                 this.choiced_camera_info.audio.src = choiced_camera.current_audio;
                 // this.choiced_camera_info.audio.loop = choiced_camera
-
                setTimeout(()=>{
                 this.isRunningOperation = false;
                },200)
@@ -60,6 +60,11 @@ class Monitor {
 
         this.choiced_camera_info.image.onload = 
         () => {
+            
+        };
+    }
+
+    onLoadView(playAudio){
             const cw = this.choiced_camera_canvas.width;
             const ch = this.choiced_camera_canvas.height;
             const iw = this.choiced_camera_info.image.width;
@@ -71,10 +76,9 @@ class Monitor {
             const y = (ch / 2) - (ih * scale / 2);
 
             this.choiced_camera_context.drawImage(this.choiced_camera_info.image, x, y, iw * scale, ih * scale);
-            if(this.isOpen){
+            if(this.isOpen && !!playAudio){
                 this.choiced_camera_info.audio.play();
             }
-        };
     }
 
     onViewCurrentCamera(){
@@ -93,7 +97,7 @@ class Monitor {
     this.screen_container.parentElement.style.pointerEvents = (!!this.isOpen ? "none" : 'visible')
     const last_choiced_camera_number = this.choiced_camera_info.number;
 
-    this.onResetCurrentCamera();
+    // this.onResetCurrentCamera();
     setTimeout(()=>{
        
         this.screen_container.style.display = (!!this.isOpen ? "block" : "none");
@@ -101,22 +105,24 @@ class Monitor {
             return item.number === last_choiced_camera_number
         }); 
         this.choiced_camera_info.audio.src = choiced_camera.current_audio;
-        this.choiced_camera_info.image.src = choiced_camera.current_view;
+        this.choiced_camera_info.image = choiced_camera.current_view;
         this.choiced_camera_info.number = choiced_camera.number;
         if(!!this.isOpen){
             this.onSelectPlace().style.background = 'green'
             this.choiced_camera_info.audio.play();
+                this.onLoadView(false)
             // console.log(this.choiced_camera_info.audio.src);
         }
     },300)
         this.isOpen = !this.isOpen;
     }
 
-    onResetCurrentCamera(){
-        this.choiced_camera_info.number = null;
-        this.choiced_camera_info.audio.src = "../assets/audio/key_insert.mp3";
-        this.choiced_camera_info.image.src = "../assets/imgs/loading.jpg";
-    }
+    // onResetCurrentCamera(){
+    //     console.log(this.loading_image)
+    //     this.choiced_camera_info.number = null;
+    //     this.choiced_camera_info.audio.src = "../assets/audio/key_insert.mp3";
+    //     this.choiced_camera_info.image = this.loading_image;
+    // }
 
     onChangeCurrentCamera(){
         const accessible_camera_list = Array.from(this.camera_list_container.children)
@@ -139,8 +145,9 @@ class Monitor {
                 if(this.choiced_camera_info.number !== choiced_camera.number){
                     this.choiced_camera_info.audio.src = choiced_camera.current_audio;
                     this.choiced_camera_info.repeat_audio = choiced_camera.repeat_audio;
-                    this.choiced_camera_info.image.src = choiced_camera.current_view;
+                    this.choiced_camera_info.image = choiced_camera.current_view;
                     this.choiced_camera_info.number = choiced_camera.number;
+                    this.onLoadView(true);
                 }
             }
         })
