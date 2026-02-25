@@ -10,7 +10,12 @@ class Flashlight {
         this.utility_value = 3000;
         this.batery_use_interval = null;
         this.batery_use_value = 650;  
-        this.batery_container = config.battery_container
+        this.percent_container = Object.fromEntries(
+        Array.from(config.percent_container.children).map(percent_item => [
+            percent_item.id,
+            percent_item
+        ])
+        );
     }
 
     onUse(type,onProcess,onEnd){
@@ -18,11 +23,20 @@ class Flashlight {
         this.isCharging = !!(type === 'charge');
         this.batery_use_interval = setInterval(()=>{
 
+            if(type !== 'charge'){
+                this.percent_container['percent-'+this.current_battery_value].style.opacity = '0%';
+            }
+
             this.current_battery_value += (
                 type === 'charge'
                 ? 25
                 : -25
             );
+
+            if(type === 'charge'){
+                this.percent_container['percent-'+this.current_battery_value].style.opacity = '100%';
+            }
+
             if(!!onProcess){
                 onProcess();
             }

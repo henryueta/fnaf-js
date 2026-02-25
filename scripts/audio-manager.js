@@ -24,6 +24,7 @@ const audio_manager = {
 
         const source = this.context.createBufferSource();
         source.buffer = this.buffer_list[name];
+        console.log(this.buffer_list)
         source.connect(this.context.destination);
         source.start(0);
         this.active_audio_list[name] = source;

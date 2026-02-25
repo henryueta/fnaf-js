@@ -239,17 +239,17 @@ class Game {
     }
     
     onStartNightEvent(){
-        this.current_night.event_running_interval = setInterval(()=>{
-            // this.onActiveAnimatronic(this.animatronic_list[0]);
-        },this.current_night.running_event_value);
+        // this.current_night.event_running_interval = setInterval(()=>{
+        //     // this.onActiveAnimatronic(this.animatronic_list[0]);
+        // },this.current_night.running_event_value);
 
-        this.clock.timer_interval = setInterval(()=>{
+        // this.clock.timer_interval = setInterval(()=>{
 
-            this.clock.onUpdateTime(()=>{
-                console.log("Voce ganhou")
-            });
+        //     this.clock.onUpdateTime(()=>{
+        //         console.log("Voce ganhou")
+        //     });
 
-        },this.clock.timer_value)
+        // },this.clock.timer_value)
     }
 
     onStart(){

@@ -75,7 +75,6 @@ import { audio_manager } from "./audio-manager.js"
 // ]);
 
 
-
 const game = new Game({
     clock:new Clock({
         timer_container:document.querySelector(".timer_container")
@@ -87,7 +86,7 @@ const game = new Game({
         right_door:door_list[1],
         dark_screen:document.querySelector(".dark-screen-container"),
         flashlight:new Flashlight({
-            battery_container:document.querySelector(".battery-container")
+            percent_container:document.querySelector(".percent-container")
         })
     }),
     x_movement: new Movement({

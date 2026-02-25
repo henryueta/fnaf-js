@@ -40,6 +40,7 @@ class Room {
         this.room_canvas.addEventListener('click', (e) => this.handleClick(e));
         this.dark_screen.addEventListener('mousedown',()=> {
             if(!this.flashlight.inUse && this.flashlight.current_battery_value === 100){
+                audio_manager.onPlay('flash');
                 this.onFlashLight();
                 this.flashlight.onUse('discharge',()=>{
                     if(this.flashlight.current_battery_value < 30){
@@ -100,7 +101,6 @@ class Room {
     }
 
     onFlashLight(){
-        audio_manager.onPlay('flash');
         this.onChangeDarkAmbience(false);
            if(this.vision === 'external' && this.current_door_vision.current_animatronic !== null){
 
