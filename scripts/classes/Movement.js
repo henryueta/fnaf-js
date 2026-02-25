@@ -48,7 +48,6 @@ class Movement{
                         this.current_moviment === 'left'
                         && this.x_value  < 0
                     )){
-                        console.log("interval")
                         this.x_value +=(
                             this.current_moviment === 'right'
                             ? -1.2
@@ -66,7 +65,6 @@ class Movement{
     onEndMove(){
         if(!this.isLocked){
             if(!!this.x_move_interval){
-                console.log("limpo")
                 clearInterval(this.x_move_interval)
             }
         }
@@ -78,7 +76,6 @@ class Movement{
         this.onEndMove();
 
         if(resetX){
-            console.log('resetar')
             this.x_value = -4.5;
             this.onChangeXVision();
         }

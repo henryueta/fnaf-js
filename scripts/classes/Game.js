@@ -67,8 +67,6 @@ class Game {
                 if(
                     !!animatronic.isWaitingPlayer 
                     && 
-                    !animatronic.footstep_cheat.inCheatProcess
-                    &&
                     animatronic.waiting_player_timeout === null
                     ){
                     console.log("esperando player")
@@ -166,12 +164,10 @@ class Game {
 
                 if(next_current_animatronic_place.isPointOfChoice ){
                     animatronic.footstep_cheat.onSetMaxCheatQuantity();
-                    animatronic.footstep_cheat.inCheatProcess = true;
-                    return 
-                    
+                    animatronic.footstep_cheat.inCheatProcess = true;                    
                 }
 
-                if(next_current_animatronic_place.hasSecurityRoomConnection){
+                if(next_current_animatronic_place.hasSecurityRoomConnection && !next_current_animatronic_place.isPointOfChoice){
 
                     
 
@@ -231,6 +227,7 @@ class Game {
             // }
 
             // animatronic.onAction(next_current_animatronic_place);
+            console.log(prev_current_animatronic_place.number,next_current_animatronic_place.number)
             if(prev_current_animatronic_place.number !== next_current_animatronic_place.number){
                 prev_current_animatronic_place.onRemoveAnimatronic(animatronic);
                 prev_current_animatronic_place.onSetView(false);
@@ -290,7 +287,7 @@ class Game {
     
     onStartNightEvent(){
         this.current_night.event_running_interval = setInterval(()=>{
-            this.onActiveAnimatronic(this.animatronic_list[0]);
+            // this.onActiveAnimatronic(this.animatronic_list[0]);
         },this.current_night.running_event_value);
 
         // this.clock.timer_interval = setInterval(()=>{

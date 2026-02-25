@@ -90,7 +90,7 @@ class Place {
         this.animatronic_list = this.animatronic_list.filter((animatronic_item)=>
             animatronic_item.identifier !== animatronic.identifier
         )
-        
+        console.log("removendo")
     }
 
     onSetAnimatronic(animatronic){
