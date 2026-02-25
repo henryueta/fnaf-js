@@ -9,6 +9,7 @@ class Room {
         this.room_image = config.image_of_interior_room;
         this.vision = "internal";
         this.playerIsDeath = false;
+        this.playerIsMoving = false;
         this.current_door_vision = null;
         this.dark_screen = config.dark_screen;
         this.onFlashLightCheckout = null;
@@ -153,7 +154,6 @@ class Room {
 
     onEntraceContainerVision(type,direction){
         this.room_canvas.classList.add('room-'+type+'-'+direction+'-vision');
-        
     }
 
     onExitContainerVision(type,direction){
@@ -161,9 +161,23 @@ class Room {
         
     }
 
+    onVisionTransition(transition_type,type,direction){
+
+        this.playerIsMoving = !!(transition_type === 'entrace');
+        console.log(this.playerIsMoving)
+        if(transition_type === 'entrace'){
+            console.log("entrando")
+            this.onEntraceContainerVision(type,direction);
+            return
+        }
+        console.log("saundo")
+        this.onExitContainerVision(type,direction);
+        return
+    }
+
     onSwitchVision(room_image,vision,type,direction){
         this.direction = direction;
-
+        
          const current_door_view = [
             // this.front_door,
             this.left_door,
@@ -190,26 +204,25 @@ class Room {
             clearInterval(this.flashlight.batery_use_interval);
         }
 
+
         if(!!type || type !== null){
             if(type === 'exit'){
                 setTimeout(()=>{
                     this.onSwitchImage(room_image,vision);
                     this.dark_screen.style.display = 'none'
-                    this.onEntraceContainerVision(type,direction);
+                    this.onVisionTransition('entrace',type,direction);
                     setTimeout(()=>{
-                        this.onExitContainerVision(type,direction);
+                        this.onVisionTransition('exit',type,direction);
                     },200)
                 },200)
-                
                 return 
             }
-            this.onEntraceContainerVision(type,direction)
+            this.onVisionTransition('entrace',type,direction);
             setTimeout(()=>{
-             this.onExitContainerVision(type,direction);
-             this.onSwitchImage(room_image,vision);
-             this.dark_screen.style.display = 'block'
+                this.onVisionTransition('exit',type,direction);
+                this.onSwitchImage(room_image,vision);
+                this.dark_screen.style.display = 'block'
             },200)
-
             return
         }
     }

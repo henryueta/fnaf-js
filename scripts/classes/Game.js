@@ -298,10 +298,12 @@ class Game {
             )
             ,()=>{
 
-            if(this.player.screen_display === 'PC' && this.player_room.vision === 'internal'){
+            this.player_room.playerIsMoving = true;
+
+            if(this.player.screen_display === 'PC' && !!(this.player_room.vision === 'internal' || this.player_room.playerIsMoving)){
                 this.toggle_cam_system_button.style.display = 'none';
             }
-            if(this.camera_monitor.isOpen){
+            if(this.camera_monitor.isOpen || this.player_room.playerIsMoving){
                 setTimeout(()=>{
                     this.toggle_cam_system_button.style.display = 'flex';
                 },500)

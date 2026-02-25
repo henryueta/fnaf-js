@@ -19,6 +19,15 @@ button{
 html,body{
     overflow: hidden;
   background-color: black;
+   -webkit-user-select: none;
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none;  
+}
+ 
+img {
+  pointer-events: none;
+  -webkit-user-drag: none;
 }
 
 .camera-interactive-item{
