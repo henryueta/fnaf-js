@@ -4,20 +4,52 @@ class Movement{
     constructor(config){
         this.x_value = -7; 
         this.x_move_interval = null;
-        this.current_moviment = null;
+        this.current_movement = null;
         this.isLocked = false;
         this.right_container = config.right_container;
         this.left_container = config.left_container;
+        this.mobile_movement = null;
     }
 
-    onMove(){
+
+
+    onMove(screen_display){
+
+        if(screen_display === 'MOBILE'){
+
+            this.mobile_movement = {
+                timeout:null,
+                timer_value:50,
+                isLongPress:false
+            }
+
+            this.right_container.addEventListener('touchstart',(e)=>{
+                this.onMobileMove('start','right',e);
+            });
+            this.right_container.addEventListener('touchend',()=>{
+                this.onMobileMove('end','right');
+            });
+            this.right_container.addEventListener('touchcancel',()=>{
+                this.onMobileMove('cancel','right');
+            });
+            this.left_container.addEventListener('touchstart',(e)=>{
+                this.onMobileMove('start','left',e);
+            });
+            this.left_container.addEventListener('touchend',()=>{
+                this.onMobileMove('end','left');
+            });
+            this.left_container.addEventListener('touchcancel',()=>{
+                this.onMobileMove('cancel','left');
+            });
+
+            return
+        }
+
         this.right_container.onmouseenter = ()=>{
-            this.current_moviment = 'right';
-            this.onStartMove();
+            this.onStartMove('right');
         }
         this.left_container.onmouseenter = ()=>{
-            this.current_moviment = 'left';
-            this.onStartMove();
+            this.onStartMove('left');
         }
         this.right_container.onmouseleave = ()=>{
             this.onEndMove();
@@ -32,24 +64,52 @@ class Movement{
         .style.transform = 'translateX('+this.x_value+'%)';
     }
 
-    onStartMove(){
+    onMobileMove(type,movement,touch_event){
+        
+        if(type === 'start'){
+            touch_event.preventDefault();
+            this.mobile_movement.isLongPress = false;
+            this.mobile_movement.timeout = setTimeout(()=>{
+                this.mobile_movement.isLongPress = true;
+                this.onStartMove(movement);
+            },this.mobile_movement.timer_value);
+            return
+        }
+        if(type === 'end'){
+            if(!this.mobile_movement.isLongPress){
+                this.onStartMove(movement);
+            }
+            clearTimeout(this.mobile_movement.timeout);
+             this.mobile_moviment_timeout = null;
+             return
+        }
+        if(type === 'cancel'){
+            clearTimeout(this.mobile_movement.timeout);
+            return
+        }
+    }
+
+    onStartMove(movement){
+
+        this.current_movement = movement;
+
             if(this.isLocked){
                 return
             }
-            if(!this.current_moviment){
+            if(!this.current_movement){
                 return
             }
                  this.x_move_interval = setInterval(() => {
                     
                     if(!this.isLocked && (
-                        this.current_moviment === 'right'
+                        this.current_movement === 'right'
                         ? this.x_value  >= -8.3
                         : 
-                        this.current_moviment === 'left'
+                        this.current_movement === 'left'
                         && this.x_value  < 0
                     )){
                         this.x_value +=(
-                            this.current_moviment === 'right'
+                            this.current_movement === 'right'
                             ? -1.2
                             : 1.2
                         );

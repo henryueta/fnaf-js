@@ -320,7 +320,7 @@ class Game {
 
         this.onStartNightEvent();
 
-        this.x_movement.onMove();
+        this.x_movement.onMove(this.player.screen_display);
 
         // this.toggle_cam_system_button.addEventListener('mousemove',()=>{
            

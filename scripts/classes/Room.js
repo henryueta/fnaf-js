@@ -40,17 +40,7 @@ class Room {
 
         this.room_canvas.addEventListener('click', (e) => !this.clickIsDisabled ?  this.handleClick(e) : ()=>console.log("player está morto"));
         this.dark_screen.addEventListener('mousedown',()=> {
-            if(!this.flashlight.inUse && this.flashlight.current_battery_value === 100){
-                audio_manager.onPlay('flash');
-                this.onFlashLight();
-                this.flashlight.onUse('discharge',()=>{
-                    if(this.flashlight.current_battery_value < 30){
-                        this.current_door_vision.onRemoveAnimatronicView();
-                        this.room_image = this.current_door_vision.vision_image;
-                        this.onLoadImage();                        
-                    }
-                },()=>this.onChangeDarkAmbience(true))
-            }
+            this.onFlashLight();
         });
         // this.dark_screen.addEventListener('mouseup',()=> {
         //    this.onChangeDarkAmbience('100%');
@@ -102,13 +92,23 @@ class Room {
     }
 
     onFlashLight(){
-        this.onChangeDarkAmbience(false);
-           if(this.vision === 'external' && this.current_door_vision.current_animatronic !== null){
 
-                if(!!this.onFlashLightCheckout){
-                    this.onFlashLightCheckout();
+        if(!this.flashlight.inUse && this.flashlight.current_battery_value === 100){
+                audio_manager.onPlay('flash');
+                this.onChangeDarkAmbience(false);
+                if(this.vision === 'external' && this.current_door_vision.current_animatronic !== null){
+                        if(!!this.onFlashLightCheckout){
+                            this.onFlashLightCheckout();
+                        }
                 }
-           }
+                this.flashlight.onUse('discharge',()=>{
+                    if(this.flashlight.current_battery_value < 30){
+                        this.current_door_vision.onRemoveAnimatronicView();
+                        this.room_image = this.current_door_vision.vision_image;
+                        this.onLoadImage();                        
+                    }
+                },()=>this.onChangeDarkAmbience(true))
+            }
     }
 
     onLoadImage(){
