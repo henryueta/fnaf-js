@@ -46,17 +46,26 @@ class Door{
         )
     }
 
+    onUpdateAnimatronicStateView(identifier){
+        this.vision_image = this.animatronic_view_list.find((animatronic_view)=>
+            animatronic_view.identifier === identifier
+            &&
+            !!animatronic_view.forTransition
+        ).image;
+        console.log(this.vision_image)
+    }
+
     onRemoveAnimatronicView(){
         this.current_animatronic = null;
         this.vision_image = this.animatronic_view_list.find((animatronic_view)=>
             animatronic_view.identifier === null
-        ).image
+        ).image;
     }
 
     onSetAnimatronicView(identifier){
 
         this.current_animatronic = this.onFindAnimatronicView(identifier);
-        this.vision_image = this.current_animatronic.image
+        this.vision_image = this.current_animatronic.image;
 
     }   
 

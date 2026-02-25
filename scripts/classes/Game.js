@@ -64,6 +64,8 @@ class Game {
         if(animatronic.isActive){
 
             if(!!animatronic.isMoving){
+                console.log("timeout",animatronic.waiting_player_timeout)
+                console.log('waiting',animatronic.isWaitingPlayer)
                 if(
                     !!animatronic.isWaitingPlayer 
                     && 
@@ -110,22 +112,18 @@ class Game {
                 
 
                     if(current_animatronic_door === undefined || current_animatronic_door === null){
+                        this.isWaitingPlayer = false;
                         prev_current_animatronic_place.current_view = prev_current_animatronic_place.place_view_list.find((view_item=>
                             view_item.animatronic_list.length === 0
                         )).image;
+
                          if(!animatronic.footstep_cheat.inCheatProcess
                             ||
                             (!!animatronic.footstep_cheat.inCheatProcess
                                 &&
-                                onRandomNumber(0,4) === 0
+                                onRandomNumber(0,3) === 0
                             )
                          ){
-
-                            console.log(!animatronic.footstep_cheat.inCheatProcess)
-                            console.log((!!animatronic.footstep_cheat.inCheatProcess
-                                &&
-                                onRandomNumber(0,4) === 0
-                            ))
                             
                             console.log("escolheu recomeçar no início")
                             animatronic.current_place = 0;
@@ -291,7 +289,7 @@ class Game {
     
     onStartNightEvent(){
         this.current_night.event_running_interval = setInterval(()=>{
-            // this.onActiveAnimatronic(this.animatronic_list[0]);
+            this.onActiveAnimatronic(this.animatronic_list[0]);
         },this.current_night.running_event_value);
 
         // this.clock.timer_interval = setInterval(()=>{
@@ -318,17 +316,23 @@ class Game {
             this.animatronic_list[0].onClearWaitingTimeEvent();
         }
 
+        this.player_room.onFlashLightProcess = ()=>{
+            if(this.player_room.flashlight.current_battery_value === 50){
+                this.player_room.current_door_vision.onUpdateAnimatronicStateView(0);
+            }   
+        }
+
+        this.player_room.onFlashLightEnd = ()=>{
+            this.animatronic_list[0].isWaitingPlayer = false;
+        }
+
         this.onStartNightEvent();
 
         this.x_movement.onMove(this.player.screen_display);
 
-        // this.toggle_cam_system_button.addEventListener('mousemove',()=>{
-           
-        // })
-
         if(this.player.screen_display === 'PC'){
             this.camera_monitor.choiced_camera_canvas.addEventListener("mouseenter",()=>{
-                    this.toggle_cam_system_button.style.display = 'flex';
+                this.toggle_cam_system_button.style.display = 'flex';
             });
         }
 

@@ -13,6 +13,8 @@ class Room {
         this.current_door_vision = null;
         this.dark_screen = config.dark_screen;
         this.onFlashLightCheckout = null;
+        this.onFlashLightEnd = null;
+        this.onFlashLightProcess = null;
         this.flashlight = config.flashlight;
         this.direction = null;
         this.onLockVision = config.onLockVision;
@@ -102,12 +104,21 @@ class Room {
                         }
                 }
                 this.flashlight.onUse('discharge',()=>{
+
+                    if(this.onFlashLightProcess){
+                        this.onFlashLightProcess();
+                    }
+
                     if(this.flashlight.current_battery_value < 30){
                         this.current_door_vision.onRemoveAnimatronicView();
                         this.room_image = this.current_door_vision.vision_image;
                         this.onLoadImage();                        
                     }
-                },()=>this.onChangeDarkAmbience(true))
+                },()=>{this.onChangeDarkAmbience(true)
+                    if(!!this.onFlashLightEnd){
+                        this.onFlashLightEnd();
+                    }
+                })
             }
     }
 

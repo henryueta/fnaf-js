@@ -28,7 +28,6 @@ class Animatronic {
     }
     
     onClearWaitingTimeEvent(){
-        this.isWaitingPlayer = false;
         if(this.waiting_player_timeout !== null){
             clearTimeout(this.waiting_player_timeout);
             this.waiting_player_timeout = null;

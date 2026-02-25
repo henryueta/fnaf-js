@@ -34,12 +34,14 @@ const door_list = [
         place_location_number:9,
         animatronic_view_list:[{
             identifier:0,
+            forTransition:false,
             audio:"../assets/audio/beep_1.mp3",
             repeat_audio:false,
             image:await onLoadImage("../teste_tamanho2.png"),
         },
         {
             identifier:null,
+            forTransition:false,
             audio:"../assets/audio/beep_1.mp3",
             repeat_audio:false,
             image:left_door_default_image,
@@ -55,12 +57,14 @@ const door_list = [
         place_location_number:6,
         animatronic_view_list:[{
                 identifier:0,
+                forTransition:false,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
                 image:await onLoadImage("../teste_tamanho2.png"),
             },
             {
                 identifier:null,
+                forTransition:false,
                 audio:"../assets/audio/beep_1.mp3",
                 repeat_audio:false,
                 image:right_door_default_image,
