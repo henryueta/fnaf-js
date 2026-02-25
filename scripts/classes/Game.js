@@ -152,7 +152,7 @@ class Game {
                 
                 if(this.player_room.vision === 'external'){
 
-                    this.toggle_cam_system_button.onclick = ()=>console.log("VOCE ESTÁ MORTO")
+                    this.toggle_cam_system_button.onclick = ()=>console.log("VOCE ESTÁ MORTO");
                     
                     return
                 }
@@ -196,11 +196,15 @@ class Game {
 
                     console.log("Porta encontrada: ",current_player_room_door);
                     current_player_room_door.onSetAnimatronicView(animatronic.identifier)
+                    if(this.player_room.current_door_vision !== null){
+                        this.player_room.room_image = this.player_room.current_door_vision.vision_image;
+                        this.player_room.onLoadImage();
+                        console.log("dentro da porta");
+                    }
 
                     animatronic.isWaitingPlayer = true;
 
                 }
-             
 
             if(animatronic.current_mode === 'hunter'){
                 if(!!next_current_animatronic_place.hasMultipleConnections && !!prev_current_animatronic_place.hasMultipleConnections){

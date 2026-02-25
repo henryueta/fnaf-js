@@ -166,23 +166,25 @@ class Room {
         this.playerIsMoving = !!(transition_type === 'entrace');
         console.log(this.playerIsMoving)
         if(transition_type === 'entrace'){
-            console.log("entrando")
             this.onEntraceContainerVision(type,direction);
             return
         }
-        console.log("saundo")
         this.onExitContainerVision(type,direction);
         return
     }
 
     onSwitchVision(room_image,vision,type,direction){
         this.direction = direction;
-        
-         const current_door_view = [
+            
+         const current_door_view = (
+            vision === 'external'
+            ? [
             // this.front_door,
             this.left_door,
             this.right_door
-        ].find((door)=>door.type === this.direction);
+            ].find((door)=>door.type === this.direction)
+            : null
+         )
 
         this.current_door_vision = current_door_view
 
