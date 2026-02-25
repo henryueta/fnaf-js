@@ -21,7 +21,8 @@ class Flashlight {
     onUse(type,onProcess,onEnd){
         this.inUse = true;
         this.isCharging = !!(type === 'charge');
-        this.batery_use_interval = setInterval(()=>{
+       
+        this.batery_use_interval = setInterval(()=>{    
 
             if(type !== 'charge'){
                 this.percent_container['percent-'+this.current_battery_value].style.opacity = '0%';
@@ -34,6 +35,7 @@ class Flashlight {
             );
 
             if(type === 'charge'){
+                console.log(this.percent_container['percent-'+this.current_battery_value])
                 this.percent_container['percent-'+this.current_battery_value].style.opacity = '100%';
             }
 

@@ -173,7 +173,11 @@ class Room {
         this.current_door_vision = current_door_view
 
 
-        if(vision === 'internal' && this.flashlight.current_battery_value !== 100){
+        if(
+            vision === 'internal' 
+            && 
+            this.flashlight.current_battery_value !== 100
+        ){
             this.flashlight.onUse('charge',()=>{
                 
                 console.log("carregando",this.flashlight.current_battery_value)
@@ -182,6 +186,7 @@ class Room {
         }
 
         if(vision === 'external' && this.flashlight.isCharging){
+            console.log("limpou interval")
             clearInterval(this.flashlight.batery_use_interval);
         }
 

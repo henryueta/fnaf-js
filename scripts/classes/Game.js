@@ -3,6 +3,7 @@ import { Jumpscare } from "./Jumpscare.js";
 class Game {
 
     constructor(config){
+        this.player = config.player;
         this.clock = config.clock;
         this.player_room = config.player_room;
         this.camera_monitor = config.camera_monitor;
@@ -11,6 +12,14 @@ class Game {
         this.animatronic_list = config.animatronic_list;
         this.place_list = config.place_list;
         this.current_night = config.current_night;
+    }
+
+    onCheckDisplay(){
+        const userAgent = navigator.userAgent.toLowerCase();
+        const isMobileByUA = /android|iphone|ipad|ipod|blackberry|windows phone/i.test(userAgent);
+        const isMobileByWidth = window.innerWidth <= 768;
+        this.player.screen_display = (isMobileByUA || isMobileByWidth) ? "MOBILE" : "PC";
+        return this.player.screen_display;
     }
 
     onClearNightEvent(){
@@ -255,6 +264,7 @@ class Game {
     onStart(){
         // 4 - 10 - 11
         //
+        this.onCheckDisplay();
         this.player_room.onDraw();
         this.player_room.onLockVision = (vision)=>{
             this.x_movement.setIsLocked(!!(
@@ -273,7 +283,29 @@ class Game {
         // this.toggle_cam_system_button.addEventListener('mousemove',()=>{
            
         // })
-        this.toggle_cam_system_button.addEventListener('click',()=>{
+
+        if(this.player.screen_display === 'PC'){
+            this.camera_monitor.choiced_camera_canvas.addEventListener("mouseenter",()=>{
+                    this.toggle_cam_system_button.style.display = 'flex';
+                    console.log("bb")
+            });
+        }
+
+        this.toggle_cam_system_button.addEventListener(
+            (this.player.screen_display === 'MOBILE'
+                ? 'click'
+                : 'mouseenter'
+            )
+            ,()=>{
+
+            if(this.player.screen_display === 'PC' && this.player_room.vision === 'internal'){
+                this.toggle_cam_system_button.style.display = 'none';
+            }
+            if(this.camera_monitor.isOpen){
+                setTimeout(()=>{
+                    this.toggle_cam_system_button.style.display = 'flex';
+                },500)
+            }
 
             if(this.player_room.flashlight.inUse && !this.player_room.flashlight.isCharging){
                 return
@@ -288,7 +320,7 @@ class Game {
             this.player_room.onSwitchVision(this.player_room.image_of_interior_room,"internal",'exit',this.player_room.direction)
             return
         })
-        this.camera_monitor.onChangeCurrentCamera()
+        this.camera_monitor.onChangeCurrentCamera();
     }
 
 }

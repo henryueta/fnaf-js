@@ -12,6 +12,7 @@ import { Flashlight } from "./classes/Flashlight.js"
 import { onLoadImage } from "./functions/image-loader.js"
 import { Clock } from "./classes/Clock.js"
 import { audio_manager } from "./audio-manager.js"
+import { Player } from "./classes/Player.js"
 
 
 // const assets = [];
@@ -76,6 +77,7 @@ import { audio_manager } from "./audio-manager.js"
 
 
 const game = new Game({
+    player:new Player(),
     clock:new Clock({
         timer_container:document.querySelector(".timer_container")
     }),
