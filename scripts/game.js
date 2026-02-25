@@ -79,7 +79,7 @@ import { Player } from "./classes/Player.js"
 const game = new Game({
     player:new Player(),
     clock:new Clock({
-        timer_container:document.querySelector(".timer_container")
+        time_container:document.querySelector(".time-span")
     }),
     player_room: new Room({
         room_canvas:document.querySelector("#room-canvas"),

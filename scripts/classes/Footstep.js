@@ -6,7 +6,7 @@ class Footstep{
     constructor(){
         this.max_cheat_quantity = 5;
         this.current_cheat_quantity = 0;
-        this.inProcess = true;
+        this.inProcess = false;
         this.current_footstep = null;
         this.current_side = null;
         this.footstep_checkout = {
@@ -25,8 +25,6 @@ class Footstep{
     onPlayFootstepAudio(cheatProcess){
         if(!!cheatProcess){
             this.current_cheat_quantity+=1;
-        }
-        audio_manager.onPlay(this.current_footstep+"_audio");
          this.current_side = 
                 this.current_footstep === 'right_to_left'
                 ? 'left'
@@ -37,7 +35,13 @@ class Footstep{
                             this.current_footstep === 'right'
                             ? 'right'
                             : 'left';
-                console.log(this.current_side,this.current_footstep)
+        }
+        audio_manager.onPlay((
+            !!cheatProcess
+            ? this.current_footstep
+            : this.current_side
+        )+"_audio");
+        console.log(this.current_side,this.current_footstep);
         if(this.current_cheat_quantity === this.max_cheat_quantity){
             this.inProcess = false;
             return

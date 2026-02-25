@@ -1,3 +1,4 @@
+import { onRandomNumber } from "../functions/randomNumber.js";
 import { Jumpscare } from "./Jumpscare.js";
 
 class Game {
@@ -35,6 +36,7 @@ class Game {
     }
 
     onKillPlayer(animatronic){
+        this.player_room.dark_screen.style.zIndex = '0';
         animatronic.isMoving = false;
         animatronic.inJumpscareProcess = true;
         this.current_night.playerIsDeath = true;
@@ -62,16 +64,19 @@ class Game {
 
             if(!!animatronic.isMoving){
 
-                if(!!animatronic.isWaitingPlayer && animatronic.footstep_cheat.current_side === null){
+                if(
+                    !!animatronic.isWaitingPlayer 
+                    && 
+                    !animatronic.footstep_cheat.inProcess
+                    &&
+                    animatronic.waiting_player_timeout === null){
 
                     console.log("esperando player")
                     animatronic.waiting_player_timeout = setTimeout(()=>{
-
                         console.log("espera acabou");
                         animatronic.isWaitingPlayer = false;
-
-
-                    },animatronic.waiting_player_value) 
+                        animatronic.waiting_player_timeout = null;
+                    },animatronic.waiting_player_value); 
                     return
                 }
 
@@ -84,6 +89,10 @@ class Game {
 
             //     return
             // }
+
+                if(animatronic.waiting_player_timeout !== null){
+                    return
+                }
 
             const prev_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === animatronic.current_place)
 
@@ -101,8 +110,20 @@ class Game {
                         prev_current_animatronic_place.current_view = prev_current_animatronic_place.place_view_list.find((view_item=>
                             view_item.animatronic_list.length === 0
                         )).image;
-                         animatronic.current_place = 0;
-                         animatronic.onResetVisitedPlaceList();
+                         if(!animatronic.footstep_cheat.inProcess
+                            ||
+                            (!!animatronic.footstep_cheat.inProcess
+                                &&
+                                onRandomNumber(0,4) === 0
+                            )
+                         ){
+                            animatronic.current_place = 0;
+                            animatronic.onResetVisitedPlaceList();
+                            animatronic.footstep_cheat.onResetFootstepQuantity(); 
+                            return
+                         }
+                         animatronic.current_place = 10;
+                         animatronic.visited_place_list = [7];
                          animatronic.footstep_cheat.onResetFootstepQuantity();
                         return
                     }
@@ -139,9 +160,7 @@ class Game {
 
                 if(next_current_animatronic_place.hasSecurityRoomConnection){
 
-                    if(animatronic.footstep_cheat.current_side){
-                       console.log("escolha predefinida",animatronic.footstep_cheat.current_side) 
-                    }
+                    
 
                     const current_player_room_door = 
                     animatronic.footstep_cheat.current_side === 'right'
@@ -156,8 +175,17 @@ class Game {
                         ].find((door)=>
                             door.place_location_number === next_current_animatronic_place.number
                         );
+                        console.log("side",animatronic.footstep_cheat.current_side)
+                        if(animatronic.footstep_cheat.current_side === null){
+                            animatronic.footstep_cheat.current_side = 
+                            current_player_room_door.place_location_number === this.player_room.right_door.place_location_number
+                            ? 'right'
+                            : 'left';
+                            animatronic.footstep_cheat.onPlayFootstepAudio(false)
+                        }
+                        
 
-                    console.log("Porta encontrada: ",current_player_room_door)
+                    console.log("Porta encontrada: ",current_player_room_door);
                     current_player_room_door.onSetAnimatronicView(animatronic.identifier)
 
                     animatronic.isWaitingPlayer = true;
@@ -248,9 +276,9 @@ class Game {
     }
     
     onStartNightEvent(){
-        // this.current_night.event_running_interval = setInterval(()=>{
-        //     // this.onActiveAnimatronic(this.animatronic_list[0]);
-        // },this.current_night.running_event_value);
+        this.current_night.event_running_interval = setInterval(()=>{
+            this.onActiveAnimatronic(this.animatronic_list[0]);
+        },this.current_night.running_event_value);
 
         // this.clock.timer_interval = setInterval(()=>{
 
@@ -258,7 +286,7 @@ class Game {
         //         console.log("Voce ganhou")
         //     });
 
-        // },this.clock.timer_value)
+        // },this.clock.timer_value);
     }
 
     onStart(){
@@ -287,7 +315,6 @@ class Game {
         if(this.player.screen_display === 'PC'){
             this.camera_monitor.choiced_camera_canvas.addEventListener("mouseenter",()=>{
                     this.toggle_cam_system_button.style.display = 'flex';
-                    console.log("bb")
             });
         }
 

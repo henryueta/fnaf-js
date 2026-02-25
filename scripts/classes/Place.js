@@ -60,7 +60,6 @@ class Place {
     }
 
     onSetView(isNoisy){
-        console.log(this.place_view_list,this.animatronic_list)
 
         const filtered_place_view_list = (
             isNoisy
