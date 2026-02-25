@@ -4,9 +4,9 @@ import { onRandomNumber } from "../functions/randomNumber.js";
 class Footstep{
 
     constructor(){
-        this.max_cheat_quantity = 5;
+        this.max_cheat_quantity = null;
         this.current_cheat_quantity = 0;
-        this.inProcess = false;
+        this.inCheatProcess = false;
         this.current_footstep = null;
         this.current_side = null;
         this.footstep_checkout = {
@@ -18,7 +18,7 @@ class Footstep{
     }
 
     onResetFootstepQuantity(){
-        // this.max_cheat_quantity = 3;
+        this.max_cheat_quantity = null;
         this.current_cheat_quantity = 0;
     }
 
@@ -43,15 +43,26 @@ class Footstep{
         )+"_audio");
         console.log(this.current_side,this.current_footstep);
         if(this.current_cheat_quantity === this.max_cheat_quantity){
-            this.inProcess = false;
+            // this.inCheatProcess = false;
             return
+        }
+    }
+
+    onSetMaxCheatQuantity(){
+        if(this.max_cheat_quantity === null){
+            this.max_cheat_quantity = onRandomNumber(2,5);
+            console.log('vai enganar :',this.max_cheat_quantity+' vezes');
         }
     }
 
     onCheat(){
 
-        if(!this.inProcess){
-            this.inProcess = true;
+        if(!this.inCheatProcess){
+            this.inCheatProcess = true;
+        }
+
+        if(this.max_cheat_quantity === null){
+            return
         }
 
         const repeat_side_footstep = onRandomNumber(0,1);

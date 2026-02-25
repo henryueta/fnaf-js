@@ -29,20 +29,26 @@ class Movement{
 
     onChangeXVision(){
         document.querySelector(".room-container")
-        .style.transform = 'translateX('+this.x_value+'%)'
+        .style.transform = 'translateX('+this.x_value+'%)';
     }
 
     onStartMove(){
-        if(!this.isLocked){
-            if(!!this.current_moviment){
+            if(this.isLocked){
+                return
+            }
+            if(!this.current_moviment){
+                return
+            }
                  this.x_move_interval = setInterval(() => {
-                    if((
+                    
+                    if(!this.isLocked && (
                         this.current_moviment === 'right'
                         ? this.x_value  >= -8.3
                         : 
                         this.current_moviment === 'left'
                         && this.x_value  < 0
                     )){
+                        console.log("interval")
                         this.x_value +=(
                             this.current_moviment === 'right'
                             ? -1.2
@@ -51,31 +57,33 @@ class Movement{
                     } else{
                         this.left_container.style.display = (this.x_value.toFixed() == 0 ? 'none' : 'block')
                         this.right_container.style.display = (this.x_value.toFixed() == -9 ? 'none' : 'block')
-                        clearInterval(this.x_move_interval)
+                        clearInterval(this.x_move_interval);
                     }
                     this.onChangeXVision();
             }, 30);
-            }
-        }
     }
 
     onEndMove(){
         if(!this.isLocked){
             if(!!this.x_move_interval){
+                console.log("limpo")
                 clearInterval(this.x_move_interval)
             }
         }
     }
     setIsLocked(isLocked,resetX){
         this.isLocked = isLocked;
-        
+        this.right_container.style.display = (!!isLocked ? "none" : "block");
+        this.left_container.style.display = (!!isLocked ? "none" : "block");
+        this.onEndMove();
+
         if(resetX){
+            console.log('resetar')
             this.x_value = -4.5;
             this.onChangeXVision();
         }
 
-        this.right_container.style.display = (!!isLocked ? "none" : "block");
-        this.left_container.style.display = (!!isLocked ? "none" : "block");
+       
     }
 
 }

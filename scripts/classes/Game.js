@@ -13,6 +13,7 @@ class Game {
         this.animatronic_list = config.animatronic_list;
         this.place_list = config.place_list;
         this.current_night = config.current_night;
+
     }
 
     onCheckDisplay(){
@@ -40,8 +41,8 @@ class Game {
         animatronic.isMoving = false;
         animatronic.inJumpscareProcess = true;
         this.current_night.playerIsDeath = true;
+        this.player_room.clickIsDisabled = true;
         this.onClearNightEvent();
-        this.x_movement.setIsLocked(true,true);
         const jumpscare = new Jumpscare({
             jumpscare_room_context:this.player_room.room_context,
             canvas_height:this.player_room.room_canvas.height,
@@ -49,38 +50,42 @@ class Game {
             animatronic_identifier:animatronic.identifier,
             unloaded_frame_list:animatronic.jumpscare_frame_list,
             scream_audio:animatronic.jumpscare_scream_audio
-        })
+        });
+        this.x_movement.setIsLocked(true,true);
         jumpscare.onStart();
-        this.player_room.onChangeDarkAmbience('0%');
+        this.player_room.onChangeDarkAmbience(true);
         this.toggle_cam_system_button.style.display = 'none';
         if(this.camera_monitor.isOpen){
             this.camera_monitor.onToggle();
         }
     }
-
     onActiveAnimatronic(animatronic){
 
         if(animatronic.isActive){
 
             if(!!animatronic.isMoving){
-
                 if(
                     !!animatronic.isWaitingPlayer 
                     && 
-                    !animatronic.footstep_cheat.inProcess
+                    !animatronic.footstep_cheat.inCheatProcess
                     &&
-                    animatronic.waiting_player_timeout === null){
-
+                    animatronic.waiting_player_timeout === null
+                    ){
                     console.log("esperando player")
                     animatronic.waiting_player_timeout = setTimeout(()=>{
                         console.log("espera acabou");
                         animatronic.isWaitingPlayer = false;
                         animatronic.waiting_player_timeout = null;
+                        this.onKillPlayer(animatronic)
                     },animatronic.waiting_player_value); 
                     return
                 }
-
-                if(!!animatronic.footstep_cheat.inProcess){
+                if(!!animatronic.footstep_cheat.inCheatProcess
+                    &&
+                    animatronic.footstep_cheat.max_cheat_quantity !== null
+                    &&
+                    animatronic.footstep_cheat.current_cheat_quantity !== animatronic.footstep_cheat.max_cheat_quantity
+                ){
                     animatronic.footstep_cheat.onCheat();
                     return
                 }
@@ -110,21 +115,31 @@ class Game {
                         prev_current_animatronic_place.current_view = prev_current_animatronic_place.place_view_list.find((view_item=>
                             view_item.animatronic_list.length === 0
                         )).image;
-                         if(!animatronic.footstep_cheat.inProcess
+                         if(!animatronic.footstep_cheat.inCheatProcess
                             ||
-                            (!!animatronic.footstep_cheat.inProcess
+                            (!!animatronic.footstep_cheat.inCheatProcess
                                 &&
                                 onRandomNumber(0,4) === 0
                             )
                          ){
+
+                            console.log(!animatronic.footstep_cheat.inCheatProcess)
+                            console.log((!!animatronic.footstep_cheat.inCheatProcess
+                                &&
+                                onRandomNumber(0,4) === 0
+                            ))
+                            
+                            console.log("escolheu recomeçar no início")
                             animatronic.current_place = 0;
                             animatronic.onResetVisitedPlaceList();
                             animatronic.footstep_cheat.onResetFootstepQuantity(); 
                             return
                          }
+                         console.log("escolheu continuar")
                          animatronic.current_place = 10;
                          animatronic.visited_place_list = [7];
                          animatronic.footstep_cheat.onResetFootstepQuantity();
+                         animatronic.footstep_cheat.onSetMaxCheatQuantity();
                         return
                     }
                }
@@ -135,7 +150,6 @@ class Game {
             const current_animatronic_place =  animatronic.onChoicePlace(this.place_list.find((place_item)=>place_item.number === animatronic.current_place).next_place_index_list);
             
             if(current_animatronic_place === 11){
-                this.player_room.playerIsDeath = true;
                 this.onKillPlayer(animatronic);
                 
                 if(this.player_room.vision === 'external'){
@@ -151,9 +165,8 @@ class Game {
             const next_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === current_animatronic_place)
 
                 if(next_current_animatronic_place.isPointOfChoice ){
-                    
-                    animatronic.footstep_cheat.inProcess = true;
-
+                    animatronic.footstep_cheat.onSetMaxCheatQuantity();
+                    animatronic.footstep_cheat.inCheatProcess = true;
                     return 
                     
                 }

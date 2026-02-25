@@ -8,7 +8,7 @@ class Room {
         this.image_of_interior_room = config.image_of_interior_room
         this.room_image = config.image_of_interior_room;
         this.vision = "internal";
-        this.playerIsDeath = false;
+        this.clickIsDisabled = false;
         this.playerIsMoving = false;
         this.current_door_vision = null;
         this.dark_screen = config.dark_screen;
@@ -38,7 +38,7 @@ class Room {
         this.left_door.door_room_context = this.room_context;
         this.left_door.onRectClick = (image,direction,type)=>this.onSwitchVision(image,"external",type,direction);
 
-        this.room_canvas.addEventListener('click', (e) => this.handleClick(e));
+        this.room_canvas.addEventListener('click', (e) => !this.clickIsDisabled ?  this.handleClick(e) : ()=>console.log("player está morto"));
         this.dark_screen.addEventListener('mousedown',()=> {
             if(!this.flashlight.inUse && this.flashlight.current_battery_value === 100){
                 audio_manager.onPlay('flash');
@@ -88,7 +88,7 @@ class Room {
     }
 
     onChangeDarkAmbience(noFlash){
-        if(this.vision === 'external' && !this.playerIsDeath && !noFlash){
+        if(this.vision === 'external' && !this.clickIsDisabled && !noFlash){
             // this.dark_screen.style.opacity = opacity
             this.dark_screen.classList.remove('flash-light-fadeout');
             this.dark_screen.classList.add('flash-light-fadein');
@@ -230,8 +230,6 @@ class Room {
 
     handleClick(event) {
 
-        if(!this.playerIsDeath){
-
             const rect = this.room_canvas.getBoundingClientRect();
 
             const scaleX = this.room_canvas.width / rect.width;
@@ -247,7 +245,7 @@ class Room {
                 return
             }
             return
-        }
+        
     }
 }
 
