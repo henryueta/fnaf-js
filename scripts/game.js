@@ -112,7 +112,8 @@ const game = new Game({
 });
 
 await audio_manager.onPreload({
-    beep:"../assets/audio/beep_1.mp3",
+    camera_toggle:'../assets/audio/camera/camera_toggle.wav',
+    camera_select:"../assets/audio/camera/camera_select.wav",
     flash:"../assets/audio/flash.mp3",
     right_to_left_audio:"../assets/audio/right_to_left_footstep.mp3",
     right_audio:'../assets/audio/right_footstep.mp3',

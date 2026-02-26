@@ -16,7 +16,7 @@ const animatronic_list = [
         //     isMovementCancelled:false,
         //     onAction:()=>{
         //         console.log("mudou bee");
-        //         place_list.find((item)=>item.number === 0).current_audio = "../assets/audio/beep_3.mp3"
+        //         place_list.find((item)=>item.number === 0).current_audio = "../assets/audio/camera_select_3.mp3"
         //     }
         // }
     ],

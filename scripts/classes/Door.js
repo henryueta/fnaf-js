@@ -40,9 +40,15 @@ class Door{
 
     }
 
-    onFindAnimatronicView(identifier){
+    onFindAnimatronicView(identifier,type){
         return this.animatronic_view_list.find((animatronic_view)=>
             animatronic_view.identifier === identifier
+            &&
+            !!(
+                type === 'transition'
+                ? !!animatronic_view.forTransition
+                : !animatronic_view.forTransition
+            )
         )
     }
 
@@ -52,7 +58,7 @@ class Door{
             &&
             !!animatronic_view.forTransition
         ).image;
-        console.log(this.vision_image)
+        
     }
 
     onRemoveAnimatronicView(){
@@ -62,9 +68,9 @@ class Door{
         ).image;
     }
 
-    onSetAnimatronicView(identifier){
+    onSetAnimatronicView(identifier,type){
 
-        this.current_animatronic = this.onFindAnimatronicView(identifier);
+        this.current_animatronic = this.onFindAnimatronicView(identifier,type);
         this.vision_image = this.current_animatronic.image;
 
     }   

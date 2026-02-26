@@ -1,3 +1,4 @@
+import { audio_manager } from "../audio-manager.js";
 import { onRandomNumber } from "../functions/randomNumber.js";
 import { Jumpscare } from "./Jumpscare.js";
 
@@ -193,10 +194,9 @@ class Game {
                         
 
                     console.log("Porta encontrada: ",current_player_room_door);
-                    current_player_room_door.onSetAnimatronicView(animatronic.identifier)
+                    current_player_room_door.onSetAnimatronicView(animatronic.identifier,'common')
                     if(this.player_room.current_door_vision !== null){
-                        this.player_room.room_image = this.player_room.current_door_vision.vision_image;
-                        this.player_room.onLoadImage();
+                        this.player_room.onUpdatePlayerView();
                         console.log("dentro da porta");
                     }
 
@@ -273,10 +273,8 @@ class Game {
                     &&
                     this.player_room.vision === 'external'
                 ){
-                    this.player_room.current_door_vision.onSetAnimatronicView(animatronic.identifier);
-                    this.player_room.room_image = this.player_room.current_door_vision.vision_image;
-                    console.log(this.player_room.current_door_vision.vision_image)
-                    this.player_room.onLoadImage();
+                    this.player_room.current_door_vision.onSetAnimatronicView(animatronic.identifier,'common');
+                    this.player_room.onUpdatePlayerView();
                 }
             }
 
@@ -289,7 +287,7 @@ class Game {
     
     onStartNightEvent(){
         this.current_night.event_running_interval = setInterval(()=>{
-            this.onActiveAnimatronic(this.animatronic_list[0]);
+            // this.onActiveAnimatronic(this.animatronic_list[0]);
         },this.current_night.running_event_value);
 
         // this.clock.timer_interval = setInterval(()=>{
@@ -313,17 +311,35 @@ class Game {
         }
 
         this.player_room.onFlashLightCheckout = ()=>{
+
+            if(this.player_room.current_door_vision.current_animatronic === null){
+                return
+            }
+
             this.animatronic_list[0].onClearWaitingTimeEvent();
         }
 
         this.player_room.onFlashLightProcess = ()=>{
+
+            if(this.player_room.current_door_vision.current_animatronic === null){
+                return
+            }
+
             if(this.player_room.flashlight.current_battery_value === 50){
-                this.player_room.current_door_vision.onUpdateAnimatronicStateView(0);
+                this.player_room.current_door_vision.onSetAnimatronicView(0,'transition');
+                this.player_room.onUpdatePlayerView();
             }   
+
         }
 
         this.player_room.onFlashLightEnd = ()=>{
+
+            if(this.player_room.current_door_vision.current_animatronic === null){
+                return
+            }
+
             this.animatronic_list[0].isWaitingPlayer = false;
+
         }
 
         this.onStartNightEvent();
@@ -360,6 +376,7 @@ class Game {
 
             if(this.player_room.vision === 'internal'){
                 this.camera_monitor.onToggle();
+                audio_manager.onPlay('camera_toggle');
                 this.x_movement.setIsLocked(this.camera_monitor.isOpen || this.current_night.playerIsDeath);
                 this.x_movement.onEndMove();
                 return

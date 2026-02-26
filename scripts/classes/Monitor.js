@@ -109,7 +109,7 @@ class Monitor {
         this.choiced_camera_info.image = choiced_camera.current_view;
         this.choiced_camera_info.number = choiced_camera.number;
         if(!!this.isOpen){
-            this.onSelectPlace().style.background = 'green'
+            this.onSelectPlace().style.background = 'green';
             audio_manager.onPlay(this.choiced_camera_info.audio)
             this.onLoadView(false)
         }

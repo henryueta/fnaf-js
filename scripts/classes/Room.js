@@ -93,6 +93,11 @@ class Room {
         },500)
     }
 
+    onUpdatePlayerView(){
+        this.room_image = this.current_door_vision.vision_image;
+        this.onLoadImage();   
+    }
+
     onFlashLight(){
 
         if(!this.flashlight.inUse && this.flashlight.current_battery_value === 100){
@@ -110,14 +115,15 @@ class Room {
                     }
 
                     if(this.flashlight.current_battery_value < 30){
+                        if(!!this.onFlashLightEnd){
+                            this.onFlashLightEnd();
+                        }   
                         this.current_door_vision.onRemoveAnimatronicView();
-                        this.room_image = this.current_door_vision.vision_image;
-                        this.onLoadImage();                        
+                        this.onUpdatePlayerView(); 
+                        
                     }
                 },()=>{this.onChangeDarkAmbience(true)
-                    if(!!this.onFlashLightEnd){
-                        this.onFlashLightEnd();
-                    }
+                    
                 })
             }
     }

@@ -12,14 +12,14 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:'beep',
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
             {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_2.mp3",
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../assets/imgs/one.avif")
 
@@ -27,7 +27,7 @@ const place_list = [
             {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:0,
-                audio:"../assets/audio/beep_3.mp3",
+                audio:'camera_select',
                 repeat_audio:true,
                 image:"../assets/imgs/static.gif"
 
@@ -46,14 +46,14 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:'beep',
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
             {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_2.mp3",
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../assets/imgs/one.avif")
             },
@@ -71,14 +71,14 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:'beep',
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
             {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_2.mp3",
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../assets/imgs/one.avif")
             },
@@ -96,21 +96,21 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:'beep',
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
             {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_2.mp3",
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../assets/imgs/one.avif")
             },
                         {//alterar depois
                             animatronic_list:[0],
                             noisy_animatronic:0,
-                            audio:"../assets/audio/beep_3.mp3",
+                            audio:'camera_select',
                             repeat_audio:true,
                             image:"../assets/imgs/1_sound.jpg"
                                     
@@ -129,21 +129,21 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:'beep',
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
             {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_2.mp3",
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../assets/imgs/one.avif")
             },
              {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:0,
-                audio:"../assets/audio/beep_3.mp3",
+                audio:'camera_select',
                 repeat_audio:true,
                 image:"../assets/imgs/1_sound.jpg"
                         
@@ -162,21 +162,21 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:'beep',
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
             {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_2.mp3",
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../assets/imgs/one.avif")
             },
                         {//alterar depois
                             animatronic_list:[0],
                             noisy_animatronic:0,
-                            audio:"../assets/audio/beep_3.mp3",
+                            audio:'camera_select',
                             repeat_audio:true,
                             image:"../assets/imgs/1_sound.jpg"
                         
@@ -195,14 +195,14 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:'beep',
+                audio:'camera_select',
                 repeat_audio:false,
                 image:""
             },
             {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_2.mp3",
+                audio:'camera_select',
                 repeat_audio:false,
                 image:""
             }
@@ -220,14 +220,14 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:'beep',
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
             {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_2.mp3",
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../assets/imgs/one.avif")
             }
@@ -245,14 +245,14 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:'beep',
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../bedroom_1.jpeg")
             },
             {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_2.mp3",
+                audio:'camera_select',
                 repeat_audio:false,
                 image:await onLoadImage("../assets/imgs/one.avif")
             }
@@ -270,14 +270,14 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:'beep',
+                audio:'camera_select',
                 repeat_audio:false,
                 image:!""
             },
             {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_2.mp3",
+                audio:'camera_select',
                 repeat_audio:false,
                 image:""
             }
@@ -295,14 +295,14 @@ const place_list = [
             {
                 animatronic_list:[],
                 noisy_animatronic:null,
-                audio:'beep',
+                audio:'camera_select',
                 repeat_audio:false,
                 image:"../bedroom_1.jpeg"
             },
             {//alterar depois
                 animatronic_list:[0],
                 noisy_animatronic:null,
-                audio:"../assets/audio/beep_2.mp3",
+                audio:'camera_select',
                 repeat_audio:false,
                 image:"../assets/imgs/one.avif"
             }
