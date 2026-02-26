@@ -6,6 +6,8 @@ class Flashlight {
         this.current_battery_value = 100;
         this.inUse = false;
         this.isCharging = false;
+        this.enableProcess = true;
+        this.enableCharging = true;
         this.utility_timeout = null;
         this.utility_value = 3000;
         this.batery_use_interval = null;
@@ -16,9 +18,15 @@ class Flashlight {
             percent_item
         ])
         );
+        this.battery_container = config.percent_container;
     }
 
     onUse(type,onProcess,onEnd){
+
+        if(!this.enableProcess){
+            return
+        }
+
         this.inUse = true;
         this.isCharging = !!(type === 'charge');
        
@@ -42,7 +50,7 @@ class Flashlight {
             if(!!onProcess){
                 onProcess();
             }
-            
+        
             if(this.current_battery_value === (
                 type === 'charge'
                 ? 100
@@ -61,6 +69,12 @@ class Flashlight {
                 }
             }
 
+            // if(this.current_battery_value === 0){
+            //     this.battery_container.style.borderColor = "red";
+            //     return
+            // }
+            // this.battery_container.style.borderColor = "white";
+            return
         },(
             type === 'charge'
             ? this.batery_use_value+1000

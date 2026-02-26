@@ -98,7 +98,7 @@ const game = new Game({
     camera_monitor:new Monitor({
         screen_container: document.querySelector(".screen-container"),
         action_button_list:{
-            place_power_switch:document.querySelector("#place-power-switch")
+            place_lock_switch:document.querySelector("#place-lock-switch")
         },
         loading_image:await onLoadImage("../assets/imgs/loading.jpg"),
         camera_list_container:document.querySelector(".map-container"),
@@ -112,14 +112,16 @@ const game = new Game({
 });
 
 await audio_manager.onPreload({
-    camera_toggle:'../assets/audio/camera/camera_toggle.wav',
+    camera_toggle:"../assets/audio/camera/camera_toggle.wav",
     camera_select:"../assets/audio/camera/camera_select.wav",
-    running_away:'../assets/audio/animatronic/running_away.wav',
+    action_denied:"../assets/audio/camera/action_denied.wav",
+    running_away:"../assets/audio/animatronic/running_away.wav",
+    no_battery:"../assets/audio/flashlight/no_battery.wav",
     flash:"../assets/audio/flashlight/flash.wav",
     right_to_left_audio:"../assets/audio/footstep/right_to_left_footstep.wav",
-    right_audio:'../assets/audio/footstep/right_footstep.wav',
+    right_audio:"../assets/audio/footstep/right_footstep.wav",
     left_to_right_audio:"../assets/audio/footstep/left_to_right_footstep.wav",
-    left_audio:'../assets/audio/footstep/left_footstep.wav',
+    left_audio:"../assets/audio/footstep/left_footstep.wav",
 },()=>{
     game.onStart();
 }); 

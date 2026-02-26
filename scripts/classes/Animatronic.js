@@ -29,6 +29,7 @@ class Animatronic {
     }
     
     onClearWaitingTimeEvent(){
+        console.log("timeout",this.waiting_player_timeout)
         if(this.waiting_player_timeout !== null){
             clearTimeout(this.waiting_player_timeout);
             this.waiting_player_timeout = null;
@@ -98,7 +99,6 @@ class Animatronic {
             action_item.place_number === place.number
         );
         
-        console.log("ativo",this.isActive)
         if(!place_action){
             return null
         }

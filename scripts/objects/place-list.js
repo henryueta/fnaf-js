@@ -5,6 +5,7 @@ import { animatronic_list } from "./animatronic-list.js"
 const place_list = [
     new Place({
         number:0,
+        canLock:false,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -39,6 +40,7 @@ const place_list = [
     }),
     new Place({
         number:1,
+        canLock:true,
         hasMultipleConnections:true,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -64,6 +66,7 @@ const place_list = [
     }),
      new Place({
         number:2,
+        canLock:false,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -89,6 +92,7 @@ const place_list = [
     }),
     new Place({
         number:3,
+        canLock:false,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -122,6 +126,7 @@ const place_list = [
     }),
     new Place({
         number:4,
+        canLock:false,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -155,6 +160,7 @@ const place_list = [
     }),
     new Place({
         number:5,
+        canLock:false,
         hasMultipleConnections:true,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -188,6 +194,7 @@ const place_list = [
     }),
     new Place({
         number:6,
+        canLock:false,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:true,
         isPointOfChoice:false,
@@ -213,6 +220,7 @@ const place_list = [
     }),
     new Place({
         number:7,
+        canLock:false,
         hasMultipleConnections:true,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -238,6 +246,7 @@ const place_list = [
     }),
     new Place({
         number:8,
+        canLock:false,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -263,6 +272,7 @@ const place_list = [
     }),
     new Place({
         number:9,
+        canLock:false,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:true,
         isPointOfChoice:false,
@@ -288,6 +298,7 @@ const place_list = [
     }),
     new Place({
         number:10,
+        canLock:false,
         hasMultipleConnections:true,
         hasSecurityRoomConnection:false,
         isPointOfChoice:true,

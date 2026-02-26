@@ -33,7 +33,7 @@ class Game {
             clearInterval(this.clock.timer_interval);
         }
         if(this.player_room.flashlight.batery_use_interval !== null){
-            clearInterval(this.player_room.flashlight.batery_use_interval)
+            clearInterval(this.player_room.flashlight.batery_use_interval);
         }
     }
 
@@ -65,8 +65,6 @@ class Game {
         if(animatronic.isActive){
 
             if(!!animatronic.isMoving){
-                console.log("timeout",animatronic.waiting_player_timeout)
-                console.log('waiting',animatronic.isWaitingPlayer)
                 if(
                     !!animatronic.isWaitingPlayer 
                     && 
@@ -143,9 +141,22 @@ class Game {
 
             
             //apenas o número do local
-            
-            const current_animatronic_place =  animatronic.onChoicePlace(this.place_list.find((place_item)=>place_item.number === animatronic.current_place).next_place_index_list);
-            
+            const locked_place = this.place_list.find((place_item)=>
+                !!place_item.isLocked
+            );
+
+            const next_place_list = this.place_list.find((place_item)=>
+                place_item.number === animatronic.current_place
+            ).next_place_index_list;
+
+            const current_animatronic_place =  animatronic.onChoicePlace(
+                (
+                    (locked_place !== null && locked_place !== undefined)
+                    ? next_place_list.filter((place_number)=>place_number !== locked_place.number)
+                    : next_place_list
+                )
+            ); 
+
             if(current_animatronic_place === 11){
                 this.onKillPlayer(animatronic);
                 
@@ -315,7 +326,7 @@ class Game {
             if(this.player_room.current_door_vision.current_animatronic === null){
                 return
             }
-
+            console.log("aqui")
             this.animatronic_list[0].onClearWaitingTimeEvent();
         }
 
@@ -341,6 +352,34 @@ class Game {
             this.animatronic_list[0].isWaitingPlayer = false;
 
         }
+
+        this.camera_monitor.onLockCheckout = ()=>{
+            if(this.player_room.flashlight.inUse){
+                this.camera_monitor.activeLock = false;
+                return
+            }
+            this.camera_monitor.activeLock = true;
+            return
+        }
+
+        this.camera_monitor.onLockPlace = (isLocked)=>{
+            this.player_room.flashlight.current_battery_value = 
+                !!isLocked
+                ? 0
+                : 100
+            ;
+            Array.from(this.player_room.flashlight.battery_container.children).forEach((percent_item)=>
+            {
+                console.log(percent_item)
+                return percent_item.style.opacity = (
+                    !!isLocked
+                    ? '0%'
+                    : '100%'
+                )
+            }
+            )
+            this.player_room.flashlight.enableProcess = !isLocked;
+        }   
 
         this.onStartNightEvent();
 

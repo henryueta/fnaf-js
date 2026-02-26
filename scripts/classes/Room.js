@@ -103,13 +103,13 @@ class Room {
         if(!this.flashlight.inUse && this.flashlight.current_battery_value === 100){
                 audio_manager.onPlay('flash');
                 this.onChangeDarkAmbience(false);
+
+                this.flashlight.onUse('discharge',()=>{
                 if(this.vision === 'external' && this.current_door_vision.current_animatronic !== null){
                         if(!!this.onFlashLightCheckout){
                             this.onFlashLightCheckout();
                         }
                 }
-                this.flashlight.onUse('discharge',()=>{
-
                     if(this.onFlashLightProcess){
                         this.onFlashLightProcess();
                     }
@@ -124,8 +124,16 @@ class Room {
                     }
                 },()=>{this.onChangeDarkAmbience(true)
                     
-                })
+                });
+                return
             }
+            
+            if(!this.flashlight.inUse){
+                audio_manager.onPlay('no_battery');
+                return
+            }
+
+            return
     }
 
     onLoadImage(){

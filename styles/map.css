@@ -29,11 +29,12 @@
   right: 48%;
 }
 
-#place-power-switch{
+#place-lock-switch{
+  display: none;
   padding: 1rem;
 }
 
-.used-power-switch{
+.user-lock-switch{
   background-color: rgb(78, 78, 78);
   border: 0.2rem solid gray;
   color: gray;
@@ -256,7 +257,7 @@
        font-size: 0.6rem;   
       }
 
-      #place-power-switch{
+      #place-lock-switch{
         padding: 0.6rem;
       }
 

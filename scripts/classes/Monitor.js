@@ -5,14 +5,15 @@ class Monitor {
         this.screen_container = config.screen_container;
         this.isOpen = false;
         this.isRunningOperation = false;
+        this.activeLock = true;
         this.camera_list_container = config.camera_list_container;
         this.camera_list = config.camera_list;
         this.action_button_list = config.action_button_list;
         this.choiced_camera_canvas = config.choiced_camera_canvas;
         this.choiced_camera_context = this.choiced_camera_canvas.getContext("2d")
         this.loading_image = config.loading_image;
-
-
+        this.onLockPlace = config.onLockPlace;
+        this.onLockCheckout = config.onLockCheckout;
         this.choiced_camera_info = {
             number:this.camera_list[0].number,
             image:null,
@@ -26,30 +27,42 @@ class Monitor {
         this.choiced_camera_info.number =  this.camera_list[0].number;
         
       if(!!this.action_button_list){
-        const place_power_switch = this.action_button_list.place_power_switch
-        place_power_switch.onclick = ()=>{
+
+        const place_lock_switch = this.action_button_list.place_lock_switch;
+        place_lock_switch.onclick = ()=>{
+                this.onLockCheckout();
+
+                if(!this.activeLock){
+                    return
+                }
             if(!this.isRunningOperation){
 
             const choiced_camera =  this.camera_list.find((camera_item)=>
                 camera_item.number === this.choiced_camera_info.number
             )
+            if(!choiced_camera.onLockSwitch()){
+                audio_manager.onPlay('action_denied')
+                return
+            }
+
             this.isRunningOperation = true;
-            place_power_switch.textContent = "Running. . .";
-            place_power_switch.classList.add("used-power-switch");
+            place_lock_switch.textContent = "Running. . .";
+            place_lock_switch.classList.add("user-lock-switch");
 
             setTimeout(()=>{
-                const current_camera_power = choiced_camera.onPowerSwitch();
-                
-                place_power_switch.textContent = (
-                    !!current_camera_power
-                    ? "Power Off"
-                    : "Power On"
+
+                place_lock_switch.textContent = (
+                    !choiced_camera.isLocked
+                    ? "Lock"
+                    : "Unlock"
                 )
-                place_power_switch.classList.remove("used-power-switch");
+                place_lock_switch.classList.remove("user-lock-switch");
                 
                 this.choiced_camera_info.image =  choiced_camera.current_view;
                 this.choiced_camera_info.audio = choiced_camera.current_audio;
                 // this.choiced_camera_info.audio.loop = choiced_camera
+                console.log("trancado",choiced_camera.isLocked);
+                    this.onLockPlace(choiced_camera.isLocked);
                setTimeout(()=>{
                 this.isRunningOperation = false;
                },200)
@@ -90,6 +103,15 @@ class Monitor {
         return document.querySelector("#place-"+this.choiced_camera_info.number);
     }
 
+    onChangeLockButtonView(canLock){
+        if(canLock){
+            this.action_button_list.place_lock_switch.style.display = 'block';
+            return
+        }
+        this.action_button_list.place_lock_switch.style.display = 'none';
+        return
+    }
+
     onToggle(){
     this.screen_container.classList.remove(!!this.isOpen ? 'open-cam-system' : 'close-cam-system')
 
@@ -100,7 +122,6 @@ class Monitor {
 
     // this.onResetCurrentCamera();
     setTimeout(()=>{
-       
         this.screen_container.style.display = (!!this.isOpen ? "block" : "none");
         const choiced_camera = this.camera_list.find((item)=>{
             return item.number === last_choiced_camera_number
@@ -110,8 +131,9 @@ class Monitor {
         this.choiced_camera_info.number = choiced_camera.number;
         if(!!this.isOpen){
             this.onSelectPlace().style.background = 'green';
-            audio_manager.onPlay(this.choiced_camera_info.audio)
-            this.onLoadView(false)
+            audio_manager.onPlay(this.choiced_camera_info.audio);
+            this.onLoadView(false);
+            this.onChangeLockButtonView(choiced_camera.canLock);
         }
     },300)
         this.isOpen = !this.isOpen;
@@ -126,7 +148,6 @@ class Monitor {
         //  .filter((camera_item)=>
         //     camera_item.className === 'accessible-place'
         // );
-            
         accessible_camera_list.forEach((camera_item)=>{
             const camera_item_container = camera_item.children[0]
             camera_item_container.onclick = ()=>{
@@ -143,6 +164,7 @@ class Monitor {
                     this.choiced_camera_info.number = choiced_camera.number;
                     this.onLoadView(true);
                 }
+                this.onChangeLockButtonView(choiced_camera.canLock);
             }
         })
 
