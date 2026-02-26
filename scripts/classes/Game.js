@@ -238,14 +238,14 @@ class Game {
             //     }
             //     console.log("moving",place_for_noisy)
             // }
-
+            // console.log(next_current_animatronic_place.hasPowerGenerator)
             // animatronic.onAction(next_current_animatronic_place);
             console.log(prev_current_animatronic_place.number,next_current_animatronic_place.number)
             if(prev_current_animatronic_place.number !== next_current_animatronic_place.number){
                 prev_current_animatronic_place.onRemoveAnimatronic(animatronic);
                 prev_current_animatronic_place.onSetView(false);
                 next_current_animatronic_place.onSetAnimatronic(animatronic);
-                next_current_animatronic_place.onSetView(((place_for_noisy) && animatronic.current_mode === 'noisy'));
+                // next_current_animatronic_place.onSetView(((place_for_noisy) && animatronic.current_mode === 'noisy'));
                
                 if(
                     this.camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
@@ -261,18 +261,10 @@ class Game {
                             ?  prev_current_animatronic_place
                             :  (next_current_animatronic_place)
                         )
-                        console.log(current_place.current_view)
-                        current_place.onSetView(((place_for_noisy) && animatronic.current_mode === 'noisy'))
-                        this.camera_monitor.choiced_camera_info.image = (
-                            !!(place_for_noisy && animatronic.current_mode === 'noisy')
-                            ? place_for_noisy.image
-                            : current_place.current_view
-                        );
-                        this.camera_monitor.choiced_camera_info.audio = (
-                            !!(place_for_noisy && animatronic.current_mode === 'noisy')
-                            ? place_for_noisy.audio
-                            : current_place.current_audio
-                        );
+                        // console.log(current_place.current_view)
+                        // current_place.onSetView()
+                        this.camera_monitor.choiced_camera_info.image = ( current_place.current_view);
+                        this.camera_monitor.choiced_camera_info.audio = ( current_place.current_audio);
                         this.camera_monitor.onLoadView(false);
                     },200)
                 }

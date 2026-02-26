@@ -7,6 +7,7 @@ class Place {
         this.name = config.name;
         this.canLock = config.canLock;
         this.isLocked = config.isLocked || false;
+        this.hasPowerGenerator = config.hasPowerGenerator;
         this.next_place_index_list = config.next_place_index_list;
         this.animatronic_list =  config.animatronic_list ||  [];
         this.place_view_list = config.place_view_list || [];

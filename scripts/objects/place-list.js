@@ -6,6 +6,7 @@ const place_list = [
     new Place({
         number:0,
         canLock:false,
+        hasPowerGenerator:false,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -41,6 +42,7 @@ const place_list = [
     new Place({
         number:1,
         canLock:true,
+        hasPowerGenerator:false,
         hasMultipleConnections:true,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -67,6 +69,7 @@ const place_list = [
      new Place({
         number:2,
         canLock:false,
+        hasPowerGenerator:false,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -93,6 +96,7 @@ const place_list = [
     new Place({
         number:3,
         canLock:false,
+        hasPowerGenerator:false,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -127,6 +131,7 @@ const place_list = [
     new Place({
         number:4,
         canLock:false,
+        hasPowerGenerator:false,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -161,6 +166,7 @@ const place_list = [
     new Place({
         number:5,
         canLock:false,
+        hasPowerGenerator:false,
         hasMultipleConnections:true,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -195,6 +201,7 @@ const place_list = [
     new Place({
         number:6,
         canLock:false,
+        hasPowerGenerator:false,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:true,
         isPointOfChoice:false,
@@ -221,6 +228,7 @@ const place_list = [
     new Place({
         number:7,
         canLock:false,
+        hasPowerGenerator:false,
         hasMultipleConnections:true,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -247,6 +255,7 @@ const place_list = [
     new Place({
         number:8,
         canLock:false,
+        hasPowerGenerator:false,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -273,6 +282,7 @@ const place_list = [
     new Place({
         number:9,
         canLock:false,
+        hasPowerGenerator:false,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:true,
         isPointOfChoice:false,
@@ -299,6 +309,7 @@ const place_list = [
     new Place({
         number:10,
         canLock:false,
+        hasPowerGenerator:true,
         hasMultipleConnections:true,
         hasSecurityRoomConnection:false,
         isPointOfChoice:true,
