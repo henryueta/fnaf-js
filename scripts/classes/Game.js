@@ -337,7 +337,7 @@ class Game {
             if(this.player_room.current_door_vision.current_animatronic === null){
                 return
             }
-
+            audio_manager.onPlay(this.animatronic_list[0].running_away_audio);
             this.animatronic_list[0].isWaitingPlayer = false;
 
         }

@@ -8,6 +8,8 @@ const animatronic_list = [
     isActive:true,
     isMoving:true,
     current_mode:'hunter',
+    running_away_audio:'running_away',
+    jumpscare_scream_audio:'',
     waiting_player_value:4000,
     movement_delay:1500,
     action_list:[

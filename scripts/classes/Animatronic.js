@@ -18,6 +18,7 @@ class Animatronic {
         this.waiting_player_value = config.waiting_player_value;
         // this.isHuntingPlayer = config.isHuntingPlayer;
         this.jumpscare_scream_audio = config.jumpscare_scream_audio;
+        this.running_away_audio = config.running_away_audio;
         this.visited_place_list = [];
         this.jumpscare_frame_list = config.jumpscare_frame_list;
         // this.next_place = config.next_place;
