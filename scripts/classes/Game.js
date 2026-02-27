@@ -346,7 +346,7 @@ class Game {
         }
 
         this.camera_monitor.onLockCheckout = ()=>{
-            if(this.player_room.flashlight.inUse){
+            if(this.player_room.flashlight.inUse || this.player_room.flashlight.current_battery_value < 100){
                 this.camera_monitor.activeLock = false;
                 return
             }

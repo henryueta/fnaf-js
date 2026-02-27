@@ -121,47 +121,51 @@
 /* .puppet-area { grid-area: 1 / 13 / 4 / 19; }  */
 
 
-.client-hall { grid-area: 9 / 11 / 5 / 19;}
+.client-hall { grid-area: 9 / 9 / 5 / 19;}
 .employee-hall  { grid-area: 14 / 15 / 10 / 19;}
 /* .game-area { grid-area: 9 / 20 / 3 / 24;} */
 /* .deposit { grid-area: 14 / 20 / 11 / 23;} */
 
-.kitchen { grid-area: 13 / 6 / 10 / 12; }
-.dining-to-bathroom-hall {grid-area: 8 / 10 / 6 / 11;}
+.kitchen { grid-area: 13 / 4 / 10 / 8; }
+.dining-to-bathroom-hall {grid-area: 8 / 8 / 6 / 8;}
 
 
-.supply-closet { grid-area: 11 / 13 / 11 / 14; }
-.employee-bathroom { grid-area: 9 / 6 / 5 / 10;}
+/* .supply-closet { grid-area: 11 / 13 / 11 / 14; } */
+.employee-bathroom { grid-area: 9 / 4 / 5 / 8;}
 .employee-entrance { grid-area: 7 / 14 / 8 / 15;}
 .employee-to-employee-bathroom-hall { grid-area:10 / 13 / 9 / 12; } 
 
-.office { grid-area: 21 / 9 / 18 / 12; }
+.office {grid-area: 10 / 9 / 13 / 14; }
 .client-entrance { grid-area: 4 / 16 / 5 / 18;border-bottom: none !important;border-top: none !important;}
 
+.office>div{
+  padding:0.6rem;
+  border: 0.15rem solid rgb(255,255,255,0.5);
+}
 
 
 
-.dining-to-kitchen-hall { grid-area: 10 / 7 / 9 / 8;}
+.dining-to-kitchen-hall { grid-area: 10 / 4 / 9 / 6;}
 /* .dining-to-client-hall { grid-area: 2 / 12 / 3 / 13; } */
 
-.employee-to-supply-closet-hall { grid-area: 12 / 14 / 11 / 15; } 
+/* .employee-to-supply-closet-hall { grid-area: 12 / 14 / 11 / 15; }  */
 .employee-to-client-hall { grid-area: 10 / 16 / 9 / 18;}
 
 .employee-to-employee-area-hall  { grid-area: 18 / 15 / 16 / 14; }
 .employee-area-to-kitchen-hall { grid-area: 14 / 8 / 13 / 9; }
 
 .front-office-hall { grid-area: 18 / 11 / 17 / 10; } /* Entre backstage e main stage */
-.front-room-to-office { grid-area: 17 / 9 / 13 / 12; }
+.front-room-to-office { grid-area: 17 / 4 / 14 / 12; }
 
 .client-to-game-area-hall  { grid-area: 15 / 9 / 16 / 8;}
 .employee-to-deposit-hall { grid-area: 15 / 13 / 16 / 12;} 
 
-.right-office-hall { grid-area: 19 / 12 / 19 / 13;}
-.right-room-to-office { grid-area: 21 / 13 / 14 / 19;}
+.right-office-hall { grid-area: 12 / 14 / 11 / 15;}
+.right-room-to-office { grid-area: 17 / 13 / 14 / 19;}
 
-.left-office-hall { grid-area: 19 / 9 / 19 / 8;}
-.left-room-to-office { grid-area: 21 / 6 / 14 / 8;}
-.bathroom { grid-area: 13 / 7 / 13 / 7;background-color: blue;}
+.left-office-hall { grid-area: 12 / 9 / 11 / 8;}
+/* .left-room-to-office { grid-area: 21 / 6 / 14 / 8;} */
+/* .bathroom { grid-area: 13 / 7 / 13 / 7;} */
 
 .horizontal-hall{
   z-index: 1;
@@ -207,6 +211,7 @@
 }
 
 #place-4{
+  visibility: hidden ;
   bottom: 50%;
   right: -40%;
 }
@@ -219,6 +224,7 @@
 #place-6{
   bottom: -50%;
   right: 40%;
+  visibility: hidden;
 }
 
 #place-7{
@@ -234,6 +240,7 @@
 #place-9{
   bottom: -50%;
   right: -40%;
+  visibility: hidden;
 }
 
 #place-10{
