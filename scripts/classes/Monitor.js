@@ -160,15 +160,40 @@ class Monitor {
     }
 
 
+    onUpdateGeneratorRoomList(type){
+
+
+            if(!!this.enabled_generator_room_list.size){
+
+            this.enabled_generator_room_list.forEach(((generator_room)=>{
+                generator_room.style.visibility = (
+                    type === 'start'
+                    ? 'visible'
+                    : 'hidden'
+                );
+            }))
+
+
+            this.enabled_generator_room_list.forEach((generator_room)=>{
+                const current_room = this.camera_list.find((camera_item)=>camera_item.number === Number.parseInt(generator_room.id.slice(6)))
+                current_room.isEnabled = !!(type === 'start');
+                current_room.isLocked = !!(type === 'reset');
+            });
+
+            }
+
+
+            if(type === 'reset'){
+                
+                this.enabled_generator_room_list.clear();
+                return
+            }
+            return
+    }
+
     onGenerateGeneratorRoomList(){
         
-        if(this.enabled_generator_room_list.size){
-            this.enabled_generator_room_list.forEach(((generator_room)=>{
-                generator_room.style.visibility = 'hidden';
-            }))
-        }
-
-        this.enabled_generator_room_list.clear();
+        this.onUpdateGeneratorRoomList('reset');
         
         const current_quantity = onRandomNumber(2,3);
 
@@ -177,15 +202,7 @@ class Monitor {
             this.enabled_generator_room_list.add((this.generator_room_camera_list[random_generator_room]));
         }
 
-        this.enabled_generator_room_list.forEach((generator_room)=>{
-            const current_room = this.camera_list.find((camera_item)=>camera_item.number === Number.parseInt(generator_room.id.slice(6)))
-            current_room.isEnabled = true;
-            current_room.isLocked = false;
-        });
-
-        this.enabled_generator_room_list.forEach(((generator_room)=>{
-                generator_room.style.visibility = 'visible';
-        }))
+        this.onUpdateGeneratorRoomList('start');
 
     }
 

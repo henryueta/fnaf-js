@@ -141,12 +141,15 @@ class Game {
 
             
             //apenas o número do local
+
+
             const locked_place = this.place_list.filter((place_item)=>
             {
-                return !!place_item.isLocked && !!place_item.isEnabled
+                return !!place_item.isLocked
             }
             ).map((place_item)=>place_item.number);
-            
+
+
             const next_place_list = this.place_list.find((place_item)=>
                 place_item.number === animatronic.current_place
             ).next_place_index_list;
@@ -158,6 +161,7 @@ class Game {
                     : next_place_list
                 )
             ); 
+
             if(current_animatronic_place === 11){
                 this.onKillPlayer(animatronic);
                 
@@ -172,6 +176,8 @@ class Game {
             }
             
             const next_current_animatronic_place = this.place_list.find((place_item)=>place_item.number === current_animatronic_place)
+            
+           
 
                 if(next_current_animatronic_place.isPointOfChoice ){
                     animatronic.footstep_cheat.onSetMaxCheatQuantity();
@@ -263,7 +269,17 @@ class Game {
                     },200)
                 }
             }
+             if(!!next_current_animatronic_place.hasPowerGenerator){
+                
+                clearInterval(this.current_night.running_event_value);
+                console.log("morreu");
+                setTimeout(()=>{
+                    this.onKillPlayer(animatronic);
+                },3000)
 
+                return  
+
+            }
            
             if(this.player_room.current_door_vision !== null){
                 if(this.player_room.current_door_vision.place_location_number === animatronic.current_place
@@ -284,7 +300,7 @@ class Game {
     
     onStartNightEvent(){
         this.current_night.event_running_interval = setInterval(()=>{
-            // this.onActiveAnimatronic(this.animastronic_list[0]);
+            this.onActiveAnimatronic(this.animatronic_list[0]);
         },this.current_night.running_event_value);
 
         // this.clock.timer_interval = setInterval(()=>{
