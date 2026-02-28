@@ -6,6 +6,7 @@ class Place {
         this.number = config.number;
         this.name = config.name;
         this.canLock = config.canLock;
+        this.isEnabled = config.isEnabled;
         this.isLocked = config.isLocked || false;
         this.hasPowerGenerator = config.hasPowerGenerator;
         this.next_place_index_list = config.next_place_index_list;
@@ -54,7 +55,7 @@ class Place {
         {
             return onSameList(this.animatronic_list.map((animatronic_item)=>animatronic_item.identifier),view_item.animatronic_list)
         }
-        ).image
+        ).image;
 
     }
 

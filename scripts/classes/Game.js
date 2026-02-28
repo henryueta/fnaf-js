@@ -141,22 +141,23 @@ class Game {
 
             
             //apenas o número do local
-            const locked_place = this.place_list.find((place_item)=>
-                !!place_item.isLocked
-            );
-
+            const locked_place = this.place_list.filter((place_item)=>
+            {
+                return !!place_item.isLocked && !!place_item.isEnabled
+            }
+            ).map((place_item)=>place_item.number);
+            
             const next_place_list = this.place_list.find((place_item)=>
                 place_item.number === animatronic.current_place
             ).next_place_index_list;
 
             const current_animatronic_place =  animatronic.onChoicePlace(
                 (
-                    (locked_place !== null && locked_place !== undefined)
-                    ? next_place_list.filter((place_number)=>place_number !== locked_place.number)
+                    (!!locked_place.length)
+                    ? next_place_list.filter((place_number)=>!locked_place.includes(place_number))
                     : next_place_list
                 )
             ); 
-
             if(current_animatronic_place === 11){
                 this.onKillPlayer(animatronic);
                 
@@ -220,12 +221,6 @@ class Game {
                     animatronic.visited_place_list.push(prev_current_animatronic_place.number)
                 }
             }
-
-            const place_for_noisy = next_current_animatronic_place.place_view_list.find((place_item)=>
-                typeof place_item.noisy_animatronic === 'number' 
-                &&
-                place_item.noisy_animatronic === animatronic.identifier
-            );
             
             // if(animatronic.current_mode === 'noisy'){
 
@@ -240,12 +235,11 @@ class Game {
             // }
             // console.log(next_current_animatronic_place.hasPowerGenerator)
             // animatronic.onAction(next_current_animatronic_place);
-            console.log(prev_current_animatronic_place.number,next_current_animatronic_place.number)
             if(prev_current_animatronic_place.number !== next_current_animatronic_place.number){
                 prev_current_animatronic_place.onRemoveAnimatronic(animatronic);
                 prev_current_animatronic_place.onSetView(false);
                 next_current_animatronic_place.onSetAnimatronic(animatronic);
-                // next_current_animatronic_place.onSetView(((place_for_noisy) && animatronic.current_mode === 'noisy'));
+                next_current_animatronic_place.onSetView(false);
                
                 if(
                     this.camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
@@ -262,7 +256,7 @@ class Game {
                             :  (next_current_animatronic_place)
                         )
                         // console.log(current_place.current_view)
-                        // current_place.onSetView()
+                        current_place.onSetView()
                         this.camera_monitor.choiced_camera_info.image = ( current_place.current_view);
                         this.camera_monitor.choiced_camera_info.audio = ( current_place.current_audio);
                         this.camera_monitor.onLoadView(false);
@@ -290,7 +284,7 @@ class Game {
     
     onStartNightEvent(){
         this.current_night.event_running_interval = setInterval(()=>{
-            // this.onActiveAnimatronic(this.animatronic_list[0]);
+            // this.onActiveAnimatronic(this.animastronic_list[0]);
         },this.current_night.running_event_value);
 
         // this.clock.timer_interval = setInterval(()=>{
@@ -346,7 +340,7 @@ class Game {
         }
 
         this.camera_monitor.onLockCheckout = ()=>{
-            if(this.player_room.flashlight.inUse || this.player_room.flashlight.current_battery_value < 100){
+            if(this.player_room.flashlight.inUse){
                 this.camera_monitor.activeLock = false;
                 return
             }

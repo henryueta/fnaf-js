@@ -1,5 +1,6 @@
+
 .room-container{
-    z-index: 10;
+    z-index: 3;
     display: flex;
     justify-content: space-between;
     /* background-image: url('../bedroom_1.jpeg'); */
@@ -9,8 +10,9 @@
     height: 100dvh;
     width: 110dvw;
     /* transform: translateX(-25%); */
-    background-color: black;
+    background-color: rgb(224, 0, 0);
 }
+
 
 .battery-container{
     position: fixed;
@@ -258,3 +260,8 @@
     }
 
   }
+
+
+  @media (min-aspect-ratio: 21/9) {
+
+}

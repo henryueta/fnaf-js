@@ -53,12 +53,12 @@
 
         .game-area { grid-area: 9 / 20 / 3 / 24;}
         .deposit { grid-area: 16 / 20 / 13 / 23;}
-        .kitchen { grid-area: 13 / 6 / 9 / 10; }
+        .room-0 { grid-area: 13 / 6 / 9 / 10; }
         .supply-closet { grid-area: 13 / 11 / 10 / 14; }
       
         .office { grid-area: 21 / 9 / 19 / 12; }
         .client-entrance { grid-area: 2 / 16 / 4 / 18;}
-        .employee-entrance { grid-area: 17 / 6 / 15 / 8;}
+        .generator-room-4 { grid-area: 17 / 6 / 15 / 8;}
         /* .client-entrance { grid-area: 14 / 2 / 16 / 5; } */
         .employee-area { grid-area: 18 / 7 / 14 / 14; }
 
@@ -74,9 +74,9 @@
         .game-hall { grid-area: 7 / 21 / 5 / 16; } 
         .deposit-hall { grid-area: 15 / 21 / 14 / 16; } 
         .corridor-top-left { grid-area: 13 / 13 / 11 / 16; } /* Conectando client-entrance ao salão */
-        .kitchen-hall { grid-area: 6 / 7 / 10 / 8; }
+        .room-0-hall { grid-area: 6 / 7 / 10 / 8; }
         .dinning-hall { grid-area: 4 / 13 / 6 / 16; }
-        .employee-to-client-hall { grid-area: 7 / 16 / 11 / 18;}
+        .employee-to-room-4 { grid-area: 7 / 16 / 11 / 18;}
         .employee-area-hall  { grid-area: 17 / 16 / 15 / 13; }
         .front-office-hall { grid-area: 20 / 11 / 16 / 10; } /* Entre backstage e main stage */
 
@@ -107,7 +107,7 @@
         <div class="map-item backstage sub-place">Backstage</div>
         <div class="map-item main-stage place">Main Stage</div>
         <div class="map-item client-entrance place"></div>
-        <div class="map-item employee-entrance place"></div>
+        <div class="map-item generator-room-4 place"></div>
         <div class="map-item puppet-area sub-place">Puppet Area</div>
         <div class="map-item dining-hall place">Dining Hall</div>
         <div class="map-item bathroom place">Bathroom</div>
@@ -117,7 +117,7 @@
         <div class="map-item employee-main-hall place">Employee Hall</div>
         <div class="map-item game-area place">Game Area</div>
         <div class="map-item deposit place">Deposit</div>
-        <div class="map-item kitchen place">Kitchen</div>
+        <div class="map-item room-0 place">room-0</div>
         <div class="map-item supply-closet place">Supply Closet</div>
   
         <div class="map-item office place">Office</div>
@@ -134,10 +134,10 @@
         <div class="map-item deposit-hall hall"></div>
         <div class="map-item right-office-hall hall"></div>
         <div class="map-item left-office-hall hall"></div>
-        <div class="map-item kitchen-hall hall"></div>
+        <div class="map-item room-0-hall hall"></div>
         <div class="map-item dinning-hall hall"></div>
         <div class="map-item bathroom-hall hall"></div>
-        <div class="map-item employee-to-client-hall hall"></div> 
+        <div class="map-item employee-to-room-4 hall"></div> 
          <div class="map-item employee-area-hall hall"></div> 
         <div class="map-item front-office-hall hall"></div>
 

@@ -1,7 +1,5 @@
-import { Animatronic } from "./classes/Animatronic.js"
 import { Monitor } from "./classes/Monitor.js"
 import { Movement } from "./classes/Movement.js"
-import { Place } from "./classes/Place.js"
 import { Room } from "./classes/Room.js"
 import { place_list } from "./objects/place-list.js"
 import { animatronic_list } from "./objects/animatronic-list.js"
@@ -13,6 +11,7 @@ import { onLoadImage } from "./functions/image-loader.js"
 import { Clock } from "./classes/Clock.js"
 import { audio_manager } from "./audio-manager.js"
 import { Player } from "./classes/Player.js"
+import { generator_room_list } from "./objects/generator-room-list.js"
 
 
 // const assets = [];
@@ -75,6 +74,31 @@ import { Player } from "./classes/Player.js"
 //     "../minecraft.png"
 // ]);
 
+function resizeGame() {
+  const gameWrapper = document.querySelector("body");
+
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+
+  const targetRatio = 21 / 9;
+  const screenRatio = screenWidth / screenHeight;
+
+  if (screenRatio > targetRatio) {
+    // Tela muito larga → limitar pela altura
+    gameWrapper.style.height = screenHeight + "px";
+    gameWrapper.style.width = (screenHeight * targetRatio) + "px";
+    gameWrapper.style.border = '2px solid red'
+  } else {
+    // Tela muito alta → limitar pela largura
+    gameWrapper.style.border = '2px solid blue'
+    
+    gameWrapper.style.width = screenWidth + "px";
+    gameWrapper.style.height = (screenWidth / targetRatio) + "px";
+  }
+}
+
+// window.addEventListener("resize", resizeGame);
+// resizeGame();
 
 const game = new Game({
     player:new Player(),
@@ -102,12 +126,12 @@ const game = new Game({
         },
         loading_image:await onLoadImage("../assets/imgs/loading.jpg"),
         camera_list_container:document.querySelector(".map-container"),
-        camera_list:place_list,
+        camera_list:[...place_list,...generator_room_list],
         choiced_camera_canvas:document.querySelector("#choiced-place-canvas")
     }),
     toggle_cam_system_button:document.querySelector(".toggle-cam-system-button"),
     animatronic_list:animatronic_list,
-    place_list:place_list,
+    place_list:[...place_list,...generator_room_list],
     current_night:night_list.find((night_item)=>!night_item.isCompleted)
 });
 

@@ -44,32 +44,32 @@
         .bathroom { grid-area: 12 / 4 / 3 /5;}
         .mens-bathroom { grid-area: 12 / 1 / 9 / 3;}
         .womens-bathroom { grid-area: 8 / 1 / 5 / 3;}
-        .client-hall { grid-area: 9 / 15 / 3 / 19;}
-        .employee-hall  { grid-area: 19 / 15 / 10 / 19;}
-        .employee-bathroom { grid-area: 19 / 20 / 17 / 20;}
+        .room-4 { grid-area: 9 / 15 / 3 / 19;}
+        .room-3A  { grid-area: 19 / 15 / 10 / 19;}
+        .room-0 { grid-area: 19 / 20 / 17 / 20;}
         .game-area { grid-area: 9 / 20 / 3 / 24;}
         .deposit { grid-area: 14 / 20 / 11 / 23;}
-        .kitchen { grid-area: 13 / 6 / 9 / 10; }
+        .room-0 { grid-area: 13 / 6 / 9 / 10; }
         .supply-closet { grid-area: 13 / 11 / 10 / 14; }
         .office { grid-area: 21 / 9 / 19 / 12; }
         .client-entrance { grid-area: 2 / 16 / 3 / 18;}
-        .employee-entrance { grid-area: 17 / 6 / 15 / 7;}
+        .generator-room-4 { grid-area: 17 / 6 / 15 / 7;}
         .employee-area { grid-area: 18 / 7 / 14 / 14; }
         
 
-        .client-to-game-area-hall { grid-area: 7 / 20 / 5 / 19; } 
+        .generator-room-1 { grid-area: 7 / 20 / 5 / 19; } 
         .dining-to-bathroom-hall {grid-area: 5 / 6 / 4 /5;}
         .right-office-hall { grid-area: 11 / 3 / 10 / 4;}
         .left-office-hall { grid-area: 7 / 3 / 6 / 4;}
-        .dining-to-kitchen-hall { grid-area: 8 / 7 / 9 / 8;}
-        .dining-to-client-hall { grid-area: 4 / 14 / 6 / 15; }
+        .dining-to-room-0-hall { grid-area: 8 / 7 / 9 / 8;}
+        .dining-to-room-4 { grid-area: 4 / 14 / 6 / 15; }
         
-        .employee-to-supply-closet-hall { grid-area: 12 / 14 / 11 / 15; } 
-        .employee-to-client-hall { grid-area: 9 / 16 / 10 / 18;}
+        .generator-room-0 { grid-area: 12 / 14 / 11 / 15; } 
+        .employee-to-room-4 { grid-area: 9 / 16 / 10 / 18;}
         .employee-to-deposit-hall { grid-area: 12 / 20 / 13 / 19; } 
-        .employee-to-employee-bathroom-hall { grid-area: 18 / 20 / 17 / 19; } 
-        .employee-to-employee-area-hall  { grid-area: 17 / 15 / 15 / 14; }
-        .employee-area-to-kitchen-hall { grid-area: 14 / 8 / 13 / 9; }
+        .generator-room-3 { grid-area: 18 / 20 / 17 / 19; } 
+        .generator-room-2  { grid-area: 17 / 15 / 15 / 14; }
+        .employee-area-to-room-0-hall { grid-area: 14 / 8 / 13 / 9; }
 
         .front-office-hall { grid-area: 19 / 11 / 18 / 10; } /* Entre backstage e main stage */
 
@@ -96,7 +96,7 @@
      <div class="grid-container">
         
         <div class="map-item client-entrance place"></div>
-        <div class="map-item employee-entrance place"></div>
+        <div class="map-item generator-room-4 place"></div>
         <div class="map-item mens-bathroom place">M</div>
         <div class="map-item womens-bathroom place">W</div>
 
@@ -107,13 +107,13 @@
         <div class="map-item dining-hall place" id="place-1">Dining Hall(1)</div>
         <div class="map-item bathroom place" id="place-3">Bathroom(3)</div>
        
-        <div class="map-item client-hall place" id="place-5">Client Hall(5)</div>
-        <div class="map-item employee-hall place" id="place-7">Employee Hall(7)</div>
+        <div class="map-item room-4 place" id="place-5">Client Hall(5)</div>
+        <div class="map-item room-3A place" id="place-7">Employee Hall(7)</div>
         <div class="map-item game-area place" id="place-6">Game Area(6)</div>
         <div class="map-item deposit place" id="place-9">Deposit(9)</div>
-        <div class="map-item employee-bathroom place" id="place-10">Employee Bathroom(10)</div>
+        <div class="map-item room-0 place" id="place-10">Employee Bathroom(10)</div>
 
-        <div class="map-item kitchen place" id="place-4">Kitchen(4)</div>
+        <div class="map-item room-0 place" id="place-4">room-0(4)</div>
         <div class="map-item supply-closet place" id="place-8">Supply Closet(8)</div>
   
         <div class="map-item office place" id="place-12">Office(12)</div>
@@ -121,19 +121,19 @@
 
        
       
-        <div class="map-item client-to-game-area-hall hall"></div>
-        <div class="map-item employee-to-supply-closet-hall hall"></div>
+        <div class="map-item generator-room-1 hall"></div>
+        <div class="map-item generator-room-0 hall"></div>
         <div class="map-item employee-to-deposit-hall hall"></div>
-        <div class="map-item employee-to-employee-bathroom-hall hall"></div>
-        <div class="map-item employee-to-client-hall hall"></div> 
-        <div class="map-item employee-to-employee-area-hall hall"></div> 
-        <div class="map-item employee-area-to-kitchen-hall hall"></div> 
+        <div class="map-item generator-room-3 hall"></div>
+        <div class="map-item employee-to-room-4 hall"></div> 
+        <div class="map-item generator-room-2 hall"></div> 
+        <div class="map-item employee-area-to-room-0-hall hall"></div> 
 
         
         <div class="map-item right-office-hall hall"></div>
         <div class="map-item left-office-hall hall"></div>
-        <div class="map-item dining-to-kitchen-hall hall"></div>
-        <div class="map-item dining-to-client-hall hall"></div>
+        <div class="map-item dining-to-room-0-hall hall"></div>
+        <div class="map-item dining-to-room-4 hall"></div>
         <div class="map-item dining-to-bathroom-hall hall"></div>
        
          

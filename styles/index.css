@@ -13,7 +13,6 @@
 
 
 button{
-    cursor: pointer;
     outline: none;
 }
 
@@ -26,6 +25,7 @@ html,body{
   user-select: none;  
 }
  
+
 img {
   pointer-events: none;
   -webkit-user-drag: none;
@@ -34,10 +34,16 @@ img {
 .camera-interactive-item{
     position: relative;
     padding: 0.5rem;
-    cursor: pointer;
     border: 0.2rem solid white;
     background-color: gray;
     font-weight: bolder;
     color: white;
 
 }
+
+@media (min-width: 3840px) {
+  body {
+    font-size: 5rem;
+  }
+}
+
