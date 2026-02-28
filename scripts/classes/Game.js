@@ -270,12 +270,11 @@ class Game {
                 }
             }
              if(!!next_current_animatronic_place.hasPowerGenerator){
-                
+                animatronic.usingGenerator = true;
                 clearInterval(this.current_night.running_event_value);
-                console.log("morreu");
                 setTimeout(()=>{
                     this.onKillPlayer(animatronic);
-                },3000)
+                },3000);
 
                 return  
 
@@ -367,12 +366,14 @@ class Game {
         this.camera_monitor.onLockPlace = (isLocked)=>{
             this.player_room.flashlight.current_battery_value = 
                 !!isLocked
-                ? 0
+                ? 25
                 : 100
             ;
             Array.from(this.player_room.flashlight.battery_container.children).forEach((percent_item)=>
             {
-                console.log(percent_item)
+                if(percent_item.id === 'percent-25'){
+                    return
+                }
                 return percent_item.style.opacity = (
                     !!isLocked
                     ? '0%'

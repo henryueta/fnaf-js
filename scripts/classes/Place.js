@@ -26,9 +26,9 @@ class Place {
         
     }
 
-    onLockSwitch(){
+    onLockSwitch(current_locked_room){
         
-        if(!this.canLock){
+        if(!this.canLock || current_locked_room !== this.number){
             return false
         }
 

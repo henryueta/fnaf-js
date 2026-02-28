@@ -14,6 +14,7 @@ class Animatronic {
         this.current_mode = config.current_mode;
         this.movement_delay = config.movement_delay;
         this.isWaitingPlayer = false;
+        this.usingGenerator = false;
         this.waiting_player_timeout = null;
         this.waiting_player_value = config.waiting_player_value;
         // this.isHuntingPlayer = config.isHuntingPlayer;
@@ -108,17 +109,19 @@ class Animatronic {
     }
 
     onChoicePlace(places){
-        //0-ficar
-        //1-andar
-        
+
         let random_number = onRandomNumber(0,1);
+        
+        const generator_room_index = places.findIndex((room_item_number)=>
+            room_item_number > 11 
+        );
+        const choice_decision = onRandomNumber(-3,1);
 
-        // if(random_number === 0){
-        //     console.log(this.identifier+"escolheu ficar",this.current_place)
-        //     return this.current_place
-        // }
-    
-
+        if(choice_decision !== 1 && places[generator_room_index] !== undefined){
+            console.log(this.identifier+"escolheu gerador",places[generator_room_index])
+            this.current_place = places[generator_room_index]
+            return places[generator_room_index]
+        }
 
         random_number = onRandomNumber(0,places.length-1)
         if(this.current_mode === 'hunter' &&  !!this.visited_place_list.length && this.visited_place_list.includes(places[random_number])){
@@ -130,9 +133,7 @@ class Animatronic {
 
         }
 
-     
-
-        console.log(this.identifier+"escolheu avançar",places[random_number])
+        console.log(this.identifier+"escolheu outro lugar",places[random_number])
         this.current_place = places[random_number]
         return places[random_number]
 

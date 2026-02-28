@@ -54,7 +54,7 @@ class Flashlight {
             if(this.current_battery_value === (
                 type === 'charge'
                 ? 100
-                : 0
+                : 25
             )){
                 clearInterval(this.batery_use_interval);
                 this.batery_use_interval = null;

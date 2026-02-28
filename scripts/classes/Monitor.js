@@ -11,7 +11,8 @@ class Monitor {
         this.camera_list = config.camera_list;
         this.action_button_list = config.action_button_list;
         this.choiced_camera_canvas = config.choiced_camera_canvas;
-        this.choiced_camera_context = this.choiced_camera_canvas.getContext("2d")
+        this.choiced_camera_context = this.choiced_camera_canvas.getContext("2d");
+        this.current_locked_generator_room = null;
         this.loading_image = config.loading_image;
         this.onLockPlace = config.onLockPlace;
         this.onLockCheckout = config.onLockCheckout;
@@ -48,12 +49,18 @@ class Monitor {
                 if(!this.activeLock){
                     return
                 }
+                
             if(!this.isRunningOperation){
 
             const choiced_camera =  this.camera_list.find((camera_item)=>
                 camera_item.number === this.choiced_camera_info.number
             )
-            if(!choiced_camera.onLockSwitch()){
+            
+            if(this.current_locked_generator_room === null){
+                this.current_locked_generator_room = choiced_camera.number;
+            }
+
+            if(!choiced_camera.onLockSwitch(this.current_locked_generator_room)){
                 audio_manager.onPlay('action_denied')
                 return
             }
@@ -76,10 +83,15 @@ class Monitor {
                 // this.choiced_camera_info.audio.loop = choiced_camera
                 console.log("trancado",choiced_camera.isLocked);
                     this.onLockPlace(choiced_camera.isLocked);
+                
+                    if(!choiced_camera.isLocked){
+                        this.current_locked_generator_room = null;
+                    }
+
                setTimeout(()=>{
                 this.isRunningOperation = false;
                },200)
-            },1000)
+            },500)
             }
             
         }
