@@ -1,0 +1,102 @@
+.end-of-night-container{
+    font-family: 'pixel';
+    position: fixed;
+    z-index: 15;
+    width: 100dvw;
+    height: 100dvh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    opacity: 0%;
+    background-color: black;
+}
+
+.end-of-night-container .clock-container{
+    /* width: 20%; */
+    /* height: 20%; */
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.end-of-night-container .clock-container>.display-container{
+    font-size: 5.5rem;
+    position: relative;
+    height: 7.5rem;
+}
+
+.end-of-night-container .clock-container span{
+    height: 50%;
+}
+
+.time-span-empty{
+    visibility: hidden;
+    opacity: 0%;
+}
+
+.time-span-start{
+    position: absolute;
+    left: 0;
+    animation: time-start-change ease-in-out 6s;
+     animation-delay: 3s;
+     animation-fill-mode: forwards;
+    transform: translateY(0px);
+}
+
+.time-span-end{
+    transform: translateY(110px);
+    animation: time-end-change ease-in-out 6s;
+     animation-delay: 3s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    left: 0;
+}
+
+.clock-container>div{
+    width: 100%;
+    padding: 4rem;
+    background-color: black;
+    position: relative;
+    z-index: 5;
+}
+
+.end-enabled{
+    opacity: 100%;
+    animation: end-of-night-entrace ease-in-out 4s;
+}
+
+@keyframes end-of-night-entrace {
+
+    0%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%;
+    }
+
+}
+
+@keyframes time-start-change {
+
+    0%{
+        transform: translateY(0px);
+    }
+    100%{
+        transform: translateY(-110px);
+    }
+
+}
+
+@keyframes time-end-change {
+
+    0%{
+        transform: translateY(110px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+
+}

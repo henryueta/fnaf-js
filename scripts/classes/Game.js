@@ -221,12 +221,6 @@ class Game {
                     animatronic.isWaitingPlayer = true;
 
                 }
-
-            if(animatronic.current_mode === 'hunter'){
-                if(!!next_current_animatronic_place.hasMultipleConnections && !!prev_current_animatronic_place.hasMultipleConnections){
-                    animatronic.visited_place_list.push(prev_current_animatronic_place.number)
-                }
-            }
             
             // if(animatronic.current_mode === 'noisy'){
 
@@ -290,6 +284,12 @@ class Game {
                 }
             }
 
+             if(animatronic.visited_place_list.length !== 3){
+                animatronic.visited_place_list.push(prev_current_animatronic_place.number);
+                return
+             }
+
+             animatronic.visited_place_list = [];
             return
             }
 
@@ -299,16 +299,18 @@ class Game {
     
     onStartNightEvent(){
         this.current_night.event_running_interval = setInterval(()=>{
-            this.onActiveAnimatronic(this.animatronic_list[0]);
+            // this.onActiveAnimatronic(this.animatronic_list[0]);
         },this.current_night.running_event_value);
 
-        // this.clock.timer_interval = setInterval(()=>{
+        this.clock.timer_interval = setInterval(()=>{
 
-        //     this.clock.onUpdateTime(()=>{
-        //         console.log("Voce ganhou")
-        //     });
+            this.clock.onUpdateTime(()=>{
+                this.onClearNightEvent();
+                this.current_night.onEndNight();
 
-        // },this.clock.timer_value);
+            });
+
+        },this.clock.timer_value);
     }
 
     onStart(){

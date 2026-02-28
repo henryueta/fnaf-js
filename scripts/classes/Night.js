@@ -1,3 +1,4 @@
+import { audio_manager } from "../audio-manager.js";
 
 class Night {
 
@@ -8,6 +9,13 @@ class Night {
         this.isCompleted = config.isCompleted;
         this.event_running_interval = null;
         this.playerIsDeath = false;
+        this.end_of_night_container = config.end_of_night_container;
+    }
+
+    onEndNight(){
+        audio_manager.onPlay('clock')
+        this.end_of_night_container.style.display = 'flex';
+        this.end_of_night_container.classList.add("end-enabled");
 
     }
 

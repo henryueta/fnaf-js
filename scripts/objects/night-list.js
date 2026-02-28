@@ -4,7 +4,8 @@ const night_list = [
     new Night({
         number:1,
         running_event_value:5000,
-        isCompleted:false
+        isCompleted:false,
+        end_of_night_container:""
     })
 ]
 

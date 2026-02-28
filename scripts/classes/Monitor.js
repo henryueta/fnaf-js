@@ -47,6 +47,7 @@ class Monitor {
                 this.onLockCheckout();
 
                 if(!this.activeLock){
+                    audio_manager.onPlay('action_denied')
                     return
                 }
                 
@@ -59,7 +60,7 @@ class Monitor {
             if(this.current_locked_generator_room === null){
                 this.current_locked_generator_room = choiced_camera.number;
             }
-
+            
             if(!choiced_camera.onLockSwitch(this.current_locked_generator_room)){
                 audio_manager.onPlay('action_denied')
                 return
@@ -70,7 +71,7 @@ class Monitor {
             place_lock_switch.classList.add("user-lock-switch");
 
             setTimeout(()=>{
-
+                audio_manager.onPlay('door');
                 place_lock_switch.textContent = (
                     !choiced_camera.isLocked
                     ? "Lock"

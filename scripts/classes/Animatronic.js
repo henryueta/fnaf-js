@@ -115,27 +115,28 @@ class Animatronic {
         const generator_room_index = places.findIndex((room_item_number)=>
             room_item_number > 11 
         );
-        const choice_decision = onRandomNumber(-3,1);
+        // const choice_decision = onRandomNumber(-3,1);
 
-        if(choice_decision !== 1 && places[generator_room_index] !== undefined){
-            console.log(this.identifier+"escolheu gerador",places[generator_room_index])
-            this.current_place = places[generator_room_index]
-            return places[generator_room_index]
-        }
+        // if(choice_decision === 1 && places[generator_room_index] !== undefined){
+        //     console.log(this.identifier+"escolheu gerador",places[generator_room_index])
+        //     this.current_place = places[generator_room_index]
+        //     return places[generator_room_index]
+        // }
 
-        random_number = onRandomNumber(0,places.length-1)
-        if(this.current_mode === 'hunter' &&  !!this.visited_place_list.length && this.visited_place_list.includes(places[random_number])){
-            while(this.visited_place_list.includes(places[random_number])){
+        const no_generator_room_places = places.filter((_,place_index)=>place_index !== generator_room_index)
+
+        random_number = onRandomNumber(0,no_generator_room_places.length-1)
+        if(this.current_mode === 'hunter' &&  !!this.visited_place_list.length && this.visited_place_list.includes(no_generator_room_places[random_number])){
+            while(this.visited_place_list.includes(no_generator_room_places[random_number])){
                 console.log("visitados",this.visited_place_list)
-                random_number = onRandomNumber(0,places.length-1)
+                random_number = onRandomNumber(0,no_generator_room_places.length-1)
                 console.log("tentativa: ",random_number)
             }
-
         }
 
-        console.log(this.identifier+"escolheu outro lugar",places[random_number])
-        this.current_place = places[random_number]
-        return places[random_number]
+        console.log(this.identifier+"escolheu outro lugar",no_generator_room_places[random_number])
+        this.current_place = no_generator_room_places[random_number]
+        return no_generator_room_places[random_number]
 
     }
 

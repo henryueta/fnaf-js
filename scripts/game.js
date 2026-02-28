@@ -12,6 +12,7 @@ import { Clock } from "./classes/Clock.js"
 import { audio_manager } from "./audio-manager.js"
 import { Player } from "./classes/Player.js"
 import { generator_room_list } from "./objects/generator-room-list.js"
+import { Night } from "./classes/Night.js"
 
 
 // const assets = [];
@@ -132,13 +133,20 @@ const game = new Game({
     toggle_cam_system_button:document.querySelector(".toggle-cam-system-button"),
     animatronic_list:animatronic_list,
     place_list:[...place_list,...generator_room_list],
-    current_night:night_list.find((night_item)=>!night_item.isCompleted)
+    current_night:new Night({
+        number:1,
+        running_event_value:5000,
+        isCompleted:false,
+        end_of_night_container:document.querySelector(".end-of-night-container")
+    })
 });
 
 await audio_manager.onPreload({
+    clock:"../assets/audio/night/clock.wav",
     camera_toggle:"../assets/audio/camera/camera_toggle.wav",
     camera_select:"../assets/audio/camera/camera_select.wav",
     action_denied:"../assets/audio/camera/action_denied.wav",
+    door:"../assets/audio/camera/door.wav",
     running_away:"../assets/audio/animatronic/running_away.wav",
     no_battery:"../assets/audio/flashlight/no_battery.wav",
     flash:"../assets/audio/flashlight/flash.wav",
