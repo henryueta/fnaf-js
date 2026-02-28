@@ -100,7 +100,7 @@ class Room {
 
     onFlashLight(){
 
-        if(!this.flashlight.inUse && this.flashlight.current_battery_value === 100){
+        if(!this.flashlight.inUse && this.flashlight.battery.current_battery_value === 100){
                 audio_manager.onPlay('flash');
                 this.onChangeDarkAmbience(false);
 
@@ -114,7 +114,7 @@ class Room {
                         this.onFlashLightProcess();
                     }
 
-                    if(this.flashlight.current_battery_value < 30){
+                    if(this.flashlight.battery.current_battery_value < 30){
                         if(!!this.onFlashLightEnd){
                             this.onFlashLightEnd();
                         }   
@@ -217,11 +217,11 @@ class Room {
         if(
             vision === 'internal' 
             && 
-            this.flashlight.current_battery_value !== 100
+            this.flashlight.battery.current_battery_value !== 100
         ){
             this.flashlight.onUse('charge',()=>{
                 
-                console.log("carregando",this.flashlight.current_battery_value)
+                console.log("carregando",this.flashlight.battery.current_battery_value)
 
             });
         }

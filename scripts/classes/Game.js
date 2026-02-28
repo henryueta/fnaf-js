@@ -8,6 +8,8 @@ class Game {
         this.player = config.player;
         this.clock = config.clock;
         this.player_room = config.player_room;
+        this.player_battery = config.player_battery;
+        this.player_room.flashlight.battery = config.player_battery;
         this.camera_monitor = config.camera_monitor;
         this.x_movement = config.x_movement;
         this.toggle_cam_system_button = config.toggle_cam_system_button;
@@ -32,8 +34,8 @@ class Game {
         if(this.clock.timer_interval !== null){
             clearInterval(this.clock.timer_interval);
         }
-        if(this.player_room.flashlight.batery_use_interval !== null){
-            clearInterval(this.player_room.flashlight.batery_use_interval);
+        if(this.player_room.flashlight.battery.batery_use_interval !== null){
+            clearInterval(this.player_room.flashlight.battery.batery_use_interval);
         }
     }
 
@@ -302,15 +304,15 @@ class Game {
             // this.onActiveAnimatronic(this.animatronic_list[0]);
         },this.current_night.running_event_value);
 
-        this.clock.timer_interval = setInterval(()=>{
+        // this.clock.timer_interval = setInterval(()=>{
 
-            this.clock.onUpdateTime(()=>{
-                this.onClearNightEvent();
-                this.current_night.onEndNight();
+        //     this.clock.onUpdateTime(()=>{
+        //         this.onClearNightEvent();
+        //         this.current_night.onNightWin();
 
-            });
+        //     });
 
-        },this.clock.timer_value);
+        // },this.clock.timer_value);
     }
 
     onStart(){
@@ -339,7 +341,7 @@ class Game {
                 return
             }
 
-            if(this.player_room.flashlight.current_battery_value === 50){
+            if(this.player_room.flashlight.battery.current_battery_value === 50){
                 this.player_room.current_door_vision.onSetAnimatronicView(0,'transition');
                 this.player_room.onUpdatePlayerView();
             }   
@@ -366,12 +368,12 @@ class Game {
         }
 
         this.camera_monitor.onLockPlace = (isLocked)=>{
-            this.player_room.flashlight.current_battery_value = 
+            this.player_battery.current_battery_value = 
                 !!isLocked
                 ? 25
                 : 100
             ;
-            Array.from(this.player_room.flashlight.battery_container.children).forEach((percent_item)=>
+            Array.from(this.player_battery.battery_container.children).forEach((percent_item)=>
             {
                 if(percent_item.id === 'percent-25'){
                     return
@@ -414,7 +416,7 @@ class Game {
                 },500)
             }
 
-            if(this.player_room.flashlight.inUse && !this.player_room.flashlight.isCharging){
+            if(this.player_room.flashlight.inUse && !this.player_room.flashlight.battery.isCharging){
                 return
             }
 

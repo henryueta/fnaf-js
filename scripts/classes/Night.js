@@ -12,12 +12,16 @@ class Night {
         this.end_of_night_container = config.end_of_night_container;
     }
 
-    onEndNight(){
+    onNightWin(){
         audio_manager.onPlay('clock')
         this.end_of_night_container.style.display = 'flex';
         this.end_of_night_container.classList.add("end-enabled");
 
     }
+    onNightOver(){
+
+    }
+
 
 }
 

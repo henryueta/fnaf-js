@@ -4,7 +4,7 @@ class Clock{
     constructor(config){
 
         this.timer_interval = null;
-        this.timer_value = 5000;
+        this.timer_value = 10000;
         this.current_time = 0;
         this.time_container = config.time_container;
 

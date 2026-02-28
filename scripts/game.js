@@ -13,6 +13,7 @@ import { audio_manager } from "./audio-manager.js"
 import { Player } from "./classes/Player.js"
 import { generator_room_list } from "./objects/generator-room-list.js"
 import { Night } from "./classes/Night.js"
+import { Battery } from "./classes/Battery.js"
 
 
 // const assets = [];
@@ -115,6 +116,9 @@ const game = new Game({
         flashlight:new Flashlight({
             percent_container:document.querySelector(".percent-container")
         })
+    }),
+    player_battery:new Battery({
+        percent_container:document.querySelector(".percent-container")
     }),
     x_movement: new Movement({
         right_container:document.querySelector(".move-right-container"),
