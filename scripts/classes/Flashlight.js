@@ -48,6 +48,7 @@ class Flashlight {
                 : 25
             )){
                 clearInterval(this.battery.batery_use_interval);
+                console.log("limpo")
                 this.battery.batery_use_interval = null;
                 this.inUse = false;
                 

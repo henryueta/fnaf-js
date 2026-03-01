@@ -200,27 +200,27 @@ justify-content: center;
 
 #place-0{
   bottom: 50%;
-  right: 50%;
+  right: -50%;
 }
 
 #place-1{
-  bottom: 35%;
-  right: 30%;
+  bottom: -40%;
+  right: -50%;
 }
 
 #place-2{
-  bottom: 35%;
-  right: 30%;
+  bottom: -50%;
+  right: -5%;
 }
 
 #place-3{
-  bottom: 50%;
+  bottom: 30%;
   right: 50%;
 }
 
 #place-4{
-  bottom: 50%;
-  right: -40%;
+  bottom: 0%;
+  right: -50%;
 }
 
 #place-5{

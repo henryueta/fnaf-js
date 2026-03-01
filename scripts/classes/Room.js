@@ -189,7 +189,6 @@ class Room {
     onVisionTransition(transition_type,type,direction){
 
         this.playerIsMoving = !!(transition_type === 'entrace');
-        console.log(this.playerIsMoving)
         if(transition_type === 'entrace'){
             this.onEntraceContainerVision(type,direction);
             return
@@ -226,9 +225,9 @@ class Room {
             });
         }
 
-        if(vision === 'external' && this.flashlight.isCharging){
+        if(vision === 'external' && this.flashlight.battery.isCharging){
             console.log("limpou interval")
-            clearInterval(this.flashlight.batery_use_interval);
+            clearInterval(this.flashlight.battery.batery_use_interval);
         }
 
 

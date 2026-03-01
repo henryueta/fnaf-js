@@ -27,7 +27,8 @@
 }
 
 .battery-container>*{
-    border: 0.2rem solid white;
+    border: 0.1rem solid rgb(0, 0, 0);
+    background-color: white;
 }
 
 .battery-container .right-stopper-container{
@@ -50,14 +51,20 @@
 .battery-container .percent-container div{
     /* border: 1px solid red; */
     height: 100%;
-    background-color: white;
-     border: 0.1rem solid white;
+    background-color: rgb(0, 0, 0);
+     border: 0.1rem solid rgb(0, 0, 0);
     padding: 1rem 0.6rem 1rem 0.6rem;
 }
 
 .timer-container{
     font-family: pixel;
     color: white;
+  text-shadow: 
+    -1px -1px 0 black,
+     1px -1px 0 black,
+    -1px  1px 0 black,
+     1px  1px 0 black;
+  font-weight: bolder;
     position: fixed;
     z-index: 6;
     top: 6%;

@@ -109,7 +109,7 @@ const game = new Game({
     }),
     player_room: new Room({
         room_canvas:document.querySelector("#room-canvas"),
-        image_of_interior_room:await onLoadImage('../car.jpg'),
+        image_of_interior_room:await onLoadImage('../teste_sala4.png'),
         left_door:door_list[0],
         right_door:door_list[1],
         dark_screen:document.querySelector(".dark-screen-container"),
