@@ -115,13 +115,13 @@ class Animatronic {
         const generator_room_index = places.findIndex((room_item_number)=>
             room_item_number > 11 
         );
-        // const choice_decision = onRandomNumber(-3,1);
+        const choice_decision = onRandomNumber(-3,1);
 
-        // if(choice_decision === 1 && places[generator_room_index] !== undefined){
-        //     console.log(this.identifier+"escolheu gerador",places[generator_room_index])
-        //     this.current_place = places[generator_room_index]
-        //     return places[generator_room_index]
-        // }
+        if(choice_decision !== 1 && places[generator_room_index] !== undefined){
+            console.log(this.identifier+"escolheu gerador",places[generator_room_index])
+            this.current_place = places[generator_room_index]
+            return places[generator_room_index]
+        }
 
         const no_generator_room_places = places.filter((_,place_index)=>place_index !== generator_room_index)
 

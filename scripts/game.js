@@ -152,6 +152,7 @@ await audio_manager.onPreload({
     action_denied:"../assets/audio/camera/action_denied.wav",
     door:"../assets/audio/camera/door.wav",
     running_away:"../assets/audio/animatronic/running_away.wav",
+    jumpscare:"../assets/audio/animatronic/jumpscare.wav",
     no_battery:"../assets/audio/flashlight/no_battery.wav",
     flash:"../assets/audio/flashlight/flash.wav",
     right_to_left_audio:"../assets/audio/footstep/right_to_left_footstep.wav",

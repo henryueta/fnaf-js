@@ -1,3 +1,4 @@
+import { audio_manager } from "../audio-manager.js";
 
 class Jumpscare{
 
@@ -76,6 +77,7 @@ class Jumpscare{
     }
 
     onStart(){
+        audio_manager.onPlayJustOneAudio("jumpscare");
         this.onLoadFrames();
     }
 

@@ -33,14 +33,26 @@ const audio_manager = {
         }
     },
     onStop(name){
-        if(!!this.active_audio_list[name]){
 
-            this.active_audio_list[name].stop();
-            delete this.active_audio_list[name];
-
+        if(!this.active_audio_list[name]){
+            return
         }
-    }
 
+        this.active_audio_list[name].stop();
+        delete this.active_audio_list[name];
+        return
+    },
+    onPlayJustOneAudio(name){
+        for(const audio_name in this.active_audio_list){
+            try {
+                this.onStop(audio_name);
+            } catch (error) {
+                console.log("audio_error",error);
+            }   
+            delete this.active_audio_list[audio_name];
+        }
+        this.onPlay(name);
+    }   
 
 }
 
