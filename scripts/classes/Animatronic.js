@@ -110,8 +110,14 @@ class Animatronic {
 
     onChoicePlace(places){
 
-        let random_number = onRandomNumber(0,1);
         
+        const security_room = places.includes(10);
+
+        if(!!security_room){
+            this.current_place = 10;
+            return this.current_place;
+        }
+
         const generator_room_index = places.findIndex((room_item_number)=>
             room_item_number > 11 
         );
@@ -120,10 +126,11 @@ class Animatronic {
         if(choice_decision !== 1 && places[generator_room_index] !== undefined){
             console.log(this.identifier+"escolheu gerador",places[generator_room_index])
             this.current_place = places[generator_room_index]
-            return places[generator_room_index]
+            return this.current_place
         }
 
         const no_generator_room_places = places.filter((_,place_index)=>place_index !== generator_room_index)
+        let random_number = onRandomNumber(0,1);
 
         random_number = onRandomNumber(0,no_generator_room_places.length-1)
         if(this.current_mode === 'hunter' &&  !!this.visited_place_list.length && this.visited_place_list.includes(no_generator_room_places[random_number])){
@@ -136,7 +143,7 @@ class Animatronic {
 
         console.log(this.identifier+"escolheu outro lugar",no_generator_room_places[random_number])
         this.current_place = no_generator_room_places[random_number]
-        return no_generator_room_places[random_number]
+        return this.current_place
 
     }
 

@@ -125,14 +125,16 @@ class Game {
                             ||
                             (!!animatronic.footstep_cheat.inCheatProcess
                                 &&
-                                onRandomNumber(0,3) === 0
+                                onRandomNumber(0,1) === 0
                             )
                          ){
-                            
-                            console.log("escolheu recomeçar no início")
+                            this.camera_monitor.onGenerateGeneratorRoomList();
+                            console.log("escolheu recomeçar no início");
                             animatronic.current_place = 0;
                             animatronic.onResetVisitedPlaceList();
                             animatronic.footstep_cheat.onResetFootstepQuantity(); 
+                            this.place_list[0].onSetAnimatronic(animatronic);
+                            this.place_list[0].onSetView();
                             return
                          }
                          console.log("escolheu continuar")
@@ -304,18 +306,18 @@ class Game {
     
     onStartNightEvent(){
         this.current_night.event_running_interval = setInterval(()=>{
-            this.onActiveAnimatronic(this.animatronic_list[0]);
+            // this.onActiveAnimatronic(this.animatronic_list[0]);
         },this.current_night.running_event_value);
 
-        // this.clock.timer_interval = setInterval(()=>{
+        this.clock.timer_interval = setInterval(()=>{
 
-        //     this.clock.onUpdateTime(()=>{
-        //         this.onClearNightEvent();
-        //         this.current_night.onNightWin();
+            this.clock.onUpdateTime(()=>{
+                this.onClearNightEvent();
+                this.current_night.onNightWin();
 
-        //     });
+            });
 
-        // },this.clock.timer_value);
+        },30000);
     }
 
     onStart(){

@@ -11,9 +11,7 @@ class Clock{
     }
 
     onUpdateTime(onEnd){
-
-      
-
+        
         if(
             this.timer_interval !== null
             &&

@@ -228,7 +228,7 @@ const place_list = [
         number:10,
         canLock:false,
         isEnabled:true,
-        isLocked:true,
+        isLocked:false,
         hasPowerGenerator:false,
         hasMultipleConnections:true,
         hasSecurityRoomConnection:false,
