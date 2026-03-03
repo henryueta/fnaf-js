@@ -5,7 +5,7 @@ const night_list = [
         number:1,
         running_event_value:5000,
         isCompleted:false,
-        end_of_night_container:""
+        game_won_container:""
     })
 ]
 

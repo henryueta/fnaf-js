@@ -55,7 +55,10 @@ class Game {
             scream_audio:animatronic.jumpscare_scream_audio
         });
         this.x_movement.setIsLocked(true,true);
-        jumpscare.onStart();
+        jumpscare.onStart(()=>{
+            this.current_night.onNightOver();
+            return
+        });
         this.player_room.onChangeDarkAmbience(true);
         this.toggle_cam_system_button.style.display = 'none';
         if(this.camera_monitor.isOpen){

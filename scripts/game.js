@@ -141,7 +141,8 @@ const game = new Game({
         number:1,
         running_event_value:5000,
         isCompleted:false,
-        end_of_night_container:document.querySelector(".end-of-night-container")
+        game_won_container:document.querySelector(".game-won-container"),
+        game_over_container:document.querySelector(".game-over-container")
     })
 });
 

@@ -1,4 +1,4 @@
-.end-of-night-container{
+.game-won-container{
     font-family: 'pixel';
     position: fixed;
     z-index: 15;
@@ -13,7 +13,7 @@
     background-color: black;
 }
 
-.end-of-night-container .clock-container{
+.game-won-container .clock-container{
     /* width: 20%; */
     /* height: 20%; */
     display: flex;  
@@ -22,13 +22,13 @@
     flex-direction: column;
 }
 
-.end-of-night-container .clock-container>.display-container{
+.game-won-container .clock-container>.display-container{
     font-size: 5.5rem;
     position: relative;
     height: 7.5rem;
 }
 
-.end-of-night-container .clock-container span{
+.game-won-container .clock-container span{
     height: 50%;
 }
 

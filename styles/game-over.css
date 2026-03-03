@@ -1,0 +1,42 @@
+
+.game-over-container{
+     font-family: 'pixel';
+    position: fixed;
+    z-index: 15;
+    width: 100dvw;
+    height: 100dvh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    background-color: black;
+    font-size: 5.5rem;
+}
+
+.game-over-container>.light-transition-container{
+    background-color: white;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    opacity: 100%;
+    animation: light-transition-entrace ease-in-out 2.5s;
+     animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+.game-over-container>p{
+    word-spacing: 1rem;
+}
+
+
+@keyframes light-transition-entrace {
+
+    0%{
+        opacity: 100%;
+    }
+    100%{
+        opacity: 0%;
+    }
+
+}
