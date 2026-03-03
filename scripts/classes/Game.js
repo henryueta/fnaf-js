@@ -130,6 +130,7 @@ class Game {
                          ){
                             this.camera_monitor.onGenerateGeneratorRoomList();
                             console.log("escolheu recomeçar no início");
+                            audio_manager.onPlay("knock");
                             animatronic.current_place = 0;
                             animatronic.onResetVisitedPlaceList();
                             animatronic.footstep_cheat.onResetFootstepQuantity(); 
@@ -291,8 +292,9 @@ class Game {
                 }
             }
 
-             if(animatronic.visited_place_list.length !== 3){
+             if(animatronic.visited_place_list.length !== 4){
                 animatronic.visited_place_list.push(prev_current_animatronic_place.number);
+
                 return
              }
 
@@ -309,15 +311,15 @@ class Game {
             // this.onActiveAnimatronic(this.animatronic_list[0]);
         },this.current_night.running_event_value);
 
-        this.clock.timer_interval = setInterval(()=>{
+        // this.clock.timer_interval = setInterval(()=>{
 
-            this.clock.onUpdateTime(()=>{
-                this.onClearNightEvent();
-                this.current_night.onNightWin();
+        //     this.clock.onUpdateTime(()=>{
+        //         this.onClearNightEvent();
+        //         this.current_night.onNightWin();
 
-            });
+        //     });
 
-        },30000);
+        // },30000);
     }
 
     onStart(){

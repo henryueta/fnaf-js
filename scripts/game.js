@@ -14,6 +14,7 @@ import { Player } from "./classes/Player.js"
 import { generator_room_list } from "./objects/generator-room-list.js"
 import { Night } from "./classes/Night.js"
 import { Battery } from "./classes/Battery.js"
+import { Telephone } from "./classes/Telephone.js"
 
 
 // const assets = [];
@@ -107,6 +108,9 @@ const game = new Game({
     clock:new Clock({
         time_container:document.querySelector(".time-span")
     }),
+    telephone:new Telephone({
+        cancel_call_container:document.querySelector(".cancel-call-container")
+    }),
     player_room: new Room({
         room_canvas:document.querySelector("#room-canvas"),
         image_of_interior_room:await onLoadImage('../teste_sala4.png'),
@@ -148,6 +152,7 @@ const game = new Game({
 
 await audio_manager.onPreload({
     clock:"../assets/audio/night/clock.wav",
+    knock:"../assets/audio/camera/knock.wav",
     camera_toggle:"../assets/audio/camera/camera_toggle.wav",
     camera_select:"../assets/audio/camera/camera_select.wav",
     action_denied:"../assets/audio/camera/action_denied.wav",

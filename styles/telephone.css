@@ -1,0 +1,16 @@
+
+.cancel-call-container{
+    /* display: none; */
+    position: fixed;
+    z-index: 6;
+    top: 7%;
+    left: 15%;
+}
+
+.cancel-call-container button{
+    /* font-family: 'pixel'; */
+    padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+    background-color: black;
+    color: white;
+    border:0.1rem solid white;
+}

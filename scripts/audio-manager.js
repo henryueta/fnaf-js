@@ -16,7 +16,7 @@ const audio_manager = {
             onEnd();
         }
     },
-    onPlay(name){
+    onPlay(name,onEnd){
 
         if(this.context.state === 'suspended'){
             this.context.resume();
@@ -29,6 +29,11 @@ const audio_manager = {
         source.start(0);
         this.active_audio_list[name] = source;
         source.onended = ()=>{
+
+            if(!!onEnd){
+                onEnd();
+            }
+
             delete this.active_audio_list[name];
         }
     },

@@ -179,7 +179,7 @@ class Monitor {
             if(!!this.enabled_generator_room_list.size){
 
             this.enabled_generator_room_list.forEach(((generator_room)=>{
-                generator_room.style.visibility = (
+                generator_room.parentElement.style.visibility = (
                     type === 'start'
                     ? 'visible'
                     : 'hidden'

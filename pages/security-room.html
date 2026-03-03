@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../styles/map.css">
     <link rel="stylesheet" href="../styles/game-won.css">
     <link rel="stylesheet" href="../styles/game-over.css">
+    <link rel="stylesheet" href="../styles/telephone.css">
     <link rel="icon" type="image/png" href="favicon.ico">
 </head>
     <body>
@@ -34,6 +35,10 @@
 
     <div class="dark-screen-container"></div>
     
+    <div class="cancel-call-container">
+        <button>MUTE CALL</button>
+    </div>
+
     <div class="timer-container">
         <p class="display-container">
             <span class="time-span">12</span>
@@ -67,18 +72,19 @@
         <!-- <div class="map-item mens-bathroom place"></div>
         <div class="map-item womens-bathroom place"></div> -->
        
-        <div class="map-item room-4 place">
+        <div class="map-item room-5 place">
+            <div class="camera-interactive-item" id="place-5">
+                CAM 5
+            </div>
+        </div>
+        <div class="map-item room-4A place">
             <div class="camera-interactive-item" id="place-4">
                 CAM 4
             </div>
         </div>
-        <div class="map-item room-3A place">
-            <div class="camera-interactive-item" id="place-3">
-                CAM 3
-            </div>
+        <div class="map-item room-4B place">
         </div>
-        <div class="map-item room-3B place">
-        </div>
+
         <div class="map-item room-0 place">
             <div class="camera-interactive-item" id="place-0">
                 CAM 0
@@ -86,8 +92,14 @@
         </div>
 
         <div class="map-item room-1 place">
-             <div class="camera-interactive-item" id="place-1">
+            <div class="camera-interactive-item" id="place-1">
                 CAM 1
+            </div>
+        </div>
+
+        <div class="map-item room-2 place">
+             <div class="camera-interactive-item" id="place-2">
+                CAM 2
             </div>
         </div>
   
@@ -102,9 +114,9 @@
             </div>
             <div id="place-6"></div>
         </div>
-        <div class="map-item room-2 place">
-             <div class="camera-interactive-item" id="place-2">
-                CAM 2
+        <div class="map-item room-3 place">
+             <div class="camera-interactive-item" id="place-3">
+                CAM 3
             </div>
         </div>
 
@@ -144,7 +156,7 @@
 
 
         <div class="map-item dining-to-room-1-hall vertical-hall"></div>
-        <!-- <div class="map-item dining-to-room-4 horizontal-hall"></div> -->
+        <div class="map-item dining-to-room-4 horizontal-hall"></div>
         <div class="map-item dining-to-bathroom-hall horizontal-hall"></div>
        
          

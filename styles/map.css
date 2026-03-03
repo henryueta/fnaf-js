@@ -121,23 +121,24 @@
 /* .puppet-area { grid-area: 1 / 13 / 4 / 19; }  */
 
 
-.room-4 { grid-area: 8 / 9 / 4 / 19;}
-.room-3A  { grid-area: 16 / 15 / 9 / 19;}
+.room-5 { grid-area: 8 / 14 / 4 / 19;}
+.room-4A  { grid-area: 16 / 15 / 9 / 19;}
 /* .game-area { grid-area: 9 / 20 / 3 / 24;} */
 /* .deposit { grid-area: 14 / 20 / 11 / 23;} */
 
-.room-1 { grid-area: 15 / 4 / 10 / 7; }
+.room-2 { grid-area: 15 / 4 / 10 / 7; }
 .dining-to-bathroom-hall {grid-area: 7 / 8 / 5 / 8;}
 
 
 /* .supply-closet { grid-area: 11 / 13 / 11 / 14; } */
-.room-0 { grid-area: 8 / 4 / 4 / 8;}
+.room-1 { grid-area: 8 / 4 / 4 / 8;}
+.room-0 { grid-area: 8 / 13 / 4 / 9;}
 
 .generator-room-0 { grid-area: 5 / 2 / 7 / 4;  visibility: hidden;} 
 .generator-room-1  { grid-area: 12 / 2 / 14 / 4; visibility: hidden;}
 .generator-room-2  { grid-area: 21 / 6 / 19 / 8;  visibility: hidden;}
 .generator-room-3 { grid-area:15 / 21 / 13 / 19;  visibility: hidden;} 
-.generator-room-4 { grid-area: 2 / 13 / 4 / 15; visibility: hidden;}
+.generator-room-4 { grid-area: 2 / 16 / 4 / 18; visibility: hidden;}
 
 
 .office {grid-area: 10 / 8 / 14 / 14; }
@@ -155,7 +156,7 @@ justify-content: center;
 
 
 .dining-to-room-1-hall { grid-area: 10 / 4 / 8 / 6;}
-/* .dining-to-room-4 { grid-area: 2 / 12 / 3 / 13; } */
+.dining-to-room-4 { grid-area: 7 / 13 / 5 / 14; }
 
 .employee-to-room-4 { grid-area: 9 / 16 / 8 / 18;}
 
@@ -164,12 +165,12 @@ justify-content: center;
 .employee-area-to-room-1-hall { grid-area: 14 / 8 / 13 / 9; }
 
 .front-office-hall { grid-area: 15 / 6 / 16 / 5; } /* Entre backstage e main stage */
-.room-2 { grid-area: 19 / 4 / 16 / 12; }
+.room-3 { grid-area: 19 / 4 / 16 / 12; }
 
 .employee-to-deposit-hall { grid-area: 17 / 13 / 17 / 12;} 
 
 .right-office-hall { grid-area: 12 / 14 / 11 / 15;}
-.room-3B { grid-area: 19 / 13 / 16 / 19;}
+.room-4B { grid-area: 19 / 13 / 16 / 19;}
 
 .left-office-hall { grid-area: 12 / 8 / 11 / 7;}
 /* .left-room-to-office { grid-area: 21 / 6 / 14 / 8;} */
@@ -204,29 +205,34 @@ justify-content: center;
 }
 
 #place-1{
-  bottom: -40%;
+  bottom: 50%;
   right: -50%;
 }
 
 #place-2{
+  bottom: -40%;
+  right: -50%;
+}
+
+#place-3{
   bottom: -50%;
   right: -5%;
 }
 
-#place-3{
+#place-4{
   bottom: 30%;
   right: 50%;
 }
 
-#place-4{
+#place-5{
   bottom: 0%;
   right: -50%;
 }
 
-#place-5{
+/* #place-5{
   bottom: -45%;
   right: 50%;
-}
+} */
 
 #place-6{
 

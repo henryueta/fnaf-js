@@ -37,14 +37,14 @@ const door_list = [
             forTransition:false,
             audio:"../assets/audio/camera_select_1.mp3",
             repeat_audio:false,
-            image:await onLoadImage("../teste_tamanho2.png"),
+            image:await onLoadImage("../assets/imgs/enemy_teste1.png"),
         },
         {
             identifier:0,
             forTransition:true,
             audio:"../assets/audio/camera_select_1.mp3",
             repeat_audio:false,
-            image:await onLoadImage("../teste_limite_2.jpeg"),
+            image:await onLoadImage("../assets/imgs/enemy_teste2.png"),
         },
         {
             identifier:null,
@@ -67,14 +67,14 @@ const door_list = [
                 forTransition:false,
                 audio:"../assets/audio/camera_select_1.mp3",
                 repeat_audio:false,
-                image:await onLoadImage("../teste_tamanho2.png"),
+                image:await onLoadImage("../assets/imgs/enemy_teste1.png"),
             },
             {
             identifier:0,
             forTransition:true,
             audio:"../assets/audio/camera_select_1.mp3",
             repeat_audio:false,
-            image:await onLoadImage("../teste_limite_2.jpeg"),
+            image:await onLoadImage("../assets/imgs/enemy_teste2.png"),
             },
             {
                 identifier:null,

@@ -27,21 +27,42 @@ const place_list = [
                 image:await onLoadImage("../assets/imgs/one.avif")
 
             },
-            {//alterar depois
-                animatronic_list:[0],
-                noisy_animatronic:0,
-                audio:'camera_select',
-                repeat_audio:true,
-                image:"../assets/imgs/static.gif"
-
-            },
         ],
         name:"test_room",
-        next_place_index_list:[1,4,12],
+        next_place_index_list:[1,5],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 0)
     }),
     new Place({
         number:1,
+        canLock:false,
+        isEnabled:true,
+        hasPowerGenerator:false,
+        hasMultipleConnections:false,
+        hasSecurityRoomConnection:false,
+        isPointOfChoice:false,
+        place_view_list:[
+            {
+                animatronic_list:[],
+                noisy_animatronic:null,
+                audio:'camera_select',
+                repeat_audio:false,
+                image:await onLoadImage("../bedroom_1.jpeg")
+            },
+            {//alterar depois
+                animatronic_list:[0],
+                noisy_animatronic:null,
+                audio:'camera_select',
+                repeat_audio:false,
+                image:await onLoadImage("../assets/imgs/one.avif")
+
+            },
+        ],
+        name:"test_room",
+        next_place_index_list:[0,2,12],
+        animatronic_list:null
+    }),
+    new Place({
+        number:2,
         canLock:false,
         isEnabled:true,
         hasPowerGenerator:false,
@@ -65,38 +86,10 @@ const place_list = [
             },
         ],
         name:"test2_room",
-        next_place_index_list:[0,2,10,13],
+        next_place_index_list:[1,3,10,13],
         animatronic_list:null
     }),
      new Place({
-        number:2,
-        canLock:false,
-        isEnabled:true,
-        hasPowerGenerator:false,
-        hasMultipleConnections:false,
-        hasSecurityRoomConnection:false,
-        isPointOfChoice:false,
-        place_view_list:[
-            {
-                animatronic_list:[],
-                noisy_animatronic:null,
-                audio:'camera_select',
-                repeat_audio:false,
-                image:await onLoadImage("../bedroom_1.jpeg")
-            },
-            {//alterar depois
-                animatronic_list:[0],
-                noisy_animatronic:null,
-                audio:'camera_select',
-                repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/one.avif")
-            },
-        ],
-        name:"test2_room",
-        next_place_index_list:[1,3,14],
-        animatronic_list:null
-    }),
-    new Place({
         number:3,
         canLock:false,
         isEnabled:true,
@@ -119,17 +112,9 @@ const place_list = [
                 repeat_audio:false,
                 image:await onLoadImage("../assets/imgs/one.avif")
             },
-                        {//alterar depois
-                            animatronic_list:[0],
-                            noisy_animatronic:0,
-                            audio:'camera_select',
-                            repeat_audio:true,
-                            image:"../assets/imgs/1_sound.jpg"
-                                    
-                        },
         ],
         name:"test2_room",
-        next_place_index_list:[2,4,10,15],
+        next_place_index_list:[2,4,14],
         animatronic_list:null
     }),
     new Place({
@@ -155,17 +140,37 @@ const place_list = [
                 repeat_audio:false,
                 image:await onLoadImage("../assets/imgs/one.avif")
             },
-             {//alterar depois
-                animatronic_list:[0],
-                noisy_animatronic:0,
+        ],
+        name:"test2_room",
+        next_place_index_list:[3,5,10,15],
+        animatronic_list:null
+    }),
+    new Place({
+        number:5,
+        canLock:false,
+        isEnabled:true,
+        hasPowerGenerator:false,
+        hasMultipleConnections:false,
+        hasSecurityRoomConnection:false,
+        isPointOfChoice:false,
+        place_view_list:[
+            {
+                animatronic_list:[],
+                noisy_animatronic:null,
                 audio:'camera_select',
-                repeat_audio:true,
-                image:"../assets/imgs/1_sound.jpg"
-                        
+                repeat_audio:false,
+                image:await onLoadImage("../bedroom_1.jpeg")
+            },
+            {//alterar depois
+                animatronic_list:[0],
+                noisy_animatronic:null,
+                audio:'camera_select',
+                repeat_audio:false,
+                image:await onLoadImage("../assets/imgs/one.avif")
             },
         ],
         name:"test2_room",
-        next_place_index_list:[3,0,16],
+        next_place_index_list:[4,0,16],
         animatronic_list:null
     }),
     new Place({
@@ -228,7 +233,7 @@ const place_list = [
         number:10,
         canLock:false,
         isEnabled:true,
-        isLocked:false,
+        isLocked:true,
         hasPowerGenerator:false,
         hasMultipleConnections:true,
         hasSecurityRoomConnection:false,
