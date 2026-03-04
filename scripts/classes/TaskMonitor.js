@@ -10,9 +10,22 @@ class TaskMonitor {
         this.current_task_in_progress = null;
         this.task_progress_audio = config.task_progress_audio;
         this.task_resolve_interval = null;
-        this.task_resolve_value = 20000;
-        
-        
+        this.task_resolve_value = 5000;
+        this.task_progress_loader_list = [];
+        this.task_progress_button_list = [];
+
+        this.play_icon = `
+            <svg viewBox="0 0 24 24">
+            <polygon points="8,5 19,12 8,19" fill="currentColor"/>
+            </svg>
+        `;
+
+        this.pause_icon = `
+            <svg viewBox="0 0 24 24">
+            <rect x="6" y="5" width="4" height="14" fill="currentColor"/>
+            <rect x="14" y="5" width="4" height="14" fill="currentColor"/>
+            </svg>
+        `;
 
         this.task_list.forEach((task_item)=>{
 
@@ -21,6 +34,14 @@ class TaskMonitor {
 
         const progress_container = document.createElement("div");
         progress_container.setAttribute('class',"progress-container");
+
+        const progress_loading_container = document.createElement("div");
+        progress_loading_container.setAttribute("class","progress-loading-container")
+        progress_loading_container.setAttribute("id","progress-loading-"+task_item.identifier)
+
+        this.task_progress_loader_list.push(progress_loading_container)
+
+        progress_container.append(progress_loading_container)
 
         const name_container = document.createElement("div");
         name_container.setAttribute("class","name-container");
@@ -33,32 +54,74 @@ class TaskMonitor {
         const actions_container = document.createElement("div");
         actions_container.setAttribute("class","actions-container");
 
-        const start_button = document.createElement("button");
-        start_button.setAttribute("id","start-task")
+        const progress_button = document.createElement("button");
+        progress_button.setAttribute("class","progress-button");
+        progress_button.setAttribute("id","progress-button-"+task_item.identifier);
 
-        const stop_button = document.createElement("button");
-        stop_button.setAttribute("id","stop-task");
-
-        actions_container.append(start_button);
-        actions_container.append(stop_button);
+        progress_button.innerHTML = this.play_icon;
+        progress_button.onclick = ()=>{
+            console.log(this.current_task_in_progress)
+                if(
+                    this.current_task_in_progress !== null
+                    &&
+                    this.current_task_in_progress.identifier !== task_item.identifier){
+                    return
+                }
+                if(this.current_task_in_progress !== null){
+                    this.onStop();
+                progress_loading_container.style.display = 'none';
+                progress_button.innerHTML = this.play_icon;
+                    return
+                }
+                this.current_task_in_progress = task_item;
+                 if(
+                    this.current_task_in_progress.itsFinished){
+                        this.current_task_in_progress = null;
+                    return
+                }
+                this.onResolve(()=>{
+                    progress_loading_container.style.display = 'none';
+                    progress_button.innerHTML = this.play_icon;
+                    progress_button.disabled = true;
+                    task_item_container.style.display = 'none';
+                });
+                progress_button.innerHTML = this.pause_icon;
+                progress_loading_container.style.display = 'block';
+                return
+        }
+        this.task_progress_button_list.push(progress_button);
+        actions_container.append(progress_button);
 
             name_container.children[0].textContent = task_item.name;
-            duration_container.children[0].textContent = (task_item.final_progress_value * this.task_resolve_value)/1000/60;
+            duration_container.children[0].textContent = ((task_item.final_progress_value * this.task_resolve_value)/1000).toFixed();
 
             task_item_container.append(progress_container);
             task_item_container.append(name_container);
             task_item_container.append(duration_container);
             task_item_container.append(actions_container);
             task_item_container.setAttribute("id","task-"+task_item.identifier);
-            task_item_container.onclick = ()=>{
-                console.log(task_item_container.id)
-            }
             this.task_list_container.append(task_item_container)           
         });
     }
 
     onToggle(){
         console.log(this.screen_container)
+
+        if(this.current_task_in_progress !== null){
+            this.task_progress_loader_list.find((loader_item)=>
+                loader_item.id === "progress-loading-"+this.current_task_in_progress.identifier
+            ).style.display = 'none';
+            this.task_progress_button_list.find((button_item)=>
+                button_item.id === "progress-button-"+this.current_task_in_progress.identifier
+            ).innerHTML = this.play_icon;
+            if(!!this.current_task_in_progress.itsFinished){
+            Array.from(this.task_list_container.children).find((task_item)=>
+                    task_item.id === "task-"+this.current_task_in_progress.identifier
+                ).style.display = 'none';
+            }
+            this.onStop();
+        }
+
         this.screen_container.classList.remove(!!this.isOpen ? 'open-cam-system' : 'close-cam-system')
 
         this.screen_container.classList.add(!!this.isOpen ? "close-cam-system" : 'open-cam-system')
@@ -72,19 +135,22 @@ class TaskMonitor {
 
     }
 
-    onResolve(){
+    onResolve(onEnd){
         // audio_manager.onPlay("",null,true);
 
-        if(this.current_task_in_progress !== null){
+        if(this.current_task_in_progress === null){
             return
         }
 
         this.current_task_in_progress.inProgress = true;
 
         this.task_resolve_interval = setInterval(()=>{
-
             this.current_task_in_progress.onProgress(()=>{
                 this.current_task_in_progress = null;
+                clearInterval(this.task_resolve_interval)
+                if(onEnd){
+                    onEnd()
+                }
                 // audio_manager.onStop("")
             })
 

@@ -27,10 +27,11 @@
     /* perspective: 800px;  */
     position: fixed;
     z-index: 4;
-    pointer-events: none  ;
+    pointer-events: none;
   }
   
-  .screen-container {
+ 
+  .task-system-container .screen-container {
     display: none;
     width: 100%;
     height: 100%;
@@ -41,14 +42,16 @@
     transform: rotateX(0deg); 
   }
 
-  .screen-container::before {
+ 
+  .task-system-container .screen-container::before {
     content: "";
     position: absolute;
     inset: 1px;
     background-color: rgb(0, 0, 0);
   }
 
-  .screen-container::after {
+  
+  .task-system-container .screen-container::after {
     content: "";
     position: absolute;
     inset: 1px;
@@ -60,4 +63,59 @@
     pointer-events: none  ;
   }
 
+  .task-system-container .content-container .task-list-container{
+    border: 1px solid white;
+    width: 90%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+  }
 
+
+.task-system-container .content-container .task-list-container>div{
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    gap: 1rem;
+    flex: 1;
+}
+
+.task-system-container .content-container .task-list-container>div>.name-container{
+    border: 1px solid white;
+}
+
+.task-system-container .content-container .task-list-container>div button{
+    padding: 0.5rem;
+    background-color: black;
+    border: 0.1rem solid white;
+}
+
+.task-system-container .content-container .task-list-container>div button>svg{
+    color: white;
+    width: 1rem;
+    height: 1rem;
+}
+
+.task-system-container .content-container .task-list-container .progress-container{
+  height: 100%;
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-system-container .content-container .task-list-container .progress-loading-container{
+    border: 0.4rem solid #f3f3f3;
+  border-top: 0.4rem solid #000000; 
+  border-radius: 50%; 
+  width: 2rem;
+  height: 2rem;
+  animation: loading_progress 2s linear infinite;
+  display: none;
+}
+
+@keyframes loading_progress {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

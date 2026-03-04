@@ -343,15 +343,15 @@ class Game {
             this.onStartNightInterval();
         },onRandomNumber(2000,5000))
 
-        this.clock.timer_interval = setInterval(()=>{
+        // this.clock.timer_interval = setInterval(()=>{
 
-            this.clock.onUpdateTime(()=>{
-                this.onClearNightEvent();
-                this.current_night.onNightWin();
+        //     this.clock.onUpdateTime(()=>{
+        //         this.onClearNightEvent();
+        //         this.current_night.onNightWin();
 
-            });
+        //     });
 
-        },this.clock.timer_value);
+        // },this.clock.timer_value);
     }
 
     onStart(){
@@ -443,9 +443,10 @@ class Game {
                 ? 'click'
                 : 'mouseenter'
             ),()=>{
-
-            this.task_monitor.onToggle()
-
+                this.task_monitor.onToggle()
+                audio_manager.onPlay('camera_toggle');
+                this.x_movement.setIsLocked(this.task_monitor.isOpen || this.current_night.playerIsDeath);
+                this.x_movement.onEndMove();
         })
 
         this.toggle_cam_system_button.addEventListener(

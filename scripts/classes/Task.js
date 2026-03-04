@@ -11,6 +11,7 @@ class Task {
 
     onProgress(onEnd){
         this.current_progress_value+=1;
+            console.log("Em processo :",this.current_progress_value)
         if(this.current_progress_value === this.final_progress_value){
             this.inProgress = false;
             this.itsFinished = true;
