@@ -1,4 +1,4 @@
-import { Monitor } from "./classes/Monitor.js"
+import { CameraMonitor } from "./classes/CameraMonitor.js"
 import { Movement } from "./classes/Movement.js"
 import { Room } from "./classes/Room.js"
 import { place_list } from "./objects/place-list.js"
@@ -15,6 +15,8 @@ import { generator_room_list } from "./objects/generator-room-list.js"
 import { Night } from "./classes/Night.js"
 import { Battery } from "./classes/Battery.js"
 import { Telephone } from "./classes/Telephone.js"
+import { TaskMonitor } from "./classes/TaskMonitor.js"
+import { task_list } from "./objects/task-list.js"
 
 
 // const assets = [];
@@ -128,8 +130,13 @@ const game = new Game({
         right_container:document.querySelector(".move-right-container"),
         left_container:document.querySelector(".move-left-container")
     }),
-    camera_monitor:new Monitor({
-        screen_container: document.querySelector(".screen-container"),
+    task_monitor:new TaskMonitor({
+        screen_container:document.querySelector(".task-system-container .screen-container"),
+        task_list_container:document.querySelector(".task-list-container"),
+        task_list:task_list
+    }),
+    camera_monitor:new CameraMonitor({
+        screen_container: document.querySelector(".cam-system-container .screen-container"),
         action_button_list:{
             place_lock_switch:document.querySelector("#place-lock-switch")
         },
@@ -139,6 +146,7 @@ const game = new Game({
         choiced_camera_canvas:document.querySelector("#choiced-place-canvas")
     }),
     toggle_cam_system_button:document.querySelector(".toggle-cam-system-button"),
+    toggle_task_system_button:document.querySelector(".toggle-task-system-button"),
     animatronic_list:animatronic_list,
     place_list:[...place_list,...generator_room_list],
     current_night:new Night({
@@ -157,6 +165,7 @@ await audio_manager.onPreload({
     camera_select:"../assets/audio/camera/camera_select.wav",
     action_denied:"../assets/audio/camera/action_denied.wav",
     door:"../assets/audio/camera/door.wav",
+    vent_walk:"../assets/audio/animatronic/vent_walk.wav",
     running_away:"../assets/audio/animatronic/running_away.wav",
     jumpscare:"../assets/audio/animatronic/jumpscare.wav",
     no_battery:"../assets/audio/flashlight/no_battery.wav",

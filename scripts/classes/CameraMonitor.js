@@ -1,7 +1,7 @@
 import { audio_manager } from "../audio-manager.js";
 import { onRandomNumber } from "../functions/randomNumber.js";
 
-class Monitor {
+class CameraMonitor {
     constructor(config){
         this.screen_container = config.screen_container;
         this.isOpen = false;
@@ -247,5 +247,5 @@ class Monitor {
 }
 
 export {
-    Monitor
+    CameraMonitor
 }

@@ -11,8 +11,10 @@ class Game {
         this.player_battery = config.player_battery;
         this.player_room.flashlight.battery = config.player_battery;
         this.camera_monitor = config.camera_monitor;
+        this.task_monitor = config.task_monitor;
         this.x_movement = config.x_movement;
         this.toggle_cam_system_button = config.toggle_cam_system_button;
+        this.toggle_task_system_button = config.toggle_task_system_button;
         this.animatronic_list = config.animatronic_list;
         this.place_list = config.place_list;
         this.current_night = config.current_night;
@@ -65,6 +67,30 @@ class Game {
             this.camera_monitor.onToggle();
         }
     }
+
+    onUpdatePlayerVision(prev_current_animatronic_place,next_current_animatronic_place){
+        if(
+        this.camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
+        ||
+        this.camera_monitor.choiced_camera_info.number === next_current_animatronic_place.number
+        ){
+            this.camera_monitor.choiced_camera_info.image = this.camera_monitor.loading_image;
+            this.camera_monitor.onLoadView(true);
+            setTimeout(()=>{
+                const current_place = (
+                    this.camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
+                    ?  prev_current_animatronic_place
+                    :  (next_current_animatronic_place)
+                )
+                current_place.onSetView()
+                console.log("VIEW ",current_place.current_view)
+                this.camera_monitor.choiced_camera_info.image = ( current_place.current_view);
+                this.camera_monitor.choiced_camera_info.audio = ( current_place.current_audio);
+                this.camera_monitor.onLoadView(false);
+            },200)
+        }
+    }
+
     onActiveAnimatronic(animatronic){
 
         if(animatronic.isActive){
@@ -127,7 +153,6 @@ class Game {
                             console.log("Vai continuar");
                             this.current_night.running_event_value = 2300;
                             animatronic.current_place = 10;
-                            animatronic.visited_place_list = [7];
                             animatronic.footstep_cheat.onResetFootstepQuantity();
                             animatronic.footstep_cheat.onSetMaxCheatQuantity();
                             return
@@ -152,7 +177,6 @@ class Game {
                          }
                          console.log("escolheu continuar")
                          animatronic.current_place = 10;
-                         animatronic.visited_place_list = [7];
                          animatronic.footstep_cheat.onResetFootstepQuantity();
                          animatronic.footstep_cheat.onSetMaxCheatQuantity();
                         return
@@ -245,34 +269,20 @@ class Game {
                 next_current_animatronic_place.onSetAnimatronic(animatronic);
                 next_current_animatronic_place.onSetView(false);
                
-                if(
-                    this.camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
-                    ||
-                    this.camera_monitor.choiced_camera_info.number === next_current_animatronic_place.number
-                ){
-        
-                    this.camera_monitor.choiced_camera_info.image = this.camera_monitor.loading_image;
-                    this.camera_monitor.onLoadView(true);
-                    setTimeout(()=>{
-                        const current_place = (
-                            this.camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
-                            ?  prev_current_animatronic_place
-                            :  (next_current_animatronic_place)
-                        )
-                        // console.log(current_place.current_view)
-                        current_place.onSetView()
-                        this.camera_monitor.choiced_camera_info.image = ( current_place.current_view);
-                        this.camera_monitor.choiced_camera_info.audio = ( current_place.current_audio);
-                        this.camera_monitor.onLoadView(false);
-                    },200)
-                }
+                this.onUpdatePlayerVision(prev_current_animatronic_place,next_current_animatronic_place);
             }
              if(!!next_current_animatronic_place.hasPowerGenerator){
                 animatronic.usingGenerator = true;
-                clearTimeout(this.current_night.event_running_timeout);
-                setTimeout(()=>{
-                    this.onKillPlayer(animatronic);
-                },3000);
+                 setTimeout(()=>{
+                    prev_current_animatronic_place.onRemoveAnimatronic(animatronic);
+                    prev_current_animatronic_place.onSetView(false);
+                    this.onUpdatePlayerVision(prev_current_animatronic_place,next_current_animatronic_place);
+                    audio_manager.onPlay("vent_walk");
+                     setTimeout(()=>{
+                        animatronic.usingGenerator = false;
+                        this.onStartNightInterval();
+                    },5500);
+                 },5000)
 
                 return  
 
@@ -303,11 +313,23 @@ class Game {
     }
     
     onStartNightInterval(){
+        if(this.animatronic_list[0].usingGenerator){
+            return
+        }
+
         console.log("é maior",this.clock.current_time < 2)
         this.current_night.running_event_value = (
             this.clock.current_time < 2
-            ? 5000
-            : 2500
+            ? (
+                (this.player_room.left_door.current_animatronic !== null || this.player_room.right_door.current_animatronic !== null)
+                ? 5000
+                : onRandomNumber(4000,10000)
+            )
+            : (
+                (this.player_room.left_door.current_animatronic !== null || this.player_room.right_door.current_animatronic !== null)
+                ? 2500
+                : 3000
+            )
         );
         // this.onActiveAnimatronic(this.animatronic_list[0]);
         console.log("executado",this.current_night.running_event_value);
@@ -416,6 +438,15 @@ class Game {
                 this.toggle_cam_system_button.style.display = 'flex';
             });
         }
+
+        this.toggle_task_system_button.addEventListener((this.player.screen_display === 'MOBILE'
+                ? 'click'
+                : 'mouseenter'
+            ),()=>{
+
+            this.task_monitor.onToggle()
+
+        })
 
         this.toggle_cam_system_button.addEventListener(
             (this.player.screen_display === 'MOBILE'

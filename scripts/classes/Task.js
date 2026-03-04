@@ -1,0 +1,29 @@
+class Task {
+
+    constructor(config){
+        this.identifier = config.identifier;
+        this.name = config.name;
+        this.inProgress = false;
+        this.itsFinished = false;
+        this.current_progress_value = 0;
+        this.final_progress_value = config.final_progress_value;
+    }
+
+    onProgress(onEnd){
+        this.current_progress_value+=1;
+        if(this.current_progress_value === this.final_progress_value){
+            this.inProgress = false;
+            this.itsFinished = true;
+            if(onEnd){
+                onEnd();
+                return
+            }
+            return
+        }
+    }
+
+}
+
+export{
+    Task
+}

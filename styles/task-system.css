@@ -1,8 +1,8 @@
 
-.toggle-cam-system-container{
+.toggle-task-system-container{
     position: fixed;
     bottom: 5%;
-    left: 75%;
+    left: 35%;
     transform: translate(-50%,0%);
     width: 45dvw;
     height: 5.5dvh;
@@ -10,15 +10,16 @@
     z-index: 6;
 }
 
-.toggle-cam-system-button {
+.toggle-task-system-button {
     border: 0.15rem solid rgba(0, 0, 0);
-    background-color: rgb(117, 60, 60);
+    background-color: rgba(255, 255, 255);
     /* border-radius: 0.3rem; */
     width: 80%;
     height: 100%;
 }
 
-.cam-system-container {
+
+.task-system-container {
     width: 100dvw;
     height: 100dvh;
     color: white;
@@ -60,68 +61,3 @@
   }
 
 
-
-  @keyframes open-cam {
-    0% {
-      transform: rotateX(90deg);
-    }
-    100% {
-      transform: rotateX(0deg);
-      
-    }
-  }
-
-  @keyframes power-up {
-    0%{
-        opacity: 0%;
-    }
-    100%{
-        opacity: 100%;
-    }
-  }
-
-  .open-cam-system{
-    animation: open-cam 0.35s;
-    *{
-        animation: power-up 0.8s forwards;
-    }
-  }
-
-  @keyframes close-cam {
-    100% {
-      transform: rotateX(100deg);
-    }
-    0% {
-      transform: rotateX(0deg);
-    }
-  }
-
-  @keyframes shut-down {
-    0%{
-        opacity: 20%;
-    }
-    100%{
-        opacity: 0%;
-    }
-  }
-
-  .close-cam-system{
-    animation: close-cam 0.35s;
-    *{
-        animation: shut-down 0.5s forwards;
-    }
-  }
-
-
-@media (max-width:1024px){
-    .toggle-cam-system-container{
-      position: fixed;
-      bottom: 5%;
-      left: 50%;
-      transform: translate(-50%,0%);
-      width: 45dvw;
-      height: 8dvh;
-      display: flex;
-      z-index: 6;
-    }
-}

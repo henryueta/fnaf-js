@@ -22,7 +22,7 @@
   pointer-events: none;
 }
 
-.actions-container{
+.cam-system-container .actions-container{
   position: absolute;
   z-index: 8;
   bottom: 20%;

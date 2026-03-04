@@ -29,7 +29,7 @@ const generator_room_list = [
             }
         ],
         name:"test2_room",
-        next_place_index_list:[1],
+        next_place_index_list:[10],
         animatronic_list:null
     }),
     new Place({
@@ -58,7 +58,7 @@ const generator_room_list = [
             }
         ],
         name:"test2_room",
-        next_place_index_list:[2],
+        next_place_index_list:[10],
         animatronic_list:null
     }),
     new Place({
@@ -87,7 +87,7 @@ const generator_room_list = [
             }
         ],
         name:"test2_room",
-        next_place_index_list:[3],
+        next_place_index_list:[10],
         animatronic_list:null
     }),
         new Place({
@@ -116,7 +116,7 @@ const generator_room_list = [
             }
         ],
         name:"test2_room",
-        next_place_index_list:[4],
+        next_place_index_list:[10],
         animatronic_list:null
     }),
         new Place({
@@ -145,7 +145,7 @@ const generator_room_list = [
             }
         ],
         name:"test2_room",
-        next_place_index_list:[5],
+        next_place_index_list:[10],
         animatronic_list:null
     }),
 
