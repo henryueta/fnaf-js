@@ -22,7 +22,7 @@ class Footstep{
         this.current_cheat_quantity = 0;
     }
 
-    onPlayFootstepAudio(cheatProcess){
+    onPlayFootstepAudio(cheatProcess,onEnd){
         if(!!cheatProcess){
             this.current_cheat_quantity+=1;
          this.current_side = 
@@ -40,10 +40,14 @@ class Footstep{
             !!cheatProcess
             ? this.current_footstep
             : this.current_side
-        )+"_audio");
+        )+"_audio",null,0.2);
         console.log(this.current_side,this.current_footstep);
         if(this.current_cheat_quantity === this.max_cheat_quantity){
-            // this.inCheatProcess = false;
+            
+            if(onEnd){
+                onEnd();
+            }
+
             return
         }
     }
@@ -55,7 +59,7 @@ class Footstep{
         }
     }
 
-    onCheat(){
+    onCheat(onEnd){
 
         if(!this.inCheatProcess){
             this.inCheatProcess = true;
@@ -90,7 +94,7 @@ class Footstep{
                 : this.footstep_checkout[this.current_footstep]
             );
 
-        this.onPlayFootstepAudio(true);
+        this.onPlayFootstepAudio(true,onEnd);
 
 
         return

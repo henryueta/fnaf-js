@@ -11,12 +11,12 @@ const audio_manager = {
             const array_buffer = await response.arrayBuffer();
             this.buffer_list[name] = await this.context.decodeAudioData(array_buffer);
 
-        }
+        }   
         if(onEnd){
             onEnd();
         }
     },
-    onPlay(name,onEnd){
+    onPlay(name,onEnd,volume = 1){
 
         if(this.context.state === 'suspended'){
             this.context.resume();
@@ -24,9 +24,13 @@ const audio_manager = {
 
         const source = this.context.createBufferSource();
         source.buffer = this.buffer_list[name];
-        console.log(this.buffer_list)
-        source.connect(this.context.destination);
+        const gain_node = this.context.createGain();
+        gain_node.gain.value = volume;
+        console.log("vol",gain_node.gain.value)
+        source.connect(gain_node) 
+        gain_node.connect(this.context.destination);
         source.start(0);
+        
         this.active_audio_list[name] = source;
         source.onended = ()=>{
 

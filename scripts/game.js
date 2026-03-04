@@ -167,6 +167,7 @@ await audio_manager.onPreload({
     left_audio:"../assets/audio/footstep/left_footstep.wav",
 },()=>{
     game.onStart();
+    document.body.classList.add("loaded");
 }); 
 
 

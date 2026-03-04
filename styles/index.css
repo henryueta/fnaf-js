@@ -24,7 +24,16 @@ html,body{
   -ms-user-select: none; 
   user-select: none;  
 }
- 
+
+
+body {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+body.loaded {
+  opacity: 1;
+}
 
 img {
   pointer-events: none;

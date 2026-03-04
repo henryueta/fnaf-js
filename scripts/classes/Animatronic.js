@@ -113,15 +113,18 @@ class Animatronic {
         
         const security_room = places.includes(10);
 
-        if(!!security_room){
+        let choice_decision = onRandomNumber(0,1);
+
+        if(!!security_room && choice_decision === 0){
+            console.log("escolheu entrar")
             this.current_place = 10;
             return this.current_place;
         }
-
+        console.log("escolheu sair")
         const generator_room_index = places.findIndex((room_item_number)=>
             room_item_number > 11 
         );
-        const choice_decision = onRandomNumber(-3,1);
+        choice_decision = onRandomNumber(-3,1);
 
         if(choice_decision !== 1 && places[generator_room_index] !== undefined){
             console.log(this.identifier+"escolheu gerador",places[generator_room_index])

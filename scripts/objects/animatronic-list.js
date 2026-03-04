@@ -1,5 +1,4 @@
 import { Animatronic } from "../classes/Animatronic.js";
-import { onLoadImage } from "../functions/image-loader.js";
 
 const animatronic_list = [
     new Animatronic({
@@ -10,7 +9,7 @@ const animatronic_list = [
     current_mode:'hunter',
     running_away_audio:'running_away',
     jumpscare_scream_audio:'',
-    waiting_player_value:4000,
+    waiting_player_value:4500,
     movement_delay:1500,
     action_list:[
         // {
