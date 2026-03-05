@@ -203,7 +203,8 @@ class Game {
                     (!!locked_place.length)
                     ? next_place_list.filter((place_number)=>!locked_place.includes(place_number))
                     : next_place_list
-                )
+                ),
+                this.camera_monitor.current_played_room
             ); 
 
             if(current_animatronic_place === 11){
@@ -271,18 +272,34 @@ class Game {
                
                 this.onUpdatePlayerVision(prev_current_animatronic_place,next_current_animatronic_place);
             }
+
+            if(this.camera_monitor.current_played_room !== null && !next_current_animatronic_place.hasPowerGenerator){
+                 const current_choiced_camera = this.camera_monitor.onFindChoiceCamera()
+                current_choiced_camera.isAudioPlayed = false;
+                this.camera_monitor.current_played_room = null;
+                this.camera_monitor.onChangePlayButtonView()
+            }
+
              if(!!next_current_animatronic_place.hasPowerGenerator){
-                animatronic.usingGenerator = true;
-                 setTimeout(()=>{
-                    prev_current_animatronic_place.onRemoveAnimatronic(animatronic);
-                    prev_current_animatronic_place.onSetView(false);
-                    this.onUpdatePlayerVision(prev_current_animatronic_place,next_current_animatronic_place);
-                    audio_manager.onPlay("vent_walk");
-                     setTimeout(()=>{
-                        animatronic.usingGenerator = false;
-                        this.onStartNightInterval();
-                    },5500);
-                 },5000)
+
+                const current_choiced_camera = this.camera_monitor.onFindChoiceCamera()
+                current_choiced_camera.isAudioPlayed = false;
+                this.camera_monitor.current_played_room = null;
+                console.log("playted",current_choiced_camera.isAudioPlayed)
+                this.camera_monitor.action_button_list.place_lock_switch.textContent = ("Play Audio")
+                animatronic.visited_place_list = animatronic.visited_place_list.filter((place_item_number)=>
+                    place_item_number !== next_current_animatronic_place.next_place_index_list[0]
+                )
+                //  setTimeout(()=>{
+                //     prev_current_animatronic_place.onRemoveAnimatronic(animatronic);
+                //     prev_current_animatronic_place.onSetView(false);
+                //     this.onUpdatePlayerVision(prev_current_animatronic_place,next_current_animatronic_place);
+                //     audio_manager.onPlay("vent_walk");
+                //      setTimeout(()=>{
+                //         animatronic.usingGenerator = false;
+                //         this.onStartNightInterval();
+                //     },5500);
+                //  },5000)
 
                 return  
 
@@ -409,33 +426,18 @@ class Game {
         }
 
         this.camera_monitor.onLockCheckout = ()=>{
-            if(this.player_room.flashlight.inUse){
-                this.camera_monitor.activeLock = false;
-                return
-            }
-            this.camera_monitor.activeLock = true;
-            return
+            // if(this.player_room.flashlight.inUse){
+            //     this.camera_monitor.activeLock = false;
+            //     return
+            // }
+            // this.camera_monitor.activeLock = true;
+            // return
         }
 
-        this.camera_monitor.onLockPlace = (isLocked)=>{
-            this.player_battery.current_battery_value = 
-                !!isLocked
-                ? 25
-                : 100
-            ;
-            Array.from(this.player_battery.battery_container.children).forEach((percent_item)=>
-            {
-                if(percent_item.id === 'percent-25'){
-                    return
-                }
-                return percent_item.style.opacity = (
-                    !!isLocked
-                    ? '0%'
-                    : '100%'
-                )
-            }
-            )
-            this.player_room.flashlight.enableProcess = !isLocked;
+        this.camera_monitor.onPlayedPlace = (place_number)=>{
+            
+
+
         }   
 
         this.onStartNightEvent();
@@ -448,11 +450,20 @@ class Game {
             });
         }
 
-        this.toggle_task_system_button.addEventListener('click',()=>{
+        this.toggle_task_system_button.addEventListener(
+            (this.player.screen_display === 'MOBILE'
+                ? 'click'
+                : 'click'
+            ),()=>{
                 this.task_monitor.onToggle()
                 audio_manager.onPlay('camera_toggle');
                 this.x_movement.setIsLocked(this.task_monitor.isOpen || this.current_night.playerIsDeath);
                 this.x_movement.onEndMove();
+                if(this.task_monitor.isOpen){
+                    this.toggle_cam_system_button.style.display = 'none';
+                    return
+                }
+                this.toggle_cam_system_button.style.display = 'block';
         })
 
         this.toggle_cam_system_button.addEventListener(
@@ -482,6 +493,11 @@ class Game {
                 audio_manager.onPlay('camera_toggle');
                 this.x_movement.setIsLocked(this.camera_monitor.isOpen || this.current_night.playerIsDeath);
                 this.x_movement.onEndMove();
+                if(this.camera_monitor.isOpen){
+                    this.toggle_task_system_button.style.display = 'none';
+                    return
+                }
+                this.toggle_task_system_button.style.display = 'block';
                 return
             }
             this.player_room.onSwitchVision(this.player_room.image_of_interior_room,"internal",'exit',this.player_room.direction)

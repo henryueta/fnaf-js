@@ -6,6 +6,8 @@ class Place {
         this.number = config.number;
         this.name = config.name;
         this.canLock = config.canLock;
+        this.canPlayAudio = config.canPlayAudio;
+        this.isAudioPlayed = false;
         this.isEnabled = config.isEnabled;
         this.isLocked = config.isLocked || false;
         this.hasPowerGenerator = config.hasPowerGenerator;
@@ -40,6 +42,19 @@ class Place {
         }
         this.isLocked = !this.isLocked
         return true;
+    }
+
+    onPlayAudio(current_locked_room){
+
+        if(this.isAudioPlayed){
+            return false
+        }
+
+        if(!this.canPlayAudio || current_locked_room !== this.number){
+            return false
+        }
+        this.isAudioPlayed = true;
+        return true
     }
 
     onSetView(isNoisy){

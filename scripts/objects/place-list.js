@@ -29,7 +29,7 @@ const place_list = [
             },
         ],
         name:"test_room",
-        next_place_index_list:[1,5],
+        next_place_index_list:[1,5,12,16],
         animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 0)
     }),
     new Place({
@@ -58,7 +58,7 @@ const place_list = [
             },
         ],
         name:"test_room",
-        next_place_index_list:[0,2,12],
+        next_place_index_list:[0,2,12,13],
         animatronic_list:null
     }),
     new Place({
@@ -86,7 +86,7 @@ const place_list = [
             },
         ],
         name:"test2_room",
-        next_place_index_list:[1,3,13],
+        next_place_index_list:[1,3,13,12,14,10],
         animatronic_list:null
     }),
      new Place({
@@ -114,7 +114,7 @@ const place_list = [
             },
         ],
         name:"test2_room",
-        next_place_index_list:[2,4,14,10],
+        next_place_index_list:[2,4,14,13],
         animatronic_list:null
     }),
     new Place({
@@ -142,7 +142,7 @@ const place_list = [
             },
         ],
         name:"test2_room",
-        next_place_index_list:[3,5,15],
+        next_place_index_list:[3,5,15,10,14,16],
         animatronic_list:null
     }),
     new Place({
@@ -170,7 +170,7 @@ const place_list = [
             },
         ],
         name:"test2_room",
-        next_place_index_list:[4,0,16],
+        next_place_index_list:[4,0,16,15],
         animatronic_list:null
     }),
     new Place({

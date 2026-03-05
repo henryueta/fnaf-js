@@ -108,44 +108,61 @@ class Animatronic {
 
     }
 
-    onChoicePlace(places){
+    onChoicePlace(places,played_room){
 
         
-        const security_room = places.includes(10);
+        // const security_room = places.includes(10);
 
         let choice_decision = onRandomNumber(0,1);
 
-        if(!!security_room && choice_decision === 0){
-            console.log("escolheu entrar")
-            this.current_place = 10;
-            return this.current_place;
-        }
+        // if(!!security_room && choice_decision === 0){
+        //     console.log("escolheu entrar")
+        //     this.current_place = 10;
+        //     return this.current_place;
+        // }
         console.log("escolheu sair")
-        const generator_room_index = places.findIndex((room_item_number)=>
+        const audio_room_index = places.findIndex((room_item_number)=>
             room_item_number > 11 
         );
-        choice_decision = onRandomNumber(-3,1);
+        
 
-        if(choice_decision !== 1 && places[generator_room_index] !== undefined){
-            console.log(this.identifier+"escolheu gerador",places[generator_room_index])
-            this.current_place = places[generator_room_index]
+        if(played_room !== null && played_room !== undefined && !places.includes(played_room)){
+
+            choice_decision = (
+                this.current_place !== played_room
+                ? onRandomNumber(-5,1)
+                : onRandomNumber(0,3)
+            );
+            
+            if(choice_decision < 1){
+                 console.log(this.identifier+"escolheu audio",places[audio_room_index])
+                this.current_place = played_room;
+                return this.current_place
+            }
+
+        }
+        choice_decision = onRandomNumber(-5,1);
+
+        if((choice_decision === 1 && places[audio_room_index] !== undefined)){
+            console.log(this.identifier+"escolheu gerador",places[audio_room_index])
+            this.current_place = places[audio_room_index]
             return this.current_place
         }
 
-        const no_generator_room_places = places.filter((_,place_index)=>place_index !== generator_room_index)
+        const no_audio_room_places = places.filter((_,place_index)=>place_index !== audio_room_index)
         let random_number = onRandomNumber(0,1);
 
-        random_number = onRandomNumber(0,no_generator_room_places.length-1)
-        if(this.current_mode === 'hunter' &&  !!this.visited_place_list.length && this.visited_place_list.includes(no_generator_room_places[random_number])){
-            while(this.visited_place_list.includes(no_generator_room_places[random_number])){
+        random_number = onRandomNumber(0,no_audio_room_places.length-1)
+        if(this.current_mode === 'hunter' &&  !!this.visited_place_list.length && this.visited_place_list.includes(no_audio_room_places[random_number])){
+            while(this.visited_place_list.includes(no_audio_room_places[random_number])){
                 console.log("visitados",this.visited_place_list)
-                random_number = onRandomNumber(0,no_generator_room_places.length-1)
+                random_number = onRandomNumber(0,no_audio_room_places.length-1)
                 console.log("tentativa: ",random_number)
             }
         }
 
-        console.log(this.identifier+"escolheu outro lugar",no_generator_room_places[random_number])
-        this.current_place = no_generator_room_places[random_number]
+        console.log(this.identifier+"escolheu outro lugar",no_audio_room_places[random_number])
+        this.current_place = no_audio_room_places[random_number]
         return this.current_place
 
     }

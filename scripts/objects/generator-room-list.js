@@ -6,6 +6,7 @@ const generator_room_list = [
         new Place({
         number:12,
         canLock:true,
+        canPlayAudio:true,
         isEnabled:false,
         isLocked:true,
         hasPowerGenerator:true,
@@ -29,12 +30,13 @@ const generator_room_list = [
             }
         ],
         name:"test2_room",
-        next_place_index_list:[10],
+        next_place_index_list:[1],
         animatronic_list:null
     }),
     new Place({
         number:13,
         canLock:true,
+        canPlayAudio:true,
         isEnabled:false,
         isLocked:true,
         hasPowerGenerator:true,
@@ -58,12 +60,13 @@ const generator_room_list = [
             }
         ],
         name:"test2_room",
-        next_place_index_list:[10],
+        next_place_index_list:[2],
         animatronic_list:null
     }),
     new Place({
         number:14,
         canLock:true,
+        canPlayAudio:true,
         isEnabled:false,
         isLocked:true,
         hasPowerGenerator:true,
@@ -87,12 +90,13 @@ const generator_room_list = [
             }
         ],
         name:"test2_room",
-        next_place_index_list:[10],
+        next_place_index_list:[3],
         animatronic_list:null
     }),
         new Place({
         number:15,
         canLock:true,
+        canPlayAudio:true,
         isEnabled:false,
         isLocked:true,
         hasPowerGenerator:true,
@@ -116,12 +120,13 @@ const generator_room_list = [
             }
         ],
         name:"test2_room",
-        next_place_index_list:[10],
+        next_place_index_list:[4],
         animatronic_list:null
     }),
         new Place({
         number:16,
         canLock:true,
+        canPlayAudio:true,
         isEnabled:false,
         isLocked:true,
         hasPowerGenerator:true,
@@ -145,7 +150,7 @@ const generator_room_list = [
             }
         ],
         name:"test2_room",
-        next_place_index_list:[10],
+        next_place_index_list:[5],
         animatronic_list:null
     }),
 
