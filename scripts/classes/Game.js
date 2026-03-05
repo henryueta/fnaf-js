@@ -272,24 +272,30 @@ class Game {
                
                 this.onUpdatePlayerVision(prev_current_animatronic_place,next_current_animatronic_place);
             }
+                const current_played_camera = this.camera_monitor.onFindPlayedRoom();
 
             if(this.camera_monitor.current_played_room !== null && !next_current_animatronic_place.hasPowerGenerator){
-                 const current_choiced_camera = this.camera_monitor.onFindChoiceCamera()
-                current_choiced_camera.isAudioPlayed = false;
+                 const current_played_camera = this.camera_monitor.onFindChoiceCamera()
+                current_played_camera.isAudioPlayed = false;
                 this.camera_monitor.current_played_room = null;
                 this.camera_monitor.onChangePlayButtonView()
             }
 
              if(!!next_current_animatronic_place.hasPowerGenerator){
-
-                const current_choiced_camera = this.camera_monitor.onFindChoiceCamera()
-                current_choiced_camera.isAudioPlayed = false;
+                current_played_camera.isAudioPlayed = false;
                 this.camera_monitor.current_played_room = null;
-                console.log("playted",current_choiced_camera.isAudioPlayed)
+                console.log("playted",current_played_camera.isAudioPlayed)
                 this.camera_monitor.action_button_list.place_lock_switch.textContent = ("Play Audio")
                 animatronic.visited_place_list = animatronic.visited_place_list.filter((place_item_number)=>
                     place_item_number !== next_current_animatronic_place.next_place_index_list[0]
-                )
+                );
+                console.warn("VISITED",animatronic.visited_place_list)
+                animatronic.isMoving = false;
+                console.log(animatronic.isMoving)
+                setTimeout(()=>{
+                    animatronic.isMoving = true;
+                    console.log("volotu")
+                },15000)
                 //  setTimeout(()=>{
                 //     prev_current_animatronic_place.onRemoveAnimatronic(animatronic);
                 //     prev_current_animatronic_place.onSetView(false);
@@ -380,6 +386,19 @@ class Game {
             this.x_movement.setIsLocked(!!(
                 vision === 'external'
             ),true)
+        }
+
+        this.task_monitor.onResolveTask = (to_install)=>{
+
+            if(to_install === 'flashlight'){
+                this.player_room.flashlight.isInstalled = true;
+                return 
+            }
+            if(to_install === 'camera'){
+                this.camera_monitor.isInstalled = true;
+                return
+            }
+            return
         }
 
         this.player_room.onFlashLightCheckout = ()=>{

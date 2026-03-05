@@ -17,6 +17,7 @@ class Place {
         this.hasMultipleConnections = config.hasMultipleConnections;
         this.isPointOfChoice = config.isPointOfChoice;
         this.hasSecurityRoomConnection = config.hasSecurityRoomConnection;
+        this.quantity_visited = 0;
         const current_place_info =  this.place_view_list.find((view_item)=>
         {
             return onSameList(this.animatronic_list.map((animatronic_item)=>animatronic_item.identifier),view_item.animatronic_list)
@@ -40,7 +41,7 @@ class Place {
         if(!!place_animatronic){
             return false;
         }
-        this.isLocked = !this.isLocked
+        // this.isLocked = !this.isLocked
         return true;
     }
 
@@ -53,6 +54,7 @@ class Place {
         if(!this.canPlayAudio || current_locked_room !== this.number){
             return false
         }
+
         this.isAudioPlayed = true;
         return true
     }
@@ -98,6 +100,11 @@ class Place {
         }
 
         this.animatronic_list.push(animatronic)
+
+        if(this.canPlayAudio){
+            this.quantity_visited+=1;
+            return
+        }
 
     }
 

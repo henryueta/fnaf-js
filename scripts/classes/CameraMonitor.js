@@ -57,10 +57,13 @@ class CameraMonitor {
             const choiced_camera = this.onFindChoiceCamera();
             
             if(this.current_played_room === null){
-                this.current_played_room = choiced_camera.number;
+                this.current_played_room = choiced_camera.quantity_visited === 2
+                ? null 
+                : choiced_camera.number;
             }
-            
-            if(!choiced_camera.onPlayAudio(this.current_played_room)){
+        
+
+            if(this.current_played_room !== null && !choiced_camera.onPlayAudio(this.current_played_room)){
                 audio_manager.onPlay('action_denied')
                 return
             }
@@ -104,6 +107,12 @@ class CameraMonitor {
     onFindChoiceCamera(){
         return  this.camera_list.find((camera_item)=>
                 camera_item.number === this.choiced_camera_info.number
+            )
+    }
+
+    onFindPlayedRoom(){
+        return this.camera_list.find((camera_item)=>
+                camera_item.number === this.current_played_room
             )
     }
 
@@ -181,9 +190,6 @@ class CameraMonitor {
 
 
     onUpdateGeneratorRoomList(type){
-        if(!this.isInstalled){
-            return
-        }
 
             if(!!this.enabled_generator_room_list.size){
 
@@ -214,10 +220,6 @@ class CameraMonitor {
     }
 
     onGenerateGeneratorRoomList(){
-
-         if(!this.isInstalled){
-            return
-        }
 
         this.onUpdateGeneratorRoomList('reset');
         

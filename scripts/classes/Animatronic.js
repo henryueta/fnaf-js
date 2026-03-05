@@ -111,15 +111,15 @@ class Animatronic {
     onChoicePlace(places,played_room){
 
         
-        // const security_room = places.includes(10);
+        const security_room = places.includes(10);
 
         let choice_decision = onRandomNumber(0,1);
 
-        // if(!!security_room && choice_decision === 0){
-        //     console.log("escolheu entrar")
-        //     this.current_place = 10;
-        //     return this.current_place;
-        // }
+        if(!!security_room && choice_decision === 0){
+            console.log("escolheu entrar")
+            this.current_place = 10;
+            return this.current_place;
+        }
         console.log("escolheu sair")
         const audio_room_index = places.findIndex((room_item_number)=>
             room_item_number > 11 

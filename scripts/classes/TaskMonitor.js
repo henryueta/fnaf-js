@@ -13,6 +13,8 @@ class TaskMonitor {
         this.task_resolve_value = 5000;
         this.task_progress_loader_list = [];
         this.task_progress_button_list = [];
+        this.onResolveTask = config.onResolveTask;
+
 
         this.play_icon = `
             <svg viewBox="0 0 24 24">
@@ -155,11 +157,13 @@ class TaskMonitor {
                     onProcess();
                 }
             },()=>{
+                this.onResolveTask(this.current_task_in_progress.to_install)
                 this.current_task_in_progress = null;
                 clearInterval(this.task_resolve_interval)
                 if(onEnd){
                     onEnd()
                 }
+                
                 // audio_manager.onStop("")
             })
 
