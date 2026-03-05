@@ -9,9 +9,14 @@ class Flashlight {
         this.utility_timeout = null;
         this.utility_value = 3000;
         this.battery = config.battery;
+        this.isInstalled = config.isInstalled;
     }
 
     onUse(type,onProcess,onEnd){
+        
+        if(!this.isInstalled){
+            return
+        }
 
         if(!this.enableProcess){
             return

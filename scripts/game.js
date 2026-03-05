@@ -120,6 +120,7 @@ const game = new Game({
         right_door:door_list[1],
         dark_screen:document.querySelector(".dark-screen-container"),
         flashlight:new Flashlight({
+            isInstalled:true,
             percent_container:document.querySelector(".percent-container")
         })
     }),
@@ -136,6 +137,7 @@ const game = new Game({
         task_list:task_list
     }),
     camera_monitor:new CameraMonitor({
+        isInstalled:false,
         screen_container: document.querySelector(".cam-system-container .screen-container"),
         action_button_list:{
             place_lock_switch:document.querySelector("#place-lock-switch")

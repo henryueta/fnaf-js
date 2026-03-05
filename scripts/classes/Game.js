@@ -489,6 +489,10 @@ class Game {
             }
 
             if(this.player_room.vision === 'internal'){
+
+                if(!this.camera_monitor.isInstalled){
+                    return
+                }
                 this.camera_monitor.onToggle();
                 audio_manager.onPlay('camera_toggle');
                 this.x_movement.setIsLocked(this.camera_monitor.isOpen || this.current_night.playerIsDeath);

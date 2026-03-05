@@ -42,7 +42,7 @@ class Room {
         this.left_door.onRectClick = (image,direction,type)=>this.onSwitchVision(image,"external",type,direction);
 
         this.room_canvas.addEventListener('click', (e) => !this.clickIsDisabled ?  this.handleClick(e) : ()=>console.log("player está morto"));
-        this.dark_screen.addEventListener('mousedown',()=> {
+        this.dark_screen.addEventListener('click',()=> {
             this.onFlashLight();
         });
         // this.dark_screen.addEventListener('mouseup',()=> {
@@ -100,6 +100,10 @@ class Room {
     }
 
     onFlashLight(){
+
+        if(!this.flashlight.isInstalled){
+            return
+        }
 
         if(!this.flashlight.inUse && this.flashlight.battery.current_battery_value === 100){
                 audio_manager.onPlay('flash');

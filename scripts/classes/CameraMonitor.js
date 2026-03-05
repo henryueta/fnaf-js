@@ -22,6 +22,7 @@ class CameraMonitor {
             audio:null,
             repeat_audio:this.camera_list[0].repeat_audio
         }
+        this.isInstalled = config.isInstalled;
 
         this.choiced_camera_info.image =  this.camera_list[0].current_view;
         this.choiced_camera_info.audio = this.camera_list[0].current_audio;
@@ -99,6 +100,7 @@ class CameraMonitor {
         this.onGenerateGeneratorRoomList();
     }
 
+
     onFindChoiceCamera(){
         return  this.camera_list.find((camera_item)=>
                 camera_item.number === this.choiced_camera_info.number
@@ -106,6 +108,7 @@ class CameraMonitor {
     }
 
     onLoadView(playAudio){
+            
             const cw = this.choiced_camera_canvas.width;
             const ch = this.choiced_camera_canvas.height;
             const iw = this.choiced_camera_info.image.width;
@@ -146,6 +149,10 @@ class CameraMonitor {
     }
 
     onToggle(){
+         if(!this.isInstalled){
+            return
+        }
+
     this.screen_container.classList.remove(!!this.isOpen ? 'open-cam-system' : 'close-cam-system')
 
     this.screen_container.classList.add(!!this.isOpen ? "close-cam-system" : 'open-cam-system')
@@ -174,7 +181,9 @@ class CameraMonitor {
 
 
     onUpdateGeneratorRoomList(type){
-
+        if(!this.isInstalled){
+            return
+        }
 
             if(!!this.enabled_generator_room_list.size){
 
@@ -205,7 +214,11 @@ class CameraMonitor {
     }
 
     onGenerateGeneratorRoomList(){
-        
+
+         if(!this.isInstalled){
+            return
+        }
+
         this.onUpdateGeneratorRoomList('reset');
         
         const current_quantity = 5;
