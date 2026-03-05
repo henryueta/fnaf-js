@@ -80,10 +80,10 @@ class TaskMonitor {
                     return
                 }
                 this.onResolve(()=>{
-                    progress_loading_container.style.display = 'none';
-                    progress_button.innerHTML = this.play_icon;
-                    progress_button.disabled = true;
-                    task_item_container.style.display = 'none';
+                   duration_container.children[0].textContent = this.onConvertTaskProcessValue(this.current_task_in_progress.current_progress_value)+"/"+this.onConvertTaskProcessValue(this.current_task_in_progress.final_progress_value)+"MB"
+
+                },()=>{
+                   this.task_list_container.removeChild(task_item_container)
                 });
                 progress_button.innerHTML = this.pause_icon;
                 progress_loading_container.style.display = 'block';
@@ -93,8 +93,7 @@ class TaskMonitor {
         actions_container.append(progress_button);
 
             name_container.children[0].textContent = task_item.name;
-            duration_container.children[0].textContent = ((task_item.final_progress_value * this.task_resolve_value)/1000).toFixed();
-
+            duration_container.children[0].textContent = "0/"+this.onConvertTaskProcessValue(task_item.final_progress_value)+"MB";
             task_item_container.append(progress_container);
             task_item_container.append(name_container);
             task_item_container.append(duration_container);
@@ -102,6 +101,12 @@ class TaskMonitor {
             task_item_container.setAttribute("id","task-"+task_item.identifier);
             this.task_list_container.append(task_item_container)           
         });
+    }
+
+    onConvertTaskProcessValue(value){
+
+        return ((value * this.task_resolve_value)/1000).toFixed()
+
     }
 
     onToggle(){
@@ -135,7 +140,7 @@ class TaskMonitor {
 
     }
 
-    onResolve(onEnd){
+    onResolve(onProcess,onEnd){
         // audio_manager.onPlay("",null,true);
 
         if(this.current_task_in_progress === null){
@@ -146,6 +151,10 @@ class TaskMonitor {
 
         this.task_resolve_interval = setInterval(()=>{
             this.current_task_in_progress.onProgress(()=>{
+                if(onProcess){
+                    onProcess();
+                }
+            },()=>{
                 this.current_task_in_progress = null;
                 clearInterval(this.task_resolve_interval)
                 if(onEnd){

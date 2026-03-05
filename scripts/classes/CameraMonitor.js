@@ -166,7 +166,7 @@ class CameraMonitor {
             this.onSelectPlace().style.background = 'green';
             audio_manager.onPlay(this.choiced_camera_info.audio);
             this.onLoadView(false);
-            this.onChangeLockButtonView(choiced_camera.canLock);
+            this.onChangeLockButtonView(choiced_camera.canLock,choiced_camera.isLocked);
         }
     },300)
         this.isOpen = !this.isOpen;

@@ -64,11 +64,13 @@
   }
 
   .task-system-container .content-container .task-list-container{
-    border: 1px solid white;
+    /* border: 1px solid white; */
     width: 90%;
     height: 60%;
     display: flex;
     flex-direction: column;
+    justify-content: start;
+    gap: 0.8rem;
   }
 
 
@@ -78,7 +80,8 @@
     align-items: center;
     padding: 0.5rem 3rem 0.5rem 3rem;
     gap: 1rem;
-    flex: 1;
+    /* flex: 1; */
+    height: 20%;
 }
 
 .task-system-container .content-container .task-list-container>div>.name-container{

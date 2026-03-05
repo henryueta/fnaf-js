@@ -18,6 +18,7 @@ class Room {
         this.flashlight = config.flashlight;
         this.direction = null;
         this.onLockVision = config.onLockVision;
+        this.onChangeVisionCheckout = config.onChangeVisionCheckout;
         // this.front_door = new Door({
         //     door_room_context:this.room_context,
         //     x:config.front_door.x,
@@ -212,6 +213,9 @@ class Room {
 
         this.current_door_vision = current_door_view
 
+         if(this.onChangeVisionCheckout){
+            this.onChangeVisionCheckout()
+         }
 
         if(
             vision === 'internal' 

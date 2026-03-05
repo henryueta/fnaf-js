@@ -15,6 +15,11 @@ const task_list = [
         identifier:2,
         name:"Task",
         final_progress_value:5
+    }),
+    new Task({
+        identifier:3,
+        name:"Task",
+        final_progress_value:10
     })
 ]
 

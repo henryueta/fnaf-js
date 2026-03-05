@@ -86,7 +86,7 @@ const place_list = [
             },
         ],
         name:"test2_room",
-        next_place_index_list:[1,3,10,13],
+        next_place_index_list:[1,3,13],
         animatronic_list:null
     }),
      new Place({
@@ -114,7 +114,7 @@ const place_list = [
             },
         ],
         name:"test2_room",
-        next_place_index_list:[2,4,14],
+        next_place_index_list:[2,4,14,10],
         animatronic_list:null
     }),
     new Place({
@@ -142,7 +142,7 @@ const place_list = [
             },
         ],
         name:"test2_room",
-        next_place_index_list:[3,5,10,15],
+        next_place_index_list:[3,5,15],
         animatronic_list:null
     }),
     new Place({
