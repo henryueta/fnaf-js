@@ -22,7 +22,7 @@ const task_list = [
     new Task({
         identifier:3,
         name:"Empty File",
-        final_progress_value:10,
+        final_progress_value:15,
         to_install:null
     })
 ]

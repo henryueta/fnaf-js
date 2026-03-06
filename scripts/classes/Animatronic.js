@@ -109,7 +109,7 @@ class Animatronic {
     }
 
     onChoicePlace(places,played_room){
-
+        console.log("places",places)
         
         const security_room = places.includes(10);
 
@@ -125,8 +125,7 @@ class Animatronic {
             room_item_number > 11 
         );
         
-
-        if(played_room !== null && played_room !== undefined && !places.includes(played_room)){
+        if(played_room !== null && played_room !== undefined && places.includes(played_room)){
 
             choice_decision = (
                 this.current_place !== played_room
@@ -135,7 +134,7 @@ class Animatronic {
             );
             
             if(choice_decision < 1){
-                 console.log(this.identifier+"escolheu audio",places[audio_room_index])
+                 console.log(this.identifier+"escolheu audio",places[audio_room_index],places)
                 this.current_place = played_room;
                 return this.current_place
             }

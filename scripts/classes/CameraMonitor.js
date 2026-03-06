@@ -57,13 +57,10 @@ class CameraMonitor {
             const choiced_camera = this.onFindChoiceCamera();
             
             if(this.current_played_room === null){
-                this.current_played_room = choiced_camera.quantity_visited === 2
-                ? null 
-                : choiced_camera.number;
+                this.current_played_room = choiced_camera.number;
             }
-        
-
-            if(this.current_played_room !== null && !choiced_camera.onPlayAudio(this.current_played_room)){
+            
+            if(!choiced_camera.onPlayAudio(this.current_played_room)){
                 audio_manager.onPlay('action_denied')
                 return
             }

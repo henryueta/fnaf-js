@@ -95,6 +95,10 @@ class Game {
 
         if(animatronic.isActive){
 
+            if(this.clock.current_time > 4){
+                animatronic.waiting_player_value = 3200;
+            }
+
             if(!!animatronic.isMoving){
                 if(
                     !!animatronic.isWaitingPlayer 
@@ -187,9 +191,9 @@ class Game {
             //apenas o número do local
 
 
-            const locked_place = this.place_list.filter((place_item)=>
+            const not_played_place = this.place_list.filter((place_item)=>
             {
-                return !!place_item.isLocked
+                return !place_item.isAudioPlayed && !!place_item.canPlayAudio
             }
             ).map((place_item)=>place_item.number);
 
@@ -200,8 +204,8 @@ class Game {
 
             const current_animatronic_place =  animatronic.onChoicePlace(
                 (
-                    (!!locked_place.length)
-                    ? next_place_list.filter((place_number)=>!locked_place.includes(place_number))
+                    (!!not_played_place.length)
+                    ? next_place_list.filter((place_number)=>!not_played_place.includes(place_number))
                     : next_place_list
                 ),
                 this.camera_monitor.current_played_room
@@ -275,13 +279,14 @@ class Game {
                 const current_played_camera = this.camera_monitor.onFindPlayedRoom();
 
             if(this.camera_monitor.current_played_room !== null && !next_current_animatronic_place.hasPowerGenerator){
-                 const current_played_camera = this.camera_monitor.onFindChoiceCamera()
+                console.log("Ignorou")
+                 const current_played_camera = this.camera_monitor.onFindPlayedRoom()
                 current_played_camera.isAudioPlayed = false;
                 this.camera_monitor.current_played_room = null;
                 this.camera_monitor.onChangePlayButtonView()
             }
 
-             if(!!next_current_animatronic_place.hasPowerGenerator){
+             if(!!next_current_animatronic_place.hasPowerGenerator && this.camera_monitor.current_played_room === next_current_animatronic_place.number){
                 current_played_camera.isAudioPlayed = false;
                 this.camera_monitor.current_played_room = null;
                 console.log("playted",current_played_camera.isAudioPlayed)
@@ -294,8 +299,17 @@ class Game {
                 console.log(animatronic.isMoving)
                 setTimeout(()=>{
                     animatronic.isMoving = true;
-                    console.log("volotu")
-                },15000)
+                    
+                    if(next_current_animatronic_place.quantity_visited === 4){
+                        animatronic.visited_place_list.push(next_current_animatronic_place.quantity_visited)
+                    }
+
+                },this.clock.current_time > 4
+                ? 2500
+                : next_current_animatronic_place.quantity_visited > 2 
+                    ? 4000
+                    : 10000
+                )
                 //  setTimeout(()=>{
                 //     prev_current_animatronic_place.onRemoveAnimatronic(animatronic);
                 //     prev_current_animatronic_place.onSetView(false);

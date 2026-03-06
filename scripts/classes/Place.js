@@ -47,6 +47,8 @@ class Place {
 
     onPlayAudio(current_locked_room){
 
+        console.log("PLAY",current_locked_room,this.number)
+
         if(this.isAudioPlayed){
             return false
         }
