@@ -14,7 +14,6 @@ class Animatronic {
         this.current_mode = config.current_mode;
         this.movement_delay = config.movement_delay;
         this.isWaitingPlayer = false;
-        this.usingGenerator = false;
         this.waiting_player_timeout = null;
         this.waiting_player_value = config.waiting_player_value;
         // this.isHuntingPlayer = config.isHuntingPlayer;
@@ -108,19 +107,25 @@ class Animatronic {
 
     }
 
-    onChoicePlace(places,played_room){
+    onChoicePlace(places,played_room,playerFocus){
         console.log("places",places)
         
         const security_room = places.includes(10);
 
-        let choice_decision = onRandomNumber(0,1);
+        let choice_decision = (
+            playerFocus
+            ? onRandomNumber(0,1)
+            :played_room !== null && played_room !== undefined
+                ? onRandomNumber(0,6)
+                : onRandomNumber(0,1)
+        );
 
-        if(!!security_room && choice_decision === 0){
+        if(!!security_room && choice_decision < 1){
             console.log("escolheu entrar")
             this.current_place = 10;
             return this.current_place;
         }
-        console.log("escolheu sair")
+
         const audio_room_index = places.findIndex((room_item_number)=>
             room_item_number > 11 
         );
@@ -128,9 +133,11 @@ class Animatronic {
         if(played_room !== null && played_room !== undefined && places.includes(played_room)){
 
             choice_decision = (
-                this.current_place !== played_room
-                ? onRandomNumber(-5,1)
-                : onRandomNumber(0,3)
+                playerFocus
+                ? onRandomNumber(0,1)
+                : this.current_place !== played_room
+                    ? onRandomNumber(-5,1)
+                    : onRandomNumber(0,3)
             );
             
             if(choice_decision < 1){
@@ -140,13 +147,13 @@ class Animatronic {
             }
 
         }
-        choice_decision = onRandomNumber(-5,1);
+        // choice_decision = onRandomNumber(-5,1);
 
-        if((choice_decision === 1 && places[audio_room_index] !== undefined)){
-            console.log(this.identifier+"escolheu gerador",places[audio_room_index])
-            this.current_place = places[audio_room_index]
-            return this.current_place
-        }
+        // if((choice_decision === 1 && places[audio_room_index] !== undefined)){
+        //     console.log(this.identifier+"escolheu audio",places[audio_room_index])
+        //     this.current_place = places[audio_room_index]
+        //     return this.current_place
+        // }
 
         const no_audio_room_places = places.filter((_,place_index)=>place_index !== audio_room_index)
         let random_number = onRandomNumber(0,1);

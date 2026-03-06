@@ -18,93 +18,6 @@ import { Telephone } from "./classes/Telephone.js"
 import { TaskMonitor } from "./classes/TaskMonitor.js"
 import { task_list } from "./objects/task-list.js"
 
-
-// const assets = [];
-
-// const carregarImagens = async (lista)=>{
-
-//     for(const url of lista){
-//         const img = new Image();
-//         img.src = url;
-//         await img.decode();
-//         assets.push(img);
-       
-//     }
-//     // testarMemoria(assets);
-  
-
-// }
-// let frame = 0;
-// let id = null;
-// const loop = ()=>{
-//     const current_image = assets[frame % 10];
-//     canvas.getContext('2d').drawImage(current_image,0,0);
-//     frame+=1;
-//     id = requestAnimationFrame(loop);
-// }
-
-// setTimeout(()=>{
-//     //   loop();
-//     // setTimeout(()=>{
-//         // cancelAnimationFrame(id)
-//         // id = null;
-//         // console.log("parou")
-//     // },3000)
-
-// },2000)
-
-// const canvas = document.querySelector("#room-canvas");
-
-
-// const testarMemoria = async(imagens)=>{
-
-//     for(let img of imagens){
-//         await img.decode();
-//         console.log(img)
-//         canvas.getContext('2d').drawImage(img,0,0)
-//     }
-
-// }
-
-// carregarImagens([
-//     "../car.jpg",
-//     "../kaneki.jpg",
-//     "../minecraft.png",
-//     "../naruto.jpg",
-//     "../space.jpg",
-//     "../sun.jpg",
-//     "../car.jpg",
-//     "../kaneki.jpg",
-//     "../naruto.jpg",
-//     "../minecraft.png"
-// ]);
-
-function resizeGame() {
-  const gameWrapper = document.querySelector("body");
-
-  const screenWidth = window.innerWidth;
-  const screenHeight = window.innerHeight;
-
-  const targetRatio = 21 / 9;
-  const screenRatio = screenWidth / screenHeight;
-
-  if (screenRatio > targetRatio) {
-    // Tela muito larga → limitar pela altura
-    gameWrapper.style.height = screenHeight + "px";
-    gameWrapper.style.width = (screenHeight * targetRatio) + "px";
-    gameWrapper.style.border = '2px solid red'
-  } else {
-    // Tela muito alta → limitar pela largura
-    gameWrapper.style.border = '2px solid blue'
-    
-    gameWrapper.style.width = screenWidth + "px";
-    gameWrapper.style.height = (screenWidth / targetRatio) + "px";
-  }
-}
-
-// window.addEventListener("resize", resizeGame);
-// resizeGame();
-
 const game = new Game({
     player:new Player(),
     clock:new Clock({
@@ -167,6 +80,7 @@ await audio_manager.onPreload({
     camera_select:"../assets/audio/camera/camera_select.wav",
     action_denied:"../assets/audio/camera/action_denied.wav",
     door:"../assets/audio/camera/door.wav",
+    audio_room_exit:"../assets/audio/animatronic/audio_room_exit.wav",
     vent_walk:"../assets/audio/animatronic/vent_walk.wav",
     running_away:"../assets/audio/animatronic/running_away.wav",
     jumpscare:"../assets/audio/animatronic/jumpscare.wav",

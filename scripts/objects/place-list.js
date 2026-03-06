@@ -255,7 +255,7 @@ const place_list = [
             }
         ],
         name:"test2_room",
-        next_place_index_list:[9,6],
+        next_place_index_list:[9,6,12,13,14,15,16],
         animatronic_list:null
     })
 

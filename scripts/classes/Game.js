@@ -187,7 +187,14 @@ class Game {
                     }
                }
 
-            
+               if(animatronic.current_place > 11){
+                    audio_manager.onPlay("audio_room_exit",null,0.3)
+               }
+
+               if(animatronic.current_place === 10){
+                    animatronic.visited_place_list = [];
+               }
+
             //apenas o número do local
             const next_place_list = this.place_list.find((place_item)=>
                 place_item.number === animatronic.current_place
@@ -207,7 +214,8 @@ class Game {
                         ?  [1,5]
                         : next_place_list.filter((place_number)=>place_number <= 10)
                 ),
-                this.camera_monitor.current_played_room
+                this.camera_monitor.current_played_room,
+                (this.clock.current_time >= 4)
             ); 
 
             if(current_animatronic_place === 11){
@@ -229,7 +237,7 @@ class Game {
                 //     animatronic.footstep_cheat.onSetMaxCheatQuantity();
                 //     animatronic.footstep_cheat.inCheatProcess = true; 
                 // }
-            console.log("AQUI",next_current_animatronic_place)
+
                 if(next_current_animatronic_place.hasSecurityRoomConnection && !next_current_animatronic_place.isPointOfChoice){
 
                     
@@ -355,11 +363,7 @@ class Game {
     }
     
     onStartNightInterval(){
-        if(this.animatronic_list[0].usingGenerator){
-            return
-        }
 
-        console.log("é maior",this.clock.current_time < 2)
         this.current_night.running_event_value = (
             this.clock.current_time < 2
             ? (
@@ -375,6 +379,11 @@ class Game {
         );
         //---//
         //---//
+
+        if(this.clock.current_time >= 4 && !this.animatronic_list[0].footstep_cheat.inCheatProcess){
+            this.animatronic_list[0].footstep_cheat.inCheatProcess = true;
+        }
+
         this.onActiveAnimatronic(this.animatronic_list[0]);
         console.log("executado",this.current_night.running_event_value);
         this.current_night.event_running_timeout = setTimeout(()=>this.onStartNightInterval(),this.current_night.running_event_value)
