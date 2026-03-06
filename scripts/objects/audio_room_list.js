@@ -1,15 +1,14 @@
 import { Place } from "../classes/Place.js"
 import { onLoadImage } from "../functions/image-loader.js"
-import { animatronic_list } from "./animatronic-list.js"
 
-const generator_room_list = [
+const audio_room_list = [
         new Place({
         number:12,
         canLock:true,
         canPlayAudio:true,
         isEnabled:false,
         isLocked:false,
-        hasPowerGenerator:true,
+        canPlayAudio:true,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -39,7 +38,7 @@ const generator_room_list = [
         canPlayAudio:true,
         isEnabled:false,
         isLocked:false,
-        hasPowerGenerator:true,
+        canPlayAudio:true,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -60,7 +59,7 @@ const generator_room_list = [
             }
         ],
         name:"test2_room",
-        next_place_index_list:[2],
+        next_place_index_list:[0],
         animatronic_list:null
     }),
     new Place({
@@ -69,7 +68,7 @@ const generator_room_list = [
         canPlayAudio:true,
         isEnabled:false,
         isLocked:false,
-        hasPowerGenerator:true,
+        canPlayAudio:true,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -99,7 +98,7 @@ const generator_room_list = [
         canPlayAudio:true,
         isEnabled:false,
         isLocked:false,
-        hasPowerGenerator:true,
+        canPlayAudio:true,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -129,7 +128,7 @@ const generator_room_list = [
         canPlayAudio:true,
         isEnabled:false,
         isLocked:false,
-        hasPowerGenerator:true,
+        canPlayAudio:true,
         hasMultipleConnections:false,
         hasSecurityRoomConnection:false,
         isPointOfChoice:false,
@@ -157,5 +156,5 @@ const generator_room_list = [
 ]
 
 export {
-    generator_room_list
+    audio_room_list
 }

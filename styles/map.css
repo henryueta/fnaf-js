@@ -113,6 +113,7 @@
   font-size: 0.8em;
   text-align: center;
   box-sizing: border-box; 
+  background-color: gray;
 }
 
 
@@ -134,11 +135,11 @@
 .room-1 { grid-area: 8 / 4 / 4 / 8;}
 .room-0 { grid-area: 8 / 13 / 4 / 9;}
 
-.generator-room-0 { grid-area: 5 / 2 / 7 / 4;  visibility: hidden;} 
-.generator-room-1  { grid-area: 12 / 2 / 14 / 4; visibility: hidden;}
-.generator-room-2  { grid-area: 21 / 6 / 19 / 8;  visibility: hidden;}
-.generator-room-3 { grid-area:15 / 21 / 13 / 19;  visibility: hidden;} 
-.generator-room-4 { grid-area: 2 / 16 / 4 / 18; visibility: hidden;}
+.generator-room-0 { grid-area: 4 / 2 /8 / 4;  visibility: hidden;} 
+.generator-room-1  { grid-area:2 / 13 / 4 / 9; visibility: hidden;}
+.generator-room-2  { grid-area: 22 / 4 / 19 / 8;  visibility: hidden;}
+.generator-room-3 { grid-area:16 / 21 / 12 / 19;  visibility: hidden;} 
+.generator-room-4 { grid-area: 2 / 14 / 4 / 19; visibility: hidden;}
 
 
 .office {grid-area: 10 / 8 / 14 / 14; }
@@ -150,7 +151,7 @@ align-items: center;
 justify-content: center;
    width: 70%;
   height: 80%; 
-  border: 0.15rem solid rgb(255,255,255,0.5);
+  border: 0.2rem solid rgb(255,255,255,0.5);
 }
 
 
@@ -178,28 +179,35 @@ justify-content: center;
 
 .horizontal-hall{
   z-index: 1;
-  border-top: 0.15rem solid;border-bottom: 0.15rem solid;
+  border-top: 0.2rem solid;border-bottom: 0.2rem solid;
 }
 
 .vertical-hall{
   z-index: 1;
-  border-left: 0.15rem solid;border-right: 0.15rem solid;
+  border-left: 0.2rem solid;border-right: 0.2rem solid;
 }
 
 .place{
   z-index: 2;
-  border: 0.15rem solid;
+  border: 0.2rem solid;
 }
 .sub-place{
   z-index: 3;
-  border: 0.15rem solid;
+  border: 0.2rem solid;
 }
 
 .camera-interactive-item{
-  /* visibility: hidden; */
+    /* position: relative; */
+    padding: 0.5rem;
+    height: 100%;
+    width: 100%;
+    border: 0.2rem solid white;
+    background-color: gray;
+    font-weight: bolder;
+    color: white;
 }
 
-#place-0{
+/* #place-0{
   bottom: 50%;
   right: -50%;
 }
@@ -234,7 +242,7 @@ justify-content: center;
   right: 50%;
 } */
 
-#place-6{
+/* #place-6{
 
 }
 
@@ -256,7 +264,7 @@ justify-content: center;
   bottom: 45%;
   right: 50%;
   visibility: hidden;
-}
+}  */
 
   @media (max-width:1024px) {
 

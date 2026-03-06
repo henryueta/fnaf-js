@@ -39,7 +39,7 @@ class CameraMonitor {
             camera_item.className.includes('generator-room')
         ).map((camera_item)=>camera_item.children[0])
 
-        this.enabled_generator_room_list = new Set();
+        this.enabled_audio_room_list = new Set();
 
       if(!!this.action_button_list){
 
@@ -188,9 +188,9 @@ class CameraMonitor {
 
     onUpdateGeneratorRoomList(type){
 
-            if(!!this.enabled_generator_room_list.size){
+            if(!!this.enabled_audio_room_list.size){
 
-            this.enabled_generator_room_list.forEach(((generator_room)=>{
+            this.enabled_audio_room_list.forEach(((generator_room)=>{
                 generator_room.parentElement.style.visibility = (
                     type === 'start'
                     ? 'visible'
@@ -199,7 +199,7 @@ class CameraMonitor {
             }))
 
 
-            this.enabled_generator_room_list.forEach((generator_room)=>{
+            this.enabled_audio_room_list.forEach((generator_room)=>{
                 const current_room = this.camera_list.find((camera_item)=>camera_item.number === Number.parseInt(generator_room.id.slice(6)))
                 current_room.isEnabled = !!(type === 'start');
                 current_room.isAudioPlayed = !!(type === 'reset');
@@ -210,7 +210,7 @@ class CameraMonitor {
 
             if(type === 'reset'){
                 
-                this.enabled_generator_room_list.clear();
+                this.enabled_audio_room_list.clear();
                 return
             }
             return
@@ -222,9 +222,9 @@ class CameraMonitor {
         
         const current_quantity = 5;
 
-        while (this.enabled_generator_room_list.size < current_quantity) {
+        while (this.enabled_audio_room_list.size < current_quantity) {
             const random_generator_room = onRandomNumber(0,4);
-            this.enabled_generator_room_list.add((this.generator_room_camera_list[random_generator_room]));
+            this.enabled_audio_room_list.add((this.generator_room_camera_list[random_generator_room]));
         }
 
         this.onUpdateGeneratorRoomList('start');

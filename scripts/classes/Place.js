@@ -10,7 +10,7 @@ class Place {
         this.isAudioPlayed = false;
         this.isEnabled = config.isEnabled;
         this.isLocked = config.isLocked || false;
-        this.hasPowerGenerator = config.hasPowerGenerator;
+        this.canPlayAudio = config.canPlayAudio;
         this.next_place_index_list = config.next_place_index_list;
         this.animatronic_list =  config.animatronic_list ||  [];
         this.place_view_list = config.place_view_list || [];

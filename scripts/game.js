@@ -11,7 +11,7 @@ import { onLoadImage } from "./functions/image-loader.js"
 import { Clock } from "./classes/Clock.js"
 import { audio_manager } from "./audio-manager.js"
 import { Player } from "./classes/Player.js"
-import { generator_room_list } from "./objects/generator-room-list.js"
+import { audio_room_list } from "./objects/audio_room_list.js"
 import { Night } from "./classes/Night.js"
 import { Battery } from "./classes/Battery.js"
 import { Telephone } from "./classes/Telephone.js"
@@ -137,20 +137,20 @@ const game = new Game({
         task_list:task_list
     }),
     camera_monitor:new CameraMonitor({
-        isInstalled:false,
+        isInstalled:true,
         screen_container: document.querySelector(".cam-system-container .screen-container"),
         action_button_list:{
             place_lock_switch:document.querySelector("#place-lock-switch")
         },
         loading_image:await onLoadImage("../assets/imgs/loading.jpg"),
         camera_list_container:document.querySelector(".map-container"),
-        camera_list:[...place_list,...generator_room_list],
+        camera_list:[...place_list,...audio_room_list],
         choiced_camera_canvas:document.querySelector("#choiced-place-canvas")
     }),
     toggle_cam_system_button:document.querySelector(".toggle-cam-system-button"),
     toggle_task_system_button:document.querySelector(".toggle-task-system-button"),
     animatronic_list:animatronic_list,
-    place_list:[...place_list,...generator_room_list],
+    place_list:[...place_list,...audio_room_list],
     current_night:new Night({
         number:1,
         running_event_value:5000,

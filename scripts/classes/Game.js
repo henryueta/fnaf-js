@@ -189,24 +189,23 @@ class Game {
 
             
             //apenas o número do local
-
-
-            const not_played_place = this.place_list.filter((place_item)=>
-            {
-                return !place_item.isAudioPlayed && !!place_item.canPlayAudio
-            }
-            ).map((place_item)=>place_item.number);
-
-
             const next_place_list = this.place_list.find((place_item)=>
                 place_item.number === animatronic.current_place
             ).next_place_index_list;
 
+            const played_place = this.place_list.find((place_item)=>
+            {
+                return !!place_item.isAudioPlayed && !!place_item.canPlayAudio && next_place_list.includes(place_item.number)
+            }
+            )
+
             const current_animatronic_place =  animatronic.onChoicePlace(
                 (
-                    (!!not_played_place.length)
-                    ? next_place_list.filter((place_number)=>!not_played_place.includes(place_number))
-                    : next_place_list
+                    (played_place !== null && played_place !== undefined)
+                    ? next_place_list.filter((place_number)=>played_place.number === place_number || place_number < 12)
+                    : animatronic.current_place === 0
+                        ?  [1,5]
+                        : next_place_list.filter((place_number)=>place_number <= 10)
                 ),
                 this.camera_monitor.current_played_room
             ); 
@@ -230,7 +229,7 @@ class Game {
                 //     animatronic.footstep_cheat.onSetMaxCheatQuantity();
                 //     animatronic.footstep_cheat.inCheatProcess = true; 
                 // }
-
+            console.log("AQUI",next_current_animatronic_place)
                 if(next_current_animatronic_place.hasSecurityRoomConnection && !next_current_animatronic_place.isPointOfChoice){
 
                     
@@ -278,7 +277,7 @@ class Game {
             }
                 const current_played_camera = this.camera_monitor.onFindPlayedRoom();
 
-            if(this.camera_monitor.current_played_room !== null && !next_current_animatronic_place.hasPowerGenerator){
+            if(this.camera_monitor.current_played_room !== null && !next_current_animatronic_place.canPlayAudio){
                 console.log("Ignorou")
                  const current_played_camera = this.camera_monitor.onFindPlayedRoom()
                 current_played_camera.isAudioPlayed = false;
@@ -286,7 +285,15 @@ class Game {
                 this.camera_monitor.onChangePlayButtonView()
             }
 
-             if(!!next_current_animatronic_place.hasPowerGenerator && this.camera_monitor.current_played_room === next_current_animatronic_place.number){
+            console.log("NEXT",next_current_animatronic_place.canPlayAudio)
+
+            if(!!next_current_animatronic_place.canPlayAudio){
+                 animatronic.visited_place_list = animatronic.visited_place_list.filter((place_item_number)=>
+                    place_item_number !== next_current_animatronic_place.next_place_index_list[0]
+                );
+            }
+
+             if(!!next_current_animatronic_place.canPlayAudio && this.camera_monitor.current_played_room === next_current_animatronic_place.number){
                 current_played_camera.isAudioPlayed = false;
                 this.camera_monitor.current_played_room = null;
                 console.log("playted",current_played_camera.isAudioPlayed)
@@ -299,11 +306,6 @@ class Game {
                 console.log(animatronic.isMoving)
                 setTimeout(()=>{
                     animatronic.isMoving = true;
-                    
-                    if(next_current_animatronic_place.quantity_visited === 4){
-                        animatronic.visited_place_list.push(next_current_animatronic_place.quantity_visited)
-                    }
-
                 },this.clock.current_time > 4
                 ? 2500
                 : next_current_animatronic_place.quantity_visited > 2 
@@ -335,7 +337,10 @@ class Game {
                 }
             }
 
-             if(animatronic.visited_place_list.length < onRandomNumber(1,4)){
+             if(animatronic.visited_place_list.length < onRandomNumber(1,4)
+                && 
+                prev_current_animatronic_place.number < 12
+            ){
                 animatronic.visited_place_list.push(prev_current_animatronic_place.number);
 
                 return
@@ -368,6 +373,8 @@ class Game {
                 : 3000
             )
         );
+        //---//
+        //---//
         this.onActiveAnimatronic(this.animatronic_list[0]);
         console.log("executado",this.current_night.running_event_value);
         this.current_night.event_running_timeout = setTimeout(()=>this.onStartNightInterval(),this.current_night.running_event_value)
