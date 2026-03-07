@@ -50,7 +50,7 @@ const game = new Game({
         task_list:task_list
     }),
     camera_monitor:new CameraMonitor({
-        isInstalled:false,
+        isInstalled:true,
         screen_container: document.querySelector(".cam-system-container .screen-container"),
         action_button_list:{
             place_lock_switch:document.querySelector("#place-lock-switch")

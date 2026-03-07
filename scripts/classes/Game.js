@@ -276,7 +276,7 @@ class Game {
                              )
                         ){
                             console.log("Play aqui, animatronic.footstep_cheat.inCheatProcess")
-                             animatronic.footstep_cheat.onPlayFootstepAudio(true)
+                             animatronic.footstep_cheat.onPlayFootstepAudio(false)
                         }
 
                         if(animatronic.footstep_cheat.current_side === null){
@@ -403,7 +403,7 @@ class Game {
         //---//
         //---//
 
-        this.onActiveAnimatronic(this.animatronic_list[0]);
+        // this.onActiveAnimatronic(this.animatronic_list[0]);
         console.log("executado",this.current_night.running_event_value);
         this.current_night.event_running_timeout = setTimeout(()=>this.onStartNightInterval(),this.current_night.running_event_value)
     }
@@ -516,21 +516,35 @@ class Game {
             this.camera_monitor.choiced_camera_canvas.addEventListener("mouseenter",()=>{
                 this.toggle_cam_system_button.style.display = 'flex';
             });
+
+            this.task_monitor.screen_container.addEventListener("mouseenter",()=>{
+                this.toggle_task_system_button.style.display = 'flex';
+            });
+
         }
 
         this.toggle_task_system_button.addEventListener(
             (this.player.screen_display === 'MOBILE'
                 ? 'click'
-                : 'click'
+                : 'mouseenter'
             ),()=>{
                 this.task_monitor.onToggle()
                 audio_manager.onPlay('camera_toggle');
                 this.x_movement.setIsLocked(this.task_monitor.isOpen || this.current_night.playerIsDeath);
                 this.x_movement.onEndMove();
                 if(this.task_monitor.isOpen){
+                    this.toggle_task_system_button.style.display = 'none';
                     this.toggle_cam_system_button.style.display = 'none';
                     return
                 }
+                this.toggle_task_system_button.style.display = 'none';
+                console.log("vision",this.player_room.vision)
+                setTimeout(()=>{
+                    if(this.camera_monitor.isOpen || this.player_room.vision !== 'internal' || this.player_room.playerIsMoving){
+                        return
+                    }
+                    this.toggle_task_system_button.style.display = 'block';
+                },500)
                 this.toggle_cam_system_button.style.display = 'block';
         })
 
@@ -548,7 +562,7 @@ class Game {
             }
             if(this.camera_monitor.isOpen || this.player_room.playerIsMoving){
                 setTimeout(()=>{
-                    this.toggle_cam_system_button.style.display = 'flex';
+                    this.toggle_cam_system_button.style.display = 'block';
                 },500)
             }
 
