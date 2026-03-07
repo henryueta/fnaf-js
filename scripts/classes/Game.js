@@ -95,8 +95,12 @@ class Game {
 
         if(animatronic.isActive){
 
-            if(this.clock.current_time > 4){
+            if(this.clock.current_time >= 4 && animatronic.waiting_player_value !== 3200){
                 animatronic.waiting_player_value = 3200;
+            }
+
+            if(this.clock.current_time >=1){
+                animatronic.footstep_cheat.inCheatProcess = true;
             }
 
             if(!!animatronic.isMoving){
@@ -118,11 +122,10 @@ class Game {
                     &&
                     animatronic.footstep_cheat.max_cheat_quantity !== null
                     &&
-                    animatronic.footstep_cheat.current_cheat_quantity !== animatronic.footstep_cheat.max_cheat_quantity
+                    animatronic.footstep_cheat.current_cheat_quantity < animatronic.footstep_cheat.max_cheat_quantity
                 ){
-                    animatronic.footstep_cheat.onCheat(()=>{
-                        this.onActiveAnimatronic(animatronic);
-                    });
+                    console.log("Play aqui onCheat")
+                    animatronic.footstep_cheat.onCheat();
                     return
                 }
 
@@ -240,8 +243,6 @@ class Game {
 
                 if(next_current_animatronic_place.hasSecurityRoomConnection && !next_current_animatronic_place.isPointOfChoice){
 
-                    
-
                     const current_player_room_door = 
                     animatronic.footstep_cheat.current_side === 'right'
                         ? this.player_room.right_door
@@ -256,14 +257,36 @@ class Game {
                             door.place_location_number === next_current_animatronic_place.number
                         );
                         console.log("side",animatronic.footstep_cheat.current_side)
+                        console.log("footstep",animatronic.footstep_cheat.current_footstep)
+                        console.log("cheat",!!animatronic.footstep_cheat.inCheatProcess)
+
+                        if(
+                            animatronic.footstep_cheat.current_side !== null 
+                            &&
+                            //  (
+                            //     !!animatronic.footstep_cheat.inCheatProcess
+                            //     &&
+                            //     animatronic.footstep_cheat.current_cheat_quantity < animatronic.footstep_cheat.max_cheat_quantity
+                            //  )
+                            //  ||
+                             (
+                                !!animatronic.footstep_cheat.inCheatProcess
+                                &&
+                                animatronic.footstep_cheat.max_cheat_quantity === null
+                             )
+                        ){
+                            console.log("Play aqui, animatronic.footstep_cheat.inCheatProcess")
+                             animatronic.footstep_cheat.onPlayFootstepAudio(true)
+                        }
+
                         if(animatronic.footstep_cheat.current_side === null){
                             animatronic.footstep_cheat.current_side = 
                             current_player_room_door.place_location_number === this.player_room.right_door.place_location_number
                             ? 'right'
                             : 'left';
+                            console.log("Play aqui,animatronic.footstep_cheat.current_side")
                             animatronic.footstep_cheat.onPlayFootstepAudio(false)
                         }
-                        
 
                     console.log("Porta encontrada: ",current_player_room_door);
                     current_player_room_door.onSetAnimatronicView(animatronic.identifier,'common')
@@ -316,7 +339,7 @@ class Game {
                     animatronic.isMoving = true;
                 },this.clock.current_time > 4
                 ? 2500
-                : next_current_animatronic_place.quantity_visited > 2 
+                : next_current_animatronic_place.quantity_visited > onRandomNumber(1,2) 
                     ? 4000
                     : 10000
                 )
@@ -379,10 +402,6 @@ class Game {
         );
         //---//
         //---//
-
-        if(this.clock.current_time >= 4 && !this.animatronic_list[0].footstep_cheat.inCheatProcess){
-            this.animatronic_list[0].footstep_cheat.inCheatProcess = true;
-        }
 
         this.onActiveAnimatronic(this.animatronic_list[0]);
         console.log("executado",this.current_night.running_event_value);

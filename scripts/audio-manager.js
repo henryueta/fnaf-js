@@ -18,6 +18,8 @@ const audio_manager = {
     },
     onPlay(name,onEnd,volume = 1,loop = false){
 
+        console.log("PLAY",name)
+
         if(this.context.state === 'suspended'){
             this.context.resume();
         }

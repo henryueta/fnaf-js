@@ -16,7 +16,7 @@ class Door{
     }
 
     onDraw(){
-        // this.door_room_context.fillStyle = 'black';
+        // this.door_room_context.fillStyle = 'red';
         // this.door_room_context.fillRect(
         // this.x,
         // this.y,

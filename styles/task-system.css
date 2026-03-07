@@ -85,19 +85,19 @@
 }
 
 .task-system-container .content-container .task-list-container>div>.name-container{
-    border: 1px solid white;
+    width: 80%;
 }
 
 .task-system-container .content-container .task-list-container>div button{
-    padding: 0.5rem;
+    padding: 1rem;
     background-color: black;
     border: 0.1rem solid white;
 }
 
 .task-system-container .content-container .task-list-container>div button>svg{
     color: white;
-    width: 1rem;
-    height: 1rem;
+    width: 1.3rem;
+    height: 1.3rem;
 }
 
 .task-system-container .content-container .task-list-container .progress-container{
