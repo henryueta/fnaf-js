@@ -15,7 +15,6 @@ class TaskMonitor {
         this.task_progress_button_list = [];
         this.onResolveTask = config.onResolveTask;
 
-
         this.play_icon = `
             <svg viewBox="0 0 24 24">
             <polygon points="8,5 19,12 8,19" fill="currentColor"/>
