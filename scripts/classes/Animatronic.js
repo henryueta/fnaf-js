@@ -47,23 +47,6 @@ class Animatronic {
             'hunter':()=>{
                 console.log(this.visited_place_list)
                 this.visited_place_list.push(place.number)
-            },
-            'noisy':()=>{
-                
-                if(type === 'action'){
-                    const place_for_noisy = place.place_view_list.find((place_item)=>
-                        typeof place_item.noisy_animatronic === 'number' 
-                        &&
-                        place_item.noisy_animatronic === this.identifier
-                    )
-    
-                    
-                    console.log(this.isMoving,!!place_for_noisy)
-                    return
-                }
-
-                
-
             }
         }
         return current_mode_list[mode]()
@@ -78,18 +61,6 @@ class Animatronic {
             'hunter':()=>{
                 console.log(this.visited_place_list)
                 this.visited_place_list.push(place.number)
-            },
-            'noisy':()=>{
-                
-                const place_for_noisy = place.place_view_list.find((place_item)=>
-                    typeof place_item.noisy_animatronic === 'number' 
-                    &&
-                    place_item.noisy_animatronic === this.identifier
-                )
-
-                
-                console.log(this.isMoving,!!place_for_noisy)
-
             }
         }
 

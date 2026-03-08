@@ -15,9 +15,9 @@ const task_list = [
     // }),
     new Task({
         identifier:2,
-        name:"Empty File",
-        final_progress_value:5,
-        to_install:null
+        name:"Room 0",
+        final_progress_value:2,
+        to_install:"resolve-0"
     }),
     new Task({
         identifier:3,

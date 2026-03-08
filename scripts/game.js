@@ -17,6 +17,7 @@ import { Battery } from "./classes/Battery.js"
 import { Telephone } from "./classes/Telephone.js"
 import { TaskMonitor } from "./classes/TaskMonitor.js"
 import { task_list } from "./objects/task-list.js"
+import { resolved_place_list } from "./objects/resolved-place-list.js"
 
 const game = new Game({
     player:new Player(),
@@ -64,6 +65,7 @@ const game = new Game({
     toggle_task_system_button:document.querySelector(".toggle-task-system-button"),
     animatronic_list:animatronic_list,
     place_list:[...place_list,...audio_room_list],
+    resolved_place_list:resolved_place_list,
     current_night:new Night({
         number:1,
         running_event_value:5000,

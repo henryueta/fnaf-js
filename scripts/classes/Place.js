@@ -18,7 +18,14 @@ class Place {
         this.isPointOfChoice = config.isPointOfChoice;
         this.hasSecurityRoomConnection = config.hasSecurityRoomConnection;
         this.quantity_visited = 0;
-        const current_place_info =  this.place_view_list.find((view_item)=>
+        this.current_view = null;
+        this.current_audio = null;
+        this.repeat_audio = null;
+        this.onChangeCurrentView();
+    }
+
+    onChangeCurrentView(){
+        const current_place_info = this.place_view_list.find((view_item)=>
         {
             return onSameList(this.animatronic_list.map((animatronic_item)=>animatronic_item.identifier),view_item.animatronic_list)
         }
@@ -26,7 +33,6 @@ class Place {
         this.current_view = current_place_info.image;
         this.current_audio = current_place_info.audio;
         this.repeat_audio = current_place_info.repeat_audio;
-        
     }
 
     onLockSwitch(current_locked_room){
@@ -61,16 +67,9 @@ class Place {
         return true
     }
 
-    onSetView(isNoisy){
+    onSetView(){
 
-        const filtered_place_view_list = (
-            isNoisy
-            ? this.place_view_list.filter((item)=>typeof item.noisy_animatronic === 'number')
-            : this.place_view_list
-        )
-
-
-         this.current_view = filtered_place_view_list.find((view_item)=>
+         this.current_view = this.place_view_list.find((view_item)=>
         {
             return onSameList(this.animatronic_list.map((animatronic_item)=>animatronic_item.identifier),view_item.animatronic_list)
         }
