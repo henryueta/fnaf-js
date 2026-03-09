@@ -17,7 +17,7 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../bedroom_1.jpeg")
+                image:await onLoadImage("../assets/imgs/place/Cam0.png")
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -30,7 +30,7 @@ const place_list = [
         ],
         name:"test_room",
         next_place_index_list:[1,5,12,13,16],
-        animatronic_list:animatronic_list.filter((animatronic_item)=>animatronic_item.current_place === 0)
+        animatronic_list:null
     }),
     new Place({
         number:1,
@@ -46,7 +46,7 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../bedroom_1.jpeg")
+                image:await onLoadImage("../assets/imgs/place/Cam1.png")
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -75,7 +75,7 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../bedroom_1.jpeg")
+                image:await onLoadImage("../assets/imgs/place/Cam2.png")
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -103,7 +103,7 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../bedroom_1.jpeg")
+                image:await onLoadImage("../assets/imgs/place/Cam3.png")
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -131,7 +131,7 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../bedroom_1.jpeg")
+                image:await onLoadImage("../assets/imgs/place/Cam4.png")
             },
             {//alterar depois
                 animatronic_list:[0],
@@ -158,7 +158,7 @@ const place_list = [
                 animatronic_list:[],
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../bedroom_1.jpeg")
+                image:await onLoadImage("../assets/imgs/place/Cam5.png")
             },
             {//alterar depois
                 animatronic_list:[0],

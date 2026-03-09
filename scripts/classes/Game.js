@@ -71,21 +71,21 @@ class Game {
 
     onUpdatePlayerVision(prev_current_animatronic_place,next_current_animatronic_place){
         if(
-        this.camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
+        this.camera_monitor.chosen_camera_info.number === prev_current_animatronic_place.number
         ||
-        this.camera_monitor.choiced_camera_info.number === next_current_animatronic_place.number
+        this.camera_monitor.chosen_camera_info.number === next_current_animatronic_place.number
         ){
-            this.camera_monitor.choiced_camera_info.image = this.camera_monitor.loading_image;
+            this.camera_monitor.chosen_camera_info.image = this.camera_monitor.loading_image;
             this.camera_monitor.onLoadView(true);
             setTimeout(()=>{
                 const current_place = (
-                    this.camera_monitor.choiced_camera_info.number === prev_current_animatronic_place.number
+                    this.camera_monitor.chosen_camera_info.number === prev_current_animatronic_place.number
                     ?  prev_current_animatronic_place
                     :  (next_current_animatronic_place)
                 )
                 current_place.onSetView()
-                this.camera_monitor.choiced_camera_info.image = ( current_place.current_view);
-                this.camera_monitor.choiced_camera_info.audio = ( current_place.current_audio);
+                this.camera_monitor.chosen_camera_info.image = ( current_place.current_view);
+                this.camera_monitor.chosen_camera_info.audio = ( current_place.current_audio);
                 this.camera_monitor.onLoadView(false);
             },200)
         }
@@ -488,6 +488,8 @@ class Game {
                     place_item.number === Number.parseInt(to_install.slice(8))
                 )
 
+                this.place_list[current_place_to_resolve_index].isResolved = true;
+
                 this.place_list[current_place_to_resolve_index].place_view_list = current_resolved_place.place_view_list;
                 
                 this.place_list[current_place_to_resolve_index].onChangeCurrentView()
@@ -560,7 +562,7 @@ class Game {
         this.x_movement.onMove(this.player.screen_display);
 
         if(this.player.screen_display === 'PC'){
-            this.camera_monitor.choiced_camera_canvas.addEventListener("mouseenter",()=>{
+            this.camera_monitor.chosen_camera_canvas.addEventListener("mouseenter",()=>{
                 this.toggle_cam_system_button.style.display = 'flex';
             });
 
@@ -575,23 +577,29 @@ class Game {
                 ? 'click'
                 : 'mouseenter'
             ),()=>{
+
+                this.player_room.playerIsMoving = false;
+
                 this.task_monitor.onToggle()
                 audio_manager.onPlay('camera_toggle');
                 this.x_movement.setIsLocked(this.task_monitor.isOpen || this.current_night.playerIsDeath);
                 this.x_movement.onEndMove();
                 if(this.task_monitor.isOpen){
+                    if(this.player.screen_display === 'PC'){
                     this.toggle_task_system_button.style.display = 'none';
+
+                    }
                     this.toggle_cam_system_button.style.display = 'none';
                     return
                 }
                 this.toggle_task_system_button.style.display = 'none';
-                console.log("vision",this.player_room.vision)
                 setTimeout(()=>{
                     if(this.camera_monitor.isOpen || this.player_room.vision !== 'internal' || this.player_room.playerIsMoving){
+                        console.log(this.player_room.playerIsMoving)
                         return
                     }
                     this.toggle_task_system_button.style.display = 'block';
-                },500)
+                },800)
                 this.toggle_cam_system_button.style.display = 'block';
         })
 

@@ -4,11 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
-    <!-- <link rel="stylesheet" href="./styles/index.css"> -->
+    <link rel="stylesheet" href="./styles/menu.css">
 </head>
 <body>
 
-    <a href="./pages/security-room.html">Start</a>
+    <div class="menu-container">
 
+        <div class="title-container">
+            <h1></h1>
+        </div>
+
+        <div class="author-list-containe">
+
+        </div>
+
+        <div class="version-container">
+            <p>V 1.5</p>
+        </div>
+
+        <div class="game-preference-choice-container">
+            <div class="cancel-game-preference-container">
+                <button>Return</button>
+            </div>
+            <div class="title-container">Choose your starting item</div>
+            <div class="choice-list-container">
+                <button id="flashlight-choice-button">Flashlight</button>
+                <button id="camera-choice-button">Camera</button> 
+            </div>
+            <div class="confirm-game-preference-container">
+                <button>Confirm</button>
+            </div>
+        </div>
+            
+        <div class="option-list-container">
+            <a href="./pages/security-room.html">Start</a>
+            <button id="new-game-option-button">New Game</button>
+            <button id="continue-game-option-button">Continue</button>
+            <button id="extra-option-button">Extra</button>
+        </div>
+
+        <div class="menu-canvas-container">
+            <canvas class="menu-canvas" id="menu-canvas"  width="2560" height="1440"></canvas>
+        </div>
+
+    </div>
+
+    <script type="module" src="./scripts/menu.js"></script>
 </body>
 </html>

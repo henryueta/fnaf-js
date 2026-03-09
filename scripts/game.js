@@ -4,7 +4,6 @@ import { Room } from "./classes/Room.js"
 import { place_list } from "./objects/place-list.js"
 import { animatronic_list } from "./objects/animatronic-list.js"
 import { Game } from "./classes/Game.js"
-import { night_list } from "./objects/night-list.js"
 import { door_list } from "./objects/door-list.js"
 import { Flashlight } from "./classes/Flashlight.js"
 import { onLoadImage } from "./functions/image-loader.js"
@@ -18,6 +17,9 @@ import { Telephone } from "./classes/Telephone.js"
 import { TaskMonitor } from "./classes/TaskMonitor.js"
 import { task_list } from "./objects/task-list.js"
 import { resolved_place_list } from "./objects/resolved-place-list.js"
+import { game_preferences } from "./objects/game-preferences.js"
+
+const preferences = game_preferences.onGetItemChoice();
 
 const game = new Game({
     player:new Player(),
@@ -34,7 +36,7 @@ const game = new Game({
         right_door:door_list[1],
         dark_screen:document.querySelector(".dark-screen-container"),
         flashlight:new Flashlight({
-            isInstalled:true,
+            isInstalled:preferences.flashlight,
             percent_container:document.querySelector(".percent-container")
         })
     }),
@@ -51,7 +53,7 @@ const game = new Game({
         task_list:task_list
     }),
     camera_monitor:new CameraMonitor({
-        isInstalled:true,
+        isInstalled:preferences.audio_system,
         screen_container: document.querySelector(".cam-system-container .screen-container"),
         action_button_list:{
             place_lock_switch:document.querySelector("#place-lock-switch")
@@ -59,7 +61,7 @@ const game = new Game({
         loading_image:await onLoadImage("../assets/imgs/loading.jpg"),
         camera_list_container:document.querySelector(".map-container"),
         camera_list:[...place_list,...audio_room_list],
-        choiced_camera_canvas:document.querySelector("#choiced-place-canvas")
+        chosen_camera_canvas:document.querySelector("#chosen-place-canvas")
     }),
     toggle_cam_system_button:document.querySelector(".toggle-cam-system-button"),
     toggle_task_system_button:document.querySelector(".toggle-task-system-button"),

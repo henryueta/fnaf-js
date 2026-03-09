@@ -80,7 +80,7 @@
   box-sizing: border-box; 
   }
 
-.choiced-place-content-container{
+.chosen-place-content-container{
   width: 100%;
   height: 100%;
   inset: 10px;
@@ -88,7 +88,7 @@
 }
   
 
-.choiced-place-content-container canvas{
+.chosen-place-content-container canvas{
   width: 100%;
   height: 100%;
 }
