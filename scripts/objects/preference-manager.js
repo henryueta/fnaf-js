@@ -15,18 +15,46 @@ const preference_manager = {
         this.isStarted = true;
 
         this.flash_light_option.addEventListener("click",()=>{
+            if(this.choosen_option === 'camera'){
+                this.camera_option.classList.remove("choosen");
+            }
             this.choosen_option = 'flashlight';
+            this.flash_light_option.classList.add("choosen");
         })
 
         this.camera_option.addEventListener("click",()=>{
+            if(this.choosen_option === 'flashlight'){
+                this.flash_light_option.classList.remove("choosen");
+            }
             this.choosen_option = 'camera';
+            this.camera_option.classList.add("choosen");
         })
 
         this.cancel_game_preference_container.addEventListener('click',()=>{
             this.game_preference_choice_container.style.display = 'none';
+            if(this.choosen_option === 'flashlight'){
+                this.flash_light_option.classList.remove("choosen");
+            }
+            if(this.choosen_option === 'camera'){
+                this.camera_option.classList.remove("choosen");
+            }
+            this.choosen_option = null;
         })
         this.confirm_game_preference_container.addEventListener("click",()=>{
-            console.log(this.choosen_option)
+            
+
+            window.location.replace("./pages/security-room.html"
+                +"?flashlight="+(this.choosen_option === 'flashlight'
+                    ? 'true'
+                    : 'false'
+                )
+                +'&audio_system='+(
+                    this.choosen_option === 'camera'
+                    ? 'true'
+                    : 'false'
+                )
+            );
+
         })
     }
 }

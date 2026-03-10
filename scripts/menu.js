@@ -22,7 +22,7 @@ const option_list = [
         title:"Extra",
         option_button:document.querySelector("#extra-option-button"),
         onHandleChoice:()=>{
-            console.log("3");
+            window.location.replace("./pages/extra.html")
         }
     }),
 ]
