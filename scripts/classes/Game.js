@@ -433,7 +433,7 @@ class Game {
             this.animatronic_list[0].footstep_cheat.inCheatProcess = true;
         }
 
-        // this.onActiveAnimatronic(this.animatronic_list[0]);
+        this.onActiveAnimatronic(this.animatronic_list[0]);
         console.log("executado",this.current_night.running_event_value);
         this.current_night.event_running_timeout = setTimeout(()=>this.onStartNightInterval(),this.current_night.running_event_value)
     }
@@ -478,24 +478,24 @@ class Game {
                 return
             }
 
-            if(to_install.slice(0,7) === 'resolve'){
+            // if(to_install.slice(0,7) === 'resolve'){
                 
-                const current_resolved_place = this.resolved_place_list.find((resolved_place_item)=>
-                    resolved_place_item.number === Number.parseInt(to_install.slice(8))
-                )
+            //     const current_resolved_place = this.resolved_place_list.find((resolved_place_item)=>
+            //         resolved_place_item.number === Number.parseInt(to_install.slice(8))
+            //     )
 
-                const current_place_to_resolve_index = this.place_list.findIndex((place_item)=>
-                    place_item.number === Number.parseInt(to_install.slice(8))
-                )
+            //     const current_place_to_resolve_index = this.place_list.findIndex((place_item)=>
+            //         place_item.number === Number.parseInt(to_install.slice(8))
+            //     )
 
-                this.place_list[current_place_to_resolve_index].isResolved = true;
+            //     this.place_list[current_place_to_resolve_index].isResolved = true;
 
-                this.place_list[current_place_to_resolve_index].place_view_list = current_resolved_place.place_view_list;
+            //     this.place_list[current_place_to_resolve_index].place_view_list = current_resolved_place.place_view_list;
                 
-                this.place_list[current_place_to_resolve_index].onChangeCurrentView()
+            //     this.place_list[current_place_to_resolve_index].onChangeCurrentView()
 
-                return
-            }
+            //     return
+            // }
 
             return
         }

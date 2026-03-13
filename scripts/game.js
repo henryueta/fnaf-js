@@ -31,12 +31,12 @@ const game = new Game({
     }),
     player_room: new Room({
         room_canvas:document.querySelector("#room-canvas"),
-        image_of_interior_room:await onLoadImage('../teste_sala4.png'),
+        image_of_interior_room:await onLoadImage('../assets/imgs/security/security_room.png'),
         left_door:door_list[0],
         right_door:door_list[1],
         dark_screen:document.querySelector(".dark-screen-container"),
         flashlight:new Flashlight({
-            isInstalled:preferences.flashlight,
+            isInstalled:true,
             percent_container:document.querySelector(".percent-container")
         })
     }),

@@ -18,14 +18,14 @@ const audio_room_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../bedroom_1.jpeg")
+                image:await onLoadImage("../assets/imgs/place/audio_cam.png")
             },
             {//alterar depois
                 animatronic_list:[0],
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/one.avif")
+                image:await onLoadImage("../assets/imgs/place/audio_cam_enemy.png")
             }
         ],
         name:"test2_room",
@@ -48,14 +48,14 @@ const audio_room_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../bedroom_1.jpeg")
+                image:await onLoadImage("../assets/imgs/place/audio_cam.png")
             },
             {//alterar depois
                 animatronic_list:[0],
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/one.avif")
+                image:await onLoadImage("../assets/imgs/place/audio_cam_enemy.png")
             }
         ],
         name:"test2_room",
@@ -78,14 +78,14 @@ const audio_room_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../bedroom_1.jpeg")
+                image:await onLoadImage("../assets/imgs/place/audio_cam.png")
             },
             {//alterar depois
                 animatronic_list:[0],
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/one.avif")
+                image:await onLoadImage("../assets/imgs/place/audio_cam_enemy.png")
             }
         ],
         name:"test2_room",
@@ -108,14 +108,14 @@ const audio_room_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../bedroom_1.jpeg")
+                image:await onLoadImage("../assets/imgs/place/audio_cam.png")
             },
             {//alterar depois
                 animatronic_list:[0],
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/one.avif")
+                image:await onLoadImage("../assets/imgs/place/audio_cam_enemy.png")
             }
         ],
         name:"test2_room",
@@ -138,14 +138,14 @@ const audio_room_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../bedroom_1.jpeg")
+                image:await onLoadImage("../assets/imgs/place/audio_cam.png")
             },
             {//alterar depois
                 animatronic_list:[0],
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/one.avif")
+                image:await onLoadImage("../assets/imgs/place/audio_cam_enemy.png")
             }
         ],
         name:"test2_room",

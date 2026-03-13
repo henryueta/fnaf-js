@@ -46,7 +46,7 @@
 }
 
 .horizontal-hall-container{
-    border: 1px solid white;
+    /* border: 1px solid white; */
     width: 15%;
     height: 15%;
 }
@@ -113,7 +113,7 @@
   font-size: 0.8em;
   text-align: center;
   box-sizing: border-box; 
-  background-color: gray;
+  background-color: rgb(129, 129, 129,0.5);
 }
 
 
@@ -179,21 +179,23 @@ justify-content: center;
 
 .horizontal-hall{
   z-index: 1;
-  border-top: 0.2rem solid;border-bottom: 0.2rem solid;
+  /* border-top: 0.2rem solid;border-bottom: 0.2rem solid; */
 }
 
 .vertical-hall{
   z-index: 1;
-  border-left: 0.2rem solid;border-right: 0.2rem solid;
+  /* border-left: 0.2rem solid;border-right: 0.2rem solid; */
 }
 
 .place{
   z-index: 2;
-  border: 0.2rem solid;
+  /* border: 0.2rem solid; */
+  box-shadow: 0rem 0rem 0.2rem black;
+
 }
 .sub-place{
   z-index: 3;
-  border: 0.2rem solid;
+  /* border: 0.2rem solid; */
 }
 
 .camera-interactive-item{
@@ -201,10 +203,13 @@ justify-content: center;
     padding: 0.5rem;
     height: 100%;
     width: 100%;
-    border: 0.2rem solid white;
-    background-color: gray;
+
+    background-color: rgb(129, 129, 129,0.5);
     font-weight: bolder;
     color: white;
+      display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* #place-0{

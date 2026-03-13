@@ -24,13 +24,13 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/one.avif")
+                image:await onLoadImage("../assets/imgs/place/Cam_0_enemy.png")
 
             },
         ],
         name:"test_room",
         next_place_index_list:[1,5,12,13,16],
-        animatronic_list:null
+        animatronic_list:animatronic_list
     }),
     new Place({
         number:1,
@@ -53,7 +53,7 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/one.avif")
+                image:await onLoadImage("../assets/imgs/place/Cam_1_enemy.png")
 
             },
         ],
@@ -82,7 +82,7 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/one.avif")
+                image:await onLoadImage("../assets/imgs/place/Cam_2_enemy.png")
             },
         ],
         name:"test2_room",
@@ -110,7 +110,7 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/one.avif")
+                image:await onLoadImage("../assets/imgs/place/Cam_3_enemy.png")
             },
         ],
         name:"test2_room",
@@ -138,7 +138,7 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/one.avif")
+                image:await onLoadImage("../assets/imgs/place/Cam_4_enemy.png")
             },
         ],
         name:"test2_room",
@@ -164,7 +164,7 @@ const place_list = [
                 animatronic_list:[0],
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/one.avif")
+                image:await onLoadImage("../assets/imgs/place/Cam_5_enemy.png")
             },
         ],
         name:"test2_room",

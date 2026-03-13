@@ -1,8 +1,8 @@
 import { Door } from "../classes/Door.js"
 import { onLoadImage } from "../functions/image-loader.js"
 
-const left_door_default_image = await onLoadImage("../teste_tamanho1.png");
-const right_door_default_image = await onLoadImage("../teste_tamanho1.png");
+const left_door_default_image = await onLoadImage("../assets/imgs/hall/left_hall.png")
+const right_door_default_image = await onLoadImage("../assets/imgs/hall/right_hall.png")
 
 const door_list = [
     new Door({
@@ -17,14 +17,14 @@ const door_list = [
             forTransition:false,
             audio:"../assets/audio/camera_select_1.mp3",
             repeat_audio:false,
-            image:await onLoadImage("../assets/imgs/enemy_teste1.png"),
+            image:await onLoadImage("../assets/imgs/hall/left_hall_enemy.png"),
         },
         {
             identifier:0,
             forTransition:true,
             audio:"../assets/audio/camera_select_1.mp3",
             repeat_audio:false,
-            image:await onLoadImage("../assets/imgs/enemy_teste2.png"),
+            image:await onLoadImage("../assets/imgs/hall/left_hall_enemy.png"),
         },
         {
             identifier:null,
@@ -47,14 +47,14 @@ const door_list = [
                 forTransition:false,
                 audio:"../assets/audio/camera_select_1.mp3",
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/enemy_teste1.png"),
+                image:await onLoadImage("../assets/imgs/hall/right_hall_enemy.png"),
             },
             {
             identifier:0,
             forTransition:true,
             audio:"../assets/audio/camera_select_1.mp3",
             repeat_audio:false,
-            image:await onLoadImage("../assets/imgs/enemy_teste2.png"),
+            image:await onLoadImage("../assets/imgs/hall/right_hall_enemy.png"),
             },
             {
                 identifier:null,
