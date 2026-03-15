@@ -80,7 +80,7 @@ class Jumpscare{
     }
 
     onStart(onEnd){
-        // audio_manager.onPlayJustOneAudio("jumpscare");
+        audio_manager.onPlayJustOneAudio("jumpscare");
         this.onLoadFrames(onEnd);
     }
 

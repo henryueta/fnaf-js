@@ -87,7 +87,7 @@ await audio_manager.onPreload({
     audio_room_exit:"../assets/audio/animatronic/audio_room_exit.wav",
     vent_walk:"../assets/audio/animatronic/vent_walk.wav",
     running_away:"../assets/audio/animatronic/running_away.wav",
-    jumpscare:"../assets/audio/animatronic/jumpscare.wav",
+    // jumpscare:"../assets/audio/animatronic/jumpscare.wav",
     no_battery:"../assets/audio/flashlight/no_battery.wav",
     flash:"../assets/audio/flashlight/flash.wav",
     right_to_left_audio:"../assets/audio/footstep/right_to_left_footstep.wav",

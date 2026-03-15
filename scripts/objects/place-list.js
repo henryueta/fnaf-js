@@ -17,14 +17,14 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/place/Cam0.png")
+                image:await onLoadImage("../assets/imgs/place/camera_0.png")
             },
             {//alterar depois
                 animatronic_list:[0],
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/place/Cam_0_enemy.png")
+                image:await onLoadImage("../assets/imgs/place/camera_0_enemy.png")
 
             },
         ],
@@ -46,14 +46,14 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/place/Cam1.png")
+                image:await onLoadImage("../assets/imgs/place/camera_1.png")
             },
             {//alterar depois
                 animatronic_list:[0],
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/place/Cam_1_enemy.png")
+                image:await onLoadImage("../assets/imgs/place/camera_1_enemy.png")
 
             },
         ],
@@ -75,14 +75,14 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/place/Cam2.png")
+                image:await onLoadImage("../assets/imgs/place/camera_2.png")
             },
             {//alterar depois
                 animatronic_list:[0],
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/place/Cam_2_enemy.png")
+                image:await onLoadImage("../assets/imgs/place/camera_2_enemy.png")
             },
         ],
         name:"test2_room",
@@ -103,14 +103,14 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/place/Cam3.png")
+                image:await onLoadImage("../assets/imgs/place/camera_3.png")
             },
             {//alterar depois
                 animatronic_list:[0],
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/place/Cam_3_enemy.png")
+                image:await onLoadImage("../assets/imgs/place/camera_3_enemy.png")
             },
         ],
         name:"test2_room",
@@ -131,14 +131,14 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/place/Cam4.png")
+                image:await onLoadImage("../assets/imgs/place/camera_4.png")
             },
             {//alterar depois
                 animatronic_list:[0],
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/place/Cam_4_enemy.png")
+                image:await onLoadImage("../assets/imgs/place/camera_4_enemy.png")
             },
         ],
         name:"test2_room",
@@ -158,13 +158,13 @@ const place_list = [
                 animatronic_list:[],
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/place/Cam5.png")
+                image:await onLoadImage("../assets/imgs/place/camera_5.png")
             },
             {//alterar depois
                 animatronic_list:[0],
                 audio:'camera_select',
                 repeat_audio:false,
-                image:await onLoadImage("../assets/imgs/place/Cam_5_enemy.png")
+                image:await onLoadImage("../assets/imgs/place/camera_5_enemy.png")
             },
         ],
         name:"test2_room",

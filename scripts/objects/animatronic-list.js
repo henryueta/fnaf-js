@@ -22,9 +22,9 @@ const animatronic_list = [
         // }
     ],
     jumpscare_frame_list:[
-        "../teste4.jpeg",
-        "../teste3.jpeg",
-        "../teste2.jpeg"
+        "../assets/imgs/jumpscare/jumpscare_frame_1.png",
+        "../assets/imgs/jumpscare/jumpscare_frame_2.png",
+        "../assets/imgs/jumpscare/jumpscare_frame_3.png"
     ]    
     }),
 

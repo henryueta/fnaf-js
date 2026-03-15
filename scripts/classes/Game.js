@@ -64,6 +64,7 @@ class Game {
         });
         this.player_room.onChangeDarkAmbience(true);
         this.toggle_cam_system_button.style.display = 'none';
+        this.toggle_task_system_button.style.display = 'none';
         if(this.camera_monitor.isOpen){
             this.camera_monitor.onToggle();
         }
@@ -433,7 +434,7 @@ class Game {
             this.animatronic_list[0].footstep_cheat.inCheatProcess = true;
         }
 
-        this.onActiveAnimatronic(this.animatronic_list[0]);
+        // this.onActiveAnimatronic(this.animatronic_list[0]);
         console.log("executado",this.current_night.running_event_value);
         this.current_night.event_running_timeout = setTimeout(()=>this.onStartNightInterval(),this.current_night.running_event_value)
     }
