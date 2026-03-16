@@ -21,7 +21,7 @@ class Jumpscare{
 
     }   
 
-    onLoadFrames(ondEnd){
+    onLoadFrames(onProcess,ondEnd){
 
         let loaded = 0;
         for (let i = 0; i < this.unloaded_frame_list.length; i++) {
@@ -32,13 +32,16 @@ class Jumpscare{
             if (loaded === this.unloaded_frame_list.length) {
                 this.isLoadedFrameList = true;
                 this.onAnimate();
+                onProcess();
                 setTimeout(()=>{
                     this.onEnd();
                     if(!!ondEnd){
                         ondEnd();
                     }
                 },3000)
+               
             }
+            
         };
         this.loaded_frame_list.push(image);
         }
@@ -79,9 +82,9 @@ class Jumpscare{
             this.frame_animation_info.animation_id = requestAnimationFrame(()=>this.onAnimate());
     }
 
-    onStart(onEnd){
+    onStart(onProcess,onEnd){
         audio_manager.onPlayJustOneAudio("jumpscare");
-        this.onLoadFrames(onEnd);
+        this.onLoadFrames(onProcess,onEnd);
     }
 
     onEnd(){    

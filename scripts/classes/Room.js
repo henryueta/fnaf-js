@@ -152,8 +152,6 @@ class Room {
             const y = (ch / 2) - (ih * scale / 2);
             this.room_context.drawImage(this.room_image, x, y, iw * scale, ih * scale);
              if(this.vision === 'internal'){
-                console.log("aaa")
-                // this.front_door.onDraw();
                 this.left_door.onDraw();
                 this.right_door.onDraw();
                 return
@@ -276,8 +274,17 @@ class Room {
                 // this.front_door.onClick(x,y);
                 this.right_door.onClick(x,y);
                 this.left_door.onClick(x,y);
+                if (
+                    x >= 1125 &&
+                    x <= 1125 + 60 &&
+                    y >= 495 &&
+                    y <= 495 + 50
+                ) {
+                    audio_manager.onPlay("poster_click")    
+                }
                 return
-            }
+            }         
+
             return
         
     }

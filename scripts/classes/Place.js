@@ -12,6 +12,7 @@ class Place {
         this.isLocked = config.isLocked || false;
         this.isResolved = false;
         this.canPlayAudio = config.canPlayAudio;
+        this.hearable_place_list = config.hearable_place_list || [];
         this.next_place_index_list = config.next_place_index_list;
         this.animatronic_list =  config.animatronic_list ||  [];
         this.place_view_list = config.place_view_list || [];

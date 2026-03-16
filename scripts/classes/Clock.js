@@ -19,6 +19,7 @@ class Clock{
         ){
             this.current_time+=1;
             this.time_container.textContent = this.current_time;
+            
               if(this.current_time === 6){
                 clearInterval(this.timer_interval);
                 this.timer_interval = null;

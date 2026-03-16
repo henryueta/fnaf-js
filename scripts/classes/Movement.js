@@ -8,6 +8,7 @@ class Movement{
         this.isLocked = false;
         this.right_container = config.right_container;
         this.left_container = config.left_container;
+        this.vision_container = config.vision_container;
         this.mobile_movement = null;
     }
 
@@ -60,7 +61,7 @@ class Movement{
     }
 
     onChangeXVision(){
-        document.querySelector(".room-container")
+        this.vision_container
         .style.transform = 'translateX('+this.x_value+'%)';
     }
 

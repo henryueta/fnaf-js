@@ -271,6 +271,24 @@ justify-content: center;
   visibility: hidden;
 }  */
 
+.hearable-place{
+    animation:hearable-place 0.5s ease-in-out forwards;
+}
+
+@keyframes hearable-place {
+    0%{
+      opacity: 100%;
+    }
+    50%{
+      opacity: 50%;
+      background-color: rgb(255, 255, 255);
+    }
+    100%{
+      opacity: 100%;
+      background-color: rgb(129, 129, 129,0.5);
+    }
+}
+
   @media (max-width:1024px) {
 
     .map-container{

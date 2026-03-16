@@ -45,7 +45,8 @@ const game = new Game({
     }),
     x_movement: new Movement({
         right_container:document.querySelector(".move-right-container"),
-        left_container:document.querySelector(".move-left-container")
+        left_container:document.querySelector(".move-left-container"),
+        vision_container: document.querySelector(".room-container")
     }),
     task_monitor:new TaskMonitor({
         screen_container:document.querySelector(".task-system-container .screen-container"),
@@ -78,6 +79,7 @@ const game = new Game({
 });
 
 await audio_manager.onPreload({
+    poster_click:"../assets/audio/security_room/poster_click.wav",
     clock:"../assets/audio/night/clock.wav",
     knock:"../assets/audio/camera/knock.wav",
     camera_toggle:"../assets/audio/camera/camera_toggle.wav",

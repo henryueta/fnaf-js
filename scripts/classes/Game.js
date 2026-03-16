@@ -1,4 +1,5 @@
 import { audio_manager } from "../audio-manager.js";
+import { onLoadImage } from "../functions/image-loader.js";
 import { onRandomNumber } from "../functions/randomNumber.js";
 import { Jumpscare } from "./Jumpscare.js";
 
@@ -42,6 +43,20 @@ class Game {
         }
     }
 
+    onSavePlayer(){
+        this.player_room.dark_screen.style.zIndex = '0';
+        // this.x_movement.setIsLocked(true,true);
+         this.toggle_cam_system_button.style.display = 'none';
+         this.camera_monitor.screen_container.parentElement.style.display = 'none';
+         this.task_monitor.screen_container.style.display = 'none';
+        this.toggle_task_system_button.style.display = 'none';
+        this.player_room.onChangeDarkAmbience(true);
+        this.x_movement.vision_container.style.zIndex = '20';
+        if(this.camera_monitor.isOpen){
+            this.camera_monitor.onToggle();
+        }
+    }
+
     onKillPlayer(animatronic){
         this.player_room.dark_screen.style.zIndex = '0';
         animatronic.isMoving = false;
@@ -59,15 +74,19 @@ class Game {
         });
         this.x_movement.setIsLocked(true,true);
         jumpscare.onStart(()=>{
+            if(jumpscare.frame_animation_info.animation_id !== null){
+                this.camera_monitor.screen_container.parentElement.style.zIndex = '0';
+                this.task_monitor.screen_container.style.zIndex = '0';
+            }
+        },async ()=>{
             this.current_night.onNightOver();
+            this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/game_over.png"),"none")
             return
         });
         this.player_room.onChangeDarkAmbience(true);
         this.toggle_cam_system_button.style.display = 'none';
         this.toggle_task_system_button.style.display = 'none';
-        if(this.camera_monitor.isOpen){
-            this.camera_monitor.onToggle();
-        }
+
     }
 
     onUpdatePlayerVision(prev_current_animatronic_place,next_current_animatronic_place){
@@ -448,13 +467,23 @@ class Game {
 
         this.clock.timer_interval = setInterval(()=>{
 
+            
             this.clock.onUpdateTime(()=>{
                 this.onClearNightEvent();
-                this.current_night.onNightWin();
-
+                
+                    // if(true){
+                    // this.onKillPlayer(this.animatronic_list[0]);
+                    // return
+                    // }
+               
+                
+                this.onSavePlayer();
+                this.current_night.onNightWin(async ()=>{
+                    this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/the_end.png"),"any")
+                });
             });
 
-        },this.clock.timer_value);
+        }, this.clock.timer_value);
     }
 
     onStart(){

@@ -12,11 +12,17 @@ class Night {
         this.game_over_container = config.game_over_container;
     }
 
-    onNightWin(){
+    onNightWin(onWin){
         audio_manager.onPlayJustOneAudio('clock');
         this.game_won_container.style.display = 'flex';
         this.game_won_container.classList.add("end-enabled");
-
+        setTimeout(()=>{
+            if(!!onWin){
+                this.game_won_container.classList.remove("end-enabled");
+                this.game_won_container.classList.add("final-screen")
+                onWin();
+            }
+        },12000)
     }
     onNightOver(){
         

@@ -69,6 +69,14 @@ class CameraMonitor {
             place_lock_switch.textContent = "Running. . .";
             place_lock_switch.classList.add("user-lock-switch");
 
+            chosen_camera.hearable_place_list.forEach((hearable_place_item)=>{
+                const current_hearable_place = document.querySelector("#place-"+hearable_place_item)
+                current_hearable_place.classList.add("hearable-place")
+                setTimeout(()=>{
+                    current_hearable_place.classList.remove("hearable-place")
+                },2500)
+            })
+
             setTimeout(()=>{
                 audio_manager.onPlay('door');
                 place_lock_switch.textContent = (

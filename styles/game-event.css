@@ -10,7 +10,6 @@
     align-items: center;
     justify-content: center;
     display: none;
-    background-color: black;
     font-size: 5.5rem;
 }
 
@@ -113,14 +112,25 @@
 }
 
 @keyframes end-of-night-entrace {
-
     0%{
         opacity: 0%;
     }
     100%{
         opacity: 100%;
     }
+}
 
+.final-screen{
+    animation: final-screen-entrace ease-in-out 3s forwards;
+}
+
+@keyframes final-screen-entrace {
+    0%{
+        opacity: 100%;
+    }
+    100%{
+        opacity: 0%;
+    }
 }
 
 @keyframes time-start-change {
