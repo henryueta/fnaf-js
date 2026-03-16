@@ -24,6 +24,7 @@ const game = new Game({
         time_container:document.querySelector(".time-span")
     }),
     telephone:new Telephone({
+        call_audio:'call',
         cancel_call_container:document.querySelector(".cancel-call-container")
     }),
     player_room: new Room({
@@ -76,6 +77,7 @@ const game = new Game({
 });
 
 await audio_manager.onPreload({
+    call:"../assets/audio/call/call.wav",
     poster_click:"../assets/audio/security_room/poster_click.wav",
     clock:"../assets/audio/night/clock.wav",
     knock:"../assets/audio/camera/knock.wav",
@@ -96,6 +98,13 @@ await audio_manager.onPreload({
 },()=>{
     game.onStart();
     document.body.classList.add("loaded");
+    const objective_container = document.querySelector(".objective-container")
+    objective_container.onclick = ()=>{
+        objective_container.classList.add("player-accept")
+        game.player_telephone.onAnswerCall(()=>{
+            game.onEnableItems();
+        })
+    }
 }); 
 
 

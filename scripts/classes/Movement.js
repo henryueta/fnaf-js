@@ -66,9 +66,9 @@ class Movement{
     }
 
     onMobileMove(type,movement,touch_event){
-        
+        touch_event.preventDefault();
         if(type === 'start'){
-            touch_event.preventDefault();
+            
             this.mobile_movement.isLongPress = false;
             this.mobile_movement.timeout = setTimeout(()=>{
                 this.mobile_movement.isLongPress = true;

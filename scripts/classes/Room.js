@@ -8,7 +8,7 @@ class Room {
         this.image_of_interior_room = config.image_of_interior_room
         this.room_image = config.image_of_interior_room;
         this.vision = "internal";
-        this.clickIsDisabled = false;
+        this.clickIsDisabled = true;
         this.playerIsMoving = false;
         this.current_door_vision = null;
         this.dark_screen = config.dark_screen;

@@ -18,7 +18,7 @@
     z-index: 6;
     top: 5%;
     left: 5%;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     height: 60px;
@@ -54,6 +54,7 @@
 }
 
 .timer-container{
+    display: none;
     font-family: pixel;
     color: white;
   text-shadow: 

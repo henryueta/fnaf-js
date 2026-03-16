@@ -9,6 +9,7 @@ class Game {
         this.player = config.player;
         this.clock = config.clock;
         this.player_room = config.player_room;
+        this.player_telephone = config.telephone;
         this.player_battery = config.player_battery;
         this.player_room.flashlight.battery = config.player_battery;
         this.camera_monitor = config.camera_monitor;
@@ -431,6 +432,16 @@ class Game {
              animatronic.visited_place_list = [];
     }
     
+    onEnableExit(){
+        this.player_room.room_canvas.onclick = ()=>{
+            document.body.classList.remove("loaded");
+            setTimeout(()=>{
+               window.location.replace("../../index.html");
+            },3000)
+            this.player_room.room_canvas.onclick = ()=>{}
+        }
+    }
+
     onStartNightInterval(){
 
         this.current_night.running_event_value = (
@@ -480,10 +491,19 @@ class Game {
                 this.onSavePlayer();
                 this.current_night.onNightWin(async ()=>{
                     this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/the_end.png"),"any")
+                    this.onEnableExit()
                 });
             });
 
         }, this.clock.timer_value);
+    }
+
+    onEnableItems(){
+        this.player_room.clickIsDisabled = false;
+        this.player_battery.battery_container.parentElement.style.display = 'flex';
+        this.clock.time_container.parentElement.parentElement.style.display = 'block';
+        this.toggle_cam_system_button.parentElement.style.display = 'flex';
+        this.toggle_task_system_button.parentElement.style.display = 'flex';
     }
 
     onStart(){
@@ -589,7 +609,7 @@ class Game {
 
         }   
 
-        this.onStartNightEvent();
+        // this.onStartNightEvent();
 
         this.x_movement.onMove(this.player.screen_display);
 
