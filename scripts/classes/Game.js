@@ -497,6 +497,8 @@ class Game {
             ),true)
         }
 
+        this.x_movement.onChangeXVision();
+
         this.task_monitor.onResolveTask = (to_install)=>{
 
             if(to_install === 'flashlight'){

@@ -114,7 +114,7 @@ const place_list = [
             },
         ],
         name:"test2_room",
-        next_place_index_list:[2,4,14],
+        next_place_index_list:[2,4,14,15],
         animatronic_list:null
     }),
     new Place({

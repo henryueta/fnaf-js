@@ -74,7 +74,7 @@ class CameraMonitor {
                 current_hearable_place.classList.add("hearable-place")
                 setTimeout(()=>{
                     current_hearable_place.classList.remove("hearable-place")
-                },2500)
+                },800)
             })
 
             setTimeout(()=>{

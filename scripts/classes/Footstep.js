@@ -6,7 +6,7 @@ class Footstep{
     constructor(){
         this.max_cheat_quantity = null;
         this.current_cheat_quantity = 0;
-        this.inCheatProcess = true;
+        this.inCheatProcess = false;
         this.current_footstep = null;
         this.current_side = null;
         this.footstep_checkout = {

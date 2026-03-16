@@ -92,6 +92,7 @@ const audio_room_list = [
         ],
         name:"test2_room",
         next_place_index_list:[3],
+        hearable_place_list:[2,3,4],
         animatronic_list:null
     }),
         new Place({
@@ -122,6 +123,7 @@ const audio_room_list = [
         ],
         name:"test2_room",
         next_place_index_list:[4],
+        hearable_place_list:[3,4,5],
         animatronic_list:null
     }),
         new Place({
@@ -152,6 +154,7 @@ const audio_room_list = [
         ],
         name:"test2_room",
         next_place_index_list:[5],
+        hearable_place_list:[0,4,5],
         animatronic_list:null
     }),
 

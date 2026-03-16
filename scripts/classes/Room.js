@@ -245,8 +245,8 @@ class Room {
                     this.onVisionTransition('entrace',type,direction);
                     setTimeout(()=>{
                         this.onVisionTransition('exit',type,direction);
-                    },200)
-                },200)
+                    },150)
+                },150)
                 return 
             }
             this.onVisionTransition('entrace',type,direction);
@@ -254,7 +254,7 @@ class Room {
                 this.onVisionTransition('exit',type,direction);
                 this.onSwitchImage(room_image,vision);
                 this.dark_screen.style.display = 'block'
-            },200)
+            },150)
             return
         }
     }
