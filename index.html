@@ -5,43 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
     <link rel="stylesheet" href="./styles/menu.css">
+    <link rel="stylesheet" href="./styles/index.css">
 </head>
 <body>
 
     <div class="menu-container">
-
-        <div class="title-container">
-            <h1></h1>
-        </div>
-
-        <div class="author-list-containe">
-
-        </div>
-
-        <div class="version-container">
-            <p>V 1.5</p>
-        </div>
-
-        <div class="game-preference-choice-container">
-            <div class="cancel-game-preference-container">
-                <button>Return</button>
+        <div class="content-container">
+            <div class="title-container">
+                    <span>One</span>
+                    <span>Night</span>
+                    <span>at</span>
+                    <span>Bistecone´s</span>
             </div>
-            <div class="title-container">Choose your starting item</div>
-            <div class="choice-list-container">
-                <button class="preference-option" id="flashlight-choice-button">Flashlight</button>
-                <button class="preference-option" id="camera-choice-button">Camera</button> 
+
+            <div class="author-list-container">
+                <span>Criado por Japoleao</span>
+                <span>Dublado por YuyArts</span>
+                <span>Créditos de inspiração a <span style="font-weight: bolder;">Bistecone</span></span>
             </div>
-            <div class="confirm-game-preference-container">
-                <button>Confirm</button>
+
+            <div class="version-container">
+                <p>V 1.5</p>
             </div>
-        </div>
-            
-        <div class="option-list-container">
-            <button id="new-game-option-button">New Game</button>
-            <button id="continue-game-option-button">Continue</button>
-            <button id="extra-option-button">Extra</button>
+    <!-- 
+            <div class="game-preference-choice-container">
+                <div class="cancel-game-preference-container">
+                    <button>Return</button>
+                </div>
+                <div class="title-container">Choose your starting item</div>
+                <div class="choice-list-container">
+                    <button class="preference-option" id="flashlight-choice-button">Flashlight</button>
+                    <button class="preference-option" id="camera-choice-button">Camera</button> 
+                </div>
+                <div class="confirm-game-preference-container">
+                    <button>Confirm</button>
+                </div>
+            </div> -->
+                
+            <div class="option-list-container">
+                <button id="new-game-option-button">
+                    <div class="select-option"></div>
+                    <span>Jogar</span>
+                </button>
+                <button id="extra-option-button">
+                    <div class="select-option"></div>
+                    <span>Extra</span>
+                </button>
+            </div>
         </div>
 
+        <div class="blur-container"></div>
         <div class="menu-canvas-container">
             <canvas class="menu-canvas" id="menu-canvas"  width="2560" height="1440"></canvas>
         </div>

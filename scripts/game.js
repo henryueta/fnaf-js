@@ -17,9 +17,6 @@ import { Telephone } from "./classes/Telephone.js"
 import { TaskMonitor } from "./classes/TaskMonitor.js"
 import { task_list } from "./objects/task-list.js"
 import { resolved_place_list } from "./objects/resolved-place-list.js"
-import { game_preferences } from "./objects/game-preferences.js"
-
-const preferences = game_preferences.onGetItemChoice();
 
 const game = new Game({
     player:new Player(),
@@ -54,7 +51,7 @@ const game = new Game({
         task_list:task_list
     }),
     camera_monitor:new CameraMonitor({
-        isInstalled:preferences.audio_system,
+        isInstalled:true,
         screen_container: document.querySelector(".cam-system-container .screen-container"),
         action_button_list:{
             place_lock_switch:document.querySelector("#place-lock-switch")
