@@ -213,14 +213,14 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:""
+                image:null  
             },
             {//alterar depois
                 animatronic_list:[0],
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:""
+                image:null
             }
         ],
         name:"test2_room",
@@ -242,14 +242,14 @@ const place_list = [
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:"../bedroom_1.jpeg"
+                image:null
             },
             {//alterar depois
                 animatronic_list:[0],
                 
                 audio:'camera_select',
                 repeat_audio:false,
-                image:"../assets/imgs/one.avif"
+                image:null
             }
         ],
         name:"test2_room",

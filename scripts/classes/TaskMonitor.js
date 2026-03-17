@@ -1,4 +1,4 @@
-import { audio_manager } from "../audio-manager.js";
+
 
 class TaskMonitor {
 
@@ -6,6 +6,8 @@ class TaskMonitor {
         this.screen_container = config.screen_container;
         this.isOpen = false;
         this.task_list_container = config.task_list_container;
+        this.task_solved_quantity = 0;
+        this.process_wait_container = config.process_wait_container;
         this.task_list = config.task_list = config.task_list;
         this.current_task_in_progress = null;
         this.task_progress_audio = config.task_progress_audio;
@@ -104,6 +106,11 @@ class TaskMonitor {
         });
     }
 
+    onEnableTaskList(){
+        this.process_wait_container.style.display = 'none';
+        this.task_list_container.style.display = 'flex';
+    }
+
     onConvertTaskProcessValue(value){
 
         return ((value * this.task_resolve_value)/1000).toFixed()
@@ -156,7 +163,7 @@ class TaskMonitor {
                     onProcess();
                 }
             },()=>{
-                this.onResolveTask(this.current_task_in_progress.to_install)
+                this.onResolveTask(this.current_task_in_progress.identifier,this.current_task_in_progress.to_install)
                 this.current_task_in_progress = null;
                 clearInterval(this.task_resolve_interval)
                 if(onEnd){

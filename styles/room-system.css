@@ -3,13 +3,11 @@
     z-index: 3;
     display: flex;
     justify-content: space-between;
-    /* background-image: url('../bedroom_1.jpeg'); */
     background-repeat: no-repeat;
   background-position: center center;
   background-size: cover; 
     height: 100dvh;
     width: 110dvw;
-    /* transform: translateX(-25%); */
     background-color: rgb(224, 0, 0);
 }
 

@@ -67,12 +67,25 @@
     /* border: 1px solid white; */
     width: 90%;
     height: 60%;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: start;
     gap: 0.8rem;
     overflow-y: auto;
   }
+
+.task-list-container::-webkit-scrollbar{
+  width: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+  background-color: none;
+}
+
+.task-list-container ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
 
 
 .task-system-container .content-container .task-list-container>div{
@@ -117,6 +130,35 @@
   height: 2rem;
   animation: loading_progress 2s linear infinite;
   display: none;
+}
+
+  .task-system-container .content-container .process-wait-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 90%;
+    height: 60%;
+  }
+
+.task-system-container .content-container .process-wait-container .progress-loading-container{
+    border: 0.4rem solid #f3f3f3;
+  border-top: 0.4rem solid #000000; 
+  border-radius: 50%; 
+  width: 2rem;
+  height: 2rem;
+  animation: loading_progress 2s linear infinite;
+  display: block;
+}
+
+.task-system-container .content-container .process-wait-container .info-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem 0rem 0.5rem 0rem;
+}
+
+.task-system-container .content-container .process-wait-container .info-container p{
 }
 
 @keyframes loading_progress {

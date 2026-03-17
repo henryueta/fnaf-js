@@ -66,36 +66,35 @@ class CameraMonitor {
             }
 
             this.isRunningOperation = true;
-            place_lock_switch.textContent = "Running. . .";
             place_lock_switch.classList.add("user-lock-switch");
 
             chosen_camera.hearable_place_list.forEach((hearable_place_item)=>{
                 const current_hearable_place = document.querySelector("#place-"+hearable_place_item)
-                current_hearable_place.classList.add("hearable-place")
-                setTimeout(()=>{
-                    current_hearable_place.classList.remove("hearable-place")
-                },800)
+                current_hearable_place.classList.add("hearable-place")   
             })
+            audio_manager.onPlay('cat_voice_'+onRandomNumber(1,7));
 
             setTimeout(()=>{
-                audio_manager.onPlay('cat_voice_'+onRandomNumber(1,7));
                 place_lock_switch.textContent = (
-                    !chosen_camera.isAudioPlayed
-                    ? "Play Audio"
-                    : ". . ."
+                        !chosen_camera.isAudioPlayed
+                        ? "Play Audio"
+                        : ". . ."
                 )
+                chosen_camera.hearable_place_list.forEach((hearable_place_item)=>{
+                    document.querySelector("#place-"+hearable_place_item).classList.remove("hearable-place")
+                })
                 place_lock_switch.classList.remove("user-lock-switch");
-                
                 this.chosen_camera_info.image =  chosen_camera.current_view;
                 this.chosen_camera_info.audio = chosen_camera.current_audio;
                 // this.chosen_camera_info.audio.loop = chosen_camera
                 console.log("chamado",chosen_camera.isAudioPlayed);
-                    this.onPlayedPlace(chosen_camera.number);
+                this.onPlayedPlace(chosen_camera.number);
 
-               setTimeout(()=>{
-                this.isRunningOperation = false;
-               },200)
-            },500)
+                setTimeout(()=>{
+                    this.isRunningOperation = false;
+                },200)
+            },800)
+            
             }
             
         }
@@ -146,8 +145,7 @@ class CameraMonitor {
         return document.querySelector("#place-"+this.chosen_camera_info.number);
     }
 
-    onChangePlayButtonView(canPlayAudio,isAudioPlayed){
-        console.log(isAudioPlayed)
+    onChangePlayButtonView(canPlayAudio){
          this.action_button_list.place_lock_switch.textContent = (
             this.current_played_room !== null
             ? '. . .'

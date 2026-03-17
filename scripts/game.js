@@ -16,7 +16,6 @@ import { Battery } from "./classes/Battery.js"
 import { Telephone } from "./classes/Telephone.js"
 import { TaskMonitor } from "./classes/TaskMonitor.js"
 import { task_list } from "./objects/task-list.js"
-import { resolved_place_list } from "./objects/resolved-place-list.js"
 
 const game = new Game({
     player:new Player(),
@@ -49,6 +48,7 @@ const game = new Game({
     task_monitor:new TaskMonitor({
         screen_container:document.querySelector(".task-system-container .screen-container"),
         task_list_container:document.querySelector(".task-list-container"),
+        process_wait_container:document.querySelector(".process-wait-container"),
         task_list:task_list
     }),
     camera_monitor:new CameraMonitor({
@@ -66,7 +66,6 @@ const game = new Game({
     toggle_task_system_button:document.querySelector(".toggle-task-system-button"),
     animatronic_list:animatronic_list,
     place_list:[...place_list,...audio_room_list],
-    resolved_place_list:resolved_place_list,
     current_night:new Night({
         number:1,
         running_event_value:5000,
@@ -95,7 +94,7 @@ await audio_manager.onPreload({
     audio_room_exit:"../assets/audio/animatronic/audio_room_exit.wav",
     vent_walk:"../assets/audio/animatronic/vent_walk.wav",
     running_away:"../assets/audio/animatronic/running_away.wav",
-    // jumpscare:"../assets/audio/animatronic/jumpscare.wav",
+    jumpscare:"../assets/audio/animatronic/jumpscare.wav",
     no_battery:"../assets/audio/flashlight/no_battery.wav",
     flash:"../assets/audio/flashlight/flash.wav",
     right_to_left_audio:"../assets/audio/footstep/right_to_left_footstep.wav",

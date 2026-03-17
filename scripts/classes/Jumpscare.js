@@ -38,7 +38,7 @@ class Jumpscare{
                     if(!!ondEnd){
                         ondEnd();
                     }
-                },3000)
+                },4500)
                
             }
             

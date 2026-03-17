@@ -19,7 +19,6 @@ class Game {
         this.toggle_task_system_button = config.toggle_task_system_button;
         this.animatronic_list = config.animatronic_list;
         this.place_list = config.place_list;
-        this.resolved_place_list = config.resolved_place_list;
         this.current_night = config.current_night;
         this.isStarted = false;
     }
@@ -158,7 +157,7 @@ class Game {
                             const current_played_camera = this.camera_monitor.onFindPlayedRoom();
                             current_played_camera.isAudioPlayed = false;
                             this.camera_monitor.current_played_room = null;
-                            this.camera_monitor.onChangePlayButtonView();  
+                            this.camera_monitor.onChangePlayButtonView(true);  
                             return
                         }
                         animatronic.footstep_cheat.onResetFootstepQuantity();
@@ -365,7 +364,7 @@ class Game {
                  const current_played_camera = this.camera_monitor.onFindPlayedRoom();
                 current_played_camera.isAudioPlayed = false;
                 this.camera_monitor.current_played_room = null;
-                this.camera_monitor.onChangePlayButtonView();
+                this.camera_monitor.onChangePlayButtonView(true);
             }
 
             console.log("NEXT",next_current_animatronic_place.canPlayAudio)
@@ -478,10 +477,10 @@ class Game {
             this.clock.onUpdateTime(()=>{
                 this.onClearNightEvent();
                 
-                    // if(true){
-                    // this.onKillPlayer(this.animatronic_list[0]);
-                    // return
-                    // }
+                    if(this.task_monitor.task_solved_quantity < this.task_monitor.task_list.length){
+                    this.onKillPlayer(this.animatronic_list[0]);
+                    return
+                    }
                
                 
                 this.onSavePlayer();
@@ -491,7 +490,7 @@ class Game {
                 });
             });
 
-        }, this.clock.timer_value);
+        }, 3000);
     }
 
     onEnableItems(){
@@ -505,9 +504,9 @@ class Game {
     onStart(){
         this.player_telephone.onAnswerCall(()=>{
             this.isStarted = true;
-            this.onEnableItems();
+            this.task_monitor.onEnableTaskList();
             this.onStartNightEvent();
-        })
+        });
     }
 
     onLoadItems(){
@@ -523,16 +522,18 @@ class Game {
 
         this.x_movement.onChangeXVision();
 
-        this.task_monitor.onResolveTask = (to_install)=>{
+        this.task_monitor.onResolveTask = ()=>{
 
-            if(to_install === 'flashlight'){
-                this.player_room.flashlight.isInstalled = true;
-                return 
-            }
-            if(to_install === 'camera'){
-                this.camera_monitor.isInstalled = true;
-                return
-            }
+            this.task_monitor.task_solved_quantity+=1;
+
+            // if(to_install === 'flashlight'){
+            //     this.player_room.flashlight.isInstalled = true;
+            //     return 
+            // }
+            // if(to_install === 'camera'){
+            //     this.camera_monitor.isInstalled = true;
+            //     return
+            // }
 
             // if(to_install.slice(0,7) === 'resolve'){
                 
@@ -599,20 +600,25 @@ class Game {
         }
 
         this.camera_monitor.onLockCheckout = ()=>{
-            // if(this.player_room.flashlight.inUse){
-            //     this.camera_monitor.activeLock = false;
-            //     return
-            // }
-            // this.camera_monitor.activeLock = true;
-            // return
+
         }
 
         this.camera_monitor.onPlayedPlace = (place_number)=>{
             
-            console.log("played")
+            if(this.isStarted){
+                return
+            }
+
+            setTimeout(()=>{
+                if(this.camera_monitor.current_played_room !== null){
+                    const current_played_camera = this.camera_monitor.onFindPlayedRoom();
+                    current_played_camera.isAudioPlayed = false;
+                    this.camera_monitor.current_played_room = null;
+                    this.camera_monitor.onChangePlayButtonView(false);
+                }
+            },4000)
 
         }   
-
 
         this.x_movement.onMove(this.player.screen_display);
 
@@ -704,6 +710,7 @@ class Game {
             return
         })
         this.camera_monitor.onChangeCurrentCamera();
+        this.onEnableItems();
     }
 
 }
