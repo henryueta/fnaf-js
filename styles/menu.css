@@ -39,26 +39,26 @@
 }
 
 .menu-container .content-container .title-container{
-    font-size: 8rem;
+    font-size: 8.5rem;
     top: -140px;
     position: relative;
     /* font-weight: bolder; */
     /* display: flex;
     flex-direction: column; */
-    color: rgb(173, 0, 0);
     font-family: 'main-title';
+    color: white;
       text-shadow: 
     -1px -1px 0 rgb(255, 0, 0),
-     1px -4px 0 rgb(153, 0, 0),
-    -1px  4px 0 rgb(0, 0, 0),
-     1px  4px 0 rgb(97, 0, 0)
+     1px -1px 0 rgb(153, 0, 0),
+    -1px  1px 0 rgb(0, 0, 0),
+     1px  1px 0 rgb(97, 0, 0);
 }
 
 .menu-container .content-container .version-container{
     position: fixed;
     left: 40px;
     bottom: 30px;
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 .menu-container .content-container .option-list-container button{
@@ -70,7 +70,7 @@
     -1px  1px 0 rgb(0, 0, 0),
      1px  1px 0 rgb(97, 0, 0);
     border: none;
-    font-size: 2.5rem;
+    font-size: 3rem;
     display: flex;
     font-family: Georgia, 'Times New Roman', Times, serif;
     align-items: center;
@@ -90,7 +90,7 @@
     position: fixed;
     right: 40px;
     bottom: 30px;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 .menu-container .content-container .option-list-container button .select-option{

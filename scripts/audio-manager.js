@@ -49,7 +49,6 @@ const audio_manager = {
         if(!this.active_audio_list[name]){
             return
         }
-
         this.active_audio_list[name].stop();
         delete this.active_audio_list[name];
         return

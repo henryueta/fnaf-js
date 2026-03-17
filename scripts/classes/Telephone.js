@@ -7,6 +7,10 @@ class Telephone {
         this.isCanceled = false;
         this.cancel_call_container = config.cancel_call_container;
         this.cancel_call_container.children[0].addEventListener('click',()=>{
+            if(this.isCanceled){
+                return
+            }
+
             audio_manager.onStop(this.call_audio);
             this.isCanceled = true;
             return

@@ -109,6 +109,7 @@ await audio_manager.onPreload({
     objective_container.onclick = ()=>{
         objective_container.classList.add("player-accept")
         game.onStart();
+        objective_container.onclick = ()=>{}
     }
 }); 
 

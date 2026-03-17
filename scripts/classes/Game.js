@@ -21,7 +21,7 @@ class Game {
         this.place_list = config.place_list;
         this.resolved_place_list = config.resolved_place_list;
         this.current_night = config.current_night;
-
+        this.isStarted = false;
     }
 
     onCheckDisplay(){
@@ -504,8 +504,9 @@ class Game {
 
     onStart(){
         this.player_telephone.onAnswerCall(()=>{
+            this.isStarted = true;
             this.onEnableItems();
-            this.onStartNightEvent()
+            this.onStartNightEvent();
         })
     }
 
@@ -608,7 +609,7 @@ class Game {
 
         this.camera_monitor.onPlayedPlace = (place_number)=>{
             
-            
+            console.log("played")
 
         }   
 

@@ -2,6 +2,7 @@
 
 document.querySelector("#new-game-option-button").onclick = ()=>{
     document.body.classList.remove("loaded");
+    document.body.style.pointerEvents = 'none';
     setTimeout(()=>{
         window.location.replace("./pages/game.html")
     },3000)
