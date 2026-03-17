@@ -11,36 +11,36 @@ window.onload = ()=>{
     document.body.classList.add("loaded");
 }
 
-const canvas = document.getElementById("menu-canvas");
-const ctx = canvas.getContext("2d");
+const menu_canvas = document.getElementById("menu-canvas");
+const menu_canvas_context = menu_canvas.getContext("2d");
 
-function resize(){
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+const resize = ()=>{
+  menu_canvas.width = window.innerWidth;
+  menu_canvas.height = window.innerHeight;
 }
 window.addEventListener("resize", resize);
 resize();
 
-const img = new Image();
-img.src = "../assets/imgs/jumpscare/jumpscare_frame_1.png";
+const menu_canvas_image = new Image();
+menu_canvas_image.src = "../assets/imgs/menu/menu.png";
 
 let time = 0;
 
-img.onload = () => {
+menu_canvas_image.onload = () => {
 
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+  menu_canvas_context.clearRect(0,0,menu_canvas.width,menu_canvas.height);
     const moveX = Math.sin(time) * 40;
   const moveY = Math.cos(time * 0.7) * 20;
 
   const scale = 1.05;
 
-  const w = canvas.width * scale;
-  const h = canvas.height * scale;
+  const w = menu_canvas.width * scale;
+  const h = menu_canvas.height * scale;
 
-  ctx.drawImage(
-    img,
-    moveX - (w - canvas.width)/2,
-    moveY - (h - canvas.height)/2,
+  menu_canvas_context.drawImage(
+    menu_canvas_image,
+    moveX - (w - menu_canvas.width)/2,
+    moveY - (h - menu_canvas.height)/2,
     w,
     h
   );
@@ -49,7 +49,7 @@ img.onload = () => {
 
 // function loop(){
 
-//   ctx.clearRect(0,0,canvas.width,canvas.height);
+//   menu_canvas_context.clearRect(0,0,canvas.width,canvas.height);
 
 //   time += 0.01;
 
@@ -61,8 +61,8 @@ img.onload = () => {
 //   const w = canvas.width * scale;
 //   const h = canvas.height * scale;
 
-//   ctx.drawImage(
-//     img,
+//   menu_canvas_context.drawImage(
+//     menu_canvas_image,
 //     moveX - (w - canvas.width)/2,
 //     moveY - (h - canvas.height)/2,
 //     w,

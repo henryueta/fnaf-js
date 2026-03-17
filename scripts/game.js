@@ -77,6 +77,13 @@ const game = new Game({
 });
 
 await audio_manager.onPreload({
+    cat_voice_1:"../assets/audio/cat/cat_voice_1.wav",
+    cat_voice_2:"../assets/audio/cat/cat_voice_2.wav",
+    cat_voice_3:"../assets/audio/cat/cat_voice_3.wav",
+    cat_voice_4:"../assets/audio/cat/cat_voice_4.wav",
+    cat_voice_5:"../assets/audio/cat/cat_voice_5.wav",
+    cat_voice_6:"../assets/audio/cat/cat_voice_6.wav",
+    cat_voice_7:"../assets/audio/cat/cat_voice_7.wav",
     call:"../assets/audio/call/call.wav",
     poster_click:"../assets/audio/security_room/poster_click.wav",
     clock:"../assets/audio/night/clock.wav",
@@ -96,14 +103,12 @@ await audio_manager.onPreload({
     left_to_right_audio:"../assets/audio/footstep/left_to_right_footstep.wav",
     left_audio:"../assets/audio/footstep/left_footstep.wav",
 },()=>{
-    game.onStart();
+    game.onLoadItems();
     document.body.classList.add("loaded");
     const objective_container = document.querySelector(".objective-container")
     objective_container.onclick = ()=>{
         objective_container.classList.add("player-accept")
-        game.player_telephone.onAnswerCall(()=>{
-            game.onEnableItems();
-        })
+        game.onStart();
     }
 }); 
 

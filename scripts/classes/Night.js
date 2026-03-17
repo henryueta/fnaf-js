@@ -21,13 +21,32 @@ class Night {
                 this.game_won_container.classList.remove("end-enabled");
                 this.game_won_container.classList.add("final-screen")
                 onWin();
-            }
+                this.game_won_container.onclick = ()=>{
+                    document.body.classList.remove("loaded");
+
+                    setTimeout(()=>{
+                    window.location.replace("../../index.html");
+                    },3000)
+
+                    this.game_won_container.onclick = ()=>{}
+                }
+               
+                }
         },12000)
     }
     onNightOver(){
         
         this.game_over_container.style.display = 'flex';
         
+        this.game_over_container.onclick = ()=>{
+            document.body.classList.remove("loaded");
+
+            setTimeout(()=>{
+            window.location.replace("../../index.html");
+            },3000)
+            this.game_over_container.onclick = ()=>{}
+        }
+
     }
 
 

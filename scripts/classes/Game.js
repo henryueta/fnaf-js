@@ -434,11 +434,7 @@ class Game {
     
     onEnableExit(){
         this.player_room.room_canvas.onclick = ()=>{
-            document.body.classList.remove("loaded");
-            setTimeout(()=>{
-               window.location.replace("../../index.html");
-            },3000)
-            this.player_room.room_canvas.onclick = ()=>{}
+            
         }
     }
 
@@ -507,6 +503,13 @@ class Game {
     }
 
     onStart(){
+        this.player_telephone.onAnswerCall(()=>{
+            this.onEnableItems();
+            this.onStartNightEvent()
+        })
+    }
+
+    onLoadItems(){
         // 4 - 10 - 11
         //
         this.onCheckDisplay();
@@ -609,7 +612,6 @@ class Game {
 
         }   
 
-        // this.onStartNightEvent();
 
         this.x_movement.onMove(this.player.screen_display);
 

@@ -78,7 +78,7 @@ class CameraMonitor {
             })
 
             setTimeout(()=>{
-                audio_manager.onPlay('door');
+                audio_manager.onPlay('cat_voice_'+onRandomNumber(1,7));
                 place_lock_switch.textContent = (
                     !chosen_camera.isAudioPlayed
                     ? "Play Audio"
