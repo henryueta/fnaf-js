@@ -72,7 +72,7 @@ class CameraMonitor {
                 const current_hearable_place = document.querySelector("#place-"+hearable_place_item)
                 current_hearable_place.classList.add("hearable-place")   
             })
-            audio_manager.onPlay('cat_voice_'+onRandomNumber(1,7));
+            audio_manager.onPlay('cat_voice_'+onRandomNumber(1,7),null,1.5);
 
             setTimeout(()=>{
                 place_lock_switch.textContent = (

@@ -19,6 +19,36 @@ const task_list = [
         final_progress_value:2,
         to_install:"none"
     }),
+    new Task({
+        identifier:1,
+        name:"Ingrediente Y",
+        final_progress_value:5,
+        to_install:"none"
+    }),
+    new Task({
+        identifier:2,
+        name:"Ingrediente X",
+        final_progress_value:10,
+        to_install:"none"
+    }),
+    new Task({
+        identifier:4,
+        name:"Ingrediente X",
+        final_progress_value:5,
+        to_install:"none"
+    }),
+    new Task({
+        identifier:5,
+        name:"Ingrediente X",
+        final_progress_value:8,
+        to_install:"none"
+    }),
+    new Task({
+        identifier:6,
+        name:"Ingrediente X",
+        final_progress_value:2,
+        to_install:"none"
+    }),
 ]
 
 export {

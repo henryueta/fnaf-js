@@ -63,6 +63,11 @@
     pointer-events: none  ;
   }
 
+ .task-system-container .content-container{
+  display: flex;
+  flex-direction: column;
+ }
+
   .task-system-container .content-container .task-list-container{
     /* border: 1px solid white; */
     width: 90%;
@@ -73,6 +78,10 @@
     gap: 0.8rem;
     overflow-y: auto;
   }
+
+.task-system-container .content-container .temperature-container{
+ display: none;
+}
 
 .task-list-container::-webkit-scrollbar{
   width: 10px;

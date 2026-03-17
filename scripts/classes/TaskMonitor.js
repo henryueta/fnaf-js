@@ -1,3 +1,4 @@
+import { onRandomNumber } from "../functions/randomNumber.js";
 
 
 class TaskMonitor {
@@ -6,6 +7,8 @@ class TaskMonitor {
         this.screen_container = config.screen_container;
         this.isOpen = false;
         this.task_list_container = config.task_list_container;
+        this.temperature_container = config.temperature_container;
+        this.temperature_view_container = config.temperature_view_container;
         this.task_solved_quantity = 0;
         this.process_wait_container = config.process_wait_container;
         this.task_list = config.task_list = config.task_list;
@@ -16,6 +19,9 @@ class TaskMonitor {
         this.task_progress_loader_list = [];
         this.task_progress_button_list = [];
         this.onResolveTask = config.onResolveTask;
+        this.increase_temperature_interval = null;
+        this.decrease_temperature_interval = null;
+        this.current_temperature_value = 35;
 
         this.play_icon = `
             <svg viewBox="0 0 24 24">
@@ -109,6 +115,7 @@ class TaskMonitor {
     onEnableTaskList(){
         this.process_wait_container.style.display = 'none';
         this.task_list_container.style.display = 'flex';
+        this.temperature_container.style.display = 'block';
     }
 
     onConvertTaskProcessValue(value){
@@ -166,6 +173,7 @@ class TaskMonitor {
                 this.onResolveTask(this.current_task_in_progress.identifier,this.current_task_in_progress.to_install)
                 this.current_task_in_progress = null;
                 clearInterval(this.task_resolve_interval)
+                clearInterval(this.increase_temperature_interval)
                 if(onEnd){
                     onEnd()
                 }
@@ -173,7 +181,71 @@ class TaskMonitor {
                 // audio_manager.onStop("")
             })
 
-        },this.task_resolve_value)
+        },this.task_resolve_value);
+
+        this.onChangeTemperature('increase')
+
+    }
+
+    onChangeTemperature(type){
+
+        if(type === 'increase'){
+
+        if(this.decrease_temperature_interval !== null){
+            clearInterval(this.decrease_temperature_interval)
+            this.decrease_temperature_interval = null;
+        }
+
+        this.increase_temperature_interval = setInterval(()=>{
+
+            this.current_temperature_value+=onRandomNumber(3,10)
+            this.temperature_view_container.textContent = this.current_temperature_value+"°"
+
+            if(this.current_temperature_value >=80){
+                this.temperature_view_container.style.color = 'red';
+            }
+
+            if(this.current_temperature_value >= 100){
+                if(this.increase_temperature_interval !== null){
+                    clearInterval(this.increase_temperature_interval)
+                    this.increase_temperature_interval = null;
+                }
+            return
+        }
+
+        },onRandomNumber(2500,4500))
+        return
+        }
+
+        if(type === 'decrease'){
+            
+        if(this.increase_temperature_interval !== null){
+            clearInterval(this.increase_temperature_interval)
+            this.increase_temperature_interval = null;
+        }
+
+        this.decrease_temperature_interval = setInterval(()=>{
+
+            this.current_temperature_value-=onRandomNumber(5,15)
+            this.temperature_view_container.textContent = this.current_temperature_value+"°"
+
+            if(this.current_temperature_value <= 80){
+                this.temperature_view_container.style.color = 'white';
+            }
+
+            if(this.current_temperature_value <= 35){
+                if(this.decrease_temperature_interval !== null){
+                    clearInterval(this.decrease_temperature_interval)
+                    this.decrease_temperature_interval = null;
+                }
+            return
+        }
+
+        },onRandomNumber(1000,2500))
+        return
+
+        }
+        return
     }
 
     onStop(){
@@ -183,6 +255,8 @@ class TaskMonitor {
         }
 
         clearInterval(this.task_resolve_interval);
+        clearInterval(this.increase_temperature_interval);
+        this.onChangeTemperature('decrease')
         this.current_task_in_progress.inProgress = false;
         this.current_task_in_progress = null;
 

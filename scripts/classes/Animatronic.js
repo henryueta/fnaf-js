@@ -85,13 +85,14 @@ class Animatronic {
 
         let choice_decision = (
             playerFocus
-            ? onRandomNumber(0,1)
+            ? onRandomNumber(-1,2)
             :played_room !== null && played_room !== undefined
                 ? onRandomNumber(0,6)
                 : onRandomNumber(0,1)
         );
 
         if(!!security_room && choice_decision < 1){
+            console.log("AQUI",choice_decision)
             console.log("escolheu entrar")
             this.current_place = 10;
             return this.current_place;

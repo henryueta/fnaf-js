@@ -46,6 +46,8 @@ const game = new Game({
         vision_container: document.querySelector(".room-container")
     }),
     task_monitor:new TaskMonitor({
+        temperature_container:document.querySelector(".temperature-container"),
+        temperature_view_container:document.querySelector(".temperature-view-container"),
         screen_container:document.querySelector(".task-system-container .screen-container"),
         task_list_container:document.querySelector(".task-list-container"),
         process_wait_container:document.querySelector(".process-wait-container"),
