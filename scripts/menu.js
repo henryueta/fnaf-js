@@ -1,6 +1,24 @@
 
+const warning_container = document.querySelector(".warning-container") 
+
+warning_container.addEventListener('click',()=>{
+  console.log("aaaa")
+  warning_container.classList.add("warning-close")
+},{once:true})
+
+const option_select_audio = new Audio("../assets/audio/menu/option_select.ogg");
+const option_hover_audio = new Audio("../assets/audio/menu/option_hover.ogg");
+
+document.querySelectorAll('.option-list-container button').forEach((option_item)=>
+ {
+   option_item.onmouseenter = ()=>option_hover_audio.play();
+  // option_item.onclick = ()=>option_select_audio.play();
+ }
+)
+
 
 document.querySelector("#new-game-option-button").onclick = ()=>{
+  option_select_audio.play();
     document.body.classList.remove("loaded");
     document.body.style.pointerEvents = 'none';
     setTimeout(()=>{

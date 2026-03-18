@@ -107,11 +107,10 @@ await audio_manager.onPreload({
     game.onLoadItems();
     document.body.classList.add("loaded");
     const objective_container = document.querySelector(".objective-container")
-    objective_container.onclick = ()=>{
+    objective_container.addEventListener('click',()=>{
         objective_container.classList.add("player-accept")
         game.onStart();
-        objective_container.onclick = ()=>{}
-    }
+    },{once:true})
 }); 
 
 

@@ -513,7 +513,7 @@ class Game {
     onStart(){
         this.player_telephone.onAnswerCall(()=>{
             this.isStarted = true;
-            this.task_monitor.onEnableTaskList();
+            this.task_monitor.onChangeVisor('list');
             this.onStartNightEvent();
         });
     }

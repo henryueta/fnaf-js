@@ -22,6 +22,7 @@ class TaskMonitor {
         this.increase_temperature_interval = null;
         this.decrease_temperature_interval = null;
         this.current_temperature_value = 35;
+        this.isRestarting = false;
 
         this.play_icon = `
             <svg viewBox="0 0 24 24">
@@ -112,10 +113,10 @@ class TaskMonitor {
         });
     }
 
-    onEnableTaskList(){
-        this.process_wait_container.style.display = 'none';
-        this.task_list_container.style.display = 'flex';
-        this.temperature_container.style.display = 'block';
+    onChangeVisor(type){
+        this.process_wait_container.style.display = type === 'list' ? 'none' : 'flex';
+        this.task_list_container.style.display = type === 'list' ? 'flex' : 'none';
+        this.temperature_container.style.display = type === 'list' ? 'block' : 'none';
     }
 
     onConvertTaskProcessValue(value){
@@ -124,9 +125,7 @@ class TaskMonitor {
 
     }
 
-    onToggle(){
-        console.log(this.screen_container)
-
+    onDisableProgressLoading(){
         if(this.current_task_in_progress !== null){
             this.task_progress_loader_list.find((loader_item)=>
                 loader_item.id === "progress-loading-"+this.current_task_in_progress.identifier
@@ -141,6 +140,12 @@ class TaskMonitor {
             }
             this.onStop();
         }
+    }
+
+    onToggle(){
+        console.log(this.screen_container)
+
+        this.onDisableProgressLoading();
 
         this.screen_container.classList.remove(!!this.isOpen ? 'open-cam-system' : 'close-cam-system')
 
@@ -174,6 +179,7 @@ class TaskMonitor {
                 this.current_task_in_progress = null;
                 clearInterval(this.task_resolve_interval)
                 clearInterval(this.increase_temperature_interval)
+                this.increase_temperature_interval = null;
                 if(onEnd){
                     onEnd()
                 }
@@ -184,22 +190,42 @@ class TaskMonitor {
         },this.task_resolve_value);
 
         this.onChangeTemperature('increase')
+    }
 
+    onRestartSystem(){
+        this.isRestarting = true;
+        this.onDisableProgressLoading();
+        this.onChangeVisor('restart');
+        this.onChangeTemperatureValue(onRandomNumber(28,34))
+        this.temperature_view_container.style.color = 'white';
+        setTimeout(()=>{
+            this.onChangeVisor('list');
+            this.isRestarting = false;
+        },onRandomNumber(8000,10000))
+    }
+
+    onChangeTemperatureValue(value){
+        this.current_temperature_value = value
+        this.temperature_view_container.textContent = this.current_temperature_value+"°"
     }
 
     onChangeTemperature(type){
-
+        
         if(type === 'increase'){
 
         if(this.decrease_temperature_interval !== null){
             clearInterval(this.decrease_temperature_interval)
             this.decrease_temperature_interval = null;
         }
+        console.log('interv',this.increase_temperature_interval)
+
+        if(this.increase_temperature_interval !== null){
+            return
+        }
 
         this.increase_temperature_interval = setInterval(()=>{
-
-            this.current_temperature_value+=onRandomNumber(3,10)
-            this.temperature_view_container.textContent = this.current_temperature_value+"°"
+            console.log("increase")
+            this.onChangeTemperatureValue(this.current_temperature_value+onRandomNumber(3,10))
 
             if(this.current_temperature_value >=80){
                 this.temperature_view_container.style.color = 'red';
@@ -209,6 +235,7 @@ class TaskMonitor {
                 if(this.increase_temperature_interval !== null){
                     clearInterval(this.increase_temperature_interval)
                     this.increase_temperature_interval = null;
+                    this.onRestartSystem();
                 }
             return
         }
@@ -222,12 +249,14 @@ class TaskMonitor {
         if(this.increase_temperature_interval !== null){
             clearInterval(this.increase_temperature_interval)
             this.increase_temperature_interval = null;
+        }   
+        if(this.decrease_temperature_interval !== null){
+            return
         }
 
         this.decrease_temperature_interval = setInterval(()=>{
-
-            this.current_temperature_value-=onRandomNumber(5,15)
-            this.temperature_view_container.textContent = this.current_temperature_value+"°"
+            console.log("decrease")
+            this.onChangeTemperatureValue(this.current_temperature_value-onRandomNumber(5,15))
 
             if(this.current_temperature_value <= 80){
                 this.temperature_view_container.style.color = 'white';
@@ -256,10 +285,17 @@ class TaskMonitor {
 
         clearInterval(this.task_resolve_interval);
         clearInterval(this.increase_temperature_interval);
-        this.onChangeTemperature('decrease')
+        this.increase_temperature_interval = null;
         this.current_task_in_progress.inProgress = false;
         this.current_task_in_progress = null;
 
+        
+
+        if(this.isRestarting){
+            return 
+        }
+   
+        this.onChangeTemperature('decrease');
     }
 
 }

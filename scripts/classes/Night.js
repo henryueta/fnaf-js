@@ -21,15 +21,14 @@ class Night {
                 this.game_won_container.classList.remove("end-enabled");
                 this.game_won_container.classList.add("final-screen")
                 onWin();
-                this.game_won_container.onclick = ()=>{
+                this.game_won_container.addEventListener("click",()=>{
                     document.body.classList.remove("loaded");
 
                     setTimeout(()=>{
                     window.location.replace("../../index.html");
                     },3000)
 
-                    this.game_won_container.onclick = ()=>{}
-                }
+                },{once:true})
                
                 }
         },12000)
@@ -37,15 +36,14 @@ class Night {
     onNightOver(){
         
         this.game_over_container.style.display = 'flex';
-        
-        this.game_over_container.onclick = ()=>{
+
+        this.game_over_container.addEventListener('click',()=>{
             document.body.classList.remove("loaded");
 
             setTimeout(()=>{
             window.location.replace("../../index.html");
             },3000)
-            this.game_over_container.onclick = ()=>{}
-        }
+        },{once:true})
 
     }
 
