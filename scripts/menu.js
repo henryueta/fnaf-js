@@ -30,10 +30,23 @@ document.querySelector("#new-game-option-button").onclick = ()=>{
   onNavigate("./pages/story.html")
 }
 
-const gameCompleted = !!onGetPlayerData('gameCompleted');
+const player_data = onGetPlayerData('all');
+
+const continue_option = document.querySelector("#continue-option-button")
+
+if(player_data.isFirstTimePlaying){
+  continue_option.style.opacity = '30%';
+  continue_option.disabled = true;
+}
+
+continue_option.onclick = ()=>{
+  option_select_audio.play();
+  onNavigate("./pages/game.html?type=continue")
+}
+
 const free_mode_option = document.querySelector("#free-mode-option-button")
 
-if(!gameCompleted){
+if(!player_data.gameCompleted){
   free_mode_option.style.opacity = '30%';
   free_mode_option.disabled = true;
 }
@@ -41,12 +54,12 @@ if(!gameCompleted){
 
 free_mode_option.onclick = ()=>{
 
-  if(!gameCompleted){
+  if(!player_data.gameCompleted){
     return
   }
 
   option_select_audio.play();
-  onNavigate('./pages/game.html?freeMode=true')
+  onNavigate('./pages/game.html?type=free_mode')
 }
 
 

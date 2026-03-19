@@ -18,15 +18,22 @@ import { TaskMonitor } from "./classes/TaskMonitor.js"
 import { task_list } from "./objects/task-list.js"
 import { Slider } from "./classes/Slider.js"
 import { game_preferences } from "./objects/game-preferences.js"
+import { onGetPlayerData } from "./functions/player-data.js"
 
 const game = new Game({
-    freeMode:game_preferences.onGetItemChoice().free_mode,
+    mode_type:game_preferences.onGetItemChoice().mode_type,
     player:new Player(),
     clock:new Clock({
         time_container:document.querySelector(".time-span")
     }),
     telephone:new Telephone({
-        enableCancelButton:!game_preferences.onGetItemChoice().free_mode,
+        enableCancelButton:(
+            (
+                (game_preferences.onGetItemChoice().mode_type !== 'free_mode' && game_preferences.onGetItemChoice().mode_type !== 'normal')
+                ||
+                (game_preferences.onGetItemChoice().mode_type === 'continue')
+            )
+        ),
         call_audio:'call',
         cancel_call_container:document.querySelector(".cancel-call-container")
     }),

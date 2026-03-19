@@ -7,7 +7,7 @@ import { Jumpscare } from "./Jumpscare.js";
 class Game {
 
     constructor(config){
-        this.freeMode = config.freeMode;
+        this.mode_type = config.mode_type;
         this.player = config.player;
         this.clock = config.clock;
         this.player_room = config.player_room;
@@ -91,7 +91,7 @@ class Game {
             this.current_night.onNightOver(async ()=>{
                 this.onActiveItems(false);
                 this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/game_over.png"),"none");
-                if(this.freeMode){
+                if(this.mode_type === 'free_mode'){
                     return
                 }
                 onSetPlayerData('firstPlay');
@@ -510,14 +510,15 @@ class Game {
                     this.onActiveItems(false);
                     this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/the_end.png"),"any")
                     this.onEnableExit();
-                    if(this.freeMode){
+                    if(this.mode_type === 'free_mode'){
                         return
                     }
                     onSetPlayerData('all');
                 });
             });
 
-        }, this.clock.timer_value);
+        },1000 );
+    //this.clock.timer_value
     }
 
     onActiveItems(enable){
@@ -535,7 +536,7 @@ class Game {
             this.onStartNightEvent();
         }
 
-        if(this.freeMode){
+        if(this.mode_type === 'free_mode'){
             onEnableStartEvent();
             return
         }

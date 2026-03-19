@@ -2,9 +2,9 @@
 const game_preferences = {
     item_preference_param:new URLSearchParams(window.location.search),
     onGetItemChoice(){
-        const free_mode = this.item_preference_param.get("freeMode");
+        const mode_type = this.item_preference_param.get("type");
         return {
-            free_mode:free_mode.toLowerCase() === 'true'
+            mode_type:mode_type.toLowerCase()
         }
 
     }

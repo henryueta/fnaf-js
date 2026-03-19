@@ -7,6 +7,7 @@ class Telephone {
         this.isCanceled = false;
         this.enableCancelButton = config.enableCancelButton;
         this.cancel_call_container = config.cancel_call_container;
+        console.log("enabkle",this.enableCancelButton)
         if(!this.enableCancelButton){
             this.cancel_call_container.style.display = 'none';
         }
