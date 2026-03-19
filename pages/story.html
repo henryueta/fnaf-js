@@ -4,16 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Story</title>
+    <link rel="stylesheet" href="../styles/index.css">
     <link rel="stylesheet" href="../styles/story.css">
+    <link rel="stylesheet" href="../styles/slider.css">
 </head>
 <body>
     
-    <div class="story-container">
+    <div class="slider-container">
+        <div class="text-container">
+            <textarea id="current-slider-text" readonly draggable="false"></textarea>
+            <!-- <div class="slider-interactive-item-container">
+                <div class="next-container" id="next-story-text">
+                    <button>></button>
+                </div>
+            </div> -->
+        </div>
+        <div class="cancel-container" id="cancel-slider-text">
+            <button>SKIP</button>
+        </div>
         <div class="story-canvas-container">
-            <canvas class="story-canvas" id="story-canvas"></canvas>
+            <canvas class="story-canvas" id="story-canvas" width="2560" height="1440"></canvas>
         </div>
     </div>
 
-    <script src="../scripts/story.js"></script>
+    <script type='module' src="../scripts/story.js"></script>
 </body>
 </html>

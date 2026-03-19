@@ -1,8 +1,14 @@
+import { onNavigate } from "./functions/navigate.js";
+import { onGetPlayerData } from "./functions/player-data.js";
+
+
+window.onload = ()=>{
+    document.body.classList.add("loaded");
+}
 
 const warning_container = document.querySelector(".warning-container") 
 
 warning_container.addEventListener('click',()=>{
-  console.log("aaaa")
   warning_container.classList.add("warning-close")
 },{once:true})
 
@@ -19,18 +25,12 @@ document.querySelectorAll('.option-list-container button').forEach((option_item)
 
 document.querySelector("#new-game-option-button").onclick = ()=>{
   option_select_audio.play();
-    document.body.classList.remove("loaded");
-    document.body.style.pointerEvents = 'none';
-    setTimeout(()=>{
-        window.location.replace("./pages/game.html")
-    },3000)
+    onNavigate("./pages/story.html")
 }
 
-window.onload = ()=>{
-    document.body.classList.add("loaded");
-}
+const reward = !!onGetPlayerData('gameCompleted');
 
-const menu_canvas = document.getElementById("menu-canvas");
+const menu_canvas = document.querySelector("#menu-canvas");
 const menu_canvas_context = menu_canvas.getContext("2d");
 
 const resize = ()=>{
