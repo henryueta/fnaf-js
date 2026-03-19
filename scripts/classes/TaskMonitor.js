@@ -69,7 +69,7 @@ class TaskMonitor {
         progress_button.setAttribute("id","progress-button-"+task_item.identifier);
 
         progress_button.innerHTML = this.play_icon;
-        progress_button.onclick = ()=>{
+        task_item_container.onclick = ()=>{
             console.log(this.current_task_in_progress)
                 if(
                     this.current_task_in_progress !== null
@@ -154,7 +154,7 @@ class TaskMonitor {
         this.screen_container.parentElement.style.pointerEvents = (!!this.isOpen ? "none" : 'visible')
 
         setTimeout(()=>{
-             this.screen_container.style.display = (!!this.isOpen ? "block" : "none");
+             this.screen_container.style.display = (!!this.isOpen ? "flex" : "none");
         },300)
         this.isOpen = !this.isOpen;
 
@@ -180,6 +180,7 @@ class TaskMonitor {
                 clearInterval(this.task_resolve_interval)
                 clearInterval(this.increase_temperature_interval)
                 this.increase_temperature_interval = null;
+                this.onChangeTemperature('decrease')
                 if(onEnd){
                     onEnd()
                 }
@@ -197,7 +198,7 @@ class TaskMonitor {
         this.onDisableProgressLoading();
         this.onChangeVisor('restart');
         this.onChangeTemperatureValue(onRandomNumber(28,34))
-        this.temperature_view_container.style.color = 'white';
+        this.temperature_view_container.style.color = 'rgb(0, 245, 94)';
         setTimeout(()=>{
             this.onChangeVisor('list');
             this.isRestarting = false;
@@ -259,13 +260,16 @@ class TaskMonitor {
             this.onChangeTemperatureValue(this.current_temperature_value-onRandomNumber(5,15))
 
             if(this.current_temperature_value <= 80){
-                this.temperature_view_container.style.color = 'white';
+                this.temperature_view_container.style.color = 'rgb(0, 245, 94)';
             }
 
             if(this.current_temperature_value <= 35){
                 if(this.decrease_temperature_interval !== null){
                     clearInterval(this.decrease_temperature_interval)
                     this.decrease_temperature_interval = null;
+                    if(this.current_temperature_value < 35){
+                        this.onChangeTemperatureValue(onRandomNumber(30,34))
+                    }
                 }
             return
         }

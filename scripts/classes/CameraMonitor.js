@@ -24,6 +24,13 @@ class CameraMonitor {
         }
         this.isInstalled = config.isInstalled;
 
+        this.volume_icon = `<svg width="80" height="80" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="8,24 20,24 32,12 32,52 20,40 8,40" fill="#ffffff"/>
+
+            <path d="M40 20 C46 26, 46 38, 40 44" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M46 16 C54 26, 54 38, 46 48" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round"/>
+        </svg>`
+
         this.chosen_camera_info.image =  this.camera_list[0].current_view;
         this.chosen_camera_info.audio = this.camera_list[0].current_audio;
         // this.chosen_camera_info.audio.loop = !!this.chosen_camera_info.repeat_audio;
@@ -75,10 +82,12 @@ class CameraMonitor {
             audio_manager.onPlay('cat_voice_'+onRandomNumber(1,7),null,1.5);
 
             setTimeout(()=>{
-                place_lock_switch.textContent = (
+                place_lock_switch.innerHTML = this.volume_icon+(
                         !chosen_camera.isAudioPlayed
-                        ? "Play Audio"
-                        : ". . ."
+                        ? `
+                            <span>Play Audio</span>
+                        `
+                        : "<span>. . .</span>"
                 )
                 chosen_camera.hearable_place_list.forEach((hearable_place_item)=>{
                     document.querySelector("#place-"+hearable_place_item).classList.remove("hearable-place")
@@ -146,14 +155,16 @@ class CameraMonitor {
     }
 
     onChangePlayButtonView(canPlayAudio){
-         this.action_button_list.place_lock_switch.textContent = (
-            this.current_played_room !== null
-            ? '. . .'
-            : 'Play Audio'
+         this.action_button_list.place_lock_switch.innerHTML = this.volume_icon+ (
+            this.current_played_room === null
+            ? `
+            <span>Play Audio</span>
+            `
+            : "<span>. . .</span>"
          )
 
         if(canPlayAudio){
-            this.action_button_list.place_lock_switch.style.display = 'block';
+            this.action_button_list.place_lock_switch.style.display = 'flex';
             return
         }
         this.action_button_list.place_lock_switch.style.display = 'none';

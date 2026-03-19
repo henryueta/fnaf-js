@@ -1,4 +1,12 @@
 
+.toggle_arrow {
+    fill: none;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: all 0.2s ease;
+}
+
 .room-container{
     z-index: 3;
     display: flex;

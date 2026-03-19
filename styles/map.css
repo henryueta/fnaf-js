@@ -1,6 +1,6 @@
 
 
-.content-container{
+.cam-system-container .content-container{
     /* border: 1px solid rgb(255, 255, 255); */
     z-index: 5;
     position: absolute;
@@ -13,7 +13,7 @@
     height: 100%;
 }  
 
-.content-container::after{
+.cam-system-container .content-container::after{
   content: "";
   border: 0.1rem solid white;
   inset: 4px;
@@ -29,9 +29,27 @@
   right: 48%;
 }
 
-#place-lock-switch{
+#place-audio-switch{
+  font-family: 'pixel';
   display: none;
-  padding: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  /* padding: 1.5rem; */
+  padding: 0.5rem;
+  width: 170px;
+  height: 80px;
+  font-size: 0.8rem;
+  border: 0.15rem solid white;
+}
+
+
+#place-audio-switch span{
+  padding-top: 0.5rem;
+}
+
+#place-audio-switch svg{
+  height: 30%;
+  width: 30%;
 }
 
 .user-lock-switch{
@@ -190,7 +208,8 @@ justify-content: center;
 .place{
   z-index: 2;
   /* border: 0.2rem solid; */
-  box-shadow: 0rem 0rem 0.2rem black;
+  /* box-shadow: 0rem 0rem 0.2rem black; */
+  border: 0.1rem solid black;
 
 }
 .sub-place{
@@ -200,12 +219,9 @@ justify-content: center;
 
 .camera-interactive-item{
     /* position: relative; */
-    padding: 0.5rem;
     height: 100%;
     width: 100%;
-
     background-color: rgb(129, 129, 129,0.5);
-    font-weight: bolder;
     color: white;
       display: flex;
   align-items: center;
@@ -300,8 +316,16 @@ justify-content: center;
        font-size: 0.6rem;   
       }
 
-      #place-lock-switch{
+      #place-audio-switch{
         padding: 0.6rem;
+        width: 100px;
+        height: 50px;
+         font-size: 0.5rem;
+      }
+
+      #place-audio-switch svg{
+        height: 50%;
+        width: 50%;
       }
 
   }

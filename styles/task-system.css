@@ -10,9 +10,14 @@
     z-index: 6;
 }
 
+.toggle-task-system-container svg{
+  height: 100%;
+  width: 100%;
+}
+
 .toggle-task-system-button {
-    border: 0.15rem solid rgba(0, 0, 0);
-    background-color: rgba(255, 255, 255);
+    border: 0.15rem solid rgb(255, 255, 255);
+     background: rgba(97, 97, 97, 0.2);
     /* border-radius: 0.3rem; */
     width: 80%;
     height: 100%;
@@ -22,7 +27,7 @@
 .task-system-container {
     width: 100dvw;
     height: 100dvh;
-    color: white;
+    color: rgb(0, 245, 94);
     /* transform-style: preserve-3d; */
     /* perspective: 800px;  */
     position: fixed;
@@ -36,7 +41,7 @@
     width: 100%;
     height: 100%;
     font-family: 'pixel';
-    border: 0.1rem solid rgb(24, 24, 24);
+   background-color: black;
     position: absolute;
     transform-origin: bottom center;
     transform: rotateX(0deg); 
@@ -64,16 +69,37 @@
   }
 
  .task-system-container .content-container{
-  display: flex;
-  flex-direction: column;
- }
+    /* border: 1px solid rgb(255, 255, 255); */
+    z-index: 5;
+    position: absolute;
+    /* transform: translate(-50%,-50%); */
+    inset: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}  
+
+ .task-system-container .content-container::after{
+  content: "";
+  border: 0.1rem solid rgb(0, 245, 94);
+  inset: 4px;
+  position: absolute;
+  z-index: 8;
+  pointer-events: none;
+}
 
   .task-system-container .content-container .task-list-container{
     /* border: 1px solid white; */
+    border: 0.1rem solid rgb(0, 245, 94);
     width: 90%;
     height: 60%;
     display: none;
     flex-direction: column;
+    padding: 0.5rem;
+    align-items: center;
     justify-content: start;
     gap: 0.8rem;
     overflow-y: auto;
@@ -98,12 +124,13 @@
 
 
 .task-system-container .content-container .task-list-container>div{
-    border: 1px solid white;
+    border: 1px solid rgb(0, 245, 94);
     display: flex;
     align-items: center;
     padding: 0.5rem 3rem 0.5rem 3rem;
     gap: 1rem;
     /* flex: 1; */
+    width: 100%;
     height: 20%;
 }
 
@@ -112,13 +139,13 @@
 }
 
 .task-system-container .content-container .task-list-container>div button{
-    padding: 1rem;
+    padding: 0.5rem;
     background-color: black;
-    border: 0.1rem solid white;
+    border: none;
 }
 
 .task-system-container .content-container .task-list-container>div button>svg{
-    color: white;
+    color: rgb(0, 245, 94);
     width: 1.3rem;
     height: 1.3rem;
 }
@@ -131,8 +158,8 @@
   justify-content: center;
 }
 
-.task-system-container .content-container .task-list-container .progress-loading-container{
-    border: 0.4rem solid #f3f3f3;
+.task-system-container .content-container .progress-loading-container{
+  border: 0.4rem solid rgb(0, 245, 94);
   border-top: 0.4rem solid #000000; 
   border-radius: 50%; 
   width: 2rem;
@@ -150,16 +177,6 @@
     height: 60%;
   }
 
-.task-system-container .content-container .process-wait-container .progress-loading-container{
-    border: 0.4rem solid #f3f3f3;
-  border-top: 0.4rem solid #000000; 
-  border-radius: 50%; 
-  width: 2rem;
-  height: 2rem;
-  animation: loading-progress 2s linear infinite;
-  display: block;
-}
-
 .task-system-container .content-container .process-wait-container .info-container{
   display: flex;
   justify-content: center;
@@ -173,4 +190,29 @@
 @keyframes loading-progress {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+
+@media (max-width:1024px){
+    .toggle-task-system-container{
+      bottom: 5%;
+      left: 35%;
+      width: 45dvw;
+      height: 8dvh;
+      display: none;
+    }
+
+    .task-system-container .content-container .task-list-container>div{
+    border: 1px solid rgb(0, 245, 94);
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    height: 30%;
+  }
+
+  .task-system-container .content-container .progress-loading-container{
+    border: 0.3rem solid rgb(0, 245, 94);
+  border-top: 0.3rem solid #000000; 
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
 }

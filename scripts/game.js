@@ -68,7 +68,7 @@ const game = new Game({
         isInstalled:true,
         screen_container: document.querySelector(".cam-system-container .screen-container"),
         action_button_list:{
-            place_lock_switch:document.querySelector("#place-lock-switch")
+            place_lock_switch:document.querySelector("#place-audio-switch")
         },
         loading_image:await onLoadImage("../assets/imgs/loading.jpg"),
         camera_list_container:document.querySelector(".map-container"),
