@@ -49,8 +49,8 @@ class Game {
         this.player_room.dark_screen.style.zIndex = '0';
         // this.x_movement.setIsLocked(true,true);
          this.toggle_cam_system_button.style.display = 'none';
-         this.camera_monitor.screen_container.parentElement.style.display = 'none';
-         this.task_monitor.screen_container.style.display = 'none';
+        //  this.camera_monitor.screen_container.parentElement.style.display = 'none';
+        //  this.task_monitor.screen_container.style.display = 'none';
         this.toggle_task_system_button.style.display = 'none';
         this.player_room.onChangeDarkAmbience(true);
         this.x_movement.vision_container.style.zIndex = '20';

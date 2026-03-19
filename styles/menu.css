@@ -135,7 +135,7 @@
     position: relative;
 }
 
-.menu-container .content-container .option-list-container button:hover{
+.menu-container .content-container .option-list-container button:enabled:hover{
     .select-option{
         display: block;
     }

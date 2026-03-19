@@ -30,12 +30,26 @@ document.querySelector("#new-game-option-button").onclick = ()=>{
   onNavigate("./pages/story.html")
 }
 
-document.querySelector("#free-mode-option-button").onclick = ()=>{
+const gameCompleted = !!onGetPlayerData('gameCompleted');
+const free_mode_option = document.querySelector("#free-mode-option-button")
+
+if(!gameCompleted){
+  free_mode_option.style.opacity = '30%';
+  free_mode_option.disabled = true;
+}
+
+
+free_mode_option.onclick = ()=>{
+
+  if(!gameCompleted){
+    return
+  }
+
   option_select_audio.play();
   onNavigate('./pages/game.html?freeMode=true')
 }
 
-const reward = !!onGetPlayerData('gameCompleted');
+
 
 const menu_canvas = document.querySelector("#menu-canvas");
 const menu_canvas_context = menu_canvas.getContext("2d");
