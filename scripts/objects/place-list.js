@@ -30,7 +30,8 @@ const place_list = [
         ],
         name:"test_room",
         next_place_index_list:[1,5,12,13,16],
-        animatronic_list:animatronic_list
+        animatronic_list:null
+        //animatronic_list
     }),
     new Place({
         number:1,

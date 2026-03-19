@@ -1,4 +1,20 @@
 
+const onSetPlayerData = (type)=>{
+
+    if(
+        (type === 'firstPlay' || type === 'all')
+    ){
+        localStorage.setItem('isFirstTimePlaying',false);
+    }
+
+    if(
+        (type === 'gameCompleted' || type === 'all')
+    ){
+        localStorage.setItem("gameCompleted",true)
+    }
+    return
+}
+
 const onGetPlayerData = (type)=>{
 
     if(
@@ -34,7 +50,15 @@ const onGetPlayerData = (type)=>{
 
 }
 
+const onResetData = ()=>{
+    localStorage.removeItem("isFirstTimePlaying");
+    localStorage.removeItem("gameCompleted");
+
+    onGetPlayerData('all');
+}
 
 export {
-    onGetPlayerData
+    onGetPlayerData,
+    onSetPlayerData,
+    onResetData
 }

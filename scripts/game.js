@@ -16,13 +16,17 @@ import { Battery } from "./classes/Battery.js"
 import { Telephone } from "./classes/Telephone.js"
 import { TaskMonitor } from "./classes/TaskMonitor.js"
 import { task_list } from "./objects/task-list.js"
+import { Slider } from "./classes/Slider.js"
+import { game_preferences } from "./objects/game-preferences.js"
 
 const game = new Game({
+    freeMode:game_preferences.onGetItemChoice().free_mode,
     player:new Player(),
     clock:new Clock({
         time_container:document.querySelector(".time-span")
     }),
     telephone:new Telephone({
+        enableCancelButton:!game_preferences.onGetItemChoice().free_mode,
         call_audio:'call',
         cancel_call_container:document.querySelector(".cancel-call-container")
     }),
@@ -73,8 +77,26 @@ const game = new Game({
         running_event_value:5000,
         isCompleted:false,
         game_won_container:document.querySelector(".game-won-container"),
-        game_over_container:document.querySelector(".game-over-container")
-    })
+        game_over_container:document.querySelector(".game-over-container"),
+        ending_slider:
+            new Slider({
+                enableCancelButton:false,
+                enableClick:false,
+                current_slider_text_container:document.querySelector("#current-slider-text"),
+                next_slider_text_container:document.querySelector(".slider-container .text-container"),
+                cancel_slider_container:document.querySelector("#cancel-slider-text"),
+                onCancel:()=>{
+                    null
+                },
+                onEnd:()=>{
+                    null
+                },
+                text_list:[
+                    "Em 32 de agosto de 2026, o famoso streamer Bistecone foi infectado por um virus de origem desconhecida. Sua aparência física e seu estado mental mudaram drasticamente, resultando em um ser de pura maldade.",
+                    "Tigrão e Tolinho observando a situação de seu pai unem forças para salvá-lo. A dupla se esconde em um laboratório, onde começam a desenvolver uma cura para o vírus."
+                ]
+            })
+        })
 });
 
 await audio_manager.onPreload({

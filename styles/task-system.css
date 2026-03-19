@@ -137,7 +137,7 @@
   border-radius: 50%; 
   width: 2rem;
   height: 2rem;
-  animation: loading_progress 2s linear infinite;
+  animation: loading-progress 2s linear infinite;
   display: none;
 }
 
@@ -156,7 +156,7 @@
   border-radius: 50%; 
   width: 2rem;
   height: 2rem;
-  animation: loading_progress 2s linear infinite;
+  animation: loading-progress 2s linear infinite;
   display: block;
 }
 
@@ -170,7 +170,7 @@
 .task-system-container .content-container .process-wait-container .info-container p{
 }
 
-@keyframes loading_progress {
+@keyframes loading-progress {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }

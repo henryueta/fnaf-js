@@ -5,7 +5,11 @@ class Telephone {
     constructor(config){
         this.call_audio = config.call_audio;
         this.isCanceled = false;
+        this.enableCancelButton = config.enableCancelButton;
         this.cancel_call_container = config.cancel_call_container;
+        if(!this.enableCancelButton){
+            this.cancel_call_container.style.display = 'none';
+        }
         this.cancel_call_container.children[0].addEventListener('click',()=>{
             if(this.isCanceled){
                 return

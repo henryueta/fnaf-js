@@ -1,5 +1,5 @@
 import { onNavigate } from "./functions/navigate.js";
-import { onGetPlayerData } from "./functions/player-data.js";
+import { onGetPlayerData, onResetData } from "./functions/player-data.js";
 
 
 window.onload = ()=>{
@@ -9,6 +9,7 @@ window.onload = ()=>{
 const warning_container = document.querySelector(".warning-container") 
 
 warning_container.addEventListener('click',()=>{
+  option_select_audio.play();
   warning_container.classList.add("warning-close")
 },{once:true})
 
@@ -25,7 +26,13 @@ document.querySelectorAll('.option-list-container button').forEach((option_item)
 
 document.querySelector("#new-game-option-button").onclick = ()=>{
   option_select_audio.play();
-    onNavigate("./pages/story.html")
+  onResetData()
+  onNavigate("./pages/story.html")
+}
+
+document.querySelector("#free-mode-option-button").onclick = ()=>{
+  option_select_audio.play();
+  onNavigate('./pages/game.html?freeMode=true')
 }
 
 const reward = !!onGetPlayerData('gameCompleted');

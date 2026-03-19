@@ -2,11 +2,9 @@
 const game_preferences = {
     item_preference_param:new URLSearchParams(window.location.search),
     onGetItemChoice(){
-        const flashlight = this.item_preference_param.get("flashlight");
-        const audio_system = this.item_preference_param.get("audio_system");
+        const free_mode = this.item_preference_param.get("freeMode");
         return {
-            flashlight:flashlight === 'true',
-            audio_system:audio_system === 'true'
+            free_mode:free_mode.toLowerCase() === 'true'
         }
 
     }

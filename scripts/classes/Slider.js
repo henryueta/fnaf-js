@@ -13,6 +13,7 @@ class Slider{
         this.onCancel = config.onCancel
         this.onEnd = config.onEnd;
         this.enableClick = config.enableClick
+        this.enableCancelButton = config.enableCancelButton;
         this.next_slider_text_container.addEventListener("click", () => {
 
         if (this.isWriting || !this.enableClick) {
@@ -32,6 +33,10 @@ class Slider{
           
         });
 
+        if(this.enableCancelButton){
+            this.cancel_slider_container.style.display = 'block';    
+        }
+
         this.cancel_slider_container.addEventListener('click',()=>{
 
             if(!this.enableClick){
@@ -50,6 +55,8 @@ class Slider{
 
     }
     onViewStoryText() {
+
+        this.current_slider_text_container.parentElement.parentElement.style.display = 'flex';
         this.onWriteStoryText(this.text_list[this.current_text_index]);
     }
     onWriteStoryText(text){

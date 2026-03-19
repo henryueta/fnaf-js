@@ -1,11 +1,13 @@
 import { audio_manager } from "../audio-manager.js";
 import { onLoadImage } from "../functions/image-loader.js";
+import { onSetPlayerData } from "../functions/player-data.js";
 import { onRandomNumber } from "../functions/randomNumber.js";
 import { Jumpscare } from "./Jumpscare.js";
 
 class Game {
 
     constructor(config){
+        this.freeMode = config.freeMode;
         this.player = config.player;
         this.clock = config.clock;
         this.player_room = config.player_room;
@@ -57,7 +59,7 @@ class Game {
         }
     }
 
-    onKillPlayer(animatronic){
+    onKillPlayer(animatronic,reason){
 
         if(!!this.current_night.playerIsDeath){
             return
@@ -85,9 +87,16 @@ class Game {
                 this.camera_monitor.screen_container.parentElement.style.zIndex = '0';
                 this.task_monitor.screen_container.parentElement.style.zIndex = '0';
             }
-        },async ()=>{
-            this.current_night.onNightOver();
-            this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/game_over.png"),"none")
+        },()=>{
+            this.current_night.onNightOver(async ()=>{
+                this.onActiveItems(false);
+                this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/game_over.png"),"none");
+                if(this.freeMode){
+                    return
+                }
+                onSetPlayerData('firstPlay');
+                return
+            },"olhe as portas");
             return
         });
         this.player_room.onChangeDarkAmbience(true);
@@ -282,7 +291,7 @@ class Game {
             ); 
 
             if(current_animatronic_place === 11){
-                this.onKillPlayer(animatronic);
+                // this.onKillPlayer(animatronic);
                 
                 if(this.player_room.vision === 'external'){
 
@@ -476,9 +485,14 @@ class Game {
     onStartNightEvent(){
         console.log("VALOR ATUAL: ",this.current_night.running_event_value);
 
+        audio_manager.onPlay("knock")
+        this.place_list[0].animatronic_list = this.animatronic_list;
+        this.place_list[0].onSetAnimatronic(this.animatronic_list[0])
+        this.place_list[0].onSetView()
+
         setTimeout(()=>{
             this.onStartNightInterval();
-        },onRandomNumber(2000,5000))
+        },onRandomNumber(5000,10000))
 
         this.clock.timer_interval = setInterval(()=>{
 
@@ -491,30 +505,42 @@ class Game {
                     return
                     }
                
-                
                 this.onSavePlayer();
                 this.current_night.onNightWin(async ()=>{
+                    this.onActiveItems(false);
                     this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/the_end.png"),"any")
-                    this.onEnableExit()
+                    this.onEnableExit();
+                    if(this.freeMode){
+                        return
+                    }
+                    onSetPlayerData('all');
                 });
             });
 
         }, this.clock.timer_value);
     }
 
-    onEnableItems(){
-        this.player_room.clickIsDisabled = false;
-        this.player_battery.battery_container.parentElement.style.display = 'flex';
-        this.clock.time_container.parentElement.parentElement.style.display = 'block';
-        this.toggle_cam_system_button.parentElement.style.display = 'flex';
-        this.toggle_task_system_button.parentElement.style.display = 'flex';
+    onActiveItems(enable){
+        this.player_room.clickIsDisabled = !enable;
+        this.player_battery.battery_container.parentElement.style.display = enable ? 'flex': 'none';
+        this.clock.time_container.parentElement.parentElement.style.display = enable ? 'block' : 'none';
+        this.toggle_cam_system_button.parentElement.style.display = enable? 'flex' : 'none';
+        this.toggle_task_system_button.parentElement.style.display = enable? 'flex': 'none';
     }
 
     onStart(){
-        this.player_telephone.onAnswerCall(()=>{
+        const onEnableStartEvent = ()=>{
             this.isStarted = true;
             this.task_monitor.onChangeVisor('list');
             this.onStartNightEvent();
+        }
+
+        if(this.freeMode){
+            onEnableStartEvent();
+            return
+        }
+        this.player_telephone.onAnswerCall(()=>{
+            onEnableStartEvent();
         });
     }
 
@@ -727,7 +753,7 @@ class Game {
             return
         })
         this.camera_monitor.onChangeCurrentCamera();
-        this.onEnableItems();
+        this.onActiveItems(true);
     }
 
 }

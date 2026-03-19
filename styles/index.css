@@ -27,9 +27,29 @@ html,body{
 
 
 body {
-  opacity: 0;
+  opacity: 0%;
   transition: opacity 1s ease-in;
 }
+
+@keyframes loading-progress {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* body::after{
+  content:"";
+  display: block;
+  z-index: 20;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: 0.4rem solid #f3f3f3;
+  border-top: 0.4rem solid #000000; 
+  border-radius: 50%; 
+  width: 2rem;
+  height: 2rem;
+  animation: loading-progress 1s linear infinite;
+} */
 
 body.loaded {
   opacity: 1;
