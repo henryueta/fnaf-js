@@ -33,11 +33,25 @@
 } */
 
 .slider-container .cancel-container{
-    display: none;
-    position: fixed;
+display: flex;
+position: fixed;
   right: 50px;
   top: 30px;
 } 
+
+.slider-container .cancel-container button{
+    display: none;
+    padding: 0.5rem;
+    background: none;
+         color: white;
+      text-shadow: 
+    -1px -1px 0 rgb(255, 0, 0),
+     0.5px -0.5px 0 rgb(153, 0, 0),
+    -0.5px  0.5px 0 rgb(0, 0, 0),
+     0.5px  0.5px 0 rgb(97, 0, 0);
+     border: none;
+     font-size: 1.2rem;
+}
 
 .slider-container .text-container{
     width: 85%;
@@ -86,8 +100,8 @@
     }
 
     .slider-container .cancel-container{
-    right: 100px;
-    bottom: 100px;
+    right: 50px;
+    top: 50px;
     }
 
   }

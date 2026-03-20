@@ -274,5 +274,7 @@
 
 
   @media (min-aspect-ratio: 21/9) {
-
+    *{
+        color: purple;
+    }
 }

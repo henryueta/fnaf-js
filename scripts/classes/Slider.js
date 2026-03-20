@@ -51,6 +51,7 @@ class Slider{
             this.current_slider_text_container.textContent = "";
             this.next_slider_text_container.style.display = "none";
             this.onCancel();
+            this.cancel_slider_container.style.display = 'none';
         },{once:true})
 
     }

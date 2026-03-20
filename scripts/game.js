@@ -18,7 +18,7 @@ import { TaskMonitor } from "./classes/TaskMonitor.js"
 import { task_list } from "./objects/task-list.js"
 import { Slider } from "./classes/Slider.js"
 import { game_preferences } from "./objects/game-preferences.js"
-import { onGetPlayerData } from "./functions/player-data.js"
+import { onEntryPage } from "./functions/navigate.js"
 
 const game = new Game({
     mode_type:game_preferences.onGetItemChoice().mode_type,
@@ -134,7 +134,7 @@ await audio_manager.onPreload({
     left_audio:"../assets/audio/footstep/left_footstep.wav",
 },()=>{
     game.onLoadItems();
-    document.body.classList.add("loaded");
+    onEntryPage(true);
     const objective_container = document.querySelector(".objective-container")
     objective_container.addEventListener('click',()=>{
         objective_container.classList.add("player-accept")

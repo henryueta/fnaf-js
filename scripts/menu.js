@@ -1,10 +1,8 @@
-import { onNavigate } from "./functions/navigate.js";
+import { onEntryPage, onExitPage } from "./functions/navigate.js";
 import { onGetPlayerData, onResetData } from "./functions/player-data.js";
 
 
-window.onload = ()=>{
-    document.body.classList.add("loaded");
-}
+onEntryPage();
 
 const warning_container = document.querySelector(".warning-container") 
 
@@ -27,7 +25,7 @@ document.querySelectorAll('.option-list-container button').forEach((option_item)
 document.querySelector("#new-game-option-button").onclick = ()=>{
   option_select_audio.play();
   onResetData()
-  onNavigate("./pages/story.html")
+  onExitPage("./pages/story.html")
 }
 
 const player_data = onGetPlayerData('all');
@@ -55,7 +53,7 @@ if(player_data.isFirstTimePlaying){
 
 continue_option.onclick = ()=>{
   option_select_audio.play();
-  onNavigate("./pages/game.html?type=continue")
+  onExitPage("./pages/game.html?type=continue")
 }
 
 const free_mode_option = document.querySelector("#free-mode-option-button")
@@ -73,7 +71,7 @@ free_mode_option.onclick = ()=>{
   }
 
   option_select_audio.play();
-  onNavigate('./pages/game.html?type=free_mode')
+  onExitPage('./pages/game.html?type=free_mode')
 }
 
 

@@ -9,19 +9,22 @@
     <link rel="stylesheet" href="../styles/slider.css">
 </head>
 <body>
-    
+    <div class="page-load"></div>
+    <section class="page-container">
+
     <div class="slider-container">
         <div class="text-container">
             <textarea id="current-slider-text" readonly draggable="false"></textarea>
         </div>
-        <div class="cancel-container" id="cancel-slider-text">
-            <button>SKIP</button>
+        <div class="cancel-container">
+            <button id="cancel-slider-text">SKIP</button>
         </div>
        
     </div>
- <div class="story-canvas-container">
+ <!-- <div class="story-canvas-container">
             <canvas class="story-canvas" id="story-canvas" width="2560" height="1440"></canvas>
-        </div>
+        </div> -->
+            </section>
     <script type='module' src="../scripts/story.js"></script>
 </body>
 </html>
