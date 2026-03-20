@@ -247,6 +247,35 @@
     
 }
 
+
+@media (min-width: 3840px) and (max-aspect-ratio: 16/9){
+
+}
+
+@media (min-width: 2160px) and (max-aspect-ratio: 16/9) {
+   .battery-container{
+        height: 100px;
+        width: 160px;
+    }
+
+    .battery-container>*{
+        border: 0.15rem solid white;
+    }
+
+    .battery-container .percent-container div{
+        padding: 1.5rem 1rem 1.5rem 1rem;
+    }
+
+    .timer-container .time-span{
+        font-size: 2.7rem;
+    }
+
+    .timer-container .type-of-time-span{
+        font-size: 2.5rem;
+    }
+    
+}
+
   @media (max-width:1024px) {
     
     .battery-container{
@@ -273,8 +302,4 @@
   }
 
 
-  @media (min-aspect-ratio: 21/9) {
-    *{
-        color: purple;
-    }
-}
+  

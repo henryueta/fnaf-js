@@ -29,7 +29,7 @@ const game = new Game({
     telephone:new Telephone({
         enableCancelButton:(
             (
-                (game_preferences.onGetItemChoice().mode_type !== 'free_mode' && game_preferences.onGetItemChoice().mode_type !== 'normal')
+                (game_preferences.onGetItemChoice().mode_type !== 'free_mode' && game_preferences.onGetItemChoice().mode_type !== 'new_game')
                 ||
                 (game_preferences.onGetItemChoice().mode_type === 'continue')
             )

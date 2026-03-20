@@ -39,10 +39,10 @@ const story_text_slider = new Slider({
     next_slider_text_container:document.querySelector(".slider-container .text-container"),
     cancel_slider_container:document.querySelector("#cancel-slider-text"),
     onCancel:()=>{
-      onExitPage("../pages/game.html?type=normal");
+      onExitPage("../pages/game.html?type=new_game");
     },
     onEnd:()=>{
-        onExitPage("../pages/game.html?type=normal");
+        onExitPage("../pages/game.html?type=new_game");
     },
     text_list:[
         "Em 32 de agosto de 2026, o famoso streamer Bistecone foi infectado por um virus de origem desconhecida. Sua aparência física e seu estado mental mudaram drasticamente, resultando em um ser de pura maldade.",

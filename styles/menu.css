@@ -212,12 +212,30 @@
 }
 
 
-@media (min-width: 3440px){
+@media (min-width: 3840px) and (max-aspect-ratio: 16/9){
 
 }
 
-@media (min-width: 2160px) {
-  
+@media (min-width: 2160px) and (max-aspect-ratio: 16/9) {
+
+    .star-list-container{
+        right: 40px;
+        top: 40px;
+    }
+
+    .star-item-container svg{
+        width: 6rem;
+        height: 6rem;
+    }
+
+    .menu-container .content-container .option-list-container button .select-option{
+        border: 0.4rem solid rgb(255, 255, 255);
+        outline: 0.2rem solid red;
+        left: -50px;
+        width: 2rem;
+        height: 2rem;
+    }
+
 .warning-container .warning-icon-container svg{
         width: 9rem;
         height: 9rem;

@@ -184,14 +184,45 @@
   padding: 1.2rem 0rem 0.5rem 0rem;
 }
 
-.task-system-container .content-container .process-wait-container .info-container p{
-}
 
 @keyframes loading-progress {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
+
+@media (min-width: 3840px) and (max-aspect-ratio: 16/9){
+
+}
+
+@media (min-width: 2160px) and (max-aspect-ratio: 16/9) {
+
+  .task-system-container .content-container .temperature-container{
+    font-size: 1.3rem;
+    display: none;
+  }
+
+  .task-system-container .content-container .process-wait-container{
+    font-size: 1.5rem;
+  }
+  .task-system-container .content-container .task-list-container>div{
+    font-size: 1.3rem;  
+  }
+
+  .task-system-container .content-container .progress-loading-container{
+     border: 0.5rem solid rgb(0, 245, 94);
+  border-top: 0.5rem solid #000000; 
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .task-system-container .content-container .task-list-container>div button>svg{
+      color: rgb(0, 245, 94);
+      width: 2rem;
+      height: 2rem;
+  }
+
+}
 
 @media (max-width:1024px){
     .toggle-task-system-container{
