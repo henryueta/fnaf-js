@@ -15,6 +15,25 @@ const onSetPlayerData = (type)=>{
     return
 }
 
+const onSetPlayerStar = (type,value)=>{
+
+    if(type === 'bad_ending'){
+        localStorage.setItem("badEnding",value)
+        return
+    }
+
+    if(type === 'true_ending'){
+        localStorage.setItem("trueEnding",value)
+        return
+    }
+
+    if(type === ''){
+        localStorage.setItem("",value)
+        return
+    }
+
+}
+
 const onGetPlayerData = (type)=>{
 
     if(
@@ -35,15 +54,36 @@ const onGetPlayerData = (type)=>{
         console.log("nao existia gamecompletd")
     }
 
+    if(
+        (
+            (type === 'star' || type === 'all')
+        )
+    ){
+       if(localStorage.getItem("badEnding") === null){
+        localStorage.setItem("badEnding",false)
+       }
+       if(localStorage.getItem("trueEnding") === null){
+        localStorage.setItem("trueEnding",false)
+       }
+    }
+
     return (
         type === 'firstPlay'
         ? localStorage.getItem("isFirstTimePlaying").toLowerCase() === 'true'
         :
         type === 'gameCompleted'
         ? localStorage.getItem("gameCompleted").toLowerCase() === 'true'
-        : {
+        : 
+        type === 'star'
+        ? {
+            bad_ending:localStorage.getItem("badEnding").toLowerCase() === 'true',
+            true_ending:localStorage.getItem("trueEnding").toLowerCase() === 'true'
+        }
+        :{
         isFirstTimePlaying:localStorage.getItem("isFirstTimePlaying").toLowerCase() === 'true',
-        gameCompleted:localStorage.getItem("gameCompleted").toLowerCase() === 'true'
+        gameCompleted:localStorage.getItem("gameCompleted").toLowerCase() === 'true',
+        bad_ending:localStorage.getItem("badEnding").toLowerCase() === 'true',
+        true_ending:localStorage.getItem("trueEnding").toLowerCase() === 'true'
     }
 
     )
@@ -53,12 +93,14 @@ const onGetPlayerData = (type)=>{
 const onResetData = ()=>{
     localStorage.removeItem("isFirstTimePlaying");
     localStorage.removeItem("gameCompleted");
-
+    localStorage.removeItem("badEnding");
+    localStorage.removeItem("trueEnding");
     onGetPlayerData('all');
 }
 
 export {
     onGetPlayerData,
     onSetPlayerData,
-    onResetData
+    onResetData,
+    onSetPlayerStar
 }

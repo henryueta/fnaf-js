@@ -1,6 +1,6 @@
 import { audio_manager } from "../audio-manager.js";
 import { onLoadImage } from "../functions/image-loader.js";
-import { onSetPlayerData } from "../functions/player-data.js";
+import { onSetPlayerData, onSetPlayerStar } from "../functions/player-data.js";
 import { onRandomNumber } from "../functions/randomNumber.js";
 import { Jumpscare } from "./Jumpscare.js";
 
@@ -34,6 +34,19 @@ class Game {
     }
 
     onClearNightEvent(){
+
+        if(this.task_monitor.task_resolve_interval !== null){
+            clearInterval(this.task_monitor.task_resolve_interval)
+        }
+
+        if(this.task_monitor.increase_temperature_interval !== null){
+            clearInterval(this.task_monitor.increase_temperature_interval)
+        }
+
+        if(this.task_monitor.decrease_temperature_interval !== null){
+            clearInterval(this.task_monitor.decrease_temperature_interval)
+        }
+
         if(this.current_night.event_running_timeout !== null){
             clearTimeout(this.current_night.event_running_timeout);
         }
@@ -49,8 +62,6 @@ class Game {
         this.player_room.dark_screen.style.zIndex = '0';
         // this.x_movement.setIsLocked(true,true);
          this.toggle_cam_system_button.style.display = 'none';
-        //  this.camera_monitor.screen_container.parentElement.style.display = 'none';
-        //  this.task_monitor.screen_container.style.display = 'none';
         this.toggle_task_system_button.style.display = 'none';
         this.player_room.onChangeDarkAmbience(true);
         this.x_movement.vision_container.style.zIndex = '20';
@@ -96,7 +107,7 @@ class Game {
                 }
                 onSetPlayerData('firstPlay');
                 return
-            },"olhe as portas");
+            },reason);
             return
         });
         this.player_room.onChangeDarkAmbience(true);
@@ -152,7 +163,7 @@ class Game {
                         console.log("espera acabou");
                         animatronic.isWaitingPlayer = false;
                         animatronic.waiting_player_timeout = null;
-                        this.onKillPlayer(animatronic)
+                        this.onKillPlayer(animatronic,"Você não ouviu atentamente os corredores")
                     },animatronic.waiting_player_value); 
                     return
                 }
@@ -500,25 +511,29 @@ class Game {
             this.clock.onUpdateTime(()=>{
                 this.onClearNightEvent();
                 
-                    if(this.task_monitor.task_solved_quantity < this.task_monitor.task_list.length){
-                    this.onKillPlayer(this.animatronic_list[0]);
-                    return
-                    }
+                    // if(this.task_monitor.task_solved_quantity < this.task_monitor.task_list.length){
+                    // this.onKillPlayer(this.animatronic_list[0],"Seu tempo para preparar a cura acabou");
+                    // onSetPlayerStar('bad_ending',true)
+                    // return
+                    // }
                
                 this.onSavePlayer();
                 this.current_night.onNightWin(async ()=>{
+                     this.camera_monitor.screen_container.parentElement.style.display = 'none';
+                     this.task_monitor.screen_container.style.display = 'none';
                     this.onActiveItems(false);
                     this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/the_end.png"),"any")
                     this.onEnableExit();
                     if(this.mode_type === 'free_mode'){
                         return
                     }
+                    onSetPlayerStar('true_ending',true)
                     onSetPlayerData('all');
                 });
             });
 
-        },this.clock.timer_value);
-    //
+        },2000);
+    //this.clock.timer_value
     }
 
     onActiveItems(enable){

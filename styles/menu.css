@@ -80,6 +80,25 @@
     border: 1px solid red;
 }
 
+.star-list-container{
+    position: fixed;
+    z-index: 5;
+    right: 20px;
+    top: 20px;
+    display: flex;
+    flex-direction: column ;
+    gap: 0.5rem;
+}
+
+.star-item-container {
+    display: none;
+}
+
+.star-item-container svg{
+    width: 3.75rem;
+    height: 3.75rem;
+}
+
 .menu-container .content-container{
     z-index: 5;
     position: fixed;

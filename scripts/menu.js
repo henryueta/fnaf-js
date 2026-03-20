@@ -13,8 +13,8 @@ warning_container.addEventListener('click',()=>{
   warning_container.classList.add("warning-close")
 },{once:true})
 
-const option_select_audio = new Audio("../assets/audio/menu/option_select.ogg");
-const option_hover_audio = new Audio("../assets/audio/menu/option_hover.ogg");
+const option_select_audio = new Audio("../assets/audio/menu/option_select.wav");
+const option_hover_audio = new Audio("../assets/audio/menu/option_hover.wav");
 
 document.querySelectorAll('.option-list-container button').forEach((option_item)=>
  {
@@ -31,6 +31,20 @@ document.querySelector("#new-game-option-button").onclick = ()=>{
 }
 
 const player_data = onGetPlayerData('all');
+
+const star_quantity = [player_data.bad_ending,player_data.true_ending].filter((star_item)=>
+  star_item === true
+)
+
+
+if(star_quantity.length > 0){
+
+    const star_list = document.querySelectorAll(".star-list-container>div")
+    for(let star = 0;star < star_quantity.length;star++){
+      star_list[star].style.display = 'block';
+    }
+
+}
 
 const continue_option = document.querySelector("#continue-option-button")
 
