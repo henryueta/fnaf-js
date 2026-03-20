@@ -86,9 +86,27 @@ position: fixed;
 
 @media (min-width: 3840px) and (max-aspect-ratio: 16/9){
 
+     .slider-container .text-container{
+        padding:6rem;
+    }
+
+    .slider-container .text-container textarea{
+        font-size: 3.5rem;
+    }
+
+    .slider-container .cancel-container{
+        right: 80px;
+        top: 80px;
+    }
+
+    .slider-container .cancel-container button{
+        font-size: 3.8rem;
+    }
+
+
 }
 
-@media (min-width: 2160px) and (max-aspect-ratio: 16/9) {
+@media (min-width: 2160px) and (max-width:3200px) and (max-aspect-ratio: 16/9) {
 
     .slider-container .text-container{
         padding:5rem;

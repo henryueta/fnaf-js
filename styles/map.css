@@ -304,9 +304,31 @@ justify-content: center;
 
 @media (min-width: 3840px) and (max-aspect-ratio: 16/9){
 
+  .map-container{
+      top: 75%;
+    left: 85%;
+      /* border: 1px solid red; */
+    }
+
+    .map-container div {
+       font-size: 2.5rem;   
+      }
+
+      #place-audio-switch{
+         padding: 1rem;
+        width: 340px;
+        height: 240px;
+        font-size: 2.3rem;
+      }
+
+      #place-audio-switch svg{
+        height: 40%;
+        width: 40%;
+      }
+
 }
 
-@media (min-width: 2160px) and (max-aspect-ratio: 16/9) {
+@media (min-width: 2160px) and (max-width:3200px) and (max-aspect-ratio: 16/9) {
 
    .map-container{
       top: 75%;

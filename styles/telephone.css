@@ -24,9 +24,30 @@
 
 @media (min-width: 3840px) and (max-aspect-ratio: 16/9){
 
+
+.cancel-call-container button svg{
+    height: 4rem;
+    width:4rem;
 }
 
-@media (min-width: 2160px) and (max-aspect-ratio: 16/9) {
+.cancel-call-container{
+    /* display: none; */
+    position: fixed;
+    z-index: 6;
+    top: 6.5%;
+    left: 16%;
+}
+
+.cancel-call-container button{
+    /* font-family: 'pixel'; */
+    padding: 1.8rem 2.8rem 1.8rem 2.8rem;
+    font-size: 2rem;
+}
+
+
+}
+
+@media (min-width: 2160px) and (max-width:3200px) and (max-aspect-ratio: 16/9) {
 
 .cancel-call-container button svg{
     height: 3rem;

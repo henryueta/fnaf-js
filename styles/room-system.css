@@ -250,9 +250,30 @@
 
 @media (min-width: 3840px) and (max-aspect-ratio: 16/9){
 
+    .battery-container{
+        height: 180px;
+        width: 350px;
+    }
+
+    .battery-container>*{
+        border: 0.3rem solid white;
+    }
+
+    .battery-container .percent-container div{
+        padding: 2.5rem 2rem 2.5rem 2rem;
+    }
+
+    .timer-container .time-span{
+        font-size: 4.7rem;
+    }
+
+    .timer-container .type-of-time-span{
+        font-size: 4.5rem;
+    }
+
 }
 
-@media (min-width: 2160px) and (max-aspect-ratio: 16/9) {
+@media (min-width: 2160px) and (max-width:3200px) and (max-aspect-ratio: 16/9) {
    .battery-container{
         height: 100px;
         width: 160px;
@@ -284,7 +305,7 @@
     }
 
     .battery-container>*{
-        border: 0.15rem solid white;
+        border: 0.3rem solid white;
     }
 
     .battery-container .percent-container div{

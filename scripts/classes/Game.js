@@ -548,7 +548,7 @@ class Game {
         const onEnableStartEvent = ()=>{
             this.isStarted = true;
             this.task_monitor.onChangeVisor('list');
-            // this.onStartNightEvent();
+            this.onStartNightEvent();
         }
 
         if(this.mode_type === 'free_mode'){
