@@ -16,19 +16,13 @@ const task_list = [
     new Task({
         identifier:0,
         name:"Ingrediente X",
-        final_progress_value:2,
+        final_progress_value:5,
         to_install:"none"
     }),
     new Task({
         identifier:1,
         name:"Ingrediente Y",
         final_progress_value:5,
-        to_install:"none"
-    }),
-    new Task({
-        identifier:2,
-        name:"Ingrediente X",
-        final_progress_value:10,
         to_install:"none"
     }),
     new Task({
@@ -46,7 +40,7 @@ const task_list = [
     new Task({
         identifier:6,
         name:"Ingrediente X",
-        final_progress_value:2,
+        final_progress_value:5,
         to_install:"none"
     }),
 ]

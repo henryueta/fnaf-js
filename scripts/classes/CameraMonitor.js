@@ -64,12 +64,12 @@ class CameraMonitor {
             const chosen_camera = this.onFindChoiceCamera();
             
 
-            if(chosen_camera.canPlayAudio){
-                audio_manager.onPlay('action_denied')
-                return
-            } else{
-                console.log("SIM")
-            }
+            // if(chosen_camera.canPlayAudio){
+            //     audio_manager.onPlay('action_denied')
+            //     return
+            // } else{
+            //     console.log("SIM")
+            // }
 
             if(this.current_played_room === null){
                 this.current_played_room = chosen_camera.number;

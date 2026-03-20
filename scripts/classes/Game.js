@@ -146,9 +146,9 @@ class Game {
             return
         }
 
-            if(this.clock.current_time >= 3 && animatronic.waiting_player_value !== 3200){
-                animatronic.waiting_player_value = 3200;
-            }
+            // if(this.clock.current_time >= 3 && animatronic.waiting_player_value !== 3200){
+            //     animatronic.waiting_player_value = 3200;
+            // }
                     if(!animatronic.isMoving){
                         return
                     }
@@ -177,7 +177,7 @@ class Game {
                     if(this.camera_monitor.current_played_room !== null && animatronic.current_place === 10){
 
                         const choice_decision = this.clock.current_time >= 3
-                        ? onRandomNumber(-1,1)
+                        ? onRandomNumber(-2,1)
                         : onRandomNumber(-3,1);
 
                         if(choice_decision > 0){
@@ -417,8 +417,8 @@ class Game {
                 console.log(animatronic.isMoving)
                 setTimeout(()=>{
                     animatronic.isMoving = true;
-                },this.clock.current_time > 3
-                ? 2500
+                },this.clock.current_time === 5
+                ? 3000
                 : next_current_animatronic_place.quantity_visited > onRandomNumber(1,2) 
                     ? 4000
                     : 10000
@@ -469,7 +469,7 @@ class Game {
     onStartNightInterval(){
 
         this.current_night.running_event_value = (
-            this.clock.current_time < 2
+            this.clock.current_time < 1
             ? (
                 (this.player_room.left_door.current_animatronic !== null || this.player_room.right_door.current_animatronic !== null)
                 ? 5000
@@ -488,7 +488,7 @@ class Game {
             this.animatronic_list[0].footstep_cheat.inCheatProcess = true;
         }
 
-        // this.onActiveAnimatronic(this.animatronic_list[0]);
+        this.onActiveAnimatronic(this.animatronic_list[0]);
         console.log("executado",this.current_night.running_event_value);
         this.current_night.event_running_timeout = setTimeout(()=>this.onStartNightInterval(),this.current_night.running_event_value)
     }
@@ -511,29 +511,29 @@ class Game {
             this.clock.onUpdateTime(()=>{
                 this.onClearNightEvent();
                 
-                    // if(this.task_monitor.task_solved_quantity < this.task_monitor.task_list.length){
-                    // this.onKillPlayer(this.animatronic_list[0],"Seu tempo para preparar a cura acabou");
-                    // onSetPlayerStar('bad_ending',true)
-                    // return
-                    // }
+                    if(this.task_monitor.task_solved_quantity < this.task_monitor.task_list.length){
+                        this.onKillPlayer(this.animatronic_list[0],"Seu tempo para preparar a cura acabou");
+                        onSetPlayerStar('bad_ending',true);
+                    return
+                    }
                
                 this.onSavePlayer();
                 this.current_night.onNightWin(async ()=>{
-                     this.camera_monitor.screen_container.parentElement.style.display = 'none';
-                     this.task_monitor.screen_container.style.display = 'none';
+                    this.camera_monitor.screen_container.parentElement.style.display = 'none';
+                    this.task_monitor.screen_container.style.display = 'none';
                     this.onActiveItems(false);
                     this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/the_end.png"),"any")
                     this.onEnableExit();
                     if(this.mode_type === 'free_mode'){
                         return
                     }
-                    onSetPlayerStar('true_ending',true)
+                    onSetPlayerStar('true_ending',true);
                     onSetPlayerData('all');
                 });
             });
 
-        },2000);
-    //this.clock.timer_value
+        },this.clock.timer_value);
+    //
     }
 
     onActiveItems(enable){
