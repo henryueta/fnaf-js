@@ -6,13 +6,16 @@ onEntryPage();
 
 const warning_container = document.querySelector(".warning-container") 
 
-warning_container.addEventListener('click',()=>{
-  option_select_audio.play();
-  warning_container.classList.add("warning-close")
-},{once:true})
-
 const option_select_audio = new Audio("../assets/audio/menu/option_select.wav");
 const option_hover_audio = new Audio("../assets/audio/menu/option_hover.wav");
+const menu_audio = new Audio("../assets/audio/menu/menu.wav");
+menu_audio.loop = true;
+
+warning_container.addEventListener('click',()=>{
+  option_select_audio.play();
+  warning_container.classList.add("warning-close");
+  menu_audio.play();
+},{once:true})
 
 document.querySelectorAll('.option-list-container button').forEach((option_item)=>
  {
@@ -56,22 +59,22 @@ continue_option.onclick = ()=>{
   onExitPage("./pages/game.html?type=continue")
 }
 
-const free_mode_option = document.querySelector("#free-mode-option-button")
+const prime_mode_option = document.querySelector("#free-mode-option-button")
 
 if(!player_data.gameCompleted){
-  free_mode_option.style.opacity = '30%';
-  free_mode_option.disabled = true;
+  prime_mode_option.style.opacity = '30%';
+  prime_mode_option.disabled = true;
 }
 
 
-free_mode_option.onclick = ()=>{
+prime_mode_option.onclick = ()=>{
 
   if(!player_data.gameCompleted){
     return
   }
 
   option_select_audio.play();
-  onExitPage('./pages/game.html?type=free_mode')
+  onExitPage('./pages/game.html?type=prime_mode')
 }
 
 

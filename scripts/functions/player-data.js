@@ -27,8 +27,8 @@ const onSetPlayerStar = (type,value)=>{
         return
     }
 
-    if(type === ''){
-        localStorage.setItem("",value)
+    if(type === 'prime_ending'){
+        localStorage.setItem("primeEnding",value)
         return
     }
 
@@ -65,6 +65,9 @@ const onGetPlayerData = (type)=>{
        if(localStorage.getItem("trueEnding") === null){
         localStorage.setItem("trueEnding",false)
        }
+       if(localStorage.getItem("primeEnding") === null){
+        localStorage.setItem("primeEnding",false)
+       }
     }
 
     return (
@@ -77,13 +80,15 @@ const onGetPlayerData = (type)=>{
         type === 'star'
         ? {
             bad_ending:localStorage.getItem("badEnding").toLowerCase() === 'true',
-            true_ending:localStorage.getItem("trueEnding").toLowerCase() === 'true'
+            true_ending:localStorage.getItem("trueEnding").toLowerCase() === 'true',
+            prime_ending:localStorage.getItem("primeEnding").toLowerCase() === 'true'
         }
         :{
         isFirstTimePlaying:localStorage.getItem("isFirstTimePlaying").toLowerCase() === 'true',
         gameCompleted:localStorage.getItem("gameCompleted").toLowerCase() === 'true',
         bad_ending:localStorage.getItem("badEnding").toLowerCase() === 'true',
-        true_ending:localStorage.getItem("trueEnding").toLowerCase() === 'true'
+        true_ending:localStorage.getItem("trueEnding").toLowerCase() === 'true',
+        prime_ending:localStorage.getItem("primeEnding").toLowerCase() === 'true'
     }
 
     )

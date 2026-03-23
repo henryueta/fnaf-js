@@ -201,7 +201,7 @@ class CameraMonitor {
         this.chosen_camera_info.image = chosen_camera.current_view;
         this.chosen_camera_info.number = chosen_camera.number;
         if(!!this.isOpen){
-            this.onSelectPlace().style.background = 'green';
+            this.onSelectPlace().style.background = 'red';
             audio_manager.onPlay(this.chosen_camera_info.audio);
             this.onLoadView(false);
             this.onChangePlayButtonView(chosen_camera.canPlayAudio,chosen_camera.isAudioPlayed);
@@ -266,7 +266,7 @@ class CameraMonitor {
                     return item.number === camera_number
                 }) 
                 this.onSelectPlace().style.background = 'gray'
-                camera_item_container.style.background = 'green';
+                camera_item_container.style.background = 'red';
                 if(this.chosen_camera_info.number !== chosen_camera.number){
                     this.chosen_camera_info.audio = chosen_camera.current_audio;
                     this.chosen_camera_info.repeat_audio = chosen_camera.repeat_audio;

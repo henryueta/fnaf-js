@@ -29,7 +29,7 @@ const game = new Game({
     telephone:new Telephone({
         enableCancelButton:(
             (
-                (game_preferences.onGetItemChoice().mode_type !== 'free_mode' && game_preferences.onGetItemChoice().mode_type !== 'new_game')
+                (game_preferences.onGetItemChoice().mode_type !== 'prime_mode' && game_preferences.onGetItemChoice().mode_type !== 'new_game')
                 ||
                 (game_preferences.onGetItemChoice().mode_type === 'continue')
             )
@@ -57,6 +57,7 @@ const game = new Game({
         vision_container: document.querySelector(".room-container")
     }),
     task_monitor:new TaskMonitor({
+        isPrimeMode:game_preferences.onGetItemChoice().mode_type === 'prime_mode',
         temperature_container:document.querySelector(".temperature-container"),
         temperature_view_container:document.querySelector(".temperature-view-container"),
         screen_container:document.querySelector(".task-system-container .screen-container"),
@@ -107,6 +108,8 @@ const game = new Game({
 });
 
 await audio_manager.onPreload({
+    random_audio_1:"../assets/audio/random/random_audio_1.wav",
+    random_audio_2:"../assets/audio/random/random_audio_2.wav",
     cat_voice_1:"../assets/audio/cat/cat_voice_1.wav",
     cat_voice_2:"../assets/audio/cat/cat_voice_2.wav",
     cat_voice_3:"../assets/audio/cat/cat_voice_3.wav",

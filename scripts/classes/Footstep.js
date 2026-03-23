@@ -42,7 +42,7 @@ class Footstep{
             !!cheatProcess
             ? this.current_footstep === null ? this.current_side : this.current_footstep
             : this.current_side
-        )+"_audio",null,0.2);
+        )+"_audio",null,0.5);
         console.log(this.current_side,this.current_footstep);
         if(this.current_cheat_quantity === this.max_cheat_quantity){
             

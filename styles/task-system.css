@@ -115,7 +115,7 @@
 
 
 ::-webkit-scrollbar-track {
-  background-color: none;
+  /* background-color: none; */
 }
 
 .task-list-container ::-webkit-scrollbar-thumb {

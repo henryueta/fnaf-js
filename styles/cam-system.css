@@ -16,7 +16,7 @@
 }
 
 .toggle-cam-system-button {
-    border: 0.15rem solid blue;
+    border: 0.15rem solid red;
      background: rgba(97, 97, 97, 0.2);
     /* border-radius: 0.3rem; */
     width: 80%;

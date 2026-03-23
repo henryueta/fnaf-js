@@ -1,4 +1,5 @@
 import { audio_manager } from "../audio-manager.js";
+import { onExitPage } from "../functions/navigate.js";
 
 class Night {
 
@@ -14,10 +15,7 @@ class Night {
     }
 
     onReturnToMenu(){
-        document.body.classList.remove("loaded");
-        setTimeout(()=>{
-        window.location.replace("../../index.html");
-        },3000)
+        onExitPage("../../index.html");
     }
 
     onCloseEndingSlider(text_list,onClose){
@@ -41,7 +39,9 @@ class Night {
         this.game_won_container.classList.add("end-enabled");
         this.ending_slider.enableCancelButton = true;
         this.onCloseEndingSlider([
-            "Parabens, você venceu"
+            "Após uma longa noite de puro terror,Tolinho finalmente termina a cura para Bistecone.",
+            "O gato aplica a substância em seu pai e o magrelone retorna em seu estado original.",
+            "TRUE ENDING"
         ],onWin)
         setTimeout(()=>{
             if(!!onWin){
@@ -58,12 +58,17 @@ class Night {
                 }
         },12000)
     }
-    onNightOver(onOver,reason){
+    onNightOver(onOver,reason,isEnding){
         
         this.game_over_container.style.display = 'flex';
-        this.onCloseEndingSlider([
-            "Game Over: "+reason
-        ],onOver);
+        this.onCloseEndingSlider((
+            !!isEnding
+            ? ["Game Over: "+reason,
+                "Tolinho não conseguiu terminar a receita da cura para Bistecone.",
+                "BAD ENDING"
+            ]
+            : ["Game Over: "+reason]
+        ),onOver);
         setTimeout(()=>{
             this.ending_slider.onViewStoryText();
             this.ending_slider.enableClick = true;

@@ -15,7 +15,7 @@ const task_list = [
     // }),
     new Task({
         identifier:0,
-        name:"Ingrediente X",
+        name:"Pó de Canela",
         final_progress_value:5,
         to_install:"none"
     }),
@@ -38,7 +38,7 @@ const task_list = [
         to_install:"none"
     }),
     new Task({
-        identifier:6,
+        identifier:4,
         name:"Ingrediente X",
         final_progress_value:5,
         to_install:"none"

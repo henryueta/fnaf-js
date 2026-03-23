@@ -184,7 +184,7 @@
 
 .final-screen{
     opacity: 100%;
-    /* animation: final-screen-entrace ease-in-out 3s forwards; */
+    animation: final-screen-entrace ease-in-out 3s forwards;
 }
 
 @keyframes final-screen-entrace {

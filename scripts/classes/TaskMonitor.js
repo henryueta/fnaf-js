@@ -23,6 +23,7 @@ class TaskMonitor {
         this.decrease_temperature_interval = null;
         this.current_temperature_value = 35;
         this.isRestarting = false;
+        this.isPrimeMode = config.isPrimeMode;
 
         this.play_icon = `
             <svg viewBox="0 0 24 24">
@@ -90,7 +91,7 @@ class TaskMonitor {
                     return
                 }
                 this.onResolve(()=>{
-                   duration_container.children[0].textContent = this.onConvertTaskProcessValue(this.current_task_in_progress.current_progress_value)+"/"+this.onConvertTaskProcessValue(this.current_task_in_progress.final_progress_value)+"MB"
+                   duration_container.children[0].textContent = this.onConvertTaskProcessValue(this.current_task_in_progress.current_progress_value)+"/"+this.onConvertTaskProcessValue(this.current_task_in_progress.final_progress_value)
 
                 },()=>{
                    this.task_list_container.removeChild(task_item_container)
@@ -103,7 +104,7 @@ class TaskMonitor {
         actions_container.append(progress_button);
 
             name_container.children[0].textContent = task_item.name;
-            duration_container.children[0].textContent = "0/"+this.onConvertTaskProcessValue(task_item.final_progress_value)+"MB";
+            duration_container.children[0].textContent = "0/"+this.onConvertTaskProcessValue(task_item.final_progress_value);
             task_item_container.append(progress_container);
             task_item_container.append(name_container);
             task_item_container.append(duration_container);
@@ -202,7 +203,11 @@ class TaskMonitor {
         setTimeout(()=>{
             this.onChangeVisor('list');
             this.isRestarting = false;
-        },onRandomNumber(8000,10000))
+        },(
+            this.isPrimeMode
+            ? onRandomNumber(10000,15000)
+            : onRandomNumber(8000,10000)
+        ))
     }
 
     onChangeTemperatureValue(value){
@@ -241,7 +246,11 @@ class TaskMonitor {
             return
         }
 
-        },onRandomNumber(2500,4500))
+        },(
+            this.isPrimeMode
+            ? onRandomNumber(2000,4000)
+            : onRandomNumber(2500,4500)
+        ))
         return
         }
 
