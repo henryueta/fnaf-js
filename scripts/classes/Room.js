@@ -41,7 +41,7 @@ class Room {
         this.left_door.door_room_context = this.room_context;
         this.left_door.onRectClick = (image,direction,type)=>this.onSwitchVision(image,"external",type,direction);
 
-        this.room_canvas.addEventListener('click', (e) => !this.clickIsDisabled ?  this.handleClick(e) : ()=>console.log("player está morto"));
+        this.room_canvas.addEventListener('click', (e) => !this.clickIsDisabled ?  this.handleClick(e) : ()=>{});
         this.dark_screen.addEventListener('click',()=> {
             this.onFlashLight();
         });
@@ -226,13 +226,11 @@ class Room {
         ){
             this.flashlight.onUse('charge',()=>{
                 
-                console.log("carregando",this.flashlight.battery.current_battery_value)
 
             });
         }
 
         if(vision === 'external' && this.flashlight.battery.isCharging){
-            console.log("limpou interval")
             clearInterval(this.flashlight.battery.batery_use_interval);
         }
 

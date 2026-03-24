@@ -34,7 +34,6 @@ class AudioProvider {
         // this.source.connect(this.context.destination);
         this.source.connect(this.gain_node);
         this.start_time = this.context.currentTime - this.pause_time;
-        console.log(this.audio)
         this.source.start();
         //0, this.pause_time
     }

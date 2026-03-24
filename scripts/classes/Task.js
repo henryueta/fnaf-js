@@ -12,8 +12,6 @@ class Task {
 
     onProgress(onProcess,onEnd){
         this.current_progress_value+=1;
-            console.log("Em processo :",this.current_progress_value)
-
         if(onProcess){
             onProcess();
         }

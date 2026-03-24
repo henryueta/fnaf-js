@@ -38,8 +38,6 @@ class Flashlight {
             );
 
             if(type === 'charge'){
-                console.log(this.battery.current_battery_value)
-                console.log(this.battery.percent_container['percent-'+this.battery.current_battery_value])
                 this.battery.percent_container['percent-'+this.battery.current_battery_value].style.opacity = '100%';
             }
 
@@ -53,7 +51,6 @@ class Flashlight {
                 : 25
             )){
                 clearInterval(this.battery.batery_use_interval);
-                console.log("limpo")
                 this.battery.batery_use_interval = null;
                 this.inUse = false;
                 

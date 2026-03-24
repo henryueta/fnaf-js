@@ -42,7 +42,6 @@ const onGetPlayerData = (type)=>{
         localStorage.getItem("isFirstTimePlaying") === null
     ){
         localStorage.setItem('isFirstTimePlaying',true);
-        console.log("nao existia firsttime")
     }
 
     if(
@@ -51,7 +50,6 @@ const onGetPlayerData = (type)=>{
         localStorage.getItem("gameCompleted") === null
     ){
         localStorage.setItem("gameCompleted",false)
-        console.log("nao existia gamecompletd")
     }
 
     if(

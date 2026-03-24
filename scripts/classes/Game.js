@@ -1,4 +1,5 @@
 import { audio_manager } from "../audio-manager.js";
+import { onDisplay } from "../functions/display.js";
 import { onLoadImage } from "../functions/image-loader.js";
 import { onSetPlayerData, onSetPlayerStar } from "../functions/player-data.js";
 import { onRandomNumber } from "../functions/randomNumber.js";
@@ -28,10 +29,7 @@ class Game {
     }
 
     onCheckDisplay(){
-        const userAgent = navigator.userAgent.toLowerCase();
-        const isMobileByUA = /android|iphone|ipad|ipod|blackberry|windows phone/i.test(userAgent);
-        const isMobileByWidth = window.innerWidth <= 768;
-        this.player.screen_display = (isMobileByUA || isMobileByWidth) ? "MOBILE" : "PC";
+        this.player.screen_display = onDisplay();
         return this.player.screen_display;
     }
 
@@ -157,9 +155,7 @@ class Game {
                     && 
                     animatronic.waiting_player_timeout === null
                     ){
-                    console.log("esperando player")
                     animatronic.waiting_player_timeout = setTimeout(()=>{
-                        console.log("espera acabou");
                         animatronic.isWaitingPlayer = false;
                         animatronic.waiting_player_timeout = null;
                         this.onKillPlayer(animatronic,"Você não ouviu atentamente os corredores")
@@ -178,7 +174,6 @@ class Game {
                     &&
                     animatronic.footstep_cheat.current_cheat_quantity < animatronic.footstep_cheat.max_cheat_quantity
                 ){
-                    console.log("Play aqui onCheat")
                     if(this.camera_monitor.current_played_room !== null && animatronic.current_place === 10){
 
                         const choice_decision = this.clock.current_time >= 3
@@ -187,7 +182,6 @@ class Game {
 
                         if(choice_decision > 0 && this.mode_type !== 'prime_mode'){
                             animatronic.footstep_cheat.onCheat();
-                            console.log("ignorou o chamado")
                             const current_played_camera = this.camera_monitor.onFindPlayedRoom();
                             current_played_camera.isAudioPlayed = false;
                             this.camera_monitor.current_played_room = null;
@@ -219,11 +213,9 @@ class Game {
               if(!!prev_current_animatronic_place.hasSecurityRoomConnection)
                {
                 
-                    console.log("entrou aqui");
 
                     const current_animatronic_door = this.player_room.onFindAnimatronic(animatronic.identifier)
                     
-                    console.log("current",current_animatronic_door);
                 
 
                     if(current_animatronic_door === undefined || current_animatronic_door === null){
@@ -233,7 +225,6 @@ class Game {
                         )).image;
 
                         // if(this.clock.current_time >= 4){
-                        //     console.log("Vai continuar");
                         //     this.current_night.running_event_value = 2300;
                         //     animatronic.current_place = 10;
                         //     animatronic.footstep_cheat.onResetFootstepQuantity();
@@ -260,7 +251,6 @@ class Game {
                             : this.clock.current_time < 3
                          ){
                             // this.camera_monitor.onGenerateGeneratorRoomList();
-                            console.log("escolheu recomeçar no início");
                             audio_manager.onPlay("knock");
                             animatronic.current_place = 0;
                             animatronic.onResetVisitedPlaceList();
@@ -269,7 +259,6 @@ class Game {
                             this.place_list[0].onSetView();
                             return
                          }
-                         console.log("escolheu continuar")
                          animatronic.current_place = 10;
                          animatronic.footstep_cheat.onResetFootstepQuantity();
                          animatronic.footstep_cheat.onSetMaxCheatQuantity();
@@ -319,7 +308,7 @@ class Game {
                 
                 if(this.player_room.vision === 'external'){
 
-                    this.toggle_cam_system_button.onclick = ()=>console.log("VOCE ESTÁ MORTO");
+                    this.toggle_cam_system_button.onclick = ()=>{};
                     
                     return
                 }
@@ -349,9 +338,6 @@ class Game {
                         ].find((door)=>
                             door.place_location_number === next_current_animatronic_place.number
                         );
-                        console.log("side",animatronic.footstep_cheat.current_side)
-                        console.log("footstep",animatronic.footstep_cheat.current_footstep)
-                        console.log("cheat",!!animatronic.footstep_cheat.inCheatProcess)
 
                         if(
                             animatronic.footstep_cheat.current_side !== null 
@@ -368,7 +354,6 @@ class Game {
                                 animatronic.footstep_cheat.max_cheat_quantity === null
                              )
                         ){
-                            console.log("Play aqui, animatronic.footstep_cheat.inCheatProcess")
                              animatronic.footstep_cheat.onPlayFootstepAudio(false)
                         }
 
@@ -377,15 +362,12 @@ class Game {
                             current_player_room_door.place_location_number === this.player_room.right_door.place_location_number
                             ? 'right'
                             : 'left';
-                            console.log("Play aqui,animatronic.footstep_cheat.current_side")
                             animatronic.footstep_cheat.onPlayFootstepAudio(false)
                         }
 
-                    console.log("Porta encontrada: ",current_player_room_door);
                     current_player_room_door.onSetAnimatronicView(animatronic.identifier,'common')
                     if(this.player_room.current_door_vision !== null){
                         this.player_room.onUpdatePlayerView();
-                        console.log("dentro da porta");
                     }
 
                     animatronic.isWaitingPlayer = true;
@@ -402,14 +384,12 @@ class Game {
                 const current_played_camera = this.camera_monitor.onFindPlayedRoom();
 
             if(this.camera_monitor.current_played_room !== null && !next_current_animatronic_place.canPlayAudio){
-                console.log("Ignorou")
                  const current_played_camera = this.camera_monitor.onFindPlayedRoom();
                 current_played_camera.isAudioPlayed = false;
                 this.camera_monitor.current_played_room = null;
                 this.camera_monitor.onChangePlayButtonView(true);
             }
 
-            console.log("NEXT",next_current_animatronic_place.canPlayAudio)
 
             if(!!next_current_animatronic_place.canPlayAudio){
                  animatronic.visited_place_list = animatronic.visited_place_list.filter((place_item_number)=>
@@ -420,14 +400,11 @@ class Game {
              if(!!next_current_animatronic_place.canPlayAudio && this.camera_monitor.current_played_room === next_current_animatronic_place.number){
                 current_played_camera.isAudioPlayed = false;
                 this.camera_monitor.current_played_room = null;
-                console.log("playted",current_played_camera.isAudioPlayed)
                 this.camera_monitor.action_button_list.place_lock_switch.textContent = ("Play Audio")
                 animatronic.visited_place_list = animatronic.visited_place_list.filter((place_item_number)=>
                     place_item_number !== next_current_animatronic_place.next_place_index_list[0]
                 );
-                console.warn("VISITED",animatronic.visited_place_list)
                 animatronic.isMoving = false;
-                console.log(animatronic.isMoving)
                 setTimeout(()=>{
                     animatronic.isMoving = true;
                 },this.clock.current_time === 5
@@ -510,14 +487,12 @@ class Game {
         }
 
         this.onActiveAnimatronic(this.animatronic_list[0]);
-        console.log("executado",this.current_night.running_event_value);
 
         const enable_random_audio = onRandomNumber(0,(
             this.mode_type === 'prime_mode'
             ? 6
             : 8
         ));
-        console.log(enable_random_audio)
         if(enable_random_audio === 0 && !this.isPlayingRandomAudio && !this.animatronic_list[0].isWaitingPlayer){
 
             const current_random_audio = onRandomNumber(1,4)
@@ -533,7 +508,6 @@ class Game {
     }
 
     onStartNightEvent(){
-        console.log("VALOR ATUAL: ",this.current_night.running_event_value);
 
         audio_manager.onPlay("knock")
         this.place_list[0].animatronic_list = this.animatronic_list;
@@ -768,7 +742,6 @@ class Game {
                 this.toggle_task_system_button.style.display = 'none';
                 setTimeout(()=>{
                     if(this.camera_monitor.isOpen || this.player_room.vision !== 'internal' || this.player_room.playerIsMoving){
-                        console.log(this.player_room.playerIsMoving)
                         return
                     }
                     this.toggle_task_system_button.style.display = 'flex';

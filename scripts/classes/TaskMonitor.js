@@ -71,7 +71,6 @@ class TaskMonitor {
 
         progress_button.innerHTML = this.play_icon;
         task_item_container.onclick = ()=>{
-            console.log(this.current_task_in_progress)
                 if(
                     this.current_task_in_progress !== null
                     &&
@@ -144,7 +143,6 @@ class TaskMonitor {
     }
 
     onToggle(){
-        console.log(this.screen_container)
 
         this.onDisableProgressLoading();
 
@@ -223,14 +221,12 @@ class TaskMonitor {
             clearInterval(this.decrease_temperature_interval)
             this.decrease_temperature_interval = null;
         }
-        console.log('interv',this.increase_temperature_interval)
 
         if(this.increase_temperature_interval !== null){
             return
         }
 
         this.increase_temperature_interval = setInterval(()=>{
-            console.log("increase")
             this.onChangeTemperatureValue(this.current_temperature_value+onRandomNumber(3,10))
 
             if(this.current_temperature_value >=80){
@@ -265,7 +261,6 @@ class TaskMonitor {
         }
 
         this.decrease_temperature_interval = setInterval(()=>{
-            console.log("decrease")
             this.onChangeTemperatureValue(this.current_temperature_value-onRandomNumber(5,15))
 
             if(this.current_temperature_value <= 80){

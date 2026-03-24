@@ -17,7 +17,6 @@ class Slider{
         this.next_slider_text_container.addEventListener("click", () => {
 
         if (this.isWriting || !this.enableClick) {
-            console.log("denied")
             return;
         }
 

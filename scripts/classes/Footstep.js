@@ -24,7 +24,6 @@ class Footstep{
 
     onPlayFootstepAudio(cheatProcess,onEnd){
         if(!!cheatProcess){
-            console.log("CHEATING",this.current_footstep)
 
             this.current_cheat_quantity+=1;
          this.current_side = 
@@ -43,7 +42,6 @@ class Footstep{
             ? this.current_footstep === null ? this.current_side : this.current_footstep
             : this.current_side
         )+"_audio",null,0.5);
-        console.log(this.current_side,this.current_footstep);
         if(this.current_cheat_quantity === this.max_cheat_quantity){
             
             if(onEnd){
@@ -57,7 +55,6 @@ class Footstep{
     onSetMaxCheatQuantity(){
         if(this.max_cheat_quantity === null){
             this.max_cheat_quantity = onRandomNumber(2,5);
-            console.log('vai enganar :',this.max_cheat_quantity+' vezes');
         }
     }
 

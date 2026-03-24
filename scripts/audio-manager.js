@@ -56,7 +56,6 @@ const audio_manager = {
             try {
                 this.onStop(audio_name);
             } catch (error) {
-                console.log("audio_error",error);
             }   
             delete this.active_audio_list[audio_name];
         }

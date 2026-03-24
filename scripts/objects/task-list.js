@@ -33,7 +33,7 @@ const task_list = [
     }),
     new Task({
         identifier:5,
-        name:"",
+        name:"Aham!",
         final_progress_value:8,
         to_install:"none"
     }),

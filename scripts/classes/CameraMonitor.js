@@ -68,7 +68,6 @@ class CameraMonitor {
             //     audio_manager.onPlay('action_denied')
             //     return
             // } else{
-            //     console.log("SIM")
             // }
 
             if(this.current_played_room === null){
@@ -104,7 +103,6 @@ class CameraMonitor {
                 this.chosen_camera_info.image =  chosen_camera.current_view;
                 this.chosen_camera_info.audio = chosen_camera.current_audio;
                 // this.chosen_camera_info.audio.loop = chosen_camera
-                console.log("chamado",chosen_camera.isAudioPlayed);
                 this.onPlayedPlace(chosen_camera.number);
 
                 setTimeout(()=>{
@@ -271,7 +269,6 @@ class CameraMonitor {
                     this.chosen_camera_info.audio = chosen_camera.current_audio;
                     this.chosen_camera_info.repeat_audio = chosen_camera.repeat_audio;
                     this.chosen_camera_info.image = chosen_camera.current_view;
-                    console.log(chosen_camera.current_view)
                     this.chosen_camera_info.number = chosen_camera.number;
                     this.onLoadView(true);
                 }

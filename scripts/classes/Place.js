@@ -55,7 +55,6 @@ class Place {
 
     onPlayAudio(current_locked_room){
 
-        console.log("PLAY",current_locked_room,this.number)
 
         if(this.isAudioPlayed){
             return false
@@ -93,7 +92,6 @@ class Place {
         this.animatronic_list = this.animatronic_list.filter((animatronic_item)=>
             animatronic_item.identifier !== animatronic.identifier
         )
-        console.log("removendo")
     }
 
     onSetAnimatronic(animatronic){

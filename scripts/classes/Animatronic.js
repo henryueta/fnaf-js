@@ -30,7 +30,6 @@ class Animatronic {
     }
     
     onClearWaitingTimeEvent(){
-        console.log("timeout",this.waiting_player_timeout)
         if(this.waiting_player_timeout !== null){
             clearTimeout(this.waiting_player_timeout);
             this.waiting_player_timeout = null;
@@ -46,7 +45,6 @@ class Animatronic {
 
             },
             'hunter':()=>{
-                console.log(this.visited_place_list)
                 this.visited_place_list.push(place.number)
             }
         }
@@ -60,7 +58,6 @@ class Animatronic {
 
             },
             'hunter':()=>{
-                console.log(this.visited_place_list)
                 this.visited_place_list.push(place.number)
             }
         }
@@ -80,7 +77,6 @@ class Animatronic {
     }
 
     onChoicePlace(places,played_room,playerFocus,isPrimeMode){
-        console.log("places",places)
         
         const security_room = places.includes(10);
 
@@ -93,8 +89,6 @@ class Animatronic {
         );
 
         if(!!security_room && choice_decision < 1){
-            console.log("AQUI",choice_decision)
-            console.log("escolheu entrar")
             this.current_place = 10;
             return this.current_place;
         }
@@ -118,7 +112,6 @@ class Animatronic {
             );
             
             if(choice_decision < 1){
-                 console.log(this.identifier+"escolheu audio",places[audio_room_index],places)
                 this.current_place = played_room;
                 return this.current_place
             }
@@ -127,7 +120,6 @@ class Animatronic {
         // choice_decision = onRandomNumber(-5,1);
 
         // if((choice_decision === 1 && places[audio_room_index] !== undefined)){
-        //     console.log(this.identifier+"escolheu audio",places[audio_room_index])
         //     this.current_place = places[audio_room_index]
         //     return this.current_place
         // }
@@ -138,13 +130,10 @@ class Animatronic {
         random_number = onRandomNumber(0,no_audio_room_places.length-1)
         if(this.current_mode === 'hunter' &&  !!this.visited_place_list.length && this.visited_place_list.includes(no_audio_room_places[random_number])){
             while(this.visited_place_list.includes(no_audio_room_places[random_number])){
-                console.log("visitados",this.visited_place_list)
                 random_number = onRandomNumber(0,no_audio_room_places.length-1)
-                console.log("tentativa: ",random_number)
             }
         }
 
-        console.log(this.identifier+"escolheu outro lugar",no_audio_room_places[random_number])
         this.current_place = no_audio_room_places[random_number]
         return this.current_place
 

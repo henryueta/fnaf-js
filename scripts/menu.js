@@ -1,3 +1,4 @@
+import { onDisplay } from "./functions/display.js";
 import { onEntryPage, onExitPage } from "./functions/navigate.js";
 import { onGetPlayerData, onResetData } from "./functions/player-data.js";
 
@@ -118,7 +119,47 @@ let time = 0;
 const menu_canvas_image = new Image();
 menu_canvas_image.src = "../assets/imgs/menu/menu.png";
 
+ const onMenuImageLoop = ()=>{
+
+  menu_canvas_context.clearRect(0,0,menu_canvas.width,menu_canvas.height);
+
+  time += 0.01;
+
+  const moveX = Math.sin(time) * 40;
+  const moveY = Math.cos(time * 0.7) * 20;
+
+  const scale = 1.05;
+
+  const w = menu_canvas.width * scale;
+  const h = menu_canvas.height * scale;
+
+  menu_canvas_context.drawImage(
+    menu_canvas_image,
+    moveX - (w - menu_canvas.width)/2,
+    moveY - (h - menu_canvas.height)/2,
+    w,
+    h
+  );
+
+  requestAnimationFrame(onMenuImageLoop);
+}
+
+const current_display = onDisplay()
+
+const current_game_version_type = document.querySelector("#game-version-type");
+
+current_game_version_type.textContent = (
+  current_display === 'PC'
+  ? "DESKTOP"
+  : "MOBILE"
+)
+
 const onDrawMenuImage = ()=>{
+
+  if(current_display === 'PC'){
+    onMenuImageLoop()
+    return
+  }
 
  menu_canvas_context.clearRect(0,0,menu_canvas.width,menu_canvas.height);
     const moveX = Math.sin(time) * 40;
@@ -142,65 +183,25 @@ const onDrawMenuImage = ()=>{
 const resize = ()=>{
   menu_canvas.width = window.innerWidth;
   menu_canvas.height = window.innerHeight;
+
+  if(current_display === 'PC'){
+    return
+  }
+
   onDrawMenuImage();
 }
 window.addEventListener("resize", resize);
 resize();
 
-
 menu_canvas_image.onload = () => {
 
  onDrawMenuImage();
+ 
 
 //   requestAnimationFrame(loop);
 };
 
-// function loop(){
-
-//   menu_canvas_context.clearRect(0,0,canvas.width,canvas.height);
-
-//   time += 0.01;
-
-//   const moveX = Math.sin(time) * 40;
-//   const moveY = Math.cos(time * 0.7) * 20;
-
-//   const scale = 1.05;
-
-//   const w = canvas.width * scale;
-//   const h = canvas.height * scale;
-
-//   menu_canvas_context.drawImage(
-//     menu_canvas_image,
-//     moveX - (w - canvas.width)/2,
-//     moveY - (h - canvas.height)/2,
-//     w,
-//     h
-//   );
-
-//   requestAnimationFrame(loop);
-// }
 
 
-// const option_list = [
-//     new MenuOption({
-//         title:"New Game",
-//         option_button:document.querySelector("#new-game-option-button"),
-//         onHandleChoice:()=>{
-//         }
-//     }),
-//     new MenuOption({
-//         title:"Continue",
-//         option_button:document.querySelector("#continue-game-option-button"),
-//         onHandleChoice:()=>{
-//             console.log("2");
-//         }
-//     }),
-//     new MenuOption({
-//         title:"Extra",
-//         option_button:document.querySelector("#extra-option-button"),
-//         onHandleChoice:()=>{
-//             window.location.replace("./pages/extra.html")
-//         }
-//     }),
-// ]
+
 
