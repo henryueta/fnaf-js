@@ -21,6 +21,7 @@ class Animatronic {
         this.running_away_audio = config.running_away_audio;
         this.visited_place_list = [];
         this.jumpscare_frame_list = config.jumpscare_frame_list;
+        
         // this.next_place = config.next_place;
     }
 
@@ -78,7 +79,7 @@ class Animatronic {
 
     }
 
-    onChoicePlace(places,played_room,playerFocus){
+    onChoicePlace(places,played_room,playerFocus,isPrimeMode){
         console.log("places",places)
         
         const security_room = places.includes(10);
@@ -105,9 +106,13 @@ class Animatronic {
         if(played_room !== null && played_room !== undefined && places.includes(played_room)){
 
             choice_decision = (
+                isPrimeMode
+                ? onRandomNumber(-1,2)
+                : 
                 playerFocus
                 ? onRandomNumber(0,1)
-                : this.current_place !== played_room
+                : 
+                this.current_place !== played_room
                     ? onRandomNumber(-5,1)
                     : onRandomNumber(0,3)
             );

@@ -38,6 +38,7 @@ class Night {
         this.game_won_container.style.display = 'flex';
         this.game_won_container.classList.add("end-enabled");
         this.ending_slider.enableCancelButton = true;
+        
         this.onCloseEndingSlider([
             "Após uma longa noite de puro terror,Tolinho finalmente termina a cura para Bistecone.",
             "O gato aplica a substância em seu pai e o magrelone retorna em seu estado original.",
@@ -46,7 +47,8 @@ class Night {
         setTimeout(()=>{
             if(!!onWin){
                 this.game_won_container.classList.remove("end-enabled");
-                this.game_won_container.classList.add("final-screen")
+                this.game_won_container.classList.add("final-screen");
+                audio_manager.onPlay("true_ending");
                 this.ending_slider.onViewStoryText();
                 this.ending_slider.enableClick = true;
 
@@ -70,6 +72,11 @@ class Night {
             : ["Game Over: "+reason]
         ),onOver);
         setTimeout(()=>{
+
+            if(isEnding){
+                audio_manager.onPlay("bad_ending");
+            }
+
             this.ending_slider.onViewStoryText();
             this.ending_slider.enableClick = true;
         },1800)

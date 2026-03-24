@@ -71,7 +71,7 @@ const game = new Game({
         action_button_list:{
             place_lock_switch:document.querySelector("#place-audio-switch")
         },
-        loading_image:await onLoadImage("../assets/imgs/loading.jpg"),
+        loading_image:await onLoadImage("../assets/imgs/static.png"),
         camera_list_container:document.querySelector(".map-container"),
         camera_list:[...place_list,...audio_room_list],
         chosen_camera_canvas:document.querySelector("#chosen-place-canvas")
@@ -108,6 +108,8 @@ const game = new Game({
 });
 
 await audio_manager.onPreload({
+    bad_ending:"../assets/audio/ending/bad_ending.wav",
+    true_ending:"../assets/audio/ending/true_ending.wav",
     random_audio_1:"../assets/audio/random/random_audio_1.wav",
     random_audio_2:"../assets/audio/random/random_audio_2.wav",
     cat_voice_1:"../assets/audio/cat/cat_voice_1.wav",

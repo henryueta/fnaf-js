@@ -160,7 +160,7 @@ class Game {
                         this.onKillPlayer(animatronic,"Você não ouviu atentamente os corredores")
                     },(
                         this.mode_type === 'prime_mode'
-                        ? 3500
+                        ? 2000
                         : animatronic.waiting_player_value
                     )); 
                     return
@@ -298,7 +298,8 @@ class Game {
                         : next_place_list.filter((place_number)=>place_number <= 10)
                 ),
                 this.camera_monitor.current_played_room,
-                (this.clock.current_time >= 3)
+                (this.clock.current_time >= 3),
+                this.mode_type === 'prime_mode'
             ); 
 
             if(current_animatronic_place === 11){
@@ -529,7 +530,15 @@ class Game {
                 this.onClearNightEvent();
                 
                     if(this.task_monitor.task_solved_quantity < this.task_monitor.task_list.length){
-                        this.onKillPlayer(this.animatronic_list[0],"Seu tempo para preparar a cura acabou",true);
+                        this.onKillPlayer(this.animatronic_list[0],"Seu tempo para preparar a cura acabou",(
+                            this.mode_type === 'prime_mode'
+                            ? true
+                            : false
+                        ));
+                        
+                        if(this.mode_type === 'prime_mode'){
+                            return
+                        }
                         onSetPlayerStar('bad_ending',true);
                     return
                     }
@@ -544,6 +553,7 @@ class Game {
                     this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/the_end.png"),"any")
                     this.onEnableExit();
                     if(this.mode_type === 'prime_mode'){
+                        onSetPlayerData('prime_ending',true);
                         return
                     }
                     onSetPlayerStar('true_ending',true);
@@ -551,7 +561,11 @@ class Game {
                 });
             });
 
-        },this.clock.timer_value);
+        },(
+            this.mode_type === 'prime_mode'
+            ? 90000
+            : this.clock.timer_value
+        ));
         //
     //
     }

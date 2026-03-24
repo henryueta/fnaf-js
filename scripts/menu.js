@@ -28,7 +28,7 @@ document.querySelectorAll('.option-list-container button').forEach((option_item)
 document.querySelector("#new-game-option-button").onclick = ()=>{
   option_select_audio.play();
   onResetData()
-  onExitPage("./pages/story.html")
+  onExitPage("./pages/story.html?type=new_game")
 }
 
 const player_data = onGetPlayerData('all');
@@ -74,7 +74,7 @@ prime_mode_option.onclick = ()=>{
   }
 
   option_select_audio.play();
-  onExitPage('./pages/game.html?type=prime_mode')
+  onExitPage('./pages/story.html?type=prime_mode')
 }
 
 
