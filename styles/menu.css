@@ -193,6 +193,14 @@
     }
 }
 
+.menu-container .content-container .option-list-container button:enabled:focus{
+
+    .select-option{
+        display: block;
+    }
+
+}
+
 .menu-container .content-container .author-list-container{
     display: flex;
     flex-direction: column;

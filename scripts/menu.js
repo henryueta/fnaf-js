@@ -27,10 +27,10 @@ document.querySelectorAll('.option-list-container button').forEach((option_item)
 const new_game_option = document.querySelector("#new-game-option-button")
 
 new_game_option.onclick = ()=>{
-  new_game_option.classList.add("selected")
+  new_game_option.classList.add("selected");
   option_select_audio.play();
-  onResetData()
-  onExitPage("./pages/story.html?type=new_game")
+  onResetData();
+  onExitPage("./pages/story.html?type=new_game");
 }
 
 const player_data = onGetPlayerData('all');
@@ -42,7 +42,7 @@ const star_quantity = [player_data.bad_ending,player_data.true_ending,player_dat
 
 if(star_quantity.length > 0){
 
-    const star_list = document.querySelectorAll(".star-list-container>div")
+    const star_list = document.querySelectorAll(".star-list-container>div");
     for(let star = 0;star < star_quantity.length;star++){
       star_list[star].style.display = 'block';
     }
@@ -57,7 +57,7 @@ if(player_data.isFirstTimePlaying){
 }
 
 continue_option.onclick = ()=>{
-  continue_option.classList.add("selected")
+  continue_option.classList.add("selected");
   option_select_audio.play();
   onExitPage("./pages/game.html?type=continue")
 }
@@ -71,7 +71,7 @@ if(!player_data.gameCompleted){
 
 
 prime_mode_option.onclick = ()=>{
-  prime_mode_option.classList.add("selected")
+  prime_mode_option.classList.add("selected");
   if(!player_data.gameCompleted){
     return
   }

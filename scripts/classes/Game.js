@@ -576,7 +576,11 @@ class Game {
                 });
             });
 
-        },2000);
+        },(this.clock.timer_value+(
+            this.mode_type === 'prime_mode'
+            ? 15000
+            : 0
+        )));
         //
     //
     }
