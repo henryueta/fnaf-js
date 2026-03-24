@@ -24,8 +24,10 @@ document.querySelectorAll('.option-list-container button').forEach((option_item)
  }
 )
 
+const new_game_option = document.querySelector("#new-game-option-button")
 
-document.querySelector("#new-game-option-button").onclick = ()=>{
+new_game_option.onclick = ()=>{
+  new_game_option.classList.add("selected")
   option_select_audio.play();
   onResetData()
   onExitPage("./pages/story.html?type=new_game")
@@ -33,7 +35,7 @@ document.querySelector("#new-game-option-button").onclick = ()=>{
 
 const player_data = onGetPlayerData('all');
 
-const star_quantity = [player_data.bad_ending,player_data.true_ending].filter((star_item)=>
+const star_quantity = [player_data.bad_ending,player_data.true_ending,player_data.prime_ending].filter((star_item)=>
   star_item === true
 )
 
@@ -55,6 +57,7 @@ if(player_data.isFirstTimePlaying){
 }
 
 continue_option.onclick = ()=>{
+  continue_option.classList.add("selected")
   option_select_audio.play();
   onExitPage("./pages/game.html?type=continue")
 }
@@ -68,7 +71,7 @@ if(!player_data.gameCompleted){
 
 
 prime_mode_option.onclick = ()=>{
-
+  prime_mode_option.classList.add("selected")
   if(!player_data.gameCompleted){
     return
   }
@@ -81,22 +84,14 @@ prime_mode_option.onclick = ()=>{
 
 const menu_canvas = document.querySelector("#menu-canvas");
 const menu_canvas_context = menu_canvas.getContext("2d");
-
-const resize = ()=>{
-  menu_canvas.width = window.innerWidth;
-  menu_canvas.height = window.innerHeight;
-}
-window.addEventListener("resize", resize);
-resize();
+let time = 0;
 
 const menu_canvas_image = new Image();
 menu_canvas_image.src = "../assets/imgs/menu/menu.png";
 
-let time = 0;
+const onDrawMenuImage = ()=>{
 
-menu_canvas_image.onload = () => {
-
-  menu_canvas_context.clearRect(0,0,menu_canvas.width,menu_canvas.height);
+ menu_canvas_context.clearRect(0,0,menu_canvas.width,menu_canvas.height);
     const moveX = Math.sin(time) * 40;
   const moveY = Math.cos(time * 0.7) * 20;
 
@@ -112,6 +107,22 @@ menu_canvas_image.onload = () => {
     w,
     h
   );
+
+}
+
+const resize = ()=>{
+  menu_canvas.width = window.innerWidth;
+  menu_canvas.height = window.innerHeight;
+  onDrawMenuImage();
+}
+window.addEventListener("resize", resize);
+resize();
+
+
+menu_canvas_image.onload = () => {
+
+ onDrawMenuImage();
+
 //   requestAnimationFrame(loop);
 };
 

@@ -100,6 +100,7 @@ const onResetData = ()=>{
     localStorage.removeItem("gameCompleted");
     localStorage.removeItem("badEnding");
     localStorage.removeItem("trueEnding");
+    localStorage.removeItem("primeEnding");
     onGetPlayerData('all');
 }
 

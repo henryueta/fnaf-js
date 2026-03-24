@@ -68,6 +68,10 @@ class Game {
 
     onKillPlayer(animatronic,reason,isEnding){
 
+        if(!!this.current_night.isCompleted){
+            return
+        }
+
         if(!!this.current_night.playerIsDeath){
             return
         }
@@ -236,16 +240,23 @@ class Game {
                         //     return
                         // }
 
-                         if((
+                         if(
+                         (
                             !animatronic.footstep_cheat.inCheatProcess
                             ||
                             (!!animatronic.footstep_cheat.inCheatProcess
                                 &&
-                                onRandomNumber(0,1) === 0
+                                onRandomNumber(0,(
+                                     this.mode_type !== 'prime_mode'
+                                     ? 1
+                                     : 2
+                                ) ) === 0
                             )
                             )
                             &&
-                            this.clock.current_time < 3 
+                            this.mode_type === 'prime_mode'
+                            ? this.clock.current_time < 1
+                            : this.clock.current_time < 3
                          ){
                             // this.camera_monitor.onGenerateGeneratorRoomList();
                             console.log("escolheu recomeçar no início");
@@ -495,11 +506,15 @@ class Game {
         this.onActiveAnimatronic(this.animatronic_list[0]);
         console.log("executado",this.current_night.running_event_value);
 
-        const enable_random_audio = onRandomNumber(0,8);
+        const enable_random_audio = onRandomNumber(0,(
+            this.mode_type === 'prime_mode'
+            ? 6
+            : 8
+        ));
         console.log(enable_random_audio)
         if(enable_random_audio === 0 && !this.isPlayingRandomAudio && !this.animatronic_list[0].isWaitingPlayer){
 
-            const current_random_audio = onRandomNumber(1,2)
+            const current_random_audio = onRandomNumber(1,4)
 
             audio_manager.onPlay("random_audio_"+current_random_audio,()=>{
                 this.isPlayingRandomAudio = false;
@@ -529,22 +544,22 @@ class Game {
             this.clock.onUpdateTime(()=>{
                 this.onClearNightEvent();
                 
-                    if(this.task_monitor.task_solved_quantity < this.task_monitor.task_list.length){
-                        this.onKillPlayer(this.animatronic_list[0],"Seu tempo para preparar a cura acabou",(
-                            this.mode_type === 'prime_mode'
-                            ? true
-                            : false
-                        ));
+                    // if(this.task_monitor.task_solved_quantity < this.task_monitor.task_list.length){
+                    //     this.onKillPlayer(this.animatronic_list[0],"Seu tempo para preparar a cura acabou",(
+                    //         this.mode_type === 'prime_mode'
+                    //         ? true
+                    //         : false
+                    //     ));
                         
-                        if(this.mode_type === 'prime_mode'){
-                            return
-                        }
-                        onSetPlayerStar('bad_ending',true);
-                    return
-                    }
+                    //     if(this.mode_type === 'prime_mode'){
+                    //         return
+                    //     }
+                    //     onSetPlayerStar('bad_ending',true);
+                    // return
+                    // }
                
                 this.onSavePlayer();
-                this.current_night.onNightWin(async ()=>{
+                this.current_night.onNightWin(this.mode_type === 'prime_mode',async ()=>{
                     this.toggle_cam_system_button.style.display = 'none';
                     this.toggle_task_system_button.style.display = 'none';
                     this.camera_monitor.screen_container.parentElement.style.display = 'none';
@@ -553,7 +568,7 @@ class Game {
                     this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/the_end.png"),"any")
                     this.onEnableExit();
                     if(this.mode_type === 'prime_mode'){
-                        onSetPlayerData('prime_ending',true);
+                        onSetPlayerStar('prime_ending',true);
                         return
                     }
                     onSetPlayerStar('true_ending',true);
@@ -561,11 +576,7 @@ class Game {
                 });
             });
 
-        },(
-            this.mode_type === 'prime_mode'
-            ? 90000
-            : this.clock.timer_value
-        ));
+        },2000);
         //
     //
     }

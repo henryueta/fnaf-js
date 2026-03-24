@@ -38,7 +38,7 @@ const task_list = [
         to_install:"none"
     }),
     new Task({
-        identifier:4,
+        identifier:6,
         name:"Ingrediente X",
         final_progress_value:5,
         to_install:"none"

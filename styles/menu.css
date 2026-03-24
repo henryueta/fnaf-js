@@ -154,6 +154,39 @@
     position: relative;
 }
 
+    .selected{
+
+        animation:selected-option linear infinite 0.2s;
+
+    }
+
+    @keyframes selected-option {
+        0%{
+           color: white;
+            text-shadow: 
+            -1px -1px 0 rgb(255, 0, 0),
+            1px -1px 0 rgb(153, 0, 0),
+            -1px  1px 0 rgb(0, 0, 0),
+            1px  1px 0 rgb(97, 0, 0);  
+        }
+        50%{
+             color: rgb(255, 255, 255);
+            text-shadow: 
+            -1px -1px 0 rgb(255, 255, 255),
+            1px -1px 0 rgb(156, 156, 156),
+            -1px  1px 0 rgb(0, 0, 0),
+            1px  1px 0 rgb(88, 88, 88);
+        }
+        100%{
+           color: white;
+            text-shadow: 
+            -1px -1px 0 rgb(255, 0, 0),
+            1px -1px 0 rgb(153, 0, 0),
+            -1px  1px 0 rgb(0, 0, 0),
+            1px  1px 0 rgb(97, 0, 0);  
+        }
+    }
+
 .menu-container .content-container .option-list-container button:enabled:hover{
     .select-option{
         display: block;
