@@ -15,7 +15,7 @@
 
 .cam-system-container .content-container::after{
   content: "";
-  border: 0.1rem solid white;
+  border: 0.1rem solid rgb(255, 0, 0);
   inset: 4px;
   position: absolute;
   z-index: 8;

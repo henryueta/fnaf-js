@@ -56,7 +56,6 @@ new_game_option.onclick = ()=>{
 }
 
 reset_confirm_button.onclick = ()=>{
-  alert("vai resetar")
   menu_antifocus_container.style.display = 'none';
   confirm_reset_container.style.display = 'none';
   new_game_option.classList.add("selected");

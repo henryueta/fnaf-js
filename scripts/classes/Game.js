@@ -486,7 +486,7 @@ class Game {
             audio_manager.onPlay("anxiety",null,1.2,true);
         }
 
-        // this.onActiveAnimatronic(this.animatronic_list[0]);
+        this.onActiveAnimatronic(this.animatronic_list[0]);
 
         const enable_random_audio = onRandomNumber(0,(
             this.mode_type === 'prime_mode'
