@@ -9,7 +9,7 @@
 .cancel-call-container button{
     /* font-family: 'pixel'; */
     padding: 0.6rem 1.1rem 0.6rem 1.1rem;
-    background-color: rgb(97, 97, 97);
+    background-color: rgb(0, 0, 0,0.5);
     color: white;
     border:0.1rem solid white;
     display: flex;

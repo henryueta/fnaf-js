@@ -263,7 +263,7 @@ class CameraMonitor {
                     const chosen_camera = this.camera_list.find((item)=>{
                     return item.number === camera_number
                 }) 
-                this.onSelectPlace().style.background = 'gray'
+                this.onSelectPlace().style.background = 'rgb(0,0,0,0.5)'
                 camera_item_container.style.background = 'red';
                 if(this.chosen_camera_info.number !== chosen_camera.number){
                     this.chosen_camera_info.audio = chosen_camera.current_audio;
