@@ -305,7 +305,7 @@
     }
 
     .battery-container>*{
-        border: 0.3rem solid white;
+        border: 0.1rem solid white;
     }
 
     .battery-container .percent-container div{

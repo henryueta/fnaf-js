@@ -18,7 +18,6 @@ const audio_manager = {
     },
     onPlay(name,onEnd,volume = 1,loop = false){
 
-        console.log("PLAY",name)
 
         if(this.context.state === 'suspended'){
             this.context.resume();
@@ -28,7 +27,6 @@ const audio_manager = {
         source.buffer = this.buffer_list[name];
         const gain_node = this.context.createGain();
         gain_node.gain.value = volume;
-        console.log("vol",gain_node.gain.value)
         source.connect(gain_node) 
         gain_node.connect(this.context.destination);
         source.loop = loop;

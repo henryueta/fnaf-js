@@ -23,6 +23,7 @@ class Game {
         this.place_list = config.place_list;
         this.current_night = config.current_night;
         this.isStarted = false;
+        this.isPlayingAnxietyAudio = false;
         this.isPlayingRandomAudio = false;
     }
 
@@ -97,7 +98,7 @@ class Game {
                 this.camera_monitor.screen_container.parentElement.style.zIndex = '0';
                 this.task_monitor.screen_container.parentElement.style.zIndex = '0';
         },()=>{
-            this.current_night.onNightOver(async ()=>{
+            this.current_night.onNightOver(this.mode_type === 'prime_mode',async ()=>{
                 this.onActiveItems(false);
                 this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/game_over.png"),"none");
                 if(this.mode_type === 'prime_mode'){
@@ -503,6 +504,11 @@ class Game {
             this.animatronic_list[0].footstep_cheat.inCheatProcess = true;
         }
 
+        if(this.clock.current_time === 4 && !this.isPlayingAnxietyAudio){
+            this.isPlayingAnxietyAudio = true;
+            audio_manager.onPlay("anxiety",null,1.2,true);
+        }
+
         this.onActiveAnimatronic(this.animatronic_list[0]);
         console.log("executado",this.current_night.running_event_value);
 
@@ -544,19 +550,19 @@ class Game {
             this.clock.onUpdateTime(()=>{
                 this.onClearNightEvent();
                 
-                    // if(this.task_monitor.task_solved_quantity < this.task_monitor.task_list.length){
-                    //     this.onKillPlayer(this.animatronic_list[0],"Seu tempo para preparar a cura acabou",(
-                    //         this.mode_type === 'prime_mode'
-                    //         ? true
-                    //         : false
-                    //     ));
+                    if(this.task_monitor.task_solved_quantity < this.task_monitor.task_list.length){
+                        this.onKillPlayer(this.animatronic_list[0],"Seu tempo para preparar a cura acabou",(
+                            this.mode_type === 'prime_mode'
+                            ? true
+                            : false
+                        ));
                         
-                    //     if(this.mode_type === 'prime_mode'){
-                    //         return
-                    //     }
-                    //     onSetPlayerStar('bad_ending',true);
-                    // return
-                    // }
+                        if(this.mode_type === 'prime_mode'){
+                            return
+                        }
+                        onSetPlayerStar('bad_ending',true);
+                    return
+                    }
                
                 this.onSavePlayer();
                 this.current_night.onNightWin(this.mode_type === 'prime_mode',async ()=>{
@@ -565,7 +571,11 @@ class Game {
                     this.camera_monitor.screen_container.parentElement.style.display = 'none';
                     this.task_monitor.screen_container.style.display = 'none';
                     this.onActiveItems(false);
-                    this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/the_end.png"),"any")
+                    this.player_room.onSwitchImage(await onLoadImage("../assets/imgs/end/"+(
+                        this.mode_type === 'prime_mode'
+                        ?  'prime_ending'
+                        : 'true_ending'
+                    )+".png"),"any")
                     this.onEnableExit();
                     if(this.mode_type === 'prime_mode'){
                         onSetPlayerStar('prime_ending',true);
@@ -581,8 +591,6 @@ class Game {
             ? 15000
             : 0
         )));
-        //
-    //
     }
 
     onActiveItems(enable){

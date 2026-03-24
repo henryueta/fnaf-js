@@ -108,6 +108,7 @@ const game = new Game({
 });
 
 await audio_manager.onPreload({
+    anxiety:"../assets/audio/ambience/anxiety.wav",
     bad_ending:"../assets/audio/ending/bad_ending.wav",
     true_ending:"../assets/audio/ending/true_ending.wav",
     random_audio_1:"../assets/audio/random/random_audio_1.wav",

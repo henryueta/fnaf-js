@@ -61,6 +61,65 @@
     text-align: center;
 }
 
+.menu-antifocus-container{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 7;
+    background-color: rgb(0,0,0,0.75);
+}
+
+.confirm-reset-container{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    position: fixed;
+    z-index: 8;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: black;
+    width: 45%;
+    height: 45%;
+    box-shadow: -1px -1px 0 rgb(255, 0, 0),
+     1px -1px 0 rgb(153, 0, 0),
+    -1px  1px 0 rgb(24, 24, 24),
+     1px  1px 0 rgb(97, 0, 0);
+}
+
+.confirm-reset-container .info-container{
+    width: 100%;
+    height: 80%;
+    padding: 0.5rem;
+    font-size: 1.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.confirm-reset-container>.choice-container{
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+.confirm-reset-container>.choice-container button{
+    flex: 1;
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    color: white;
+      text-shadow: 
+    -1px -1px 0 rgb(255, 0, 0),
+     1px -1px 0 rgb(153, 0, 0),
+    -1px  1px 0 rgb(0, 0, 0),
+     1px  1px 0 rgb(97, 0, 0);
+     background-color: black;
+}
+
 .game-preference-choice-container{
     display: none;
     flex-direction: column;
@@ -285,6 +344,15 @@
         font-size: 4rem;
     }
 
+        .confirm-reset-container .info-container{
+    font-size: 4.2rem;
+}
+
+.confirm-reset-container>.choice-container button{
+    font-size: 4rem;
+    padding: 1.2rem;
+}
+
     .menu-container .content-container .title-container{
         font-size: 23rem;
         top: -310px;
@@ -343,6 +411,15 @@
         font-size: 2.5rem;
     }
 
+    .confirm-reset-container .info-container{
+    font-size: 2.5rem;
+}
+
+.confirm-reset-container>.choice-container button{
+    font-size: 2rem;
+    padding: 1.2rem;
+}
+
     .menu-container .content-container .title-container{
         font-size: 13rem;
         top: -230px;
@@ -383,6 +460,14 @@
         text-align: center;
         font-size: 1rem;
     }
+
+.confirm-reset-container .info-container{
+    font-size: 1rem;
+}
+
+.confirm-reset-container>.choice-container button{
+    font-size: 1rem;
+}
 
     .menu-container .content-container .option-list-container button .select-option{
         border: 0.2rem solid rgb(255, 255, 255);

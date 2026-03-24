@@ -43,7 +43,12 @@ class Night {
         this.onCloseEndingSlider((
             isPrimeMode
             ? [
-                "Nada para ver aqui"
+                ". . .",
+                "Meus parabéns!Você passou do modo Prime!",
+                "Espero que tenha gostado do jogo.",
+                "Mas enfim, não fiz nada de especial para te compensar :(",
+                "Então fique apenas com uma estrela no menu e a foto do Guilherme mestre pokemon!",
+                "PRIME ENDING"
             ]
             : [
             "Após uma longa noite de puro terror,Tolinho finalmente termina a cura para Bistecone.",
@@ -67,11 +72,11 @@ class Night {
                 }
         },12000)
     }
-    onNightOver(onOver,reason,isEnding){
+    onNightOver(isPrimeMode,onOver,reason,isEnding){
         
         this.game_over_container.style.display = 'flex';
         this.onCloseEndingSlider((
-            !!isEnding
+            (!!isEnding && !isPrimeMode)
             ? ["Game Over: "+reason,
                 "Tolinho não conseguiu terminar a receita da cura para Bistecone.",
                 "BAD ENDING"

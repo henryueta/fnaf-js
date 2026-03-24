@@ -24,16 +24,45 @@ document.querySelectorAll('.option-list-container button').forEach((option_item)
  }
 )
 
+const player_data = onGetPlayerData('all');
+
 const new_game_option = document.querySelector("#new-game-option-button")
 
+const confirm_reset_container = document.querySelector(".confirm-reset-container")
+const menu_antifocus_container = document.querySelector(".menu-antifocus-container")
+
+const reset_confirm_button = confirm_reset_container.querySelector("#reset-confirm-button");
+const reset_cancel_button = confirm_reset_container.querySelector("#reset-cancel-button")
+
+
+
+reset_cancel_button.onclick = ()=>{
+  menu_antifocus_container.style.display = 'none';
+  confirm_reset_container.style.display = 'none';
+}
+
 new_game_option.onclick = ()=>{
+
+  if(!player_data.isFirstTimePlaying){
+    menu_antifocus_container.style.display = 'block';
+    confirm_reset_container.style.display = 'flex';
+    return
+  }
   new_game_option.classList.add("selected");
   option_select_audio.play();
   onResetData();
   onExitPage("./pages/story.html?type=new_game");
 }
 
-const player_data = onGetPlayerData('all');
+reset_confirm_button.onclick = ()=>{
+  alert("vai resetar")
+  menu_antifocus_container.style.display = 'none';
+  confirm_reset_container.style.display = 'none';
+  new_game_option.classList.add("selected");
+  option_select_audio.play();
+  onResetData();
+  onExitPage("./pages/story.html?type=new_game");
+}
 
 const star_quantity = [player_data.bad_ending,player_data.true_ending,player_data.prime_ending].filter((star_item)=>
   star_item === true

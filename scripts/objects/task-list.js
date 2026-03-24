@@ -15,31 +15,31 @@ const task_list = [
     // }),
     new Task({
         identifier:0,
-        name:"Pó de Canela",
+        name:"Livro de Fanarts",
         final_progress_value:5,
         to_install:"none"
     }),
     new Task({
         identifier:1,
-        name:"Ingrediente Y",
+        name:"Extrato de Gogó",
         final_progress_value:5,
         to_install:"none"
     }),
     new Task({
         identifier:4,
-        name:"Ingrediente X",
+        name:"Chave do Gol",
         final_progress_value:5,
         to_install:"none"
     }),
     new Task({
         identifier:5,
-        name:"Ingrediente X",
+        name:"",
         final_progress_value:8,
         to_install:"none"
     }),
     new Task({
         identifier:6,
-        name:"Ingrediente X",
+        name:"Prêmio IBEST",
         final_progress_value:5,
         to_install:"none"
     }),
