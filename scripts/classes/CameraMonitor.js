@@ -23,6 +23,7 @@ class CameraMonitor {
             repeat_audio:this.camera_list[0].repeat_audio
         }
         this.isInstalled = config.isInstalled;
+        this.player_room_place = document.querySelector("#player-room-place");
 
         this.volume_icon = `<svg width="80" height="80" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <polygon points="8,24 20,24 32,12 32,52 20,40 8,40" fill="#ffffff"/>
@@ -82,10 +83,13 @@ class CameraMonitor {
             this.isRunningOperation = true;
             place_lock_switch.classList.add("user-lock-switch");
 
+            
+
             chosen_camera.hearable_place_list.forEach((hearable_place_item)=>{
                 const current_hearable_place = document.querySelector("#place-"+hearable_place_item)
-                current_hearable_place.classList.add("hearable-place")   
+                current_hearable_place.classList.add("hearable-place")
             })
+             this.player_room_place.classList.add("hearable-place")
             audio_manager.onPlay('cat_voice_'+onRandomNumber(1,7),null,1.5);
 
             setTimeout(()=>{
@@ -99,6 +103,7 @@ class CameraMonitor {
                 chosen_camera.hearable_place_list.forEach((hearable_place_item)=>{
                     document.querySelector("#place-"+hearable_place_item).classList.remove("hearable-place")
                 })
+                 this.player_room_place.classList.remove("hearable-place")
                 place_lock_switch.classList.remove("user-lock-switch");
                 this.chosen_camera_info.image =  chosen_camera.current_view;
                 this.chosen_camera_info.audio = chosen_camera.current_audio;
